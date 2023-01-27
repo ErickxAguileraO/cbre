@@ -1,0 +1,17 @@
+<svg id="instagram" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+  <g id="Grupo_71" data-name="Grupo 71">
+    <g id="Grupo_70" data-name="Grupo 70">
+      <path id="Trazado_893" data-name="Trazado 893" d="M10.312,0H4.687A4.688,4.688,0,0,0,0,4.687v5.625A4.688,4.688,0,0,0,4.687,15h5.625A4.688,4.688,0,0,0,15,10.312V4.687A4.688,4.688,0,0,0,10.312,0Zm3.281,10.312a3.285,3.285,0,0,1-3.281,3.281H4.687a3.285,3.285,0,0,1-3.281-3.281V4.687A3.285,3.285,0,0,1,4.687,1.406h5.625a3.285,3.285,0,0,1,3.281,3.281Z" fill="#fff"/>
+    </g>
+  </g>
+  <g id="Grupo_73" data-name="Grupo 73" transform="translate(3.75 3.75)">
+    <g id="Grupo_72" data-name="Grupo 72">
+      <path id="Trazado_894" data-name="Trazado 894" d="M131.75,128a3.75,3.75,0,1,0,3.75,3.75A3.75,3.75,0,0,0,131.75,128Zm0,6.094a2.344,2.344,0,1,1,2.344-2.344A2.347,2.347,0,0,1,131.75,134.094Z" transform="translate(-128 -128)" fill="#fff"/>
+    </g>
+  </g>
+  <g id="Grupo_75" data-name="Grupo 75" transform="translate(11.032 2.969)">
+    <g id="Grupo_74" data-name="Grupo 74">
+      <circle id="Elipse_27" data-name="Elipse 27" cx="0.5" cy="0.5" r="0.5" fill="#fff"/>
+    </g>
+  </g>
+</svg>

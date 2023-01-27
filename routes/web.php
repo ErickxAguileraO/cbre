@@ -14,5 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('web.home');
 });
+Route::get('/contacto', function () {
+    return view('web.contacto');
+});
+Route::get('/edificios-oficinas', function () {
+    return view('web.edificios.index');
+});
+Route::get('/edificios-oficinas-detalle', function () {
+    return view('web.edificios.detalle');
+});
+Route::get('/noticias', function () {
+    return view('web.noticias.index');
+});
+Route::get('/noticias-detalle', function () {
+    return view('web.noticias.detalle');
+});
+
