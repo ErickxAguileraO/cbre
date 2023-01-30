@@ -23,6 +23,28 @@
 </head>
 
 <body>
+    {{-- Barra movil --}}
+    <nav class="barra-menu-movil">
+        <div class="logo-cerrar">
+            <a href="/"><img src="{{ asset('web/imagenes/logo-white.svg') }}" alt=""></a>
+            <div>
+                <img class="btn-cerrar-menu-bar" src="{{ asset('web/imagenes/i-cerrar.svg') }}" alt="">
+            </div>
+        </div>
+        <div class="op1-barra-movil">
+            <a href="">Acerca de</a>
+            <a href="">Asset Management</a>
+            <a href="">Property</a>
+            <a href="">Multifamily</a>
+        </div>
+        <div class="op2-barra-movil">
+            <a href="">PROPERTY MANAGMENT</a>
+            <a href="">EDIFICIOS Y OFICINAS</a>
+            <a href="">NOTICIAS</a>
+            <a href="">CONTÁCTANOS</a>
+        </div>
+    </nav>
+
     <!-- Header entorno publico definitivo -->
     <header class="mostrar-escritorio">
         <a href="/"><img src="{{ asset('web/imagenes/logo-white.svg') }}" alt=""></a>
@@ -33,7 +55,7 @@
             <a href="">Multifamily</a>
         </div>
     </header>
-
+    {{-- Menu escritorio --}}
     <nav class="menu mostrar-escritorio">
         <a href="">PROPERTY MANAGMENT</a>
         <a href="">EDIFICIOS Y OFICINAS</a>
@@ -42,15 +64,15 @@
         <a href="" class="admin-link"><img src="{{ asset('web/imagenes/i-user.svg') }}" alt=""></a>
     </nav>
 
-
+    {{-- Menu movil --}}
     <div class="header-movil mostrar-movil">
         <a href="/"><img src="{{ asset('web/imagenes/logo-white.svg') }}" alt=""></a>
         <div>
             <a href=""><img src="{{ asset('web/imagenes/i-user.svg') }}" alt=""></a>
-            <a href=""><img src="{{ asset('web/imagenes/i-bar.svg') }}" alt=""></a>
+            <a class="btn-bar-movil"><img src="{{ asset('web/imagenes/i-bar.svg') }}" alt=""></a>
         </div>
-        
     </div>
+    
     @yield('content')
 
     <footer>
@@ -85,6 +107,10 @@
     <script src="{{ asset('web/js/niceselect/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('web/js/slick/slick.min.js') }}"></script>
     <script src="{{ asset('web/js/script.js') }}"></script>
+    <script>
+        $('select').niceSelect();
+    </script>
+    
     @stack('extra-js')
 
 </body>

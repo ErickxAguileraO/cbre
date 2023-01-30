@@ -1,3 +1,11 @@
+// barra movil
+$(".btn-bar-movil").click(function(){    
+  $(".barra-menu-movil").css({'left':'0px'});
+});
+$(".btn-cerrar-menu-bar").click(function(){    
+  $(".barra-menu-movil").css({'left':'-150%'});
+});
+
 $('.carruselNoticias').slick({
     dots: false,
     infinite: true,
@@ -8,7 +16,7 @@ $('.carruselNoticias').slick({
       {
         breakpoint: 1300,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
           dots: false
@@ -60,7 +68,7 @@ $('.carruselCertificaciones').slick({
       {
         breakpoint: 1300,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 1,
           infinite: true,
           dots: false
@@ -76,14 +84,14 @@ $('.carruselCertificaciones').slick({
       {
         breakpoint: 990,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 3,
           slidesToScroll: 1
         }
       },
       {
         breakpoint: 780,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1
         }
       },
