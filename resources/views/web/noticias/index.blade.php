@@ -29,7 +29,7 @@
         <div class="sub-menu">
             <a href="/">Estás en <p>inicio</p></a>
             <p>></p>
-            <a href="/edificios-oficinas-detalle">Noticias</a>
+            <a href="/noticias">Noticias</a>
         </div>
         <section class="flex-noticias-home">
             <div class="noticias-home">
