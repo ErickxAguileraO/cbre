@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('web.home');
 });
 Route::get('/contacto', function () {
-    return view('web.contacto');
+    return view('web.contacto.index');
 });
 Route::get('/edificios-oficinas', function () {
     return view('web.edificios.index');

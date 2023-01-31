@@ -53,7 +53,7 @@
                         <p>Santiago Centro, Santiago</p>
                     </div>
                     <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="" class="ver-mas">
+                    <a href="/edificios-oficinas-detalle" class="ver-mas">
                         <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
                         <p>Ver edificio</p>
                     </a>
@@ -75,7 +75,7 @@
                         <p>Santiago Centro, Santiago</p>
                     </div>
                     <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="" class="ver-mas">
+                    <a href="/edificios-oficinas-detalle" class="ver-mas">
                         <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
                         <p>Ver edificio</p>
                     </a>
@@ -97,7 +97,7 @@
                         <p>Santiago Centro, Santiago</p>
                     </div>
                     <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="" class="ver-mas">
+                    <a href="/edificios-oficinas-detalle" class="ver-mas">
                         <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
                         <p>Ver edificio</p>
                     </a>
@@ -121,7 +121,7 @@
                         <p>Santiago Centro, Santiago</p>
                     </div>
                     <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="" class="ver-mas">
+                    <a href="/edificios-oficinas-detalle" class="ver-mas">
                         <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
                         <p>Ver edificio</p>
                     </a>
@@ -143,7 +143,7 @@
                         <p>Santiago Centro, Santiago</p>
                     </div>
                     <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="" class="ver-mas">
+                    <a href="/edificios-oficinas-detalle" class="ver-mas">
                         <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
                         <p>Ver edificio</p>
                     </a>
@@ -165,7 +165,7 @@
                         <p>Santiago Centro, Santiago</p>
                     </div>
                     <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="" class="ver-mas">
+                    <a href="/edificios-oficinas-detalle" class="ver-mas">
                         <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
                         <p>Ver edificio</p>
                     </a>

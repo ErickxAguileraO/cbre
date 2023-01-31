@@ -802,6 +802,113 @@ footer .rrss{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
+/* Detalle noticia */
+.flex-contenido-seccion{
+    width: 90%;
+    background-color: white;
+    margin-top: -70px;
+}
+.contenido-seccion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0px 200px 80px 200px;
+}
+.contenido-seccion h2{
+    font-family: calibre-Regular;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 44px;
+    text-align: left;
+    color: #282828;
+
+}
+.portada-noticia{
+    width: 100%;
+}
+.fecha-noticia{
+    display: flex;
+    gap: 10px;
+}
+.compartir{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 100%;
+    height: auto;
+    padding: 5px 20px;
+    border: 1px solid #EBEBEB;
+    gap: 25px;
+}
+.compartir div{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.noticia-txt p{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    color: #5C5C5C;
+    text-align: justify;
+}
+/* Contacto */
+.formulario-contacto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+}
+.formulario-contacto form{
+    width: 60%;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.formulario-contacto form input{
+    width: 90%;
+    height: 30px;
+    border: none;
+    outline: none;
+    padding-bottom: 5px;
+    font-family: calibre-Regular;
+    font-size: 18px;
+}
+.input-linea{
+    display: flex;
+    width: 100%;
+    border-bottom: 2px solid #012A2D;
+    margin-bottom: 25px;
+    gap: 10px;
+
+}
+.formulario-contacto form textarea{
+    width: 90%;
+    height: 140px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: calibre-Regular;
+    font-size: 18px;
+}
+.textarea-linea{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    border-bottom: 2px solid #012A2D;
+    margin-bottom: 25px;
+    gap: 10px;
+}
+.btn-contacto{
+    width: 200px;
+    height: 55px;
+    background: #538184;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (max-width: 1400px) { 
     /* Edificios */
@@ -865,6 +972,20 @@ footer .rrss{
         gap: 30px;
         width: 100%;
         height: 170px;
+    }
+    /* Noticia detalle */
+    .contenido-seccion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0px 100px 80px 100px;
+    }
+    /* Contacto */
+    .formulario-contacto form {
+        width: 70%;
+        margin-top: 40px;
+        margin-bottom: 100px;
     }
 }
 
@@ -975,6 +1096,12 @@ footer .rrss{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
+    /* Contacto */
+    .formulario-contacto form {
+        width: 100%;
+        margin-top: 40px;
+        margin-bottom: 100px;
+    }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -1040,10 +1167,21 @@ footer .rrss{
     .operacion-n .img {
         width: 100%;
     }
+    /* Noticia detalle */
+    .contenido-seccion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0px 40px 50px 40px;
+    }
 }
 
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {  
+    .sub-menu{
+        display: none;
+    }
     .buscador {
         display: flex;
         flex-direction: column;
@@ -1198,5 +1336,29 @@ footer .rrss{
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         gap: 20px;
+    }
+    /* Noticia detalle */
+    .contenido-seccion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 20px 50px 20px;
+    }
+    /* Contacto */
+    .formulario-contacto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 95%;
+    }
+    .btn-contacto {
+        width: 100%;
+        height: 55px;
+        background: #538184;
+        color: white;
+        border: none;
+        outline: none;
+        cursor: pointer;
     }
 }

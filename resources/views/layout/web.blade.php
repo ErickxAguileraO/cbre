@@ -39,9 +39,9 @@
         </div>
         <div class="op2-barra-movil">
             <a href="">PROPERTY MANAGMENT</a>
-            <a href="">EDIFICIOS Y OFICINAS</a>
-            <a href="">NOTICIAS</a>
-            <a href="">CONTÁCTANOS</a>
+            <a href="/edificios-oficinas">EDIFICIOS Y OFICINAS</a>
+            <a href="/noticias">NOTICIAS</a>
+            <a href="/contacto">CONTÁCTANOS</a>
         </div>
     </nav>
 
@@ -58,9 +58,9 @@
     {{-- Menu escritorio --}}
     <nav class="menu mostrar-escritorio">
         <a href="">PROPERTY MANAGMENT</a>
-        <a href="">EDIFICIOS Y OFICINAS</a>
-        <a href="">NOTICIAS</a>
-        <a href="">CONTÁCTANOS</a>
+        <a href="/edificios-oficinas">EDIFICIOS Y OFICINAS</a>
+        <a href="/noticias">NOTICIAS</a>
+        <a href="/contacto">CONTÁCTANOS</a>
         <a href="" class="admin-link"><img src="{{ asset('web/imagenes/i-user.svg') }}" alt=""></a>
     </nav>
 
