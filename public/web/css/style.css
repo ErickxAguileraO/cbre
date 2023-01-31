@@ -330,7 +330,7 @@ footer .rrss{
     bottom: 34px;
     position: relative;
 }
-.contador{
+.contador-home{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     place-items: center;
@@ -353,12 +353,29 @@ footer .rrss{
     line-height: 44px;
     color: #FFFFFF;
 }
+.contador{
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 44px;
+    color: #FFFFFF;
+    font-family: financier-Regular;
+
+}
 
 .contador-n p{
     font-size: 16px;
     line-height: 19px;
     text-align: center;
     color: #FFFFFF;
+}
+.ocultar-animate{
+    opacity: 0;
+}
+.animar{
+    animation: aparecer 3s ;
+    opacity: 1;
 }
 .flex-noticias-home{
     display: flex;
@@ -1025,7 +1042,7 @@ footer .rrss{
         position: relative;
     }
     /* contador */
-    .contador {
+    .contador-home {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         place-items: center;
@@ -1218,7 +1235,7 @@ footer .rrss{
         margin-bottom: 80px;
         text-align: center;
     }
-    .contador{
+    .contador-home{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         place-items: center;

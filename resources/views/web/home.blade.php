@@ -35,21 +35,21 @@
             
         </section>
 
-        <section class="contador">
+        <section class="contador-home">
             <div class="contador-n">
-                <h1>+500</h1>
+                <div class="contador ocultar-animate"><h1>+</h1><div class="contador_cantidad" data-cantidad-total="500">0</div></div>
                 <p>Edificios administrados</p>
             </div>
             <div class="contador-n">
-                <h1>+500</h1>
+                <div class="contador ocultar-animate"><h1>+</h1><div class="contador_cantidad" data-cantidad-total="500">0</div></div>
                 <p>Clientes confian en nosotros</p>
             </div>
             <div class="contador-n">
-                <h1>+500</h1>
+                <div class="contador ocultar-animate"><h1>+</h1><div class="contador_cantidad" data-cantidad-total="500">0</div></div>
                 <p>Oficinas en todo Chile</p>
             </div>
             <div class="contador-n">
-                <h1>+500</h1>
+                <div class="contador ocultar-animate"><h1>+</h1><div class="contador_cantidad" data-cantidad-total="500">0</div></div>
                 <p>Oficinas en todo Chile</p>
             </div>
         </section>
