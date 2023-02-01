@@ -62,7 +62,7 @@
                                     <img src="{{ asset('web/imagenes/i-telefono-green.svg') }}" alt="">
                                     <p>+56934567898</p>
                                 </div>
-                                <a href="" class="telefono-correo-operacion">
+                                <a href="mailto:prueba@aeurus.cl" class="telefono-correo-operacion">
                                     <img src="{{ asset('web/imagenes/i-correo-green.svg') }}" alt="">
                                     <p>Enviar un correo</p>
                                 </a>

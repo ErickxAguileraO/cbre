@@ -89,7 +89,7 @@
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="" class="ver-mas">
+                                <a href="/noticias-detalle" class="ver-mas">
                                     <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
@@ -107,7 +107,7 @@
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="" class="ver-mas">
+                                <a href="/noticias-detalle" class="ver-mas">
                                     <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
@@ -125,7 +125,7 @@
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="" class="ver-mas">
+                                <a href="/noticias-detalle" class="ver-mas">
                                     <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
@@ -145,7 +145,7 @@
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="" class="ver-mas">
+                                <a href="/noticias-detalle" class="ver-mas">
                                     <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
@@ -238,7 +238,7 @@
                                 <img src="{{ asset('web/imagenes/i-telefono-green.svg') }}" alt="">
                                 <p>+56934567898</p>
                             </div>
-                            <a href="" class="telefono-correo-operacion">
+                            <a href="mailto:prueba@aeurus.cl" class="telefono-correo-operacion">
                                 <img src="{{ asset('web/imagenes/i-correo-green.svg') }}" alt="">
                                 <p>Enviar un correo</p>
                             </a>
