@@ -31,7 +31,7 @@
             <div class="caracteristicas">
                 <h2>Características del edificio</h2>
                 <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti </p>
-                <div class="img-caracteristicas">
+                <div class="carruselCaracteristicas">
                     <div class="caracteristica-n">
                         <img src="{{ asset('web/imagenes/i-areas-verdes.svg') }}" alt="">
                         <p>Áreas verdes</p>
@@ -228,7 +228,7 @@
         <section class="flex-operaciones">
             <div class="operaciones">
                 <div class="operaciones-contenido">
-                    <h2>Jefe de operaciones</h2>
+                    <h2>Jefe de operaciones del edificio</h2>
                     <div class="operacion-n">
                         <img class="img" src="{{ asset('web/imagenes/img-jefe.svg') }}" alt="">
                         <div class="txt-operacion">
@@ -246,9 +246,10 @@
                     </div>
                 </div>
 
+{{-- 
 
                 <div  class="operaciones-contenido">
-                    <h2>Jefe de operaciones</h2>
+                    <h2>Asistente de operaciones</h2>
                     <div class="operacion-n">
                         <img class="img" src="{{ asset('web/imagenes/img-jefe.svg') }}" alt="">
                         <div class="txt-operacion">
@@ -264,7 +265,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 
             </div>
             

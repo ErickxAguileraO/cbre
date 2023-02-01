@@ -14,7 +14,7 @@
         <div class="buscador">
             <h2>Encuentra la oficina ideal en el edificio que gustes</h2>
             <div class="input-buscar">
-                <input type="search">
+                <input type="search" placeholder="Escribe aquí el nombre del edificio">
                 <img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt="">
             </div>
             <button class="boton-buscar">Buscar por submercado ></button>

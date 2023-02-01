@@ -18,7 +18,7 @@
         </div>
         <div class="buscador-input">
             <div class="input-buscar">
-                <input type="search">
+                <input type="search" placeholder="Escribe aquí el nombre del edificio">
                 <button class="btn-lupa"><img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt=""></button>
                 {{-- <img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt=""> --}}
             </div>

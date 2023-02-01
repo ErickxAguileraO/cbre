@@ -35,13 +35,13 @@
             </div>
         </div>
         <div class="op1-barra-movil">
-            <a href="">Acerca de</a>
-            <a href="">Asset Management</a>
-            <a href="">Property</a>
-            <a href="">Multifamily</a>
+            <a href="https://www.cbre.cl/es-cl/acerca-de-cbre" target="_blank">Acerca de</a>
+            <a href="https://assetcbre.cl/" target="_blank">Asset Management</a>
+            <a href="https://www.cbre.cl/es-cl/servicios/servicios-para-inversores/pm2_property-management" target="_blank">Property</a>
+            <a href="https://amenity.cl/" target="_blank">Multifamily</a>
         </div>
         <div class="op2-barra-movil">
-            <a href="">PROPERTY MANAGMENT</a>
+            <a href="/">PROPERTY MANAGMENT</a>
             <a href="/edificios-oficinas">EDIFICIOS Y OFICINAS</a>
             <a href="/noticias">NOTICIAS</a>
             <a href="/contacto">CONTÁCTANOS</a>
@@ -52,15 +52,15 @@
     <header class="mostrar-escritorio">
         <a href="/"><img src="{{ asset('web/imagenes/logo-white.svg') }}" alt=""></a>
         <div>
-            <a href="">Acerca de</a>
-            <a href="">Asset Management</a>
-            <a href="">Property</a>
-            <a href="">Multifamily</a>
+            <a href="https://www.cbre.cl/es-cl/acerca-de-cbre" target="_blank">Acerca de</a>
+            <a href="https://assetcbre.cl/" target="_blank">Asset Management</a>
+            <a href="https://www.cbre.cl/es-cl/servicios/servicios-para-inversores/pm2_property-management" target="_blank">Property</a>
+            <a href="https://amenity.cl/" target="_blank">Multifamily</a>
         </div>
     </header>
     {{-- Menu escritorio --}}
     <nav class="menu mostrar-escritorio">
-        <a href="">PROPERTY MANAGMENT</a>
+        <a href="/">PROPERTY MANAGMENT</a>
         <a href="/edificios-oficinas">EDIFICIOS Y OFICINAS</a>
         <a href="/noticias">NOTICIAS</a>
         <a href="/contacto">CONTÁCTANOS</a>
