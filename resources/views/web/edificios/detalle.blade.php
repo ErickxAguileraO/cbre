@@ -61,7 +61,17 @@
 
         <section class="galeria-imagenes">
             <h2>Galería de imágenes</h2>
-            <div class="galeria"></div>
+            <div class="galeria">
+                <div class="galeria-img-1">
+                    <div><a href="{{ asset('web/imagenes/galeria1.svg') }}" class="fresco"><img src="{{ asset('web/imagenes/galeria1.svg') }}" alt=""></a></div>
+                </div>
+                <div class="galeria-img-2">
+                    <div><a href="{{ asset('web/imagenes/galeria2.svg') }}" class="fresco"><img src="{{ asset('web/imagenes/galeria2.svg') }}" alt=""></a></div>
+                    <div><a href="{{ asset('web/imagenes/galeria3.svg') }}" class="fresco"><img src="{{ asset('web/imagenes/galeria3.svg') }}" alt=""></a></div>
+                    <div><a href="{{ asset('web/imagenes/galeria4.svg') }}" class="fresco"><img src="{{ asset('web/imagenes/galeria4.svg') }}" alt=""></a></div>
+                    <div><a href="{{ asset('web/imagenes/galeria5.svg') }}" class="fresco"><img src="{{ asset('web/imagenes/galeria5.svg') }}" alt=""></a></div>
+                </div>
+            </div>
         </section>
 
         <section class="flex-noticias-edificio">

@@ -276,11 +276,19 @@ footer .rrss{
     border-bottom: 2px solid #012A2D;;
 }
 .input-buscar input{
-    width: 95%;
+    width: 92%;
     height: 100%;
     outline: none;
     border: none;
     padding: 10px;
+}
+.btn-lupa{
+    background: transparent;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    border: none;
+    outline: none;
 }
 .boton-buscar{
     display: flex;
@@ -926,7 +934,45 @@ footer .rrss{
     outline: none;
     cursor: pointer;
 }
-/* XX-Large devices (larger desktops, 1400px and up) */
+/* Galeria de fotos */
+.galeria{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: auto;
+}
+.galeria-img-1{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: 100%;
+}
+.galeria-img-1 div{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.galeria-img-2{
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    width: 100%;
+    height: 100%;
+}
+.galeria-img-2 div{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.galeria img{
+    width: 100%;
+    height: 100%;
+    transition: all 300ms;
+    object-fit: cover;
+}
+.galeria img:hover{
+    transform: scale(1.2);
+}
+/* Responsive */
 @media (max-width: 1400px) { 
     /* Edificios */
     .edificios-n .img-edificio{
@@ -952,7 +998,6 @@ footer .rrss{
 
 }
 
-/* X-Large devices (large desktops, 1200px and up) */
 @media (max-width: 1200px) {  
     /* Buscador */
     .input-buscar input{
@@ -1006,7 +1051,6 @@ footer .rrss{
     }
 }
 
-/* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) {  
     .quienes-somos-home{
         display: grid;
@@ -1121,7 +1165,6 @@ footer .rrss{
     }
 }
 
-/* Medium devices (tablets, 768px and up) */
 @media (max-width: 768px) {  
     .mostrar-escritorio{
         display: none !important;
@@ -1192,9 +1235,21 @@ footer .rrss{
         text-align: center;
         padding: 0px 40px 50px 40px;
     }
+    /* Galeria de fotos */
+    .galeria{
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        height: auto;
+    }
+    .galeria-img-2{
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        width: 100%;
+        height: 100%;
+    }
 }
 
-/* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {  
     .sub-menu{
         display: none;

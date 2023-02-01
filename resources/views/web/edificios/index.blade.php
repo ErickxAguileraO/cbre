@@ -19,7 +19,8 @@
         <div class="buscador-input">
             <div class="input-buscar">
                 <input type="search">
-                <img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt="">
+                <button class="btn-lupa"><img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt=""></button>
+                {{-- <img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt=""> --}}
             </div>
             <div class="input-buscar">
                 <select name="" id="">

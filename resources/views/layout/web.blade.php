@@ -19,6 +19,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/web/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/web/js/niceselect/nice-select.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/web/js/slick/slick.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/web/js/fresco/fresco.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/web/js/lightgallery/lightgallery.css') }}">
+
     @stack('extra-css')
 </head>
 
@@ -106,6 +109,13 @@
     <!-- Scripts -->
     <script src="{{ asset('web/js/niceselect/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('web/js/slick/slick.min.js') }}"></script>
+    <script src="{{ asset('web/js/fresco/fresco.min.js') }}"></script>
+    <script src="{{ asset('web/js/lightgallery/lightgallery.min.js') }}"></script>
+    
+    <script type="text/javascript">
+        lightGallery(document.getElementById('lightgallery')); 
+    </script>
+
     <script src="{{ asset('web/js/script.js') }}"></script>
     <script>
         $('select').niceSelect();
