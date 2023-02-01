@@ -99,11 +99,11 @@
             </div>
         </div>
         <div class="sub-footer">
-            <a href="https://www.cbre.cl/es-cl/servicios">Servicios</a>
-            <a href="https://www.cbre.cl/es-cl/informes-de-mercado">Report y Research</a>
-            <a href="https://antdigital.cl/">Diseñado y Desarrollado por ANTDIGITAL</a>
-            <a href="https://www.cbre.cl/es-cl/acerca-de-cbre/terminos-de-uso">Términos de servicio</a>
-            <a href="https://www.cbre.cl/es-cl/acerca-de-cbre/politica-de-privacidad">Políticas de privacidad</a>
+            <a href="https://www.cbre.cl/es-cl/servicios" target="_blank">Servicios</a>
+            <a href="https://www.cbre.cl/es-cl/informes-de-mercado" target="_blank">Report y Research</a>
+            <a href="https://antdigital.cl/" target="_blank">Diseñado y Desarrollado por ANTDIGITAL</a>
+            <a href="https://www.cbre.cl/es-cl/acerca-de-cbre/terminos-de-uso" target="_blank">Términos de servicio</a>
+            <a href="https://www.cbre.cl/es-cl/acerca-de-cbre/politica-de-privacidad" target="_blank">Políticas de privacidad</a>
         </div>
     </footer>
     <!-- Scripts -->
