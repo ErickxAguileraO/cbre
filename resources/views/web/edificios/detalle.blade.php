@@ -13,8 +13,8 @@
     
     <div class="contenido">
         <div class="portada">
-            <img class="mostrar-escritorio" src="{{ asset('web/imagenes/portada-escritorio.svg') }}" alt="">
-            <img class="mostrar-movil" src="{{ asset('web/imagenes/portada-movil.svg') }}" alt="">
+            <img class="mostrar-escritorio" src="{{ asset('public/web/imagenes/portada-escritorio.svg') }}" alt="">
+            <img class="mostrar-movil" src="{{ asset('public/web/imagenes/portada-movil.svg') }}" alt="">
         </div>
 
         <div class="txt-caracteristicas">
@@ -33,23 +33,23 @@
                 <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti </p>
                 <div class="carruselCaracteristicas">
                     <div class="caracteristica-n">
-                        <img src="{{ asset('web/imagenes/i-areas-verdes.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/i-areas-verdes.svg') }}" alt="">
                         <p>Áreas verdes</p>
                     </div>
                     <div class="caracteristica-n">
-                        <img src="{{ asset('web/imagenes/i-ascensor.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/i-ascensor.svg') }}" alt="">
                         <p>Ascensor</p>
                     </div>
                     <div class="caracteristica-n">
-                        <img src="{{ asset('web/imagenes/i-bicicleta.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/i-bicicleta.svg') }}" alt="">
                         <p>Bicicletero</p>
                     </div>
                     <div class="caracteristica-n">
-                        <img src="{{ asset('web/imagenes/i-banco.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/i-banco.svg') }}" alt="">
                         <p>Banco</p>
                     </div>
                     <div class="caracteristica-n">
-                        <img src="{{ asset('web/imagenes/i-camarines.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/i-camarines.svg') }}" alt="">
                         <p>Camarines</p>
                     </div>
                 </div>
@@ -63,13 +63,13 @@
             <h2>Galería de imágenes</h2>
             <div class="galeria">
                 <div class="galeria-img-1">
-                    <div><a href="{{ asset('web/imagenes/galeria1.svg') }}" class="fresco"><img src="{{ asset('web/imagenes/galeria1.svg') }}" alt=""></a></div>
+                    <div><a href="{{ asset('public/web/imagenes/galeria1.svg') }}" class="fresco"><img src="{{ asset('public/web/imagenes/galeria1.svg') }}" alt=""></a></div>
                 </div>
                 <div class="galeria-img-2">
-                    <div><a href="{{ asset('web/imagenes/galeria2.svg') }}" class="fresco"><img src="{{ asset('web/imagenes/galeria2.svg') }}" alt=""></a></div>
-                    <div><a href="{{ asset('web/imagenes/galeria3.svg') }}" class="fresco"><img src="{{ asset('web/imagenes/galeria3.svg') }}" alt=""></a></div>
-                    <div><a href="{{ asset('web/imagenes/galeria4.svg') }}" class="fresco"><img src="{{ asset('web/imagenes/galeria4.svg') }}" alt=""></a></div>
-                    <div><a href="{{ asset('web/imagenes/galeria5.svg') }}" class="fresco"><img src="{{ asset('web/imagenes/galeria5.svg') }}" alt=""></a></div>
+                    <div><a href="{{ asset('public/web/imagenes/galeria2.svg') }}" class="fresco"><img src="{{ asset('public/web/imagenes/galeria2.svg') }}" alt=""></a></div>
+                    <div><a href="{{ asset('public/web/imagenes/galeria3.svg') }}" class="fresco"><img src="{{ asset('public/web/imagenes/galeria3.svg') }}" alt=""></a></div>
+                    <div><a href="{{ asset('public/web/imagenes/galeria4.svg') }}" class="fresco"><img src="{{ asset('public/web/imagenes/galeria4.svg') }}" alt=""></a></div>
+                    <div><a href="{{ asset('public/web/imagenes/galeria5.svg') }}" class="fresco"><img src="{{ asset('public/web/imagenes/galeria5.svg') }}" alt=""></a></div>
                 </div>
             </div>
         </section>
@@ -85,12 +85,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -103,12 +103,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -121,12 +121,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -141,12 +141,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -164,22 +164,22 @@
                 <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias</p>
                 <div class="carruselCertificaciones">
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/cuadrado.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/cuadrado.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/cuadrado.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/cuadrado.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/cuadrado.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/cuadrado.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -190,25 +190,25 @@
                 <h1 class="h2-internas">Nuestras certificaciones</h1>
                 <div class="carruselCertificaciones">
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-1.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-1.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-2.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-2.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-3.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-3.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-4.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-4.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-5.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-5.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-4.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-4.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-5.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-5.svg') }}" alt="">
                     </div>
                 </div>
                 <p class="p-txt-seccion">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete</p>
@@ -230,16 +230,16 @@
                 <div class="operaciones-contenido">
                     <h2>Jefe de operaciones del edificio</h2>
                     <div class="operacion-n">
-                        <img class="img" src="{{ asset('web/imagenes/img-jefe.svg') }}" alt="">
+                        <img class="img" src="{{ asset('public/web/imagenes/img-jefe.svg') }}" alt="">
                         <div class="txt-operacion">
                             <h4>Carlos Ambiado</h4>
                             <p class="cursive">Asset & Property Managing Director</p>
                             <div class="telefono-correo-operacion">
-                                <img src="{{ asset('web/imagenes/i-telefono-green.svg') }}" alt="">
+                                <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
                                 <p>+56934567898</p>
                             </div>
                             <a href="mailto:prueba@aeurus.cl" class="telefono-correo-operacion">
-                                <img src="{{ asset('web/imagenes/i-correo-green.svg') }}" alt="">
+                                <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
                                 <p>Enviar un correo</p>
                             </a>
                         </div>
@@ -251,16 +251,16 @@
                 <div  class="operaciones-contenido">
                     <h2>Asistente de operaciones</h2>
                     <div class="operacion-n">
-                        <img class="img" src="{{ asset('web/imagenes/img-jefe.svg') }}" alt="">
+                        <img class="img" src="{{ asset('public/web/imagenes/img-jefe.svg') }}" alt="">
                         <div class="txt-operacion">
                             <h4>Carlos Ambiado</h4>
                             <p class="cursive">Asset & Property Managing Director</p>
                             <div class="telefono-correo-operacion">
-                                <img src="{{ asset('web/imagenes/i-telefono-green.svg') }}" alt="">
+                                <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
                                 <p>+56934567898</p>
                             </div>
                             <a href="" class="telefono-correo-operacion">
-                                <img src="{{ asset('web/imagenes/i-correo-green.svg') }}" alt="">
+                                <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
                                 <p>Enviar un correo</p>
                             </a>
                         </div>

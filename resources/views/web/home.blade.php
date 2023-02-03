@@ -8,14 +8,14 @@
     
     <div class="contenido">
         <div class="portada">
-            <img class="mostrar-escritorio" src="{{ asset('web/imagenes/portada-escritorio.svg') }}" alt="">
-            <img class="mostrar-movil" src="{{ asset('web/imagenes/portada-movil.svg') }}" alt="">
+            <img class="mostrar-escritorio" src="{{ asset('public/web/imagenes/portada-escritorio.svg') }}" alt="">
+            <img class="mostrar-movil" src="{{ asset('public/web/imagenes/portada-movil.svg') }}" alt="">
         </div>
         <div class="buscador">
             <h2>Encuentra la oficina ideal en el edificio que gustes</h2>
             <div class="input-buscar">
                 <input type="search" placeholder="Escribe aquí el nombre del edificio">
-                <img src="{{ asset('web/imagenes/i-buscar.svg') }}" alt="">
+                <img src="{{ asset('public/web/imagenes/i-buscar.svg') }}" alt="">
             </div>
             <button class="boton-buscar">Buscar por submercado ></button>
         </div>
@@ -29,7 +29,7 @@
             </div>
             <div class="flex-img">
                 <div class="img">
-                    <img src="{{ asset('web/imagenes/img2.svg') }}" alt="">
+                    <img src="{{ asset('public/web/imagenes/img2.svg') }}" alt="">
                 </div>
             </div>
             
@@ -65,12 +65,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -83,12 +83,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -101,12 +101,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -117,16 +117,16 @@
                     <div  class="noticia-home-n">
                         <a href="#">
                             <div class="img-noticia">
-                                {{-- <img src="{{ asset('/web/imagenes/img2.svg') }}" alt=""> --}}
+                                {{-- <img src="{{ asset('public/web/imagenes/img2.svg') }}" alt=""> --}}
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -143,25 +143,25 @@
                 <h1>Nuestras certificaciones</h1>
                 <div class="carruselCertificaciones">
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-1.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-1.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-2.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-2.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-3.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-3.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-4.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-4.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-5.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-5.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-4.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-4.svg') }}" alt="">
                     </div>
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('web/imagenes/certificaciones-5.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/certificaciones-5.svg') }}" alt="">
                     </div>
                 </div>
                 <p class="p-txt-seccion">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete</p>
