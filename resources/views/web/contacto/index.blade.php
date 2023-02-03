@@ -13,8 +13,8 @@
     
     <div class="contenido">
         <div class="portada">
-            <img class="mostrar-escritorio" src="{{ asset('web/imagenes/portada-escritorio.svg') }}" alt="">
-            <img class="mostrar-movil" src="{{ asset('web/imagenes/portada-movil.svg') }}" alt="">
+            <img class="mostrar-escritorio" src="{{ asset('public/web/imagenes/portada-escritorio.svg') }}" alt="">
+            <img class="mostrar-movil" src="{{ asset('public/web/imagenes/portada-movil.svg') }}" alt="">
         </div>
 
         <div class="flex-contenido-seccion">
@@ -29,22 +29,22 @@
                 <div class="formulario-contacto">
                     <form action="">
                         <div class="input-linea">
-                            <img src="{{ asset('web/imagenes/input-nombre.svg') }}" alt="">
+                            <img src="{{ asset('public/web/imagenes/input-nombre.svg') }}" alt="">
                             <input type="text" placeholder="Nombre y apellido">
                         </div>
 
                         <div class="input-linea">
-                            <img src="{{ asset('web/imagenes/input-email.svg') }}" alt="">
+                            <img src="{{ asset('public/web/imagenes/input-email.svg') }}" alt="">
                             <input type="text" placeholder="Email">
                         </div>
 
                         <div class="input-linea">
-                            <img src="{{ asset('web/imagenes/input-telefono.svg') }}" alt="">
+                            <img src="{{ asset('public/web/imagenes/input-telefono.svg') }}" alt="">
                             <input type="text" placeholder="Telefono">
                         </div>
 
                         <div class="textarea-linea">
-                            <img src="{{ asset('web/imagenes/input-mensaje.svg') }}" alt="">
+                            <img src="{{ asset('public/web/imagenes/input-mensaje.svg') }}" alt="">
 
                             <textarea name="" id="" placeholder="Mensaje"></textarea>
                         </div>
@@ -54,16 +54,16 @@
                     <div class="operaciones-contenido" style="text-align: left;">
                         <h2>Jefe de operaciones</h2>
                         <div class="operacion-n">
-                            <img class="img" src="{{ asset('web/imagenes/img-jefe.svg') }}" alt="">
+                            <img class="img" src="{{ asset('public/web/imagenes/img-jefe.svg') }}" alt="">
                             <div class="txt-operacion">
                                 <h4>Carlos Ambiado</h4>
                                 <p class="cursive">Asset & Property Managing Director</p>
                                 <div class="telefono-correo-operacion">
-                                    <img src="{{ asset('web/imagenes/i-telefono-green.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
                                     <p>+56934567898</p>
                                 </div>
                                 <a href="mailto:prueba@aeurus.cl" class="telefono-correo-operacion">
-                                    <img src="{{ asset('web/imagenes/i-correo-green.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
                                     <p>Enviar un correo</p>
                                 </a>
                             </div>

@@ -23,8 +23,8 @@
     
     <div class="contenido">
         <div class="portada">
-            <img class="mostrar-escritorio" src="{{ asset('web/imagenes/portada-escritorio.svg') }}" alt="">
-            <img class="mostrar-movil" src="{{ asset('web/imagenes/portada-movil.svg') }}" alt="">
+            <img class="mostrar-escritorio" src="{{ asset('public/web/imagenes/portada-escritorio.svg') }}" alt="">
+            <img class="mostrar-movil" src="{{ asset('public/web/imagenes/portada-movil.svg') }}" alt="">
         </div>
         <div class="sub-menu">
             <a href="/">Estás en <p>inicio</p></a>
@@ -40,12 +40,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -58,12 +58,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -76,31 +76,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
-                                </a>
-                            </div>
-                            
-                        </a>
-                    </div>
-
-                    <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
-                                </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -114,12 +95,31 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
+                                    <p>Ver noticia</p>
+                                </a>
+                            </div>
+                            
+                        </a>
+                    </div>
+
+                    <div  class="noticia-home-n">
+                        <a href="#">
+                            <div class="img-noticia">
+                            </div>
+                            <div class="contenido-noticia-n">
+                                <div class="date-noticia">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
+                                    <p>Publicado el 21 Enero 2023</p>
+                                </div>
+                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
+                                <a href="/noticias-detalle" class="ver-mas">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
@@ -134,12 +134,12 @@
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
-                                    <img src="{{ asset('web/imagenes/i-calendario.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
                                     <p>Publicado el 21 Enero 2023</p>
                                 </div>
                                 <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
                                 <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('web/imagenes/i-linea.svg') }}" alt="">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>

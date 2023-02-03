@@ -13,8 +13,8 @@
     
     <div class="contenido">
         <div class="portada">
-            <img class="mostrar-escritorio" src="{{ asset('web/imagenes/portada-escritorio.svg') }}" alt="">
-            <img class="mostrar-movil" src="{{ asset('web/imagenes/portada-movil.svg') }}" alt="">
+            <img class="mostrar-escritorio" src="{{ asset('public/web/imagenes/portada-escritorio.svg') }}" alt="">
+            <img class="mostrar-movil" src="{{ asset('public/web/imagenes/portada-movil.svg') }}" alt="">
         </div>
 
         <div class="flex-contenido-seccion">
@@ -28,18 +28,18 @@
                 </div>
 
                 <div>
-                    <img class="portada-noticia" src="{{ asset('web/imagenes/img-noticia.svg') }}" alt="">
+                    <img class="portada-noticia" src="{{ asset('public/web/imagenes/img-noticia.svg') }}" alt="">
                     <div class="fecha-noticia">
-                        <img src="{{ asset('web/imagenes/i-calendario-negro.svg') }}" alt="">
+                        <img src="{{ asset('public/web/imagenes/i-calendario-negro.svg') }}" alt="">
                         <p>Publicado el 21 Enero 2023</p>
                     </div>
                     <h2>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete</h2>
                     <div class="compartir">
                         <p>Compartir en:</p>
                         <div>
-                            <a href=""><img src="{{ asset('web/imagenes/i-fb-negro.svg') }}" alt=""></a>
-                            <a href=""><img src="{{ asset('web/imagenes/i-twt-negro.svg') }}" alt=""></a>
-                            <a href=""><img src="{{ asset('web/imagenes/i-wspp-negro.svg') }}" alt=""></a>
+                            <a href=""><img src="{{ asset('public/web/imagenes/i-fb-negro.svg') }}" alt=""></a>
+                            <a href=""><img src="{{ asset('public/web/imagenes/i-twt-negro.svg') }}" alt=""></a>
+                            <a href=""><img src="{{ asset('public/web/imagenes/i-wspp-negro.svg') }}" alt=""></a>
                         </div>
                     </div>
                     <div class="noticia-txt">
