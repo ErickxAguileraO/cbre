@@ -1,31 +1,31 @@
 /* Font Calibre */
 @font-face {
     font-family: calibre-bold;
-    src: url(/../web/tipografias/calibre/Calibre-Bold.otf);
+    src: url(/public/web/tipografias/calibre/Calibre-Bold.otf);
 }
 @font-face {
     font-family: calibre-Light;
-    src: url(/../web/tipografias/calibre/Calibre-Light.otf);
+    src: url(/public/web/tipografias/calibre/Calibre-Light.otf);
 }
 @font-face {
     font-family: calibre-LightItalic;
-    src: url(/../web/tipografias/calibre/Calibre-LightItalic.otf);
+    src: url(/public/web/tipografias/calibre/Calibre-LightItalic.otf);
 }
 @font-face {
     font-family: calibre-Medium;
-    src: url(/../web/tipografias/calibre/Calibre-Medium.otf);
+    src: url(/public/web/tipografias/calibre/Calibre-Medium.otf);
 }
 @font-face {
     font-family: calibre-RegularItalic;
-    src: url(/../web/tipografias/calibre/Calibre-RegularItalic.otf);
+    src: url(/public/web/tipografias/calibre/Calibre-RegularItalic.otf);
 }
 @font-face {
     font-family: calibre-Regular;
-    src: url(/../web/tipografias/calibre/Calibre-Regular.otf);
+    src: url(/public/web/tipografias/calibre/Calibre-Regular.otf);
 }
 @font-face {
     font-family: calibre-Semibold;
-    src: url(/../web/tipografias/calibre/Calibre-Semibold.otf);
+    src: url(/public/web/tipografias/calibre/Calibre-Semibold.otf);
 }
 
 /* Financier */
@@ -441,7 +441,7 @@ footer .rrss{
     font-size: 0;
     border: 0;
     background-color: transparent;
-    background-image: url(/../web/imagenes/i-prev-carrusel.svg);
+    background-image: url(/public/web/imagenes/i-prev-carrusel.svg);
     background-repeat: none;
     cursor: pointer;
     opacity: .5;
@@ -464,7 +464,7 @@ footer .rrss{
     font-size: 0;
     border: 0;
     background-color: transparent;
-    background-image: url(/../web/imagenes/i-next-carrusel.svg);
+    background-image: url(/public/web/imagenes/i-next-carrusel.svg);
     background-repeat: none;
     cursor: pointer;
     opacity: .5;
@@ -501,7 +501,7 @@ footer .rrss{
 .img-noticia{
     width: 100%;
     height: 250px;
-    background-image: url(/../web/imagenes/img2.svg);
+    background-image: url(/public/web/imagenes/img2.svg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -612,7 +612,7 @@ footer .rrss{
     align-items: flex-end;
     width: 100%;
     height: 280px;
-    background-image: url(/../web/imagenes/img-edificio.svg);
+    background-image: url(/public/web/imagenes/img-edificio.svg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
