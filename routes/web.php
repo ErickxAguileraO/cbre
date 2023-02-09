@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Administracion\NoticiaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Rutas para la administración
+ */
+Route::prefix('admin')->group(function () {
+    Route::resource('noticias', NoticiaController::class);
+});
+
 Route::get('/', function () {
     return view('web.home');
 });
+
 Route::get('/contacto', function () {
     return view('web.contacto.index');
 });
@@ -31,4 +41,3 @@ Route::get('/noticias', function () {
 Route::get('/noticias-detalle', function () {
     return view('web.noticias.detalle');
 });
-

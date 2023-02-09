@@ -1,0 +1,86 @@
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	column-gap: 15px;
+	list-style: none;
+	border-bottom: 5px solid #0076BC;
+	width: 100%;
+}
+ul.tabs li {
+	font-weight:600;
+	line-height: 20px;
+	background-color: #0076BC;
+	text-align:center;
+	margin: 0 0 -5px 0;
+	padding: 0;
+	border: 5px solid #0076BC;
+	position: relative;
+	
+	-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	-ms-border-radius: 5px 5px 0px 0px;
+	-khtml-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+}
+ul.tabs li a, ul.tabs li span {
+	text-decoration: none;
+	color: #fff;
+	/*background-color: #0076BC;*/
+	display: block;
+	padding: 10px 20px;
+	/*border: 1px solid #fff;*/ /*--Gives the bevel look with a 1px white border inside the list item--*/
+	outline: none;
+}
+ul.tabs li.active{ border-bottom:none; }
+ul.tabs li.active span, ul.tabs li.active a, ul.tabs li.active a:hover{ color:#0076BC; /*border-color: #FE6700;*/ cursor: default;}
+ul.tabs li span{ background-color: #e7e7e7;}
+
+ul.tabs li:hover {
+	background-color: #005A8F;
+	border-color: #005A8F;
+}
+html ul.tabs li.active/*, html ul.tabs li.active a:hover*/  { 
+	background-color: #FFF;
+	border-color:#0076BC;
+	/*border-bottom: 1px solid #fff;*/ /*--Makes the active tab look like it's connected withits content--*/
+}
+/*html ul.tabs li.active a{ color:#000; cursor: default;}*/
+
+
+/***** Contenido de los tabs *****/
+.tab_container {
+	background: #fff;
+	border: 5px solid #0076BC;
+	border-top: none;
+	overflow: hidden;
+	clear: both;
+	/*float: left;*/ width: 100%;
+	border-radius: 0px 0px 10px 10px;
+}
+.tab_content {
+	padding: 50px 20px;
+}
+
+@media screen and (max-width: 710px) {
+/*ul.tabs{ height: 52px;}
+ul.tabs li{ line-height:normal; text-align:center; vertical-align: top; display:table-cell; float:none; height: 50px;}
+ul.tabs li a, ul.tabs li span{ vertical-align: middle; display:table-cell; height: 50px;}*/
+
+}
+@media screen and (max-width: 600px) {
+ul.tabs { column-gap: 4px;}
+ul.tabs, .tab_container, ul.tabs li { border-width: 3px;}
+ul.tabs li a, ul.tabs li span{  padding:8px 5px;}
+ul.tabs li { margin-bottom: -3px;}
+}
+@media screen and (max-width: 500px) {
+ul.tabs li{ font-size:14px; line-height: 17px;}
+}
+/*@media screen and (max-width: 400px) {
+ul.tabs li a, ul.tabs li span{  padding:0 4px;}
+}
+@media screen and (max-width: 358px) {
+ul.tabs li{ font-size:11px;}
+ul.tabs li strong{ display: none;}
+}*/
