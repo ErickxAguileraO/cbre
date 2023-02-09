@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Administracion\NoticiaController;
+use App\Http\Controllers\Administracion\CertificacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,14 @@ use App\Http\Controllers\Administracion\NoticiaController;
  * Rutas para la administración
  */
 Route::prefix('admin')->group(function () {
+    // Noticias
     Route::resource('noticias', NoticiaController::class);
+
+    // Certificaciones
+    Route::controller(CertificacionController::class)->group(function () {
+        Route::resource('certificaciones', CertificacionController::class);
+        Route::get('certificaciones/get/list', 'list');
+    });
 });
 
 Route::get('/', function () {

@@ -11,5 +11,5 @@
 @endsection
 
 @push('scripts')
-   
+   <script src=""></script>
 @endpush
