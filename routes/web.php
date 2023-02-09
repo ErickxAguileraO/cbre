@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\CaracteristicaController;
+use App\Http\Controllers\Administracion\CaracteristicaController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Administracion\NoticiaController;
+use App\Models\Caracteristica;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,14 @@ use App\Http\Controllers\Administracion\NoticiaController;
 /**
  * Rutas para la administración
  */
+Route::view('admin', 'admin.noticias.index');
 Route::prefix('admin')->group(function () {
     Route::resource('noticias', NoticiaController::class);
+
+    Route::controller(CaracteristicaController::class)->group(function () {
+        Route::resource('caracteristicas', CaracteristicaController::class);
+        Route::get('caracteristicas/get/list', 'list')->name('caracteristicas.list');
+    });
 });
 
 Route::get('/', function () {

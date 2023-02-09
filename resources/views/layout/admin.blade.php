@@ -40,55 +40,55 @@
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{ route('noticias.index') }}" class="nav-link">Noticias</a> 
+                <a href="{{ route('noticias.index') }}" class="nav-link">Noticias</a>
               </span>
             </li>
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Edificios</a> 
+                <a href="" class="nav-link">Edificios</a>
               </span>
             </li>
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Certificaciones</a> 
+                <a href="" class="nav-link">Certificaciones</a>
               </span>
             </li>
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Características</a> 
+                <a href="{{route('caracteristicas.index')}}" class="nav-link">Características</a>
               </span>
             </li>
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Submercados</a> 
+                <a href="" class="nav-link">Submercados</a>
               </span>
             </li>
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Locales comerciales</a> 
+                <a href="" class="nav-link">Locales comerciales</a>
               </span>
             </li>
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Indicadores</a> 
+                <a href="" class="nav-link">Indicadores</a>
               </span>
             </li>
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Quiénes somos</a> 
+                <a href="" class="nav-link">Quiénes somos</a>
               </span>
             </li>
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Funcionarios</a> 
+                <a href="" class="nav-link">Funcionarios</a>
               </span>
             </li>
 
