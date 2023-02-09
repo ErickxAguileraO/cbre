@@ -1,0 +1,159 @@
+/***** ENERGIA COOPELAN - NAF *****/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video,dl,dt,dd {
+	font-size: 100%;
+	font-style: normal;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+	display: block;
+}
+audio, canvas, progress, video {
+	display: inline-block;
+	vertical-align: baseline
+}
+a { color:#33882a; outline:none; text-decoration: none; }
+a:visited{color:#33882a;}
+a:hover{text-decoration: underline;}
+a:focus{
+	outline:0px;
+}
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html, body { height: 100%;}
+html {	font-size: 62.5%;}
+body{
+	font: 10px 'Noto Sans', Arial, Helvetica, sans-serif;
+	color: #707070;
+	background-color: #fff;
+	min-width: 318px;
+}
+.img-circle{
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-khtml-border-radius: 50%;
+	border-radius: 50%;
+}
+.img-rounded, #especialistas .background {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-ms-border-radius: 8px;
+	-khtml-border-radius: 8px;
+	border-radius: 8px;
+}
+
+/***** TEMPLATE *****/
+.center{
+	max-width: 1200px;
+    width: 94%;
+    margin:0 auto;
+}
+#wrapper{
+	font-size:1.5em;
+	font-size:1.5rem;
+	background-color:#FFFFFF;
+}
+.navbar {
+	background-color: #012A2D;
+}
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100; /* Behind the navbar */
+	padding: 110px 0 0; /* Height of navbar */
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+.pdtb { padding: 110px 0 10px;}
+.formulario label{
+	line-height: 20px;
+	display:block;
+	padding-bottom: 4px;
+}
+.file {
+	visibility: hidden;
+	position: absolute;
+}
+.nav-link.active {
+	color: #1C2126;
+	cursor: default;
+}
+
+/*Textos*/
+h1,h2, h3, h4,h6,.text-h2{
+	color: #1C2126;
+	font-weight: bold;
+	margin-bottom: 14px;
+}
+h1{
+	font-size: 2.6em;
+	font-size: 2.6rem;
+	margin-bottom:30px;
+}
+h2{
+	font-size: 2em;
+	font-size: 2rem;
+	margin-bottom:20px;
+}
+h3{
+	font-size: 1.8em;
+	font-size: 1.8rem;
+}
+li, p, th, td, dt, dd{
+	font-size: 1.5em;
+	font-size: 1.5rem;
+}
+.text-13{
+	font-size: 1.3em;
+	font-size: 1.3rem;
+	padding-top: 2px;
+}
+.gj-picker-bootstrap th, .gj-picker-bootstrap td {
+	font-size: 13px;
+}
+.btn.btn-link { padding:0; margin: 0 2px;}
+#accordionMenu li { line-height: 18px;}
+#accordionMenu span{ color:#000; position:relative; border-bottom: 1px solid #dfe0e185;}
+#accordionMenu .dropdown-toggle:after {
+	position:absolute;
+	top: 15px;
+	right: 13px;
+}
+#accordionMenu .dropdown-toggle:after {
+transform: rotate(180deg);
+}
+#accordionMenu .dropdown-toggle.collapsed:after {
+transform: rotate(0deg);
+}
+#accordionMenu ul ul { padding-left: 10px;}
+
+@media screen and (max-width: 767px) {
+.pl-4, .px-4 {
+  padding-left: 20px !important;
+}
+}
+
+/*** Sweet alert ****/
+.swal2-title{
+    font-size: 12px !important;
+}
+
+/*** Field message ****/
+.field-message-alert {
+    font-size: 11px;
+    padding: 5px 2px;
+    color: red;
+    text-align: left;
+}
+
+/*** Helpers class ****/
+.pointer-none{
+    pointer-events: none;
+}

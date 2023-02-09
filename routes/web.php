@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\CaracteristicaController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Administracion\NoticiaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,14 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::resource('caracteristica', CaracteristicaController::class);
-Route::get('caracteristica/list', [CaracteristicaController::class, 'list'])->name('caracteristica.list');
-
+/**
+ * Rutas para la administración
+ */
+Route::prefix('admin')->group(function () {
+    Route::resource('noticias', NoticiaController::class);
+});
 
 Route::get('/', function () {
     return view('web.home');
 });
+
 Route::get('/contacto', function () {
     return view('web.contacto.index');
 });
