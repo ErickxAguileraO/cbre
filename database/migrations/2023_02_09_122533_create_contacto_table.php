@@ -19,6 +19,7 @@ class CreateContactoTable extends Migration
             $table->string('con_email');
             $table->bigInteger('con_telefono');
             $table->text('con_mensaje');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

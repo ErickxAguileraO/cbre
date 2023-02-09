@@ -18,6 +18,7 @@ class CreateImagenesTable extends Migration
             $table->string('ima_url');
             $table->unsignedBigInteger('ima_edificio_id');
             $table->foreign('ima_edificio_id')->references('edi_id')->on('edificios');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

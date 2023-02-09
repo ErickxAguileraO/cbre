@@ -19,6 +19,7 @@ class CreateSubmercadosTable extends Migration
             $table->string('sub_nombre');
             $table->unsignedBigInteger('sub_comuna_id');
             $table->foreign('sub_comuna_id')->references('com_id')->on('comunas');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

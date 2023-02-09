@@ -20,6 +20,7 @@ class CreateNoticiasTable extends Migration
             $table->text('not_texto');
             $table->unsignedBigInteger('not_edificio_id')->nullable();
             $table->foreign('not_edificio_id')->references('edi_id')->on('edificios');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
