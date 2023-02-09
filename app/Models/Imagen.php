@@ -13,8 +13,13 @@ class Imagen extends Model
     protected $primaryKey = 'ima_id';
     public $timestamps = true;
 
+    protected $fillable = [
+        'ima_url',
+        'ima_edificio_id',
+    ];
+
     public function edificio()
     {
-        return $this->belongsTo(Edificio::class, 'ima_edificio_id');
+        return $this->belongsTo(Edificio::class, 'ima_edificio_id', 'edi_id');
     }
 }
