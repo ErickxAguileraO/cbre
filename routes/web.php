@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CaracteristicaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::resource('caracteristica', CaracteristicaController::class);
+Route::get('caracteristica/list', [CaracteristicaController::class, 'list'])->name('caracteristica.list');
+
 
 Route::get('/', function () {
     return view('web.home');
@@ -31,4 +37,3 @@ Route::get('/noticias', function () {
 Route::get('/noticias-detalle', function () {
     return view('web.noticias.detalle');
 });
-
