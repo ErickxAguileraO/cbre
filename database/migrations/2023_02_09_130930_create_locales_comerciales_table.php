@@ -19,6 +19,7 @@ class CreateLocalesComercialesTable extends Migration
             $table->text('loc_descripcion');
             $table->unsignedBigInteger('loc_edificio_id');
             $table->foreign('loc_edificio_id')->references('edi_id')->on('edificios');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

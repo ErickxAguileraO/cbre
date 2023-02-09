@@ -20,6 +20,7 @@ class CreateCaracteristicasTable extends Migration
             $table->tinyInteger('car_posicion');
             $table->boolean('car_estado');
             $table->string('car_video_url');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

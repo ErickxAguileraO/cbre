@@ -22,6 +22,7 @@ class CreateFuncionariosTable extends Migration
             $table->string('fun_cargo');
             $table->unsignedBigInteger('fun_user_id');
             $table->foreign('fun_user_id')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

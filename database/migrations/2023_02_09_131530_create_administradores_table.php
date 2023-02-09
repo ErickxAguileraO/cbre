@@ -19,6 +19,7 @@ class CreateAdministradoresTable extends Migration
             $table->string('adm_apellido');
             $table->unsignedBigInteger('adm_user_id');
             $table->foreign('adm_user_id')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

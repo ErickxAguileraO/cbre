@@ -19,6 +19,7 @@ class CreateCertificacionesTable extends Migration
             $table->string('cer_nombre');
             $table->tinyInteger('cer_posicion');
             $table->boolean('cer_estado');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

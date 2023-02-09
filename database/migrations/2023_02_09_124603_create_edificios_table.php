@@ -26,6 +26,8 @@ class CreateEdificiosTable extends Migration
             $table->text('ubi_descripcion');
             $table->text('ubi_coordenadas');
 
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }
