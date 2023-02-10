@@ -157,3 +157,30 @@ transform: rotate(0deg);
 .pointer-none{
     pointer-events: none;
 }
+
+.file-select {
+	position: relative;
+	display: inline-block;
+}
+
+.file-select input[type="file"] {
+	opacity: 0;
+	width: 150px;
+	height: 32px;
+	display: inline-block;
+}
+
+.file-select::before {
+	background-color: #538184;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	content: 'Seleccionar';
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
