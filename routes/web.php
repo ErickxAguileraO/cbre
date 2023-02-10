@@ -4,6 +4,7 @@ use App\Http\Controllers\Administracion\CaracteristicaController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Administracion\NoticiaController;
+use App\Http\Controllers\Administracion\QuienesSomosController;
 use App\Models\Caracteristica;
 
 /*
@@ -27,6 +28,10 @@ Route::prefix('admin')->group(function () {
     Route::controller(CaracteristicaController::class)->group(function () {
         Route::resource('caracteristicas', CaracteristicaController::class);
         Route::get('caracteristicas/get/list', 'list')->name('caracteristicas.list');
+    });
+    Route::controller(QuienesSomosController::class)->group(function () {
+        Route::resource('quienes-somos', QuienesSomosController::class);
+        Route::get('quienes-somos/get/list', 'list')->name('quienes-somos.list');
     });
 });
 

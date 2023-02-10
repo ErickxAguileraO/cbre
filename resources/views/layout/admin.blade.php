@@ -82,7 +82,7 @@
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Quiénes somos</a>
+                <a href="{{route('quienes-somos.index')}}" class="nav-link">Quiénes somos</a>
               </span>
             </li>
 
