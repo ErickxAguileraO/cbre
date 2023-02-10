@@ -1,4 +1,5 @@
-$("#guardar").on("click", function (event) {
+//$("#guardar").on("click", function (event) {
+document.getElementById("guardar").addEventListener("click", function (event) {
     event.preventDefault();
     isLoadingSpinner(true);
     fetch("/admin/caracteristicas", {
