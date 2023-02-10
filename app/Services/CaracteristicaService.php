@@ -16,7 +16,7 @@ class CaracteristicaService
             'car_video_url' => $request->video,
             'car_posicion' => $request->posicion,
             'car_estado' => $request->estado,
-            'car_imagen' => self::uploadImagen($request->file('file'), $request->nombre),
+            'car_imagen' => self::uploadImagen($request->file('imagen'), $request->nombre),
         ]);
     }
 
@@ -27,7 +27,7 @@ class CaracteristicaService
             'car_video_url' => $request->input('video'),
             'car_posicion' => $request->input('posicion'),
             'car_estado' => $request->input('estado'),
-            'car_imagen' => self::uploadImagen($request->file('file'), $request->nombre),
+            'car_imagen' => self::uploadImagen($request->file('imagen'), $request->nombre),
         ]);
     }
 

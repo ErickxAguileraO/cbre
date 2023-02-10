@@ -49,7 +49,7 @@
         <fieldset class="row my-3">
             <div class="col-sm-4">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input imagen-input" id="file" name="file"
+                    <input type="file" class="custom-file-input imagen-input" id="imagen" name="imagen"
                         lang="es" accept=".jpg,.jpeg,.png,.svg">
                     <label class="custom-file-label" for="imagen-input">Seleccionar Archivo</label>
                     <p class="text-danger" id="imagen_error"></p>
