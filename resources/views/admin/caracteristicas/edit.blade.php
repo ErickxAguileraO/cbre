@@ -14,17 +14,13 @@
                     <label for="nombre">Nombre</label>
                     <input id="nombre" name="nombre" value="{{ $caracteristica->car_nombre }}" class="form-control"
                         type="text" tabindex="1" />
-                    @error('nombre')
-                        <p class="field-message-alert"> {{ $message }}</p>
-                    @enderror
+                        <p class="text-danger" id="nombre_error"></p>
                 </div>
                 <div class="form-group">
                     <label for="video">Video</label>
                     <input name="video" type="text" value="{{ $caracteristica->car_video_url }}" class="form-control"
                         id="video" tabindex="3" />
-                    @error('video')
-                        <p class="field-message-alert"> {{ $message }}</p>
-                    @enderror
+                        <p class="text-danger" id="video_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -34,9 +30,7 @@
                     <label for="posicion">Posición</label>
                     <input name="posicion" type="number" value="{{ $caracteristica->car_posicion }}" class="form-control"
                         id="posicion" tabindex="2" />
-                    @error('posicion')
-                        <p class="field-message-alert"> {{ $message }}</p>
-                    @enderror
+                        <p class="text-danger" id="posicion_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -48,9 +42,7 @@
                         <option value="1"{{ $caracteristica->car_estado == 1 ? 'selected' : '' }}>Activo</option>
                         <option value="0"{{ $caracteristica->car_estado == 0 ? 'selected' : '' }}>Inactivo</option>
                     </select>
-                    @error('estado')
-                        <p class="field-message-alert"> {{ $message }}</p>
-                    @enderror
+                    <p class="text-danger" id="estado_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -60,6 +52,7 @@
                     <input type="file" class="custom-file-input imagen-input" id="file" name="file"
                         lang="es" accept=".jpg,.jpeg,.png,.svg">
                     <label class="custom-file-label" for="imagen-input">Seleccionar Archivo</label>
+                    <p class="text-danger" id="imagen_error"></p>
                 </div>
             </div>
         </fieldset>
