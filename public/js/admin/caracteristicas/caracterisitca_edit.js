@@ -1,4 +1,5 @@
-$("#editar").on("click", function (event) {
+//$("#editar").on("click", function (event) {
+document.getElementById("editar").addEventListener("click", function (event) {
     let form = document.querySelector("#form-caracteristica");
     let formData = new FormData(form);
     formData.append("_method", "PUT");
