@@ -30,7 +30,7 @@ class StoreCaracteristicaRequest extends FormRequest
             'video' => 'required',
             'posicion' => 'required',
             'estado' => 'required',
-            'file' => 'required',
+            'imagen' => 'required',
         ];
     }
 
