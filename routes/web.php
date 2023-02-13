@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Administracion\CaracteristicaController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Administracion\NoticiaController;
 use App\Http\Controllers\Administracion\CertificacionController;
+use App\Http\Controllers\Administracion\QuienesSomosController;
+use App\Models\Caracteristica;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +22,7 @@ use App\Http\Controllers\Administracion\CertificacionController;
 /**
  * Rutas para la administración
  */
+Route::view('admin', 'admin.noticias.index');
 Route::prefix('admin')->group(function () {
     // Noticias
     Route::resource('noticias', NoticiaController::class);
@@ -27,6 +31,18 @@ Route::prefix('admin')->group(function () {
     Route::controller(CertificacionController::class)->group(function () {
         Route::resource('certificaciones', CertificacionController::class);
         Route::get('certificaciones/get/list', 'list');
+    });
+
+    // Características
+    Route::controller(CaracteristicaController::class)->group(function () {
+        Route::resource('caracteristicas', CaracteristicaController::class);
+        Route::get('caracteristicas/get/list', 'list')->name('caracteristicas.list');
+    });
+
+    // Quiénes somos
+    Route::controller(QuienesSomosController::class)->group(function () {
+        Route::resource('quienes-somos', QuienesSomosController::class);
+        Route::get('quienes-somos/get/list', 'list')->name('quienes-somos.list');
     });
 });
 
