@@ -10,8 +10,7 @@ class ImagenService
     public static function subirImagen($imagen, $directorio)
     {
         $path = "public/{$directorio}/imagenes";
-        $nombre = "{$imagen->hashName()}.{$imagen->extension()}";
-        
-        return Storage::putFileAs($path, $imagen, $nombre);
+
+        return Storage::putFileAs($path, $imagen, $imagen->hashName());
     }
 }

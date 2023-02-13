@@ -34,11 +34,11 @@ Array.from(elementosNumeros).forEach(elemento => {
      });
  });
 
- /**
-  * Número máximo de caracteres
-  * 
-  * Se debe agregar la propiedad "data-maximo-caracteres".
-  */
+/**
+ * Número máximo de caracteres
+ * 
+ * Se debe agregar la propiedad "data-maximo-caracteres".
+ */
 const inputsMaximoCatacteres = document.querySelectorAll('[data-maximo-caracteres]');
 
 Array.from(inputsMaximoCatacteres).forEach(elemento => {

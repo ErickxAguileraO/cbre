@@ -16,6 +16,9 @@
   <link href="https://cdn3.devexpress.com/jslib/21.2.4/css/dx.light.css" rel="stylesheet" type="text/css" />
   <link href="{{ asset('public/js/admin/jquery/devextreme/devextreme.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('public/js/admin/jquery/sweetalert2/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet"> 
   @stack('stylesheets')
 
   <!-- favicon -->

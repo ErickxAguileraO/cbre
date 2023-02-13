@@ -11,9 +11,7 @@
             <div class="form-group">
                <label for="nombre">Nombre</label>
                <input id="nombre" name="nombre" value="" class="form-control" type="text" tabindex="1" data-maximo-caracteres="255"/>
-               @error('nombre')
-                  <p class="field-message-alert"> {{ $message }}</p>
-               @enderror
+               <small id="errorNombre" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
       </fieldset>
@@ -23,16 +21,13 @@
                <label for="imagen">Imagen</label>
                <div class="d-flex align-items-end">
                   <div class="file-select">
-                     <input name="imagen" type="file" class="input-file" lang="es" accept=".jpg,.jpeg,.png">
+                     <input id="imagen" name="imagen" type="file" class="input-file" lang="es" accept=".jpg,.jpeg,.png">
                   </div>
                   <div class="archivo-seleccionado px-2">
                      <span class="align-text-bottom">Ningún archivo seleccionado</span>
                   </div>
                </div>
-               
-               @error('imagen')
-                  <p class="field-message-alert"> {{ $message }}</p>
-               @enderror
+               <small id="errorImagen" class="field-message-alert invisible"></small>
             </div>
          </div>
       </fieldset>
@@ -40,11 +35,9 @@
          <div class="col-sm-6">
             <div class="form-group">
                <label for="posicion">Posición</label>
-               <input type="text" name="posicion" rows="6" class="form-control solo-numeros" id="posicion" tabindex="3"
+               <input type="text" id="posicion" name="posicion" rows="6" class="form-control solo-numeros" id="posicion" tabindex="3"
                data-maximo-caracteres="3"></input>
-               @error('posicion')
-                  <p class="field-message-alert"> {{ $message }}</p>
-               @enderror
+               <small id="errorPosicion" class="field-message-alert invisible"></small>
             </div>
             <div class="form-group">
                <label for="estado">Estado</label>
@@ -52,9 +45,7 @@
                   <option value="1" >Activa</option>
                   <option value="0">Inactiva</option>
                </select>
-               @error('estado')
-                  <p class="field-message-alert"> {{ $message }}</p>
-               @enderror
+               <small id="errorEstado" class="field-message-alert invisible"></small>
             </div>
          </div>
       </fieldset>
