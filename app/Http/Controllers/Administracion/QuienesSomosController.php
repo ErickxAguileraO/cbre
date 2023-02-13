@@ -5,7 +5,7 @@ use App\Models\QuienesSomos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\QuienesSomosService;
-use App\Http\Requests\UpdateQuienesSomosRequest;
+use App\Http\Requests\QuienesSomos\UpdateQuienesSomosRequest;
 
 class QuienesSomosController extends Controller
 {

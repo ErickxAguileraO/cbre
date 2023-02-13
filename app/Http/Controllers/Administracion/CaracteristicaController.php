@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Administracion;;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCaracteristicaRequest;
-use App\Http\Requests\UpdateCaracteristicaRequest;
+use App\Http\Requests\Caracteristica\StoreCaracteristicaRequest;
+use App\Http\Requests\Caracteristica\UpdateCaracteristicaRequest;
 use App\Models\Caracteristica;
 use App\Services\CaracteristicaService;
 use Illuminate\Http\Request;
