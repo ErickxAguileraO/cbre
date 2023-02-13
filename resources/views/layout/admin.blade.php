@@ -52,7 +52,7 @@
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Certificaciones</a>
+                <a href="{{ route('certificaciones.index') }}" class="nav-link">Certificaciones</a> 
               </span>
             </li>
 
@@ -110,6 +110,7 @@
 <script src="{{ asset('public/js/admin/jquery/devextreme/devextreme.js') }}"></script>
 <script src="{{ asset('public/js/admin/jquery/devextreme/dx.messages.es.js') }}"></script>
 <script src="{{ asset('public/js/admin/jquery/sweetalert2/js/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('public/js/admin/sistema/validaciones_inputs.js') }}"></script>
 @stack('scripts')
 </body>
 </html>
