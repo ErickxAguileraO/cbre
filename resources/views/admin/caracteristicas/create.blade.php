@@ -76,5 +76,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\caracteristicas\caracteristica_create.js') }}"></script>
+    <script src="{{ asset('public\js\admin\sistema\caracteristicas\create.js') }}"></script>
 @endpush

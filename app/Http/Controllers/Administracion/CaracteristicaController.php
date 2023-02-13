@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Administracion;;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCaracteristicaRequest;
-use App\Http\Requests\UpdateCaracteristicaRequest;
+use App\Http\Requests\Caracteristica\StoreCaracteristicaRequest;
+use App\Http\Requests\Caracteristica\UpdateCaracteristicaRequest;
 use App\Models\Caracteristica;
 use App\Services\CaracteristicaService;
 use Illuminate\Http\Request;
@@ -96,7 +96,7 @@ class CaracteristicaController extends Controller
             CaracteristicaService::actualizarCaracteristica($request, $caracteristica);
             return response()->json(['success' => '¡La caracteristica se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
-            return response()->json(['error' => 'Catched '.$th->getMessage()], 401);
+            return response()->json(['error' => $th->getMessage()], 401);
         }
     }
 

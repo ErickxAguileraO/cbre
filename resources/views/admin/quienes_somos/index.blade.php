@@ -58,5 +58,5 @@
 
 @push('scripts')
     <script src="{{ asset('public/js/admin/jquery/ckeditor-standard/ckeditor.js') }}"></script>
-    <script src="{{ asset('public\js\admin\quienes_somos\quienes_somos.js') }}"></script>
+    <script src="{{ asset('public\js\admin\sistema\quienes_somos\edit.js') }}"></script>
 @endpush

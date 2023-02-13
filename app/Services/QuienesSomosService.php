@@ -15,7 +15,7 @@ class QuienesSomosService
         $quienesSomos->update([
             'qus_titulo' => $request->input('titulo'),
             'qus_texto' => $request->input('texto'),
-            'qus_imagen' => CaracteristicaService::uploadImagen($request->file('imagen'), 'quienes-somos', $quienesSomos->qus_id),
+            'qus_imagen' => ImagenService::subirImagen($request->file('imagen'), 'quienes-somos'),
         ]);
     }
 

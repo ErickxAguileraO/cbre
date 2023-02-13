@@ -11,17 +11,14 @@ class CaracteristicaService
 {
     public static function registrarCaracteristica($request)
     {
-        $caracteristica = Caracteristica::create([
+        Caracteristica::create([
             'car_nombre' => $request->nombre,
             'car_video_url' => $request->video,
             'car_posicion' => $request->posicion,
             'car_estado' => $request->estado,
-            'car_imagen' => '',
+            'car_imagen' => ImagenService::subirImagen($request->file('imagen'), 'caracteristicas'),
         ]);
 
-        $caracteristica->update([
-            'car_imagen' => self::uploadImagen($request->file('imagen'), 'caracteristicas', $caracteristica->car_id),
-        ]);
     }
 
     public static function actualizarCaracteristica($request, $caracteristica)
@@ -31,10 +28,11 @@ class CaracteristicaService
             'car_video_url' => $request->input('video'),
             'car_posicion' => $request->input('posicion'),
             'car_estado' => $request->input('estado'),
-            'car_imagen' => self::uploadImagen($request->file('imagen'), 'caracteristicas', $caracteristica->car_id),
+            'car_imagen' => ImagenService::subirImagen($request->file('imagen'), 'caracteristicas'),
         ]);
     }
 
+    //old but good
     public static function creacionVerificacionCarpetas($mainFolderName, $folderName)
     {
         try {
