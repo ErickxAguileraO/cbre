@@ -46,7 +46,7 @@ class CertificacionController extends Controller
             if ( !$pathImagen ) {
                 return response()->error('No se pudo subir la imagen.', null);
             }
-    
+            
             $certificacion = Certificacion::create([
                 'cer_imagen' => $pathImagen,
                 'cer_nombre' => $request->nombre,

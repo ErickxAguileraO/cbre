@@ -187,8 +187,11 @@ transform: rotate(0deg);
 
 .swal2-popup {
 	font-size: 1.6rem !important;
+	font-style: normal !important;
 }
 
 h2.swal2-title {
-	font-size: 1.6rem !important;
+	font-size: 3rem !important;
+	font-style: normal !important;
+	font-family: 'Roboto', sans-serif;
 }
