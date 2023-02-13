@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Administracion;
 
-use App\Http\Controllers\Controller;
+use App\Models\Comuna;
+use App\Models\Region;
 use App\Models\SubMercado;
 use Illuminate\Http\Request;
+use App\Services\SubmercadoService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\SubMercado\StoreSubMercadoRequest;
 
 class SubMercadoController extends Controller
 {
@@ -37,9 +41,14 @@ class SubMercadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSubMercadoRequest $request)
     {
-        //
+        try {
+            SubmercadoService::registrarSubMercado($request);
+            return response()->json(['success' => '¡El submercado se ha registrado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 401);
+        }
     }
 
     /**

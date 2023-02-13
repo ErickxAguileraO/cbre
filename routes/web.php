@@ -6,6 +6,7 @@ use App\Http\Controllers\Administracion\NoticiaController;
 use App\Http\Controllers\Administracion\CertificacionController;
 use App\Http\Controllers\Administracion\QuienesSomosController;
 use App\Http\Controllers\Administracion\SubMercadoController;
+use App\Http\Controllers\Administracion\ComunaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,12 @@ Route::prefix('admin')->group(function () {
     Route::controller(SubMercadoController::class)->group(function () {
         Route::resource('submercados', SubMercadoController::class);
         Route::get('submercados/get/list', 'list')->name('submercados.list');
+    });
+
+    // Comunas
+    Route::controller(ComunaController::class)->group(function () {
+        Route::get('comunas/get/list', 'comunasList')->name('comunas.list');
+        Route::get('comunas/get/list/{regionName}', 'comunasPorRegionList')->name('comunas.por.region.list');
     });
 });
 
