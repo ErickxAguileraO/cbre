@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Certificacion\RegistroCertificacionRequest;
 use App\Models\Certificacion;
 use App\Services\ImagenService;
+use Illuminate\Support\Facades\DB;
 
 class CertificacionController extends Controller
 {
@@ -100,9 +101,23 @@ class CertificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($certificacion)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $certificacion = Certificacion::findOrFail($certificacion);
+            $certificacion->edificios()->detach();
+            $certificacion->delete();
+            
+            DB::commit();
+
+            return response()->success($certificacion);
+        } catch (\Exception $exc) {
+            DB::rollback();
+
+            return response()->error('Mensaje error', null);
+        }
     }
 
     public function list()
