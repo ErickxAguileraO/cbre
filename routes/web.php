@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\Administracion\CaracteristicaController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Administracion\CaracteristicaController;
 use App\Http\Controllers\Administracion\NoticiaController;
 use App\Http\Controllers\Administracion\CertificacionController;
 use App\Http\Controllers\Administracion\QuienesSomosController;
-use App\Models\Caracteristica;
+use App\Http\Controllers\Administracion\SubMercadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +41,12 @@ Route::prefix('admin')->group(function () {
     // Quiénes somos
     Route::controller(QuienesSomosController::class)->group(function () {
         Route::resource('quienes-somos', QuienesSomosController::class);
-        Route::get('quienes-somos/get/list', 'list')->name('quienes-somos.list');
+    });
+
+    // SubMercados
+    Route::controller(SubMercadoController::class)->group(function () {
+        Route::resource('submercados', SubMercadoController::class);
+        Route::get('submercados/get/list', 'list')->name('submercados.list');
     });
 });
 

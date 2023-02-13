@@ -52,7 +52,7 @@
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{ route('certificaciones.index') }}" class="nav-link">Certificaciones</a> 
+                <a href="{{ route('certificaciones.index') }}" class="nav-link">Certificaciones</a>
               </span>
             </li>
 
@@ -64,7 +64,7 @@
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Submercados</a>
+                <a href="{{route('submercados.index')}}" class="nav-link">Submercados</a>
               </span>
             </li>
 

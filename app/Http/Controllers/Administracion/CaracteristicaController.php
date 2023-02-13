@@ -96,7 +96,7 @@ class CaracteristicaController extends Controller
             CaracteristicaService::actualizarCaracteristica($request, $caracteristica);
             return response()->json(['success' => '¡La caracteristica se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
-            return response()->json(['error' => 'Catched '.$th->getMessage()], 401);
+            return response()->json(['error' => $th->getMessage()], 401);
         }
     }
 

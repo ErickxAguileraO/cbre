@@ -1,13 +1,12 @@
 <?php
+
 namespace App\Http\Controllers\Administracion;
 
-use App\Models\QuienesSomos;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\QuienesSomosService;
-use App\Http\Requests\UpdateQuienesSomosRequest;
+use App\Models\SubMercado;
+use Illuminate\Http\Request;
 
-class QuienesSomosController extends Controller
+class SubMercadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,12 @@ class QuienesSomosController extends Controller
      */
     public function index()
     {
-        return view('admin.quienes_somos.index', ['quienes_somos' => QuienesSomos::first()]);
+        return view('admin.submercados.index');
     }
 
+    public function list(){
+        return SubMercado::with('comuna.region')->get();
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +28,7 @@ class QuienesSomosController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.submercados.create');
     }
 
     /**
@@ -69,14 +71,9 @@ class QuienesSomosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuienesSomosRequest $request, $quienesSomos)
+    public function update(Request $request, $id)
     {
-        try {
-            QuienesSomosService::actualizarQuienesSomos($request, QuienesSomos::findOrFail($quienesSomos));
-            return response()->json(['success' => '¡Quienes somos se ha actualizado correctamente!'], 200);
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 401);
-        }
+        //
     }
 
     /**
@@ -85,8 +82,13 @@ class QuienesSomosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($subMercado)
     {
-        //
+        try {
+            SubMercado::findOrFail($subMercado)->delete();
+            return response()->json(['success' => '¡Submercado se ha eliminado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 401);
+        }
     }
 }
