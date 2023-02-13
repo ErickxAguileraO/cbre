@@ -83,14 +83,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 title: 'Certificación agregada',
                 showConfirmButton: false,
                 timer: 2000
-            })
+            });
 
             setTimeout(function () {
                 window.location.href = '/admin/certificaciones';
             }, 2000);
         })
-        .catch(function (error) {
-            console.log(error.message);
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Un momento...',
+                text: error.message
+            });
         });
     });
 });
