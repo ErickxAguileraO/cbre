@@ -32,7 +32,7 @@
                 <label for="imagen">Imagen</label>
                 <div class="d-flex align-items-end">
                     <div class="file-select">
-                        <input type="file" class="custom-file-input imagen-input" id="imagen" name="imagen"
+                        <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
                         lang="es" accept=".jpg,.jpeg,.png,.svg">
                     </div>
                     <div class="archivo-seleccionado px-2">
