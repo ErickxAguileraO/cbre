@@ -48,8 +48,8 @@
         <fieldset class="row mt-5">
             <div class="col-sm-8">
                 <div class="form-group">
-                        <button id="guardar" type="submit" class="btn btn-primary btn-lg" value="Guardar"
-                            class="btn btn-primary btn-lg" type="button">
+                        <button id="guardar" type="submit" class="btn btn-success btn-lg" value="Guardar"
+                            class="btn btn-success btn-lg" type="button">
                             <div id="default" class="d-block">
                                 <span class="mr-2">Guardar</span>
                             </div>
