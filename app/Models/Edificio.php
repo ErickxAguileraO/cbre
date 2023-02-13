@@ -10,7 +10,9 @@ class Edificio extends Model
     use HasFactory;
 
     protected $table = 'edificios';
+
     protected $primaryKey = 'edi_id';
+
     protected $fillable = [
         'edi_nombre',
         'edi_descripcion',
@@ -34,6 +36,6 @@ class Edificio extends Model
 
     public function certificaciones()
     {
-        return $this->belongsToMany(Certificacion::class)->withPivot('album_id', 'cer_id');
+        return $this->belongsToMany(Certificacion::class, 'edificio_certificacion', 'edce_edificio_id', 'edce_certificacion_id')->withTimestamps();
     }
 }

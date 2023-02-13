@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Response;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,26 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Response::macro('success', function ($datosRespuesta = null, $codigoHttp = 200) {
+            return response()->json([
+                'status' => 'success',
+                'data' => $datosRespuesta
+            ], $codigoHttp);
+        });
+        
+        Response::macro('fail', function ($datosRespuesta, $codigoHttp = 400) {
+            return response()->json([
+                'status' => 'fail',
+                'data' => $datosRespuesta
+            ], $codigoHttp);
+        });
+
+        Response::macro('error', function ($mensaje, $datos, $codigoHttp = 500) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $mensaje,
+                'data' => $datos
+            ], $codigoHttp);
+        });
     }
 }

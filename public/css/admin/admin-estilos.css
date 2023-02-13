@@ -184,3 +184,11 @@ transform: rotate(0deg);
 	top: 0;
 	bottom: 0;
 }
+
+.swal2-popup {
+	font-size: 1.6rem !important;
+}
+
+h2.swal2-title {
+	font-size: 1.6rem !important;
+}

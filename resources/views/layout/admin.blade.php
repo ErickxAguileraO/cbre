@@ -110,6 +110,7 @@
 <script src="{{ asset('public/js/admin/jquery/devextreme/devextreme.js') }}"></script>
 <script src="{{ asset('public/js/admin/jquery/devextreme/dx.messages.es.js') }}"></script>
 <script src="{{ asset('public/js/admin/jquery/sweetalert2/js/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('public/js/admin/sistema/validaciones_inputs.js') }}"></script>
 @stack('scripts')
 </body>
 </html>

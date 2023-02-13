@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Administracion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Certificacion\RegistroCertificacionRequest;
+use App\Models\Certificacion;
+use App\Services\ImagenService;
 
 class CertificacionController extends Controller
 {
@@ -33,9 +36,28 @@ class CertificacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegistroCertificacionRequest $request)
     {
-        //
+        try {
+            if ($request->file('imagen') !== null) {
+                $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'certificaciones');
+            }
+    
+            if ( !$pathImagen ) {
+                return response()->error('No se pudo subir la imagen.', null);
+            }
+    
+            $certificacion = Certificacion::create([
+                'cer_imagen' => $pathImagen,
+                'cer_nombre' => $request->nombre,
+                'cer_posicion' => $request->posicion,
+                'cer_estado' => $request->estado
+            ]);
+    
+            return response()->success($certificacion, 201);
+        } catch (\Exception $exc) {
+            return response()->error('Ocurrió un error inesperado.', null);
+        }
     }
 
     /**
@@ -85,6 +107,6 @@ class CertificacionController extends Controller
 
     public function list()
     {
-        return response()->json(['datos' => 'Método getAll() en CertificacionController.'], 200);
+        return Certificacion::all();
     }
 }

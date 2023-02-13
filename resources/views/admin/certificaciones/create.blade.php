@@ -4,13 +4,13 @@
 
 @section('content')
    <h1>Crear certificación</h1>
-   <form action="" method="POST" id="form-noticias" class="formulario">
+   <form action="" id="formCertificacion" name="formCertificacion" class="formulario">
    @csrf
       <fieldset class="row">
          <div class="col-sm-6">
             <div class="form-group">
                <label for="nombre">Nombre</label>
-               <input id="nombre" name="nombre" value="" class="form-control" type="text" tabindex="1" />
+               <input id="nombre" name="nombre" value="" class="form-control" type="text" tabindex="1" data-maximo-caracteres="255"/>
                @error('nombre')
                   <p class="field-message-alert"> {{ $message }}</p>
                @enderror
@@ -23,7 +23,7 @@
                <label for="imagen">Imagen</label>
                <div class="d-flex align-items-end">
                   <div class="file-select">
-                     <input type="file" class="input-file" lang="es" accept=".jpg,.jpeg,.png">
+                     <input name="imagen" type="file" class="input-file" lang="es" accept=".jpg,.jpeg,.png">
                   </div>
                   <div class="archivo-seleccionado px-2">
                      <span class="align-text-bottom">Ningún archivo seleccionado</span>
@@ -40,7 +40,8 @@
          <div class="col-sm-6">
             <div class="form-group">
                <label for="posicion">Posición</label>
-               <input type="number" name="posicion" rows="6" class="form-control" id="posicion" tabindex="3"></input>
+               <input type="text" name="posicion" rows="6" class="form-control solo-numeros" id="posicion" tabindex="3"
+               data-maximo-caracteres="3"></input>
                @error('posicion')
                   <p class="field-message-alert"> {{ $message }}</p>
                @enderror
@@ -62,7 +63,7 @@
       <fieldset class="row">
          <div class="col-sm-6">
             <div class="form-group">
-               <input id="guardar" type="submit" class="btn btn-success btn-lg" value="Guardar" />
+               <input id="guardarButton" type="submit" class="btn btn-success btn-lg" value="Guardar" />
             </div>
          </div>
       </fieldset>
