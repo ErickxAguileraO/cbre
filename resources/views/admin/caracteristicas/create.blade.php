@@ -27,7 +27,7 @@
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="posicion">Posición</label>
-                    <input name="posicion" type="number" value="{{ old('posicion') }}" class="form-control" id="posicion"
+                    <input name="posicion" type="text" value="{{ old('posicion') }}" class="form-control solo-numeros" data-maximo-caracteres="3" id="posicion"
                         tabindex="2" />
                         <p class="text-danger" id="posicion_error"></p>
                 </div>

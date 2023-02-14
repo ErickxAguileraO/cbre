@@ -28,7 +28,7 @@
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="posicion">Posición</label>
-                    <input name="posicion" type="number" value="{{ $caracteristica->car_posicion }}" class="form-control"
+                    <input name="posicion" type="text" value="{{ $caracteristica->car_posicion }}" class="form-control solo-numeros" data-maximo-caracteres="3"
                         id="posicion" tabindex="2" />
                         <p class="text-danger" id="posicion_error"></p>
                 </div>
@@ -48,19 +48,24 @@
         </fieldset>
         <fieldset class="row my-3">
             <div class="col-sm-4">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input imagen-input" id="imagen" name="imagen"
+                <label for="imagen">Imagen</label>
+                <div class="d-flex align-items-end">
+                    <div class="file-select">
+                        <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
                         lang="es" accept=".jpg,.jpeg,.png,.svg">
-                    <label class="custom-file-label" for="imagen-input">Seleccionar Archivo</label>
-                    <p class="text-danger" id="imagen_error"></p>
-                </div>
+                    </div>
+                    <div class="archivo-seleccionado px-2">
+                       <span class="align-text-bottom">Ningún archivo seleccionado</span>
+                    </div>
+                 </div>
+                 <p class="text-danger" id="imagen_error"></p>
             </div>
         </fieldset>
         <fieldset class="row mt-5">
             <div class="col-sm-8">
                 <div class="form-group">
-                    <button id="editar" type="submit" class="btn btn-primary btn-lg" value="Guardar"
-                    class="btn btn-primary btn-lg" type="button">
+                    <button id="editar" type="submit" class="btn btn-success btn-lg" value="Guardar"
+                    class="btn btn-success btn-lg" type="button">
                     <div id="default" class="d-block">
                         <span class="mr-2">Editar</span>
                     </div>
