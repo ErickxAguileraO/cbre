@@ -19,4 +19,13 @@ class SubmercadoService
             'sub_comuna_id' => $request->comuna,
         ]);
     }
+
+    public static function actualizarSubMercado($request, $subMercado)
+    {
+        $subMercado->update([
+            'sub_nombre' => $request->nombre,
+            'sub_estado' => $request->estado,
+            'sub_comuna_id' => $request->comuna,
+        ]);
+    }
 }

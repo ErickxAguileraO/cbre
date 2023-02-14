@@ -48,6 +48,7 @@ Route::prefix('admin')->group(function () {
     Route::controller(SubMercadoController::class)->group(function () {
         Route::resource('submercados', SubMercadoController::class);
         Route::get('submercados/get/list', 'list')->name('submercados.list');
+        Route::get('submercados/get/single/{subMercado}', 'get')->name('submercados.single');
     });
 
     // Comunas
