@@ -25,6 +25,10 @@ class SubMercadoController extends Controller
     public function list(){
         return SubMercado::with('comuna.region')->get();
     }
+
+    public function get(Request $request){
+        return SubMercado::where('sub_id', $request->subMercado)->with(['comuna.region'])->first();
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -68,9 +72,10 @@ class SubMercadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($subMercado)
     {
-        //
+        $subMercado = Submercado::findOrFail($subMercado);
+        return view('admin.submercados.edit', compact('subMercado'));
     }
 
     /**
@@ -80,9 +85,14 @@ class SubMercadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $subMercado)
     {
-        //
+        try {
+            SubmercadoService::actualizarSubMercado($request, SubMercado::findOrFail($subMercado));
+            return response()->json(['success' => '¡El ¡Submercado se ha actualizado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 401);
+        }
     }
 
     /**

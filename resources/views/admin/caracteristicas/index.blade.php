@@ -2,8 +2,8 @@
 @section('title', 'Caracteristicas')
 
 @section('content')
-   <a class="btn btn-primary float-right" href="{{ route('caracteristicas.create') }}">Crear Caracteristica</a>
-   <h1>Caracteristicas</h1>
+   <a class="btn btn-primary float-right" href="{{ route('caracteristicas.create') }}">Crear Característica</a>
+   <h1>Características</h1>
    <div class="dx-viewport">
       <div id="dataGridCaracteristicas"></div>
    </div>
