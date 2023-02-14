@@ -8,6 +8,7 @@ use App\Http\Requests\Certificacion\RegistroCertificacionRequest;
 use App\Models\Certificacion;
 use App\Services\ImagenService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CertificacionController extends Controller
 {
@@ -57,7 +58,7 @@ class CertificacionController extends Controller
     
             return response()->success($certificacion, 201);
         } catch (\Exception $exc) {
-            return response()->error('Ocurrió un error inesperado.', null);
+            return response()->error($exc->getMessage(), null);
         }
     }
 
@@ -108,15 +109,16 @@ class CertificacionController extends Controller
         try {
             $certificacion = Certificacion::findOrFail($certificacion);
             $certificacion->edificios()->detach();
+            Storage::delete($certificacion->cer_imagen);
             $certificacion->delete();
             
             DB::commit();
 
-            return response()->success($certificacion);
+            return response()->success($certificacion, 201);
         } catch (\Exception $exc) {
             DB::rollback();
 
-            return response()->error('Mensaje error', null);
+            return response()->error($exc->getMessage(), null);
         }
     }
 
