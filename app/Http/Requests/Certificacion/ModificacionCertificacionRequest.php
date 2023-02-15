@@ -28,7 +28,7 @@ class ModificacionCertificacionRequest extends FormRequest
                 'required',
                 'max:255'
             ],
-            'fileImagen' => [
+            'imagen' => [
                 'nullable',
                 'mimes:jpg,jpeg,png',
                 'max:5120'
@@ -49,8 +49,8 @@ class ModificacionCertificacionRequest extends FormRequest
     public function messages()
     {
         return [
-            'fileImagen.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
-            'fileImagen.max' => 'Tamaño de imagen máximo: 5MB',
+            'imagen.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
+            'imagen.max' => 'Tamaño de imagen máximo: 5MB',
         ];
     }
 }

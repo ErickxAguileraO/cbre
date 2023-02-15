@@ -99,9 +99,9 @@ class CertificacionController extends Controller
         try {
             $certificacion = Certificacion::findOrFail($id);
 
-            if ($request->file('fileImagen') !== null) {
+            if ($request->file('imagen') !== null) {
                 Storage::delete($certificacion->cer_imagen);
-                $pathImagen = ImagenService::subirImagen($request->file('fileImagen'), 'certificaciones');
+                $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'certificaciones');
 
                 if ( !$pathImagen ) {
                     return response()->error('No se pudo subir la imagen.', null);
