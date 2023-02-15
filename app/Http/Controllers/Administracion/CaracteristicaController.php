@@ -55,7 +55,7 @@ class CaracteristicaController extends Controller
     {
         try {
             CaracteristicaService::registrarCaracteristica($request);
-            return response()->json(['success' => '¡La caracteristica se ha registrado correctamente!'], 200);
+            return response()->json(['success' => '¡La característica se ha registrado correctamente!'], 200);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 401);
         }
@@ -94,7 +94,7 @@ class CaracteristicaController extends Controller
     {
         try {
             CaracteristicaService::actualizarCaracteristica($request, $caracteristica);
-            return response()->json(['success' => '¡La caracteristica se ha actualizado correctamente!'], 200);
+            return response()->json(['success' => '¡La característica se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 401);
         }
@@ -110,7 +110,7 @@ class CaracteristicaController extends Controller
     {
         try {
             $caracteristica->delete();
-            return response()->json(['success' => '¡La caracteristica se ha eliminado correctamente!'], 200);
+            return response()->json(['success' => '¡La característica se ha eliminado correctamente!'], 200);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 401);
         }

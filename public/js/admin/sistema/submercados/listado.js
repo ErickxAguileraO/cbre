@@ -72,14 +72,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 {
                     dataField: "sub_nombre",
                     caption: "Nombre",
+                    hidingPriority: 2,
                 },
                 {
                     dataField: "comuna.region.reg_nombre",
-                    caption: "Region",
+                    caption: "Región",
+                    hidingPriority: 1,
                 },
                 {
                     dataField: "comuna.com_nombre",
                     caption: "Comuna",
+                    hidingPriority: 3,
                 },
                 {
                     dataField: 'sub_estado',
