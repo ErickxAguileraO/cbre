@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Administracion;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Certificacion\RegistroCertificacionRequest;
+use App\Http\Requests\Certificacion\ModificacionCertificacionRequest;
 use App\Models\Certificacion;
 use App\Services\ImagenService;
 use Illuminate\Support\Facades\DB;
@@ -41,10 +42,8 @@ class CertificacionController extends Controller
     public function store(RegistroCertificacionRequest $request)
     {
         try {
-            if ($request->file('imagen') !== null) {
-                $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'certificaciones');
-            }
-    
+            $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'certificaciones');
+            
             if ( !$pathImagen ) {
                 return response()->error('No se pudo subir la imagen.', null);
             }
@@ -81,7 +80,9 @@ class CertificacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $certificacion = Certificacion::find($id);
+        
+        return view('admin.certificaciones.edit', ['certificacion' => $certificacion]);
     }
 
     /**
@@ -91,9 +92,35 @@ class CertificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ModificacionCertificacionRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $certificacion = Certificacion::findOrFail($id);
+
+            if ($request->file('fileImagen') !== null) {
+                Storage::delete($certificacion->cer_imagen);
+                $pathImagen = ImagenService::subirImagen($request->file('fileImagen'), 'certificaciones');
+
+                if ( !$pathImagen ) {
+                    return response()->error('No se pudo subir la imagen.', null);
+                }
+
+                $certificacion->cer_imagen = $pathImagen;
+            }
+
+            $certificacion->cer_nombre = $request->nombre;
+            $certificacion->cer_posicion = $request->posicion;
+            $certificacion->cer_estado = $request->estado;
+            $certificacion->save();
+
+            DB::commit();
+
+            return response()->success($certificacion, 201);
+        } catch (\Exception $exc) {
+            return response()->error($exc->getMessage(), null);
+        }
     }
 
     /**
@@ -124,6 +151,6 @@ class CertificacionController extends Controller
 
     public function list()
     {
-        return Certificacion::all();
+        return Certificacion::orderByDesc('created_at')->get();
     }
 }

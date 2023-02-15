@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Certificacion extends Model
 {
@@ -24,7 +25,8 @@ class Certificacion extends Model
     ];
 
     protected $appends = [
-        'estado'
+        'estado',
+        'urlImagen'
     ];
 
     public function edificios(){
@@ -34,5 +36,10 @@ class Certificacion extends Model
     public function getEstadoAttribute()
     {
         return $this->cer_estado == 1 ? 'Activa' : 'Inactiva';
+    }
+
+    public function getUrlImagenAttribute()
+    {
+        return '/public' . Storage::url($this->cer_imagen);
     }
 }
