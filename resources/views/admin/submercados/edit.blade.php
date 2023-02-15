@@ -55,7 +55,7 @@
                                 <span class="mr-2">Editar</span>
                             </div>
                             <div id="loading" class="d-none">
-                                <span class="mr-2">Editar</span>
+                                <span class="mr-2">Editando</span>
                                 <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
                             </div>
                         </button>
