@@ -14,11 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('errorEstado').innerHTML = errores.estado[0];
             document.getElementById('errorEstado').classList.remove('invisible');
         }
-
-        if ( typeof errores.imagen !== 'undefined' ) {
-            document.getElementById('errorImagen').innerHTML = errores.imagen[0];
-            document.getElementById('errorImagen').classList.remove('invisible');
-        }
     }
 
     document.getElementById('nombre').addEventListener('input', function () {
@@ -50,14 +45,21 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
 
         const token = document.querySelector("input[name='_token']").value;
+        const idCertificacion = document.querySelector("input[name='idCertificacion']").getAttribute('data-id-certificacion');
+        const imagen = document.getElementById('imagen').files[0];
         const formData = new FormData(document.forms.namedItem('formCertificacion'));
-        const url = '/admin/certificaciones';
+        
+        if ( typeof imagen !== 'undefined') {
+            formData.append('fileImagen', imagen);
+        }
+
+        const url = `/admin/certificaciones/${idCertificacion}`;
         
         fetch(url, {
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': token,
-                'Accept': 'application/json'
+                'Accept': 'application/json',
             },
             body: formData
         })
@@ -81,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             Swal.fire({
                 icon: 'success',
-                title: 'Certificación agregada',
+                title: 'Certificación actualizada',
                 showConfirmButton: false,
                 timer: 2000
             });
