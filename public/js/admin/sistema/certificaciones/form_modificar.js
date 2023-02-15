@@ -46,13 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const token = document.querySelector("input[name='_token']").value;
         const idCertificacion = document.querySelector("input[name='idCertificacion']").getAttribute('data-id-certificacion');
-        const imagen = document.getElementById('imagen').files[0];
         const formData = new FormData(document.forms.namedItem('formCertificacion'));
-        
-        if ( typeof imagen !== 'undefined') {
-            formData.append('fileImagen', imagen);
-        }
-
         const url = `/admin/certificaciones/${idCertificacion}`;
         
         fetch(url, {
