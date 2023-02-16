@@ -97,48 +97,36 @@ function isLoadingSpinner(isLoading) {
     }
 }
 
+const inputFieldsIds = ['nombre', 'video', 'posicion', 'estado', 'imagen'];
+
 function setValidationMessages(response) {
     const errors = response.errors;
     for (const field in errors) {
       if (errors.hasOwnProperty(field)) {
         const fieldErrors = errors[field];
-        for (let i = 0; i < fieldErrors.length; i++) {
-          switch (field.toLowerCase()) {
-            case "nombre":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-            case "video":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-            case "posicion":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-            case "estado":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-            case "imagen":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-          }
+        const fieldIndex = inputFieldsIds.indexOf(field);
+
+        if (fieldIndex >= 0) {
+          const fieldId = inputFieldsIds[fieldIndex];
+          const errorElement = document.getElementById(`${fieldId}_error`);
+          errorElement.innerText = fieldErrors.join(', ');
         }
       }
     }
   }
 
   function resetValidationMessages() {
-    document.getElementById('nombre_error').innerText = '';
-    document.getElementById('video_error').innerText = '';
-    document.getElementById('posicion_error').innerText = '';
-    document.getElementById('estado_error').innerText = '';
-    document.getElementById('imagen_error').innerText = '';
+    inputFieldsIds.forEach(id => {
+      document.getElementById(`${id}_error`).innerText = '';
+    });
 }
 
-const inputFiles = document.querySelectorAll('.input-file');
-
-Array.from(inputFiles).forEach(function (inputFile) {
-    inputFile.addEventListener('change', function () {
-        const spanArchivoSeleccionado = document.querySelector('.archivo-seleccionado > span');
-        spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
+//remueve el mensaje de error en tiempo real, al momento de volver a ingresar un valor en el input
+    inputFieldsIds.forEach(field => {
+    document.getElementById(field).addEventListener('input', function () {
+        document.getElementById(`${field}_error`).classList.add('invisible');
     });
 });
+
+
 

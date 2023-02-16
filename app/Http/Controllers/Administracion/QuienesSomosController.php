@@ -3,8 +3,11 @@ namespace App\Http\Controllers\Administracion;
 
 use App\Models\QuienesSomos;
 use Illuminate\Http\Request;
+use App\Services\ImagenService;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\QuienesSomosService;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\QuienesSomos\UpdateQuienesSomosRequest;
 
 class QuienesSomosController extends Controller
@@ -71,10 +74,23 @@ class QuienesSomosController extends Controller
      */
     public function update(UpdateQuienesSomosRequest $request, $quienesSomos)
     {
+        DB::beginTransaction();
         try {
-            QuienesSomosService::actualizarQuienesSomos($request, QuienesSomos::findOrFail($quienesSomos));
+            $quienesSomos = QuienesSomos::findOrFail($quienesSomos);
+            $quienesSomos->update([
+                'qus_titulo' => $request->input('titulo'),
+                'qus_texto' => $request->input('texto'),
+            ]);
+            if ($request->hasFile('imagen')) {
+                Storage::delete($quienesSomos->qus_imagen);
+                $quienesSomos->update([
+                    'qus_imagen' => ImagenService::subirImagen($request->file('imagen'), 'quienes-somos'),
+                ]);
+            }
+            DB::commit();
             return response()->json(['success' => '¡Quienes somos se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
+            DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }

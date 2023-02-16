@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Administracion;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\DatoGeneral\UpdateDatoGeneralRequest;
-use App\Models\DatoGeneral;
 use App\Models\Region;
-use App\Services\DatosGeneralesService;
+use App\Models\DatoGeneral;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Services\DatosGeneralesService;
+use App\Http\Requests\DatoGeneral\UpdateDatoGeneralRequest;
 
 class DatosGeneralesController extends Controller
 {
@@ -75,10 +76,24 @@ class DatosGeneralesController extends Controller
      */
     public function update(UpdateDatoGeneralRequest $request, $datosGenerales)
     {
+        DB::beginTransaction();
         try {
-            DatosGeneralesService::actualizarDatosGenerales($request, DatoGeneral::findOrFail($datosGenerales));
+            DatoGeneral::findOrFail($datosGenerales)->update([
+                'dag_comuna_id' => $request->input('comuna'),
+                'dag_direccion' => $request->input('direccion'),
+                'dag_telefono_uno' => $request->input('telefono_uno'),
+                'dag_telefono_dos' => $request->input('telefono_dos'),
+                'dag_facebook' => $request->input('facebook'),
+                'dag_linkedin' => $request->input('linkedin'),
+                'dag_instagram' => $request->input('instagram'),
+                'dag_twitter' => $request->input('twitter'),
+                'dag_youtube' => $request->input('youtube'),
+                'dag_email_encargado' => $request->input('email'),
+            ]);
+            DB::commit();
             return response()->json(['success' => '¡Los datos generales se han actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
+            DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }

@@ -13,7 +13,7 @@
                     <label for="nombre">Nombre</label>
                     <input id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" type="text"
                         tabindex="1" />
-                        <p class="text-danger small" id="nombre_error"></p>
+                        <p class="field-message-alert" id="nombre_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -29,7 +29,7 @@
                     <label for="comuna">Comuna</label>
                     <select name="comuna" id="comuna">
                     </select>
-                    <p class="text-danger small" id="comuna_error"></p>
+                    <p class="field-message-alert" id="comuna_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -41,7 +41,7 @@
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>
                     </select>
-                    <p class="text-danger small" id="estado_error"></p>
+                    <p class="field-message-alert" id="estado_error"></p>
                 </div>
             </div>
         </fieldset>

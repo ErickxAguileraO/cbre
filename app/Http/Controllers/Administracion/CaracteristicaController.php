@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Administracion;;
 
+use Illuminate\Http\Request;
+use App\Models\Caracteristica;
+use App\Services\ImagenService;
+use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Services\CaracteristicaService;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Caracteristica\StoreCaracteristicaRequest;
 use App\Http\Requests\Caracteristica\UpdateCaracteristicaRequest;
-use App\Models\Caracteristica;
-use App\Services\CaracteristicaService;
-use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
 
 class CaracteristicaController extends Controller
 {
@@ -53,10 +56,19 @@ class CaracteristicaController extends Controller
      */
     public function store(StoreCaracteristicaRequest $request)
     {
+        DB::beginTransaction();
         try {
-            CaracteristicaService::registrarCaracteristica($request);
+            Caracteristica::create([
+                'car_nombre' => $request->nombre,
+                'car_video_url' => $request->video,
+                'car_posicion' => $request->posicion,
+                'car_estado' => $request->estado,
+                'car_imagen' => ImagenService::subirImagen($request->file('imagen'), 'caracteristicas'),
+            ]);
+            DB::commit();
             return response()->json(['success' => '¡La característica se ha registrado correctamente!'], 200);
         } catch (\Throwable $th) {
+            DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
@@ -92,10 +104,24 @@ class CaracteristicaController extends Controller
      */
     public function update(UpdateCaracteristicaRequest $request, Caracteristica $caracteristica)
     {
+        DB::beginTransaction();
         try {
-            CaracteristicaService::actualizarCaracteristica($request, $caracteristica);
+            $caracteristica->update([
+                'car_nombre' => $request->input('nombre'),
+                'car_video_url' => $request->input('video'),
+                'car_posicion' => $request->input('posicion'),
+                'car_estado' => $request->input('estado'),
+            ]);
+            if ($request->hasFile('imagen')) {
+                Storage::delete($caracteristica->car_imagen);
+                $caracteristica->update([
+                    'car_imagen' => ImagenService::subirImagen($request->file('imagen'), 'caracteristicas'),
+                ]);
+            }
+            DB::commit();
             return response()->json(['success' => '¡La característica se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
+            DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
@@ -108,10 +134,15 @@ class CaracteristicaController extends Controller
      */
     public function destroy(Caracteristica $caracteristica)
     {
+        DB::beginTransaction();
         try {
+            $caracteristica->edificios()->detach();
+            Storage::delete($caracteristica->car_imagen);
             $caracteristica->delete();
+            DB::commit();
             return response()->json(['success' => '¡La característica se ha eliminado correctamente!'], 200);
         } catch (\Throwable $th) {
+            DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
