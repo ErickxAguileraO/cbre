@@ -7,6 +7,7 @@ use App\Http\Requests\Noticia\RegistroNoticiaRequest;
 use App\Models\Noticia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Services\ImagenService;
 
 class NoticiaController extends Controller
@@ -107,7 +108,21 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $noticia = Noticia::findOrFail($id);
+            Storage::delete($noticia->not_imagen);
+            $noticia->delete();
+            
+            DB::commit();
+
+            return response()->success($noticia, 200);
+        } catch (\Exception $exc) {
+            DB::rollback();
+
+            return response()->error($exc->getMessage(), null);
+        }
     }
 
     public function list()

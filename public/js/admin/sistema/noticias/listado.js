@@ -48,11 +48,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     minWidth: '90',
                     hidingPriority: 4,
                     cellTemplate(container, options) {
-                        const idCertificacion = options.data.cer_id;
+                        const idNoticia = options.data.not_id;
     
-                        let urlModificar = `/admin/certificaciones/${idCertificacion}/edit`;
+                        let urlModificar = `/admin/noticias/${idNoticia}/edit`;
                         let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
-                        let templateEliminar = `<a href="" title="Eliminar" id="eliminarPerfilEnlace" data-id="${idCertificacion}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
+                        let templateEliminar = `<a href="" title="Eliminar" id="eliminarNoticiaEnlace" data-id="${idNoticia}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
     
                         const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
                         const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 cancelButtonText: 'Cancelar',
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    url = `/admin/certificaciones/${idCertificacion}`;
+                                    url = `/admin/noticias/${idNoticia}`;
                                     const token = document.querySelector("input[name='_token']").value;
 
                                     fetch(url, {
@@ -82,6 +82,16 @@ document.addEventListener('DOMContentLoaded', function () {
                                     })
                                     .then(response => response.json())
                                     .then(function (response) {
+                                        if ( typeof response.status == 'undefined' ) {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Un momento...',
+                                                text: response.message
+                                            })
+                                
+                                            return;
+                                        }
+
                                         if ( response.status == 'error' ) {
                                             Swal.fire({
                                                 icon: 'error',
@@ -94,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                         Swal.fire(
                                             '¡Listo!',
-                                            'La certificación ha sido eliminada.',
+                                            'La noticia ha sido eliminada.',
                                             'success'
                                         )
                                     })
