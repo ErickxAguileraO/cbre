@@ -18,6 +18,7 @@ class Comercio extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'loc_nombre',
         'loc_imagen',
         'loc_descripcion',
         'loc_edificio_id',

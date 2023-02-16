@@ -9,7 +9,7 @@
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
-               <label for="nombre">Título</label>
+               <label for="titulo">Título</label>
                <input id="titulo" name="titulo" value="" class="form-control" type="text" tabindex="1" data-maximo-caracteres="255"/>
                <small id="errorTitulo" class="field-message-alert invisible absolute"></small>
             </div>
@@ -18,7 +18,7 @@
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
-               <label for="nombre">Cuerpo</label>
+               <label for="cuerpoTextarea">Cuerpo</label>
                <div class="">
                     <div>
                         <textarea name="cuerpoTextarea" id="cuerpoTextarea"

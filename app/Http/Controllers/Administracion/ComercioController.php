@@ -50,6 +50,7 @@ class ComercioController extends Controller
             }
 
             $comercio = Comercio::create([
+                'loc_nombre' => $request->nombre,
                 'loc_imagen' => $pathImagen,
                 'loc_descripcion' => $request->descripcion,
                 'loc_edificio_id' => $request->edificio
@@ -108,5 +109,10 @@ class ComercioController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function list()
+    {
+        return Comercio::orderByDesc('created_at')->get();
     }
 }

@@ -7,6 +7,13 @@
    <form action="" id="formComercio" name="formComercio" class="formulario">
    @csrf
       <fieldset class="row">
+         <div class="col-sm-4">
+            <div class="form-group">
+               <label for="nombre">Nombre</label>
+               <input id="nombre" name="nombre" value="" class="form-control" type="text" tabindex="1" data-maximo-caracteres="255"/>
+               <small id="errorNombre" class="field-message-alert invisible absolute"></small>
+            </div>
+         </div>
       </fieldset>
       <fieldset class="row">
          <div class="col-sm-4">

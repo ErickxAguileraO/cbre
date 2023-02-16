@@ -13,19 +13,28 @@ ClassicEditor.create(document.querySelector('#descripcionTextarea'), {
 });
 
 // Quitar mensajes de validación.
+document.getElementById('nombre').addEventListener('input', function () {
+    document.getElementById('errorNombre').classList.add('invisible');
+});
+
 document.getElementById('imagen').addEventListener('input', function () {
     document.getElementById('errorImagen').classList.add('invisible');
-})
+});
 
 document.getElementById('descripcionTextarea').addEventListener('input', function () {
     document.getElementById('errorDescripcion').classList.add('invisible');
-})
+});
 
 $('#edificio').change(function () {
     document.getElementById('errorEdificio').classList.add('invisible');;
 });
 
 function mostrarErroresValidacion(errores) {
+    if ( typeof errores.nombre !== 'undefined' ) {
+        document.getElementById('errorNombre').innerHTML = errores.nombre[0];
+        document.getElementById('errorNombre').classList.remove('invisible');
+    }
+
     if ( typeof errores.descripcion !== 'undefined' ) {
         document.getElementById('errorDescripcion').innerHTML = errores.descripcion[0];
         document.getElementById('errorDescripcion').classList.remove('invisible');
