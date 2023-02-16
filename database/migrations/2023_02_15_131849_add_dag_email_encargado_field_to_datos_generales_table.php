@@ -26,6 +26,7 @@ class AddDagEmailEncargadoFieldToDatosGeneralesTable extends Migration
         $datosGenerales = [
             ['dag_direccion' => null, 'dag_telefono_uno' => null, 'dag_telefono_dos' => null, 'dag_facebook' => null, 'dag_linkedin' => null,
             'dag_instagram' => null, 'dag_twitter' => null, 'dag_youtube' => null, 'dag_email_encargado' => null, 'dag_comuna_id' => 96,
+            'created_at' => now(), 'updated_at' => now()
             ],
         ];
 

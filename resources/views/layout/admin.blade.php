@@ -79,7 +79,7 @@
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Indicadores</a>
+                <a href="{{route('indicadores.index')}}" class="nav-link">Indicadores</a>
               </span>
             </li>
 
