@@ -108,7 +108,21 @@ class ComercioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $comercio = Comercio::findOrFail($id);
+            Storage::delete($comercio->loc_imagen);
+            $comercio->delete();
+            
+            DB::commit();
+
+            return response()->success($comercio, 200);
+        } catch (\Exception $exc) {
+            DB::rollback();
+
+            return response()->error($exc->getMessage(), null);
+        }
     }
 
     public function list()
