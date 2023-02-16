@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Noticia;
+namespace App\Http\Requests\Comercio;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegistroNoticiaRequest extends FormRequest
+class RegistroComercioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,18 @@ class RegistroNoticiaRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => [
-                'required',
-                'max:255'
-            ],
             'imagen' => [
                 'required',
                 'mimes:jpg,jpeg,png',
                 'max:5120'
             ],
-            'cuerpo' => [
+            'descripcion' => [
                 'required',
                 'max:1000',
                 'min:30'
             ],
             'edificio' => [
+                'required',
                 'nullable',
                 'numeric'
             ]
