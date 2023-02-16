@@ -7,6 +7,7 @@ use App\Http\Controllers\Administracion\CertificacionController;
 use App\Http\Controllers\Administracion\QuienesSomosController;
 use App\Http\Controllers\Administracion\SubMercadoController;
 use App\Http\Controllers\Administracion\ComunaController;
+use App\Http\Controllers\Administracion\DatosGeneralesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,12 @@ Route::prefix('admin')->group(function () {
         Route::get('comunas/get/list', 'comunasList')->name('comunas.list');
         Route::get('comunas/get/list/{regionName}', 'comunasPorRegionList')->name('comunas.por.region.list');
     });
+
+    // Datos Empresa/Generales
+    Route::controller(DatosGeneralesController::class)->group(function () {
+        Route::resource('datos-generales', DatosGeneralesController::class);
+        Route::get('datos-generales/get/single/{datosGenerales}', 'get')->name('datos-generales.single');
+     });
 });
 
 Route::get('/', function () {

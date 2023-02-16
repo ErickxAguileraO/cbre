@@ -18,7 +18,7 @@
   <link href="{{ asset('public/js/admin/jquery/sweetalert2/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
   @stack('stylesheets')
 
   <!-- favicon -->
@@ -87,6 +87,12 @@
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{route('quienes-somos.index')}}" class="nav-link">Quiénes somos</a>
               </span>
+            </li>
+
+            <li>
+                <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
+                  <a href="{{route('datos-generales.index')}}" class="nav-link">Datos generales</a>
+                </span>
             </li>
 
             <li>
