@@ -14,7 +14,7 @@ class DatoGeneral extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'dag_direccion', 'dag_telefono_uno', 'dag_telefono_dos', 'dag_facebook', 'dag_linkedin', 'dag_instagram', 'dag_twitter', 'dag_youtube', 'dag_comuna_id'
+        'dag_direccion', 'dag_telefono_uno', 'dag_telefono_dos', 'dag_facebook', 'dag_linkedin', 'dag_instagram', 'dag_twitter', 'dag_youtube', 'dag_comuna_id', 'dag_email_encargado'
     ];
 
     public function comuna()

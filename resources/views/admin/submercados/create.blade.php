@@ -13,7 +13,7 @@
                     <label for="nombre">Nombre</label>
                     <input id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" type="text"
                         tabindex="1" />
-                        <p class="text-danger" id="nombre_error"></p>
+                        <p class="text-danger small" id="nombre_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -29,24 +29,24 @@
                     <label for="comuna">Comuna</label>
                     <select name="comuna" id="comuna">
                     </select>
-                    <p class="text-danger" id="comuna_error"></p>
+                    <p class="text-danger small" id="comuna_error"></p>
                 </div>
             </div>
         </fieldset>
         <fieldset class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label for="estado">Estado</label>
                     <select id="estado" name="estado" class="form-control" tabindex="4" style="width:100%;">
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>
                     </select>
-                    <p class="text-danger" id="estado_error"></p>
+                    <p class="text-danger small" id="estado_error"></p>
                 </div>
             </div>
         </fieldset>
         <fieldset class="row mt-5">
-            <div class="col-sm-8">
+            <div class="col-sm-4">
                 <div class="form-group">
                         <button id="guardar" type="submit" class="btn btn-success btn-lg" value="Guardar"
                             class="btn btn-success btn-lg" type="button">

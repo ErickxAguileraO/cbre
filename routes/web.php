@@ -7,6 +7,8 @@ use App\Http\Controllers\Administracion\CertificacionController;
 use App\Http\Controllers\Administracion\QuienesSomosController;
 use App\Http\Controllers\Administracion\SubMercadoController;
 use App\Http\Controllers\Administracion\ComunaController;
+use App\Http\Controllers\Administracion\DatosGeneralesController;
+use App\Http\Controllers\Administracion\IndicadorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('noticias', NoticiaController::class);
         Route::get('noticias/get/list', 'list');
     });
-    
+
 
     // Certificaciones
     Route::controller(CertificacionController::class)->group(function () {
@@ -59,6 +61,17 @@ Route::prefix('admin')->group(function () {
     Route::controller(ComunaController::class)->group(function () {
         Route::get('comunas/get/list', 'comunasList')->name('comunas.list');
         Route::get('comunas/get/list/{regionName}', 'comunasPorRegionList')->name('comunas.por.region.list');
+    });
+
+    // Datos Empresa/Generales
+    Route::controller(DatosGeneralesController::class)->group(function () {
+        Route::resource('datos-generales', DatosGeneralesController::class);
+        Route::get('datos-generales/get/single/{datosGenerales}', 'get')->name('datos-generales.single');
+     });
+
+    // Indicadores
+    Route::controller(IndicadorController::class)->group(function () {
+        Route::resource('indicadores', IndicadorController::class);
     });
 });
 
