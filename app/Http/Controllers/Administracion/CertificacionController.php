@@ -141,7 +141,7 @@ class CertificacionController extends Controller
             
             DB::commit();
 
-            return response()->success($certificacion, 201);
+            return response()->success($certificacion, 204);
         } catch (\Exception $exc) {
             DB::rollback();
 
