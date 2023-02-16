@@ -91,7 +91,7 @@
 
             <li>
                 <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                  <a href="{{route('datos-generales.index')}}" class="nav-link">Datos Generales</a>
+                  <a href="{{route('datos-generales.index')}}" class="nav-link">Datos generales</a>
                 </span>
             </li>
 

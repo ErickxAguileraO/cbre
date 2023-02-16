@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         QuienesSomos::create();
         DatoGeneral::create([
-            'dag_comuna_id' => 76,
+            'dag_comuna_id' => 96,
         ]
         );
     }
