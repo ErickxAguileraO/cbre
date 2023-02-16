@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\DatoGeneral;
+use App\Models\Indicador;
 use App\Models\QuienesSomos;
 use Illuminate\Database\Seeder;
 
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
             'dag_comuna_id' => 96,
         ]
         );
+        Indicador::create();
     }
 }

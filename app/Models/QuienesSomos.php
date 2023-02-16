@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class QuienesSomos extends Model
 {
@@ -16,4 +17,13 @@ class QuienesSomos extends Model
     protected $fillable = [
         'qus_titulo', 'qus_texto', 'qus_imagen'
     ];
+
+    protected $appends = [
+        'urlImagen'
+    ];
+
+    public function getUrlImagenAttribute()
+    {
+        return '/public' . Storage::url($this->qus_imagen);
+    }
 }

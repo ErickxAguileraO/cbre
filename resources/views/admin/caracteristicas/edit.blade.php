@@ -20,35 +20,38 @@
                     <label for="video">Video</label>
                     <input name="video" type="text" value="{{ $caracteristica->car_video_url }}" class="form-control"
                         id="video" tabindex="3" />
-                        <p class="text-danger" id="video_error"></p>
+                        <p class="text-danger small" id="video_error"></p>
                 </div>
             </div>
         </fieldset>
         <fieldset class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label for="posicion">Posición</label>
                     <input name="posicion" type="text" value="{{ $caracteristica->car_posicion }}" class="form-control solo-numeros" data-maximo-caracteres="3"
                         id="posicion" tabindex="2" />
-                        <p class="text-danger" id="posicion_error"></p>
+                        <p class="text-danger small" id="posicion_error"></p>
                 </div>
             </div>
         </fieldset>
         <fieldset class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label for="estado">Estado</label>
                     <select id="estado" name="estado" class="form-control" tabindex="4" style="width:100%;">
                         <option value="1"{{ $caracteristica->car_estado == 1 ? 'selected' : '' }}>Activo</option>
                         <option value="0"{{ $caracteristica->car_estado == 0 ? 'selected' : '' }}>Inactivo</option>
                     </select>
-                    <p class="text-danger" id="estado_error"></p>
+                    <p class="text-danger small" id="estado_error"></p>
                 </div>
             </div>
         </fieldset>
         <fieldset class="row my-3">
             <div class="col-sm-4">
                 <label for="imagen">Imagen</label>
+                <div class="py-2">
+                    <img src="{{$caracteristica->url_imagen}}" width="360" height="260" alt="">
+                </div>
                 <div class="d-flex align-items-end">
                     <div class="file-select">
                         <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
@@ -58,11 +61,11 @@
                        <span class="align-text-bottom">Ningún archivo seleccionado</span>
                     </div>
                  </div>
-                 <p class="text-danger" id="imagen_error"></p>
+                 <p class="text-danger small" id="imagen_error"></p>
             </div>
         </fieldset>
         <fieldset class="row mt-5">
-            <div class="col-sm-8">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <button id="editar" type="submit" class="btn btn-success btn-lg" value="Guardar"
                     class="btn btn-success btn-lg" type="button">

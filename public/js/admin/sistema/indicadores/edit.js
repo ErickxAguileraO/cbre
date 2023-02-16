@@ -1,32 +1,11 @@
-let ckEditor;
-ClassicEditor.create(document.querySelector('#texto'), {
-    removePlugins: ['MediaEmbed'],
-})
-.then(editor => {
-    ckEditor = editor;
-});
-
-/* const iniciarCkeditor = () => {
-    const editors = document.querySelectorAll(".ckeditor-input");
-    if (!editors) return;
-    editors.forEach((editor) => {
-        CKEDITOR.replace(editor, { removeButtons: "SImage" });
-    });
-}; */
 
 document.getElementById("editar").addEventListener("click", function (event) {
-    let form = document.querySelector("#form-quienes_somos");
-    let texto = ckEditor.getData();
-    //    let texto = CKEDITOR.instances.texto.getData();
+    let form = document.querySelector("#form-indicadores");
     let formData = new FormData(form);
-    formData.append("texto", texto);
     formData.append("_method", "PUT");
-
     event.preventDefault();
-
     isLoadingSpinner(true);
-
-    fetch("/admin/quienes-somos/" + document.getElementById("qus_id").value, {
+    fetch("/admin/indicadores/" + document.getElementById("ind_id").value, {
         headers: {
             "X-CSRF-TOKEN": document.querySelector("input[name='_token']")
                 .value,
@@ -49,10 +28,10 @@ document.getElementById("editar").addEventListener("click", function (event) {
                             showConfirmButton: false,
                             timer: 1500,
                         });
-                        isLoadingSpinner("done");
+                        isLoadingSpinner('done');
                         resetValidationMessages();
                         setTimeout(() => {
-                            document.location.href = "/admin/quienes-somos";
+                            document.location.href = "/admin/indicadores";
                         }, 2000);
                     } else if (response.error) {
                         isLoadingSpinner(false);
@@ -109,7 +88,7 @@ function isLoadingSpinner(isLoading) {
         document.getElementById("default").classList.add("d-block");
         document.getElementById("editar").removeAttribute("disabled");
     }
-    if (isLoading == "done") {
+    if (isLoading == 'done') {
         document.getElementById("loading").classList.remove("d-block");
         document.getElementById("loading").classList.add("d-none");
         document.getElementById("default").classList.remove("d-none");
@@ -121,32 +100,33 @@ function isLoadingSpinner(isLoading) {
 function setValidationMessages(response) {
     const errors = response.errors;
     for (const field in errors) {
-        if (errors.hasOwnProperty(field)) {
-            const fieldErrors = errors[field];
-            for (let i = 0; i < fieldErrors.length; i++) {
-                switch (field.toLowerCase()) {
-                    case "titulo":
-                        document.getElementById(`${field}_error`).innerText =
-                            fieldErrors[i];
-                        break;
-                    case "texto":
-                        document.getElementById(`${field}_error`).innerText =
-                            fieldErrors[i];
-                        break;
-                    case "imagen":
-                        document.getElementById(`${field}_error`).innerText =
-                            fieldErrors[i];
-                        break;
-                }
-            }
+      if (errors.hasOwnProperty(field)) {
+        const fieldErrors = errors[field];
+        for (let i = 0; i < fieldErrors.length; i++) {
+          switch (field.toLowerCase()) {
+            case "edificios_administrados":
+              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
+              break;
+            case "confia_en_nosotros":
+              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
+              break;
+            case "en_todo_chile":
+              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
+              break;
+              case "en_todo_chile2":
+                document.getElementById(`${field}_error`).innerText = fieldErrors[i];
+                break;
+          }
         }
+      }
     }
-}
+  }
 
-function resetValidationMessages() {
-    document.getElementById("titulo_error").innerText = "";
-    document.getElementById("texto_error").innerText = "";
-    document.getElementById("imagen_error").innerText = "";
+  function resetValidationMessages() {
+    document.getElementById('edificios_administrados_error').innerText = '';
+    document.getElementById('confia_en_nosotros_error').innerText = '';
+    document.getElementById('en_todo_chile_error').innerText = '';
+    document.getElementById('en_todo_chile2_error').innerText = '';
 }
 
 const inputFiles = document.querySelectorAll('.input-file');
