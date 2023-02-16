@@ -109,4 +109,9 @@ class NoticiaController extends Controller
     {
         //
     }
+
+    public function list()
+    {
+        return Noticia::orderByDesc('created_at')->get();
+    }
 }
