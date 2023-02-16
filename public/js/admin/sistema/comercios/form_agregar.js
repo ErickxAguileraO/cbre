@@ -1,5 +1,5 @@
 let ckEditor;
-ClassicEditor.create(document.querySelector('#cuerpoTextarea'), {
+ClassicEditor.create(document.querySelector('#descripcionTextarea'), {
     removePlugins: ['MediaEmbed'],
     ckfinder: {
         uploadUrl: '/image-upload?_token='+$("input[name='_token']").val(),
@@ -8,35 +8,27 @@ ClassicEditor.create(document.querySelector('#cuerpoTextarea'), {
 .then(editor => {
     ckEditor = editor;
     ckEditor.model.document.on( 'change:data', () => {
-        document.getElementById('errorCuerpo').classList.add('invisible');
+        document.getElementById('errorDescripcion').classList.add('invisible');
     } );
 });
 
-document.getElementById('titulo').addEventListener('input', function () {
-    document.getElementById('errorTitulo').classList.add('invisible');
-})
-
+// Quitar mensajes de validación.
 document.getElementById('imagen').addEventListener('input', function () {
     document.getElementById('errorImagen').classList.add('invisible');
 })
 
-document.getElementById('cuerpoTextarea').addEventListener('input', function () {
-    document.getElementById('errorCuerpo').classList.add('invisible');
+document.getElementById('descripcionTextarea').addEventListener('input', function () {
+    document.getElementById('errorDescripcion').classList.add('invisible');
 })
 
-document.getElementById('edificio').addEventListener('input', function () {
-    document.getElementById('errorEdificio').classList.add('invisible');
-})
+$('#edificio').change(function () {
+    document.getElementById('errorEdificio').classList.add('invisible');;
+});
 
 function mostrarErroresValidacion(errores) {
-    if ( typeof errores.titulo !== 'undefined' ) {
-        document.getElementById('errorTitulo').innerHTML = errores.titulo[0];
-        document.getElementById('errorTitulo').classList.remove('invisible');
-    }
-    
-    if ( typeof errores.cuerpo !== 'undefined' ) {
-        document.getElementById('errorCuerpo').innerHTML = errores.cuerpo[0];
-        document.getElementById('errorCuerpo').classList.remove('invisible');
+    if ( typeof errores.descripcion !== 'undefined' ) {
+        document.getElementById('errorDescripcion').innerHTML = errores.descripcion[0];
+        document.getElementById('errorDescripcion').classList.remove('invisible');
     }
 
     if ( typeof errores.edificio !== 'undefined' ) {
@@ -63,9 +55,9 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     event.preventDefault();
 
     const token = document.querySelector("input[name='_token']").value;
-    const formData = new FormData(document.forms.namedItem('formNoticia'));
-    formData.append('cuerpo', ckEditor.getData());
-    const url = '/admin/noticias';
+    const formData = new FormData(document.forms.namedItem('formComercio'));
+    formData.append('descripcion', ckEditor.getData());
+    const url = '/admin/comercios';
     
     fetch(url, {
         method: 'POST',
@@ -106,13 +98,13 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
         if ( response.status == 'success' ) {
             Swal.fire({
                 icon: 'success',
-                title: 'Noticia agregada',
+                title: 'Local comercial agregado',
                 showConfirmButton: false,
                 timer: 2000
             });
 
             setTimeout(function () {
-                window.location.href = '/admin/noticias';
+                window.location.href = '/admin/comercios';
             }, 2000);
         }
     })

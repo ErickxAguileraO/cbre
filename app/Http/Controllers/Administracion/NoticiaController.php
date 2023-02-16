@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administracion;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Noticia\RegistroNoticiaRequest;
+use App\Http\Requests\Noticia\ModificacionNoticiaRequest;
 use App\Models\Noticia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -85,7 +86,9 @@ class NoticiaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $noticia = Noticia::find($id);
+        
+        return view('admin.noticias.edit', ['noticia' => $noticia]);
     }
 
     /**
@@ -95,9 +98,35 @@ class NoticiaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ModificacionNoticiaRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $noticia = Noticia::findOrFail($id);
+
+            if ($request->file('imagen') !== null) {
+                Storage::delete($noticia->not_imagen);
+                $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'noticias');
+
+                if ( !$pathImagen ) {
+                    return response()->error('No se pudo subir la imagen.', null);
+                }
+
+                $noticia->not_imagen = $pathImagen;
+            }
+
+            $noticia->not_titulo = $request->titulo;
+            $noticia->not_texto = $request->cuerpo;
+            $noticia->not_edificio_id = $request->edificio;
+            $noticia->save();
+
+            DB::commit();
+
+            return response()->success($noticia, 201);
+        } catch (\Exception $exc) {
+            return response()->error($exc->getMessage(), null);
+        }
     }
 
     /**

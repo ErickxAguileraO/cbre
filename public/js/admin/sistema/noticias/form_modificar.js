@@ -16,10 +16,6 @@ document.getElementById('titulo').addEventListener('input', function () {
     document.getElementById('errorTitulo').classList.add('invisible');
 })
 
-document.getElementById('imagen').addEventListener('input', function () {
-    document.getElementById('errorImagen').classList.add('invisible');
-})
-
 document.getElementById('cuerpoTextarea').addEventListener('input', function () {
     document.getElementById('errorCuerpo').classList.add('invisible');
 })
@@ -27,6 +23,8 @@ document.getElementById('cuerpoTextarea').addEventListener('input', function () 
 document.getElementById('edificio').addEventListener('input', function () {
     document.getElementById('errorEdificio').classList.add('invisible');
 })
+
+
 
 function mostrarErroresValidacion(errores) {
     if ( typeof errores.titulo !== 'undefined' ) {
@@ -63,9 +61,10 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     event.preventDefault();
 
     const token = document.querySelector("input[name='_token']").value;
+    const idNoticia = document.querySelector("input[name='idNoticia']").getAttribute('data-id-noticia');
     const formData = new FormData(document.forms.namedItem('formNoticia'));
     formData.append('cuerpo', ckEditor.getData());
-    const url = '/admin/noticias';
+    const url = `/admin/noticias/${idNoticia}`;
     
     fetch(url, {
         method: 'POST',
@@ -106,7 +105,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
         if ( response.status == 'success' ) {
             Swal.fire({
                 icon: 'success',
-                title: 'Noticia agregada',
+                title: 'Noticia actualizada',
                 showConfirmButton: false,
                 timer: 2000
             });

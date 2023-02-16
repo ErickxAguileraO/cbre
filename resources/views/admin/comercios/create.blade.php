@@ -1,32 +1,25 @@
 @extends('layout.admin')
 
-@section('title', 'Noticias')
+@section('title', 'Comercios')
 
 @section('content')
-   <h1>Crear noticia</h1>
-   <form action="" id="formNoticia" name="formNoticia" class="formulario">
+   <h1>Crear local comercial</h1>
+   <form action="" id="formComercio" name="formComercio" class="formulario">
    @csrf
       <fieldset class="row">
-         <div class="col-sm-4">
-            <div class="form-group">
-               <label for="nombre">Título</label>
-               <input id="titulo" name="titulo" value="" class="form-control" type="text" tabindex="1" data-maximo-caracteres="255"/>
-               <small id="errorTitulo" class="field-message-alert invisible absolute"></small>
-            </div>
-         </div>
       </fieldset>
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
-               <label for="nombre">Cuerpo</label>
+               <label for="nombre">Descripción</label>
                <div class="">
                     <div>
-                        <textarea name="cuerpoTextarea" id="cuerpoTextarea"
+                        <textarea name="descripcionTextarea" id="descripcionTextarea"
                             class="form-control texto text-tarea-seccion ckeditor" rows="5" tabindex="2">
                         </textarea>
                     </div>
                 </div>
-               <small id="errorCuerpo" class="field-message-alert invisible absolute"></small>
+               <small id="errorDescripcion" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
       </fieldset>
@@ -50,8 +43,8 @@
          <div class="col-sm-4">
             <div class="form-group">
                 <label for="edificio">Edificio</label>
-                <select id="edificio" name="edificio" class="form-control busqueda-select2">
-                    <option value="">Sin edificio</option>
+                <select id="edificio" name="edificio" class="form-control">
+                    <option value="">Selecciona...</option>
 
                     @foreach ($edificios as $edificio)
                         <option value="{{ $edificio->edi_id }}" >{{ $edificio->edi_nombre }}</option>
@@ -75,5 +68,5 @@
 @endsection
 
 @push('scripts')
-   <script src="{{ asset('public/js/admin/sistema/noticias/form_agregar.js') }}"></script>
+   <script src="{{ asset('public/js/admin/sistema/comercios/form_agregar.js') }}"></script>
 @endpush

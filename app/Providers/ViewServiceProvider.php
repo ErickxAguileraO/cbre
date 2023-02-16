@@ -27,6 +27,9 @@ class ViewServiceProvider extends ServiceProvider
     {
         View::composer([
             'admin.noticias.create',
+            'admin.noticias.edit',
+            'admin.comercios.create',
+            'admin.comercios.edit',
         ], EdificioComposer::class);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Noticia;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegistroNoticiaRequest extends FormRequest
+class ModificacionNoticiaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class RegistroNoticiaRequest extends FormRequest
                 'max:255'
             ],
             'imagen' => [
-                'required',
+                'nullable',
                 'mimes:jpg,jpeg,png',
                 'max:5120'
             ],
