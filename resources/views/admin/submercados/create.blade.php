@@ -20,7 +20,7 @@
         <fieldset class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="region">Region</label>
+                    <label for="region">Región</label>
                     <select name="region" id="region">
                     </select>
                     <p class="text-danger" id="region_error"></p>
