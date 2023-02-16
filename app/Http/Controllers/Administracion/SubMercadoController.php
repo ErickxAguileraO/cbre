@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Services\SubmercadoService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubMercado\StoreSubMercadoRequest;
+use App\Http\Requests\SubMercado\UpdateSubMercadoRequest;
 
 class SubMercadoController extends Controller
 {
@@ -85,11 +86,11 @@ class SubMercadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $subMercado)
+    public function update(UpdateSubMercadoRequest $request, $subMercado)
     {
         try {
             SubmercadoService::actualizarSubMercado($request, SubMercado::findOrFail($subMercado));
-            return response()->json(['success' => '¡El ¡Submercado se ha actualizado correctamente!'], 200);
+            return response()->json(['success' => '¡El Submercado se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 401);
         }

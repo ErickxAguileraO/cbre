@@ -14,7 +14,7 @@
                     <label for="direccion">Dirección</label>
                     <input id="direccion" name="direccion" value="{{ $datos_generales->dag_direccion }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="text-danger" id="direccion_error"></p>
+                    <p class="text-danger small" id="direccion_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -24,7 +24,7 @@
                     <label for="region">Región</label>
                     <select name="region" id="region">
                     </select>
-                    <p class="text-danger" id="region_error"></p>
+                    <p class="text-danger small" id="region_error"></p>
                 </div>
                 <div class="form-group">
                     <label for="comuna">Comuna</label>
@@ -40,7 +40,7 @@
                     <label for="telefono_uno">Teléfono</label>
                     <input id="telefono_uno" name="telefono_uno" value="{{ $datos_generales->dag_telefono_uno }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="text-danger" id="telefono_uno_error"></p>
+                    <p class="text-danger small" id="telefono_uno_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -50,7 +50,7 @@
                     <label for="telefono_dos">Teléfono 2</label>
                     <input id="telefono_dos" name="telefono_dos" value="{{ $datos_generales->dag_telefono_dos }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="text-danger" id="telefono_dos_error"></p>
+                    <p class="text-danger small" id="telefono_dos_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -60,11 +60,11 @@
                     <label for="email">Email Encargado</label>
                     <input id="email" name="email" value="{{ $datos_generales->dag_email_encargado }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="text-danger" id="email_error"></p>
+                    <p class="text-danger small" id="email_error"></p>
                 </div>
             </div>
         </fieldset>
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-sm-4">
                 <hr>
             </div>
@@ -75,7 +75,7 @@
                     <label for="facebook">Facebook</label>
                     <input id="facebook" name="facebook" value="{{ $datos_generales->dag_facebook }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="text-danger" id="facebook_error"></p>
+                    <p class="text-danger small" id="facebook_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -85,7 +85,7 @@
                     <label for="linkedin">Linkedin</label>
                     <input id="linkedin" name="linkedin" value="{{ $datos_generales->dag_linkedin }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="text-danger" id="linkedin_error"></p>
+                    <p class="text-danger small" id="linkedin_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -95,7 +95,7 @@
                     <label for="instagram">Instagram</label>
                     <input id="instagram" name="instagram" value="{{ $datos_generales->dag_instagram }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="text-danger" id="instagram_error"></p>
+                    <p class="text-danger small" id="instagram_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -105,7 +105,7 @@
                     <label for="twitter">Twitter</label>
                     <input id="twitter" name="twitter" value="{{ $datos_generales->dag_twitter }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="text-danger" id="twitter_error"></p>
+                    <p class="text-danger small" id="twitter_error"></p>
                 </div>
             </div>
         </fieldset>
@@ -115,12 +115,12 @@
                     <label for="youtube">Youtube</label>
                     <input id="youtube" name="youtube" value="{{ $datos_generales->dag_youtube }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="text-danger" id="youtube_error"></p>
+                    <p class="text-danger small" id="youtube_error"></p>
                 </div>
             </div>
         </fieldset>
         <fieldset class="row mt-5">
-            <div class="col-sm-8">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <button id="editar" type="submit" class="btn btn-success btn-lg" value="Editar"
                         class="btn btn-success btn-lg" type="button">

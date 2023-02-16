@@ -1,18 +1,23 @@
-window.addEventListener("load", () => {
-    iniciarCkeditor();
+let ckEditor;
+ClassicEditor.create(document.querySelector('#texto'), {
+    removePlugins: ['MediaEmbed'],
+})
+.then(editor => {
+    ckEditor = editor;
 });
 
-const iniciarCkeditor = () => {
+/* const iniciarCkeditor = () => {
     const editors = document.querySelectorAll(".ckeditor-input");
     if (!editors) return;
     editors.forEach((editor) => {
         CKEDITOR.replace(editor, { removeButtons: "SImage" });
     });
-};
+}; */
 
 document.getElementById("editar").addEventListener("click", function (event) {
     let form = document.querySelector("#form-quienes_somos");
-    let texto = CKEDITOR.instances.texto.getData();
+    let texto = ckEditor.getData();
+    //    let texto = CKEDITOR.instances.texto.getData();
     let formData = new FormData(form);
     formData.append("texto", texto);
     formData.append("_method", "PUT");
