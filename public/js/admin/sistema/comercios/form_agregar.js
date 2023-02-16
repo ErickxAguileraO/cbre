@@ -1,0 +1,118 @@
+let ckEditor;
+ClassicEditor.create(document.querySelector('#descripcionTextarea'), {
+    removePlugins: ['MediaEmbed'],
+    ckfinder: {
+        uploadUrl: '/image-upload?_token='+$("input[name='_token']").val(),
+    }
+})
+.then(editor => {
+    ckEditor = editor;
+    ckEditor.model.document.on( 'change:data', () => {
+        document.getElementById('errorDescripcion').classList.add('invisible');
+    } );
+});
+
+// Quitar mensajes de validación.
+document.getElementById('imagen').addEventListener('input', function () {
+    document.getElementById('errorImagen').classList.add('invisible');
+})
+
+document.getElementById('descripcionTextarea').addEventListener('input', function () {
+    document.getElementById('errorDescripcion').classList.add('invisible');
+})
+
+$('#edificio').change(function () {
+    document.getElementById('errorEdificio').classList.add('invisible');;
+});
+
+function mostrarErroresValidacion(errores) {
+    if ( typeof errores.descripcion !== 'undefined' ) {
+        document.getElementById('errorDescripcion').innerHTML = errores.descripcion[0];
+        document.getElementById('errorDescripcion').classList.remove('invisible');
+    }
+
+    if ( typeof errores.edificio !== 'undefined' ) {
+        document.getElementById('errorEdificio').innerHTML = errores.edificio[0];
+        document.getElementById('errorEdificio').classList.remove('invisible');
+    }
+
+    if ( typeof errores.imagen !== 'undefined' ) {
+        document.getElementById('errorImagen').innerHTML = errores.imagen[0];
+        document.getElementById('errorImagen').classList.remove('invisible');
+    }
+}
+
+const inputFiles = document.querySelectorAll('.input-file');
+
+Array.from(inputFiles).forEach(function (inputFile) {
+    inputFile.addEventListener('change', function () {
+        const spanArchivoSeleccionado = document.querySelector('.archivo-seleccionado > span');
+        spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
+    });
+});
+
+document.getElementById('guardarButton').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    const token = document.querySelector("input[name='_token']").value;
+    const formData = new FormData(document.forms.namedItem('formComercio'));
+    formData.append('descripcion', ckEditor.getData());
+    const url = '/admin/comercios';
+    
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': token,
+            'Accept': 'application/json'
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(function (response) {
+        if ( typeof response.errors !== 'undefined' ) {
+            mostrarErroresValidacion(response.errors);
+
+            return;
+        }
+        
+        if ( typeof response.status == 'undefined' ) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Un momento...',
+                text: response.message
+            })
+
+            return;
+        }
+
+        if ( response.status == 'error' ) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Un momento...',
+                text: response.message
+            })
+
+            return;
+        }
+
+        if ( response.status == 'success' ) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Local comercial agregado',
+                showConfirmButton: false,
+                timer: 2000
+            });
+
+            setTimeout(function () {
+                window.location.href = '/admin/comercios';
+            }, 2000);
+        }
+    })
+    .catch(error => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Un momento...',
+            text: error.message
+        });
+    });
+});

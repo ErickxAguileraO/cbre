@@ -55,7 +55,7 @@
          <div class="col-sm-4">
             <div class="form-group">
                 <label for="edificio">Edificio</label>
-                <select id="edificio" name="edificio" class="form-control">
+                <select id="edificio" name="edificio" class="form-control busqueda-select2">
                     <option value="">Sin edificio</option>
 
                     @foreach ($edificios as $edificio)

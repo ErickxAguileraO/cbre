@@ -9,6 +9,7 @@ use App\Http\Controllers\Administracion\SubMercadoController;
 use App\Http\Controllers\Administracion\ComunaController;
 use App\Http\Controllers\Administracion\DatosGeneralesController;
 use App\Http\Controllers\Administracion\IndicadorController;
+use App\Http\Controllers\Administracion\ComercioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,12 @@ Route::prefix('admin')->group(function () {
     // Indicadores
     Route::controller(IndicadorController::class)->group(function () {
         Route::resource('indicadores', IndicadorController::class);
+    });
+
+    // Locales comerciales
+    Route::controller(ComercioController::class)->group(function () {
+        Route::resource('comercios', ComercioController::class);
+        Route::get('comercios/get/list', 'list');
     });
 });
 
