@@ -13,7 +13,7 @@
                     <label for="nombre">Nombre</label>
                     <input id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" type="text"
                         tabindex="1" />
-                        <p class="text-danger" id="nombre_error"></p>
+                        <p class="text-danger small" id="nombre_error"></p>
                 </div>
                 <div class="form-group">
                     <label for="video">Video</label>

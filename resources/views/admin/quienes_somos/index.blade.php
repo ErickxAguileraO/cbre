@@ -30,6 +30,9 @@
         <fieldset class="row my-3">
             <div class="col-sm-4">
                 <label for="imagen">Imagen</label>
+                <div class="py-2">
+                    <img src="{{$quienes_somos->url_imagen}}" width="360" height="260" alt="">
+                </div>
                 <div class="d-flex align-items-end">
                     <div class="file-select">
                         <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
