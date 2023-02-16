@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    cargarNoticias();
+    cargarComercios();
 
-    function cargarNoticias() {
+    function cargarComercios() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -11,34 +11,22 @@ document.addEventListener('DOMContentLoaded', function () {
         DevExpress.localization.locale(navigator.language);
     
         // Función para el origen de datos.
-        const noticias = new DevExpress.data.CustomStore({ 
+        const comercios = new DevExpress.data.CustomStore({ 
             load: function() {
-                return sendRequest("/admin/noticias/get/list");
+                return sendRequest("/admin/comercios/get/list");
             }
         });
     
-        $('#dataGridNoticias').dxDataGrid({
-            dataSource: noticias,
+        $('#dataGridComercios').dxDataGrid({
+            dataSource: comercios,
             columns: [
                 {
-                    dataField: 'not_titulo',
-                    caption: 'Título'
+                    dataField: 'loc_nombre',
+                    caption: 'Edificio'
                 },
                 {
                     dataField: 'nombreEdificio',
-                    caption: 'Edificio',
-                },
-                {
-                    dataField: 'fechaChile',
-                    caption: 'Fecha',
-                    width: '100',
-                    minWidth: '100',
-                },
-                {
-                    dataField: 'hora',
-                    caption: 'Hora',
-                    width: '70',
-                    minWidth: '70',
+                    caption: 'Edificio'
                 },
                 {
                     dataField: '',
@@ -48,11 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     minWidth: '90',
                     hidingPriority: 4,
                     cellTemplate(container, options) {
-                        const idNoticia = options.data.not_id;
+                        const idComercio = options.data.loc_id;
     
-                        let urlModificar = `/admin/noticias/${idNoticia}/edit`;
+                        let urlModificar = `/admin/comercios/${idComercio}/edit`;
                         let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
-                        let templateEliminar = `<a href="" title="Eliminar" id="eliminarNoticiaEnlace" data-id="${idNoticia}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
+                        let templateEliminar = `<a href="" title="Eliminar" id="eliminarNoticiaEnlace" data-id="${idComercio}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
     
                         const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
                         const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);
@@ -71,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 cancelButtonText: 'Cancelar',
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    url = `/admin/noticias/${idNoticia}`;
+                                    url = `/admin/comercios/${idComercio}`;
                                     const token = document.querySelector("input[name='_token']").value;
 
                                     fetch(url, {
@@ -104,11 +92,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                         Swal.fire(
                                             '¡Listo!',
-                                            'La noticia ha sido eliminada.',
+                                            'El comercio ha sido eliminado.',
                                             'success'
                                         )
                                     })
-                                    .then(() => cargarNoticias())
+                                    .then(() => cargarComercios())
                                     .catch(error => {
                                         Swal.fire({
                                             icon: 'error',

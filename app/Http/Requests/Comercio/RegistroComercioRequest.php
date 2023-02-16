@@ -24,6 +24,11 @@ class RegistroComercioRequest extends FormRequest
     public function rules()
     {
         return [
+            'nombre' => [
+                'required',
+                'string',
+                'max:255'
+            ],
             'imagen' => [
                 'required',
                 'mimes:jpg,jpeg,png',
