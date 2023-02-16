@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Certificacion;
+namespace App\Http\Requests\Noticia;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegistroCertificacionRequest extends FormRequest
+class RegistroNoticiaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class RegistroCertificacionRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => [
+            'titulo' => [
                 'required',
                 'max:255'
             ],
@@ -33,15 +33,14 @@ class RegistroCertificacionRequest extends FormRequest
                 'mimes:jpg,jpeg,png',
                 'max:5120'
             ],
-            'posicion' => [
+            'cuerpo' => [
                 'required',
-                'numeric',
-                'max:999',
-                'min:1'
+                'max:255',
+                'min:30'
             ],
-            'estado' => [
-                'required',
-                'boolean'
+            'edificio' => [
+                'nullable',
+                'numeric'
             ]
         ];
     }
