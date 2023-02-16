@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Administracion;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Noticia\RegistroNoticiaRequest;
+use App\Models\Noticia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use App\Services\ImagenService;
 
 class NoticiaController extends Controller
 {
@@ -24,7 +29,7 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.noticias.create');
     }
 
     /**
@@ -33,9 +38,32 @@ class NoticiaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegistroNoticiaRequest $request)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'noticias');
+            
+            if ( !$pathImagen ) {
+                return response()->error('No se pudo subir la imagen.', null);
+            }
+
+            $noticia = Noticia::create([
+                'not_imagen' => $pathImagen,
+                'not_titulo' => $request->titulo,
+                'not_texto' => $request->cuerpo,
+                'not_edificio_id' => $request->edificio
+            ]);
+
+            DB::commit();
+
+            return response()->success($noticia, 201);
+        } catch (\Exception $exc) {
+            DB::rollback();
+
+            return response()->error($exc->getMessage(), null);
+        }
     }
 
     /**
@@ -80,6 +108,25 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $noticia = Noticia::findOrFail($id);
+            Storage::delete($noticia->not_imagen);
+            $noticia->delete();
+            
+            DB::commit();
+
+            return response()->success($noticia, 200);
+        } catch (\Exception $exc) {
+            DB::rollback();
+
+            return response()->error($exc->getMessage(), null);
+        }
+    }
+
+    public function list()
+    {
+        return Noticia::orderByDesc('created_at')->get();
     }
 }

@@ -26,7 +26,11 @@ use App\Http\Controllers\Administracion\DatosGeneralesController;
 Route::view('admin', 'admin.noticias.index');
 Route::prefix('admin')->group(function () {
     // Noticias
-    Route::resource('noticias', NoticiaController::class);
+    Route::controller(NoticiaController::class)->group(function () {
+        Route::resource('noticias', NoticiaController::class);
+        Route::get('noticias/get/list', 'list');
+    });
+    
 
     // Certificaciones
     Route::controller(CertificacionController::class)->group(function () {

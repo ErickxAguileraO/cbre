@@ -68,6 +68,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 return;
             }
+            
+            if ( typeof response.status == 'undefined' ) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Un momento...',
+                    text: response.message
+                })
+    
+                return;
+            }
 
             if ( response.status == 'error' ) {
                 Swal.fire({
