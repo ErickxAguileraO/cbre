@@ -74,6 +74,12 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     })
     .then(response => response.json())
     .then(function (response) {
+        if ( typeof response.errors !== 'undefined' ) {
+            mostrarErroresValidacion(response.errors);
+
+            return;
+        }
+        
         if ( typeof response.status == 'undefined' ) {
             Swal.fire({
                 icon: 'error',
@@ -83,13 +89,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
 
             return;
         }
-        
-        if ( typeof response.errors !== 'undefined' ) {
-            mostrarErroresValidacion(response.errors);
 
-            return;
-        }
-        
         if ( response.status == 'error' ) {
             Swal.fire({
                 icon: 'error',

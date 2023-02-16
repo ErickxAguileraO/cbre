@@ -59,6 +59,12 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(function (response) {
+            if ( typeof response.errors !== 'undefined' ) {
+                mostrarErroresValidacion(response.errors);
+
+                return;
+            }
+            
             if ( typeof response.status == 'undefined' ) {
                 Swal.fire({
                     icon: 'error',
@@ -66,12 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     text: response.message
                 })
     
-                return;
-            }
-            
-            if ( typeof response.errors !== 'undefined' ) {
-                mostrarErroresValidacion(response.errors);
-
                 return;
             }
 
