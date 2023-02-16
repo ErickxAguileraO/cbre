@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('errorEstado').innerHTML = errores.estado[0];
             document.getElementById('errorEstado').classList.remove('invisible');
         }
+
+        if ( typeof errores.imagen !== 'undefined' ) {
+            document.getElementById('errorImagen').innerHTML = errores.imagen[0];
+            document.getElementById('errorImagen').classList.remove('invisible');
+        }
     }
 
     document.getElementById('nombre').addEventListener('input', function () {

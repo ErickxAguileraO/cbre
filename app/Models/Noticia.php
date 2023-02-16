@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 class Noticia extends Model
@@ -25,7 +26,8 @@ class Noticia extends Model
     protected $appends = [
         'nombreEdificio',
         'fechaChile',
-        'hora'
+        'hora',
+        'urlImagen'
     ];
 
     public function edificio()
@@ -46,5 +48,10 @@ class Noticia extends Model
     public function getHoraAttribute()
     {
         return Carbon::parse($this->created_at)->format('H:i');
+    }
+
+    public function getUrlImagenAttribute()
+    {
+        return '/public' . Storage::url($this->not_imagen);
     }
 }
