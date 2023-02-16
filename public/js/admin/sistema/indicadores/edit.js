@@ -97,43 +97,34 @@ function isLoadingSpinner(isLoading) {
     }
 }
 
+const inputFieldsIds = ['edificios_administrados', 'confia_en_nosotros', 'en_todo_chile', 'en_todo_chile2'];
+
 function setValidationMessages(response) {
     const errors = response.errors;
     for (const field in errors) {
       if (errors.hasOwnProperty(field)) {
         const fieldErrors = errors[field];
-        for (let i = 0; i < fieldErrors.length; i++) {
-          switch (field.toLowerCase()) {
-            case "edificios_administrados":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-            case "confia_en_nosotros":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-            case "en_todo_chile":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-              case "en_todo_chile2":
-                document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-                break;
-          }
+        const fieldIndex = inputFieldsIds.indexOf(field);
+
+        if (fieldIndex >= 0) {
+          const fieldId = inputFieldsIds[fieldIndex];
+          const errorElement = document.getElementById(`${fieldId}_error`);
+          errorElement.innerText = fieldErrors.join(', ');
         }
       }
     }
   }
 
   function resetValidationMessages() {
-    document.getElementById('edificios_administrados_error').innerText = '';
-    document.getElementById('confia_en_nosotros_error').innerText = '';
-    document.getElementById('en_todo_chile_error').innerText = '';
-    document.getElementById('en_todo_chile2_error').innerText = '';
+    inputFieldsIds.forEach(id => {
+      document.getElementById(`${id}_error`).innerText = '';
+    });
 }
 
-const inputFiles = document.querySelectorAll('.input-file');
-
-Array.from(inputFiles).forEach(function (inputFile) {
-    inputFile.addEventListener('change', function () {
-        const spanArchivoSeleccionado = document.querySelector('.archivo-seleccionado > span');
-        spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
+//remueve el mensaje de error en tiempo real, al momento de volver a ingresar un valor en el input
+    inputFieldsIds.forEach(field => {
+    document.getElementById(field).addEventListener('input', function () {
+        document.getElementById(`${field}_error`).classList.add('invisible');
     });
 });
+

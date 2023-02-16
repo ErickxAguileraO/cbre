@@ -176,30 +176,33 @@ function isLoadingSpinner(isLoading) {
     }
 }
 
+const inputFieldsIds = ['nombre', 'estado', 'comuna'];
+
 function setValidationMessages(response) {
     const errors = response.errors;
     for (const field in errors) {
       if (errors.hasOwnProperty(field)) {
         const fieldErrors = errors[field];
-        for (let i = 0; i < fieldErrors.length; i++) {
-          switch (field.toLowerCase()) {
-            case "nombre":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-            case "estado":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-            case "comuna":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-          }
+        const fieldIndex = inputFieldsIds.indexOf(field);
+
+        if (fieldIndex >= 0) {
+          const fieldId = inputFieldsIds[fieldIndex];
+          const errorElement = document.getElementById(`${fieldId}_error`);
+          errorElement.innerText = fieldErrors.join(', ');
         }
       }
     }
   }
 
   function resetValidationMessages() {
-    document.getElementById('nombre_error').innerText = '';
-    document.getElementById('comuna_error').innerText = '';
-    document.getElementById('estado_error').innerText = '';
+    inputFieldsIds.forEach(id => {
+      document.getElementById(`${id}_error`).innerText = '';
+    });
 }
+
+//remueve el mensaje de error en tiempo real, al momento de volver a ingresar un valor en el input
+    inputFieldsIds.forEach(field => {
+    document.getElementById(field).addEventListener('input', function () {
+        document.getElementById(`${field}_error`).classList.add('invisible');
+    });
+});

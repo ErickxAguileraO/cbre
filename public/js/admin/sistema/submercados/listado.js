@@ -120,9 +120,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         let urlEliminar = `/admin/submercados/${idSubMercado}`;
 
                         return $('<a href="' + urlModificar +
-                        '" class="edit" style="color: #DD5702; font-size: 20px; margin-right:10px;"><i class="fas fa-edit"></i></a>  <a class="eliminar_pedido" href="#" data-id="' +
+                        '" class="edit"><i class="color-texto-cbre fas fa-pencil fa-fw"></i></a>  <a class="eliminar_pedido" href="#" data-id="' +
                         idSubMercado + '" onclick=eliminar("' + urlEliminar +
-                        '") style="color: #DD5702; font-size: 20px;"><i class="fas fa-trash"></i></a>'
+                        '")><i class="fas fa-trash-can fa-fw pointer-none color-texto-cbre"></i></a>'
                     );
                     },
                 },

@@ -6,6 +6,7 @@ use App\Models\Comuna;
 use App\Models\Region;
 use App\Models\SubMercado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Services\SubmercadoService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubMercado\StoreSubMercadoRequest;
@@ -48,10 +49,17 @@ class SubMercadoController extends Controller
      */
     public function store(StoreSubMercadoRequest $request)
     {
+        DB::beginTransaction();
         try {
-            SubmercadoService::registrarSubMercado($request);
+            SubMercado::create([
+                'sub_nombre' => $request->nombre,
+                'sub_estado' => $request->estado,
+                'sub_comuna_id' => $request->comuna,
+            ]);
+            DB::commit();
             return response()->json(['success' => '¡El submercado se ha registrado correctamente!'], 200);
         } catch (\Throwable $th) {
+            DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
@@ -88,10 +96,17 @@ class SubMercadoController extends Controller
      */
     public function update(UpdateSubMercadoRequest $request, $subMercado)
     {
+        DB::beginTransaction();
         try {
-            SubmercadoService::actualizarSubMercado($request, SubMercado::findOrFail($subMercado));
+            SubMercado::findOrFail($subMercado)->update([
+                'sub_nombre' => $request->nombre,
+                'sub_estado' => $request->estado,
+                'sub_comuna_id' => $request->comuna,
+            ]);
+            DB::commit();
             return response()->json(['success' => '¡El Submercado se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
+            DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
@@ -104,10 +119,13 @@ class SubMercadoController extends Controller
      */
     public function destroy($subMercado)
     {
+        DB::beginTransaction();
         try {
             SubMercado::findOrFail($subMercado)->delete();
+            DB::commit();
             return response()->json(['success' => '¡Submercado se ha eliminado correctamente!'], 200);
         } catch (\Throwable $th) {
+            DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }

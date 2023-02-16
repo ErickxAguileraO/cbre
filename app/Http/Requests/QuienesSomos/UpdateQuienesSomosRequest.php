@@ -28,7 +28,7 @@ class UpdateQuienesSomosRequest extends FormRequest
         return [
             'titulo' => 'required',
             'texto' => 'required',
-            'imagen' => 'required',
+            'imagen' => 'nullable',
         ];
     }
 

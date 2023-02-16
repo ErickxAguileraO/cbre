@@ -200,67 +200,34 @@ function isLoadingSpinner(isLoading) {
     }
 }
 
+const inputFieldsIds = ['comuna', 'direccion', 'telefono_uno', 'telefono_dos', 'facebook', 'linkedin', 'instagram', 'twitter', 'youtube', 'email'];
+
 function setValidationMessages(response) {
     const errors = response.errors;
     for (const field in errors) {
       if (errors.hasOwnProperty(field)) {
         const fieldErrors = errors[field];
-        for (let i = 0; i < fieldErrors.length; i++) {
-          switch (field.toLowerCase()) {
-            case "comuna":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-            case "direccion":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-            case "telefono_uno":
-              document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-              break;
-              case "telefono_dos":
-                document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-                break;
-                case "facebook":
-                    document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-                    break;
-                    case "linkedin":
-                        document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-                        break;
-                        case "instagram":
-                            document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-                            break;
-                            case "twitter":
-                                document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-                                break;
-                                case "youtube":
-                                    document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-                                    break;
-                                    case "email":
-                                        document.getElementById(`${field}_error`).innerText = fieldErrors[i];
-                                        break;
-          }
+        const fieldIndex = inputFieldsIds.indexOf(field);
+
+        if (fieldIndex >= 0) {
+          const fieldId = inputFieldsIds[fieldIndex];
+          const errorElement = document.getElementById(`${fieldId}_error`);
+          errorElement.innerText = fieldErrors.join(', ');
         }
       }
     }
   }
 
   function resetValidationMessages() {
-    document.getElementById('comuna_error').innerText = '';
-    document.getElementById('direccion_error').innerText = '';
-    document.getElementById('telefono_uno_error').innerText = '';
-    document.getElementById('telefono_dos_error').innerText = '';
-    document.getElementById('facebook_error').innerText = '';
-    document.getElementById('linkedin_error').innerText = '';
-    document.getElementById('instagram_error').innerText = '';
-    document.getElementById('twitter_error').innerText = '';
-    document.getElementById('youtube_error').innerText = '';
-    document.getElementById('email_error').innerText = '';
+    inputFieldsIds.forEach(id => {
+      document.getElementById(`${id}_error`).innerText = '';
+    });
 }
 
-const inputFiles = document.querySelectorAll('.input-file');
-
-Array.from(inputFiles).forEach(function (inputFile) {
-    inputFile.addEventListener('change', function () {
-        const spanArchivoSeleccionado = document.querySelector('.archivo-seleccionado > span');
-        spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
+//remueve el mensaje de error en tiempo real, al momento de volver a ingresar un valor en el input
+    inputFieldsIds.forEach(field => {
+    document.getElementById(field).addEventListener('input', function () {
+        document.getElementById(`${field}_error`).classList.add('invisible');
     });
 });
+
