@@ -6,7 +6,7 @@ use App\Models\Indicador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Indicador\UpdateIndicadoresRequest;
+use App\Http\Requests\Indicador\ModificacionIndicadoresRequest;
 
 class IndicadorController extends Controller
 {
@@ -70,7 +70,7 @@ class IndicadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateIndicadoresRequest $request, $indicador)
+    public function update(ModificacionIndicadoresRequest $request, $indicador)
     {
         DB::beginTransaction();
         try {

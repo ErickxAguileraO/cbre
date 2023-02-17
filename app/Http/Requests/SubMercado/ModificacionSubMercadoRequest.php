@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\QuienesSomos;
+namespace App\Http\Requests\SubMercado;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateQuienesSomosRequest extends FormRequest
+class ModificacionSubMercadoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,13 +26,13 @@ class UpdateQuienesSomosRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'required',
-            'texto' => 'required',
-            'imagen' => 'nullable',
+            'nombre' => 'required',
+            'estado' => 'required',
+            'comuna' => 'required',
         ];
     }
 
-            /**
+                    /**
      * Handle a failed validation attempt.
      *
      * @param  \Illuminate\Contracts\Validation\Validator  $validator

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\SubMercado;
+namespace App\Http\Requests\Caracteristica;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSubMercadoRequest extends FormRequest
+class RegistroCaracteristicaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,12 +27,14 @@ class StoreSubMercadoRequest extends FormRequest
     {
         return [
             'nombre' => 'required',
+            'video' => 'required',
+            'posicion' => 'required',
             'estado' => 'required',
-            'comuna' => 'required',
+            'imagen' => 'required',
         ];
     }
 
-                /**
+    /**
      * Handle a failed validation attempt.
      *
      * @param  \Illuminate\Contracts\Validation\Validator  $validator

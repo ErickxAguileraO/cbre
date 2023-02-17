@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\QuienesSomosService;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\QuienesSomos\UpdateQuienesSomosRequest;
+use App\Http\Requests\QuienesSomos\ModificacionQuienesSomosRequest;
 
 class QuienesSomosController extends Controller
 {
@@ -72,7 +72,7 @@ class QuienesSomosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuienesSomosRequest $request, $quienesSomos)
+    public function update(ModificacionQuienesSomosRequest $request, $quienesSomos)
     {
         DB::beginTransaction();
         try {

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Indicador;
+namespace App\Http\Requests\Caracteristica;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateIndicadoresRequest extends FormRequest
+class ModificacionCaracteristicaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,14 +26,15 @@ class UpdateIndicadoresRequest extends FormRequest
     public function rules()
     {
         return [
-            'edificios_administrados' => 'required',
-            'confia_en_nosotros' => 'required',
-            'en_todo_chile' => 'required',
-            'en_todo_chile2' => 'required',
+            'nombre' => 'required',
+            'video' => 'required',
+            'posicion' => 'required',
+            'estado' => 'required',
+            'imagen' => 'nullable',
         ];
     }
 
-                /**
+        /**
      * Handle a failed validation attempt.
      *
      * @param  \Illuminate\Contracts\Validation\Validator  $validator

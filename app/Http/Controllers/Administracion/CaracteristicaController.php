@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\CaracteristicaService;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\Caracteristica\StoreCaracteristicaRequest;
-use App\Http\Requests\Caracteristica\UpdateCaracteristicaRequest;
+use App\Http\Requests\Caracteristica\RegistroCaracteristicaRequest;
+use App\Http\Requests\Caracteristica\ModificacionCaracteristicaRequest;
 
 class CaracteristicaController extends Controller
 {
@@ -54,7 +54,7 @@ class CaracteristicaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCaracteristicaRequest $request)
+    public function store(RegistroCaracteristicaRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -102,7 +102,7 @@ class CaracteristicaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCaracteristicaRequest $request, Caracteristica $caracteristica)
+    public function update(ModificacionCaracteristicaRequest $request, Caracteristica $caracteristica)
     {
         DB::beginTransaction();
         try {
