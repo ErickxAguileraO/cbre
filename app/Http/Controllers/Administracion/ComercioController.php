@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administracion;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Comercio\RegistroComercioRequest;
+use App\Http\Requests\Comercio\ModificacionComercioRequest;
 use App\Models\Comercio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -85,7 +86,9 @@ class ComercioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comercio = Comercio::find($id);
+        
+        return view('admin.comercios.edit', ['comercio' => $comercio]);
     }
 
     /**
@@ -95,9 +98,35 @@ class ComercioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ModificacionComercioRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $comercio = Comercio::findOrFail($id);
+
+            if ($request->file('imagen') !== null) {
+                Storage::delete($comercio->loc_imagen);
+                $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'comercios');
+
+                if ( !$pathImagen ) {
+                    return response()->error('No se pudo subir la imagen.', null);
+                }
+
+                $comercio->loc_imagen = $pathImagen;
+            }
+
+            $comercio->loc_nombre = $request->nombre;
+            $comercio->loc_descripcion = $request->descripcion;
+            $comercio->loc_edificio_id = $request->edificio;
+            $comercio->save();
+
+            DB::commit();
+
+            return response()->success($comercio, 201);
+        } catch (\Exception $exc) {
+            return response()->error($exc->getMessage(), null);
+        }
     }
 
     /**

@@ -1,34 +1,34 @@
 @extends('layout.admin')
 
-@section('title', 'Noticias')
+@section('title', 'Locales comerciales')
 
 @section('content')
-   <h1>Modificar noticia</h1>
-   <form action="" id="formNoticia" name="formNoticia" class="formulario">
+   <h1>Modificar local</h1>
+   <form action="" id="formComercio" name="formComercio" class="formulario">
    @csrf
    @method('PUT')
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
-               <label for="nombre">Título</label>
-               <input id="titulo" name="titulo" value="{{ $noticia->not_titulo }}" class="form-control" type="text" tabindex="1" data-maximo-caracteres="255"/>
-               <small id="errorTitulo" class="field-message-alert invisible absolute"></small>
+               <label for="nombre">Nombre</label>
+               <input id="nombre" name="nombre" value="{{ $comercio->loc_nombre }}" class="form-control" type="text" tabindex="1" data-maximo-caracteres="255"/>
+               <small id="errorNombre" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
       </fieldset>
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
-               <label for="nombre">Cuerpo</label>
+               <label for="descripcion">Descripción</label>
                <div class="">
                     <div>
-                        <textarea name="cuerpoTextarea" id="cuerpoTextarea"
+                        <textarea name="descripcionTextarea" id="descripcionTextarea"
                             class="form-control texto text-tarea-seccion ckeditor" rows="5" tabindex="2">
-                            {{ $noticia->not_texto }}
+                            {{ $comercio->loc_descripcion }}
                         </textarea>
                     </div>
                 </div>
-               <small id="errorCuerpo" class="field-message-alert invisible absolute"></small>
+               <small id="errorDescripcion" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
       </fieldset>
@@ -37,7 +37,7 @@
             <div class="form-group">
                <label for="">Imagen</label>
                <div class="py-2">
-                  <img src="{{ $noticia->urlImagen }}" alt="" width="360" height="260">
+                  <img src="{{ $comercio->urlImagen }}" alt="" width="360" height="260">
                </div>
                <div class="d-flex align-items-end">
                   <div class="file-select">
@@ -61,7 +61,7 @@
                     @foreach ($edificios as $edificio)
                         <option value="{{ $edificio->edi_id }}" 
 
-                        {{ isset($noticia->edificio) && ($edificio->edi_id == $noticia->edificio->edi_id) ? 'selected' : '' }}
+                        {{  $edificio->edi_id == $comercio->edificio->edi_id ? 'selected' : '' }}
                         >
                            {{ $edificio->edi_nombre }}
                         </option>
@@ -81,10 +81,10 @@
             </div>
          </div>
       </fieldset>
-      <input type="hidden" id="idNoticia" name="idNoticia" data-id-noticia="{{ $noticia->not_id }}" value="{{ $noticia->not_id }}">
+      <input type="hidden" id="idComercio" name="idComercio" data-id-comercio="{{ $comercio->loc_id }}" value="{{ $comercio->loc_id }}">
    </form>
 @endsection
 
 @push('scripts')
-   <script src="{{ asset('public/js/admin/sistema/noticias/form_modificar.js') }}"></script>
+   <script src="{{ asset('public/js/admin/sistema/comercios/form_modificar.js') }}"></script>
 @endpush
