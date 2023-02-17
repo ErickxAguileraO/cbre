@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Administrador;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ModificacionAdministradorRequest extends FormRequest
@@ -13,7 +16,7 @@ class ModificacionAdministradorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +27,29 @@ class ModificacionAdministradorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre' => ['required', 'string', 'max:255'],
+            'apellido' => ['required', 'string', 'max:255'],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+            ],
         ];
+    }
+
+            /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     *
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'errors' => $validator->errors(),
+        ], 422));
     }
 }

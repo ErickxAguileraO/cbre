@@ -126,16 +126,7 @@
         });
     });
 
-    const inputFiles = document.querySelectorAll('.input-file');
-
-    Array.from(inputFiles).forEach(function (inputFile) {
-        inputFile.addEventListener('change', function () {
-            const spanArchivoSeleccionado = document.querySelector('.archivo-seleccionado > span');
-            spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
-        });
-    });
-
-//permite mostrar y ocultar el contenido de los input del tipo password, utilizando un
+//permite mostrar y ocultar el contenido de los input del tipo password, utilizando un icono como botón
     document.addEventListener('DOMContentLoaded', function() {
         var passwordToggleIcons = document.querySelectorAll('.password-toggle-icon');
         passwordToggleIcons.forEach(function(icon) {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administracion;;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Administrador;
 use Illuminate\Support\Facades\DB;
@@ -57,7 +58,7 @@ class AdministradorController extends Controller
         DB::beginTransaction();
         try {
             $user = User::create([
-                'name' => $request->nombre.$request->apellido,
+                'name' => Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2)),
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
@@ -91,8 +92,9 @@ class AdministradorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Administrador $administrador)
+    public function edit($administrador)
     {
+        $administrador = Administrador::findOrFail($administrador);
         return view('admin.administradores.edit', compact('administrador'));
     }
 
@@ -103,28 +105,23 @@ class AdministradorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ModificacionAdministradorRequest $request, Administrador $administrador)
+    public function update(ModificacionAdministradorRequest $request, $administrador)
     {
-/*         DB::beginTransaction();
+        DB::beginTransaction();
         try {
-            $caracteristica->update([
-                'car_nombre' => $request->input('nombre'),
-                'car_video_url' => $request->input('video'),
-                'car_posicion' => $request->input('posicion'),
-                'car_estado' => $request->input('estado'),
-            ]);
-            if ($request->hasFile('imagen')) {
-                Storage::delete($caracteristica->car_imagen);
-                $caracteristica->update([
-                    'car_imagen' => ImagenService::subirImagen($request->file('imagen'), 'caracteristicas'),
-                ]);
-            }
+            $administrador = Administrador::findOrFail($administrador);
+            $administrador->adm_nombre = $request->nombre;
+            $administrador->adm_apellido = $request->apellido;
+            $administrador->user->email = $request->email;
+            $administrador->user->name = Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2));
+            $administrador->save();
+            $administrador->user->save();
             DB::commit();
-            return response()->json(['success' => '¡La característica se ha actualizado correctamente!'], 200);
+            return response()->json(['success' => '¡Administrador actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
-        } */
+        }
     }
 
     /**
