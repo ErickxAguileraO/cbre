@@ -14,7 +14,7 @@
                     <label for="edificios_administrados">Edificios administrados</label>
                     <input id="edificios_administrados" name="edificios_administrados" value="{{ $indicadores->ind_administrados }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="field-message-alert" id="edificios_administrados_error"></p>
+                        <small id="edificios_administrados_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -24,7 +24,7 @@
                     <label for="confia_en_nosotros">Clientes confian en nosotros</label>
                     <input id="confia_en_nosotros" name="confia_en_nosotros" value="{{ $indicadores->ind_confia_en_nosotros }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="field-message-alert" id="confia_en_nosotros_error"></p>
+                        <small id="confia_en_nosotros_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -34,7 +34,7 @@
                     <label for="en_todo_chile">Oficinas en todo Chile</label>
                     <input id="en_todo_chile" name="en_todo_chile" value="{{ $indicadores->ind_en_todo_chile }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="field-message-alert" id="en_todo_chile_error"></p>
+                        <small id="en_todo_chile_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -44,7 +44,7 @@
                     <label for="en_todo_chile2">Oficinas en todo Chile 2</label>
                     <input id="en_todo_chile2" name="en_todo_chile2" value="{{ $indicadores->ind_en_todo_chile2 }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="field-message-alert" id="en_todo_chile2_error"></p>
+                        <small id="en_todo_chile2_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>

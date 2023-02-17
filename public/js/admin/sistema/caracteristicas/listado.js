@@ -74,14 +74,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     dataField: "car_nombre",
                     caption: "Nombre",
                     filterOperations: ["contains"],
-                    alignment: "center",
+                    alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
                 },
                 {
                     dataField: "car_posicion",
                     caption: "Posicion",
                     filterOperations: ["contains"],
-                    alignment: "center",
+                    alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
                 },
                 {

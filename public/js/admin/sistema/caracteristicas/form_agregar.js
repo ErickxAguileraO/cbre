@@ -107,6 +107,7 @@ function setValidationMessages(response) {
           const fieldId = inputFieldsIds[fieldIndex];
           const errorElement = document.getElementById(`${fieldId}_error`);
           errorElement.innerText = fieldErrors.join(', ');
+          document.getElementById(`${fieldId}_error`).classList.remove('invisible');
         }
       }
     }
@@ -114,7 +115,7 @@ function setValidationMessages(response) {
 
   function resetValidationMessages() {
     inputFieldsIds.forEach(id => {
-      document.getElementById(`${id}_error`).innerText = '';
+      document.getElementById(`${id}_error`).classList.add('invisible');
     });
 }
 

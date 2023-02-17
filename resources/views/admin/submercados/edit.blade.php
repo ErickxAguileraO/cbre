@@ -14,7 +14,7 @@
                     <label for="nombre">Nombre</label>
                     <input id="nombre" name="nombre" value="{{ $subMercado->sub_nombre }}" class="form-control" type="text"
                         tabindex="1" />
-                        <p class="field-message-alert" id="nombre_error"></p>
+                        <small id="nombre_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -24,13 +24,13 @@
                     <label for="region">Región</label>
                     <select name="region" id="region">
                     </select>
-                    <p class="text-danger" id="region_error"></p>
+                    <small id="region_error" class="field-message-alert absolute"></small>
                 </div>
                 <div class="form-group">
                     <label for="comuna">Comuna</label>
                     <select name="comuna" id="comuna">
                     </select>
-                    <p class="field-message-alert" id="comuna_error"></p>
+                    <small id="comuna_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -42,7 +42,7 @@
                         <option value="1"{{ $subMercado->sub_estado == 1 ? 'selected' : '' }}>Activo</option>
                         <option value="0"{{ $subMercado->sub_estado == 0 ? 'selected' : '' }}>Inactivo</option>
                     </select>
-                    <p class="field-message-alert" id="estado_error"></p>
+                    <small id="estado_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
