@@ -133,19 +133,17 @@ class AdministradorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($administrador)
     {
-/*         DB::beginTransaction();
+        DB::beginTransaction();
         try {
-            $caracteristica->edificios()->detach();
-            Storage::delete($caracteristica->car_imagen);
-            $caracteristica->delete();
+            Administrador::findOrFail($administrador)->delete();
             DB::commit();
-            return response()->json(['success' => '¡La característica se ha eliminado correctamente!'], 200);
+            return response()->json(['success' => '¡Administrador eliminado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
-        } */
+        }
     }
 
 }

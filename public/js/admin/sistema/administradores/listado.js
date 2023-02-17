@@ -91,7 +91,7 @@
                         alignment: "center",
                         hidingPriority: 4,
                         cellTemplate(container, options) {
-                            const idAdministrador = options.data.car_id;
+                            const idAdministrador = options.data.adm_id;
                             let urlModificar = `/admin/administradores/${idAdministrador}/edit`;
                             let urlEliminar = `/admin/administradores/${idAdministrador}`;
 
