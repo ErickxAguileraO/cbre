@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Comercio extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'locales_comerciales';
 

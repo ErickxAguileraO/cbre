@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('title', 'Noticias')
+@section('title', 'Locales comerciales')
 
 @section('content')
    <a class="btn btn-primary float-right" href="{{ route('comercios.create') }}">Crear local</a>
