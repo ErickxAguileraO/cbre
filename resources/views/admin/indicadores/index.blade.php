@@ -68,6 +68,6 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\sistema\indicadores\edit.js') }}"></script>
+    <script src="{{ asset('public\js\admin\sistema\indicadores\form_modificar.js') }}"></script>
 @endpush
 

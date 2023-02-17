@@ -139,5 +139,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\sistema\datos_generales\edit.js') }}"></script>
+    <script src="{{ asset('public\js\admin\sistema\datos_generales\form_modificar.js') }}"></script>
 @endpush

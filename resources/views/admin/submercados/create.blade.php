@@ -66,5 +66,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\sistema\submercados\create.js') }}"></script>
+    <script src="{{ asset('public\js\admin\sistema\submercados\form_agregar.js') }}"></script>
 @endpush

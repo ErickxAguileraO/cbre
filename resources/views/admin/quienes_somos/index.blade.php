@@ -65,5 +65,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\sistema\quienes_somos\edit.js') }}"></script>
+    <script src="{{ asset('public\js\admin\sistema\quienes_somos\form_modificar.js') }}"></script>
 @endpush

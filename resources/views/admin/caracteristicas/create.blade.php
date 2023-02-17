@@ -81,5 +81,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\sistema\caracteristicas\create.js') }}"></script>
+    <script src="{{ asset('public\js\admin\sistema\caracteristicas\form_agregar.js') }}"></script>
 @endpush
