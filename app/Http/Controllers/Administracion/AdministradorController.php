@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers\Administracion;;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Caracteristica;
-use App\Services\ImagenService;
-use PhpParser\Node\Stmt\TryCatch;
+use App\Models\Administrador;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Services\CaracteristicaService;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\Caracteristica\RegistroCaracteristicaRequest;
-use App\Http\Requests\Caracteristica\ModificacionCaracteristicaRequest;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Administrador\RegistroAdministradorRequest;
+use App\Http\Requests\Administrador\ModificacionAdministradorRequest;
 
-class CaracteristicaController extends Controller
+class AdministradorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,10 +20,10 @@ class CaracteristicaController extends Controller
      */
     public function index()
     {
-        return view('admin.caracteristicas.index');
+        return view('admin.administradores.index');
     }
 
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,7 +31,7 @@ class CaracteristicaController extends Controller
     public function list()
     {
         try {
-            return Caracteristica::orderBy('car_posicion', 'asc')->get();
+            return Administrador::with(['user'])->get();
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
         }
@@ -45,7 +43,7 @@ class CaracteristicaController extends Controller
      */
     public function create()
     {
-        return view('admin.caracteristicas.create');
+        return view('admin.administradores.create');
     }
 
     /**
@@ -54,19 +52,22 @@ class CaracteristicaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RegistroCaracteristicaRequest $request)
+    public function store(RegistroAdministradorRequest $request)
     {
         DB::beginTransaction();
         try {
-            Caracteristica::create([
-                'car_nombre' => $request->nombre,
-                'car_video_url' => $request->video,
-                'car_posicion' => $request->posicion,
-                'car_estado' => $request->estado,
-                'car_imagen' => ImagenService::subirImagen($request->file('imagen'), 'caracteristicas'),
+            $user = User::create([
+                'name' => $request->nombre.$request->apellido,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            Administrador::create([
+                'adm_user_id' => $user->id,
+                'adm_nombre' => $request->nombre,
+                'adm_apellido' => $request->apellido,
             ]);
             DB::commit();
-            return response()->json(['success' => '¡La característica se ha registrado correctamente!'], 200);
+            return response()->json(['success' => '¡Administrador creado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
@@ -90,9 +91,9 @@ class CaracteristicaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Caracteristica $caracteristica)
+    public function edit(Administrador $administrador)
     {
-        return view('admin.caracteristicas.edit', compact('caracteristica'));
+        return view('admin.administradores.edit', compact('administrador'));
     }
 
     /**
@@ -102,9 +103,9 @@ class CaracteristicaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ModificacionCaracteristicaRequest $request, Caracteristica $caracteristica)
+    public function update(ModificacionAdministradorRequest $request, Administrador $administrador)
     {
-        DB::beginTransaction();
+/*         DB::beginTransaction();
         try {
             $caracteristica->update([
                 'car_nombre' => $request->input('nombre'),
@@ -123,7 +124,7 @@ class CaracteristicaController extends Controller
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
-        }
+        } */
     }
 
     /**
@@ -132,9 +133,9 @@ class CaracteristicaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Caracteristica $caracteristica)
+    public function destroy()
     {
-        DB::beginTransaction();
+/*         DB::beginTransaction();
         try {
             $caracteristica->edificios()->detach();
             Storage::delete($caracteristica->car_imagen);
@@ -144,6 +145,7 @@ class CaracteristicaController extends Controller
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
-        }
+        } */
     }
+
 }

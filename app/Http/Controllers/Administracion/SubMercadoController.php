@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Services\SubmercadoService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SubMercado\StoreSubMercadoRequest;
-use App\Http\Requests\SubMercado\UpdateSubMercadoRequest;
+use App\Http\Requests\SubMercado\RegistroSubMercadoRequest;
+use App\Http\Requests\SubMercado\ModificacionSubMercadoRequest;
 
 class SubMercadoController extends Controller
 {
@@ -47,7 +47,7 @@ class SubMercadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSubMercadoRequest $request)
+    public function store(RegistroSubMercadoRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -94,7 +94,7 @@ class SubMercadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSubMercadoRequest $request, $subMercado)
+    public function update(ModificacionSubMercadoRequest $request, $subMercado)
     {
         DB::beginTransaction();
         try {

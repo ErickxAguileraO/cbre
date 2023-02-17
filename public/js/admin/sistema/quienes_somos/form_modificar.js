@@ -1,14 +1,38 @@
-//$("#guardar").on("click", function (event) {
-document.getElementById("guardar").addEventListener("click", function (event) {
+let ckEditor;
+ClassicEditor.create(document.querySelector('#texto'), {
+    removePlugins: ['MediaEmbed'],
+})
+.then(editor => {
+    ckEditor = editor;
+});
+
+/* const iniciarCkeditor = () => {
+    const editors = document.querySelectorAll(".ckeditor-input");
+    if (!editors) return;
+    editors.forEach((editor) => {
+        CKEDITOR.replace(editor, { removeButtons: "SImage" });
+    });
+}; */
+
+document.getElementById("editar").addEventListener("click", function (event) {
+    let form = document.querySelector("#form-quienes_somos");
+    let texto = ckEditor.getData();
+    //    let texto = CKEDITOR.instances.texto.getData();
+    let formData = new FormData(form);
+    formData.append("texto", texto);
+    formData.append("_method", "PUT");
+
     event.preventDefault();
+
     isLoadingSpinner(true);
-    fetch("/admin/caracteristicas", {
-        method: "POST",
+
+    fetch("/admin/quienes-somos/" + document.getElementById("qus_id").value, {
         headers: {
             "X-CSRF-TOKEN": document.querySelector("input[name='_token']")
                 .value,
         },
-        body: new FormData(document.forms.namedItem("form-caracteristica")),
+        method: "POST",
+        body: formData,
     })
         .then(function (response) {
             return response.json();
@@ -25,10 +49,10 @@ document.getElementById("guardar").addEventListener("click", function (event) {
                             showConfirmButton: false,
                             timer: 1500,
                         });
-                        isLoadingSpinner('done');
+                        isLoadingSpinner("done");
                         resetValidationMessages();
                         setTimeout(() => {
-                            document.location.href = "/admin/caracteristicas";
+                            document.location.href = "/admin/quienes-somos";
                         }, 2000);
                     } else if (response.error) {
                         isLoadingSpinner(false);
@@ -76,25 +100,25 @@ function isLoadingSpinner(isLoading) {
         document.getElementById("default").classList.add("d-none");
         document.getElementById("loading").classList.remove("d-none");
         document.getElementById("loading").classList.add("d-block");
-        document.getElementById("guardar").setAttribute("disabled", true);
+        document.getElementById("editar").setAttribute("disabled", true);
     }
     if (isLoading == false) {
         document.getElementById("loading").classList.remove("d-block");
         document.getElementById("loading").classList.add("d-none");
         document.getElementById("default").classList.remove("d-none");
         document.getElementById("default").classList.add("d-block");
-        document.getElementById("guardar").removeAttribute("disabled");
+        document.getElementById("editar").removeAttribute("disabled");
     }
-    if (isLoading == 'done') {
+    if (isLoading == "done") {
         document.getElementById("loading").classList.remove("d-block");
         document.getElementById("loading").classList.add("d-none");
         document.getElementById("default").classList.remove("d-none");
         document.getElementById("default").classList.add("d-block");
-        document.getElementById("guardar").setAttribute("disabled", true);
+        document.getElementById("editar").setAttribute("disabled", true);
     }
 }
 
-const inputFieldsIds = ['nombre', 'video', 'posicion', 'estado', 'imagen'];
+const inputFieldsIds = ['titulo', 'texto', 'imagen'];
 
 function setValidationMessages(response) {
     const errors = response.errors;
@@ -107,6 +131,7 @@ function setValidationMessages(response) {
           const fieldId = inputFieldsIds[fieldIndex];
           const errorElement = document.getElementById(`${fieldId}_error`);
           errorElement.innerText = fieldErrors.join(', ');
+          document.getElementById(`${fieldId}_error`).classList.remove('invisible');
         }
       }
     }
@@ -114,7 +139,7 @@ function setValidationMessages(response) {
 
   function resetValidationMessages() {
     inputFieldsIds.forEach(id => {
-      document.getElementById(`${id}_error`).innerText = '';
+      document.getElementById(`${id}_error`).classList.add('invisible');
     });
 }
 

@@ -14,13 +14,13 @@
                     <label for="nombre">Nombre</label>
                     <input id="nombre" name="nombre" value="{{ $caracteristica->car_nombre }}" class="form-control"
                         type="text" tabindex="1" />
-                        <p class="field-message-alert" id="nombre_error"></p>
+                        <small id="nombre_error" class="field-message-alert absolute"></small>
                 </div>
                 <div class="form-group">
                     <label for="video">Video</label>
                     <input name="video" type="text" value="{{ $caracteristica->car_video_url }}" class="form-control"
                         id="video" tabindex="3" />
-                        <p class="field-message-alert" id="video_error"></p>
+                        <small id="video_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -30,7 +30,7 @@
                     <label for="posicion">Posición</label>
                     <input name="posicion" type="text" value="{{ $caracteristica->car_posicion }}" class="form-control solo-numeros" data-maximo-caracteres="3"
                         id="posicion" tabindex="2" />
-                        <p class="field-message-alert" id="posicion_error"></p>
+                        <small id="posicion_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -42,7 +42,7 @@
                         <option value="1"{{ $caracteristica->car_estado == 1 ? 'selected' : '' }}>Activo</option>
                         <option value="0"{{ $caracteristica->car_estado == 0 ? 'selected' : '' }}>Inactivo</option>
                     </select>
-                    <p class="field-message-alert" id="estado_error"></p>
+                    <small id="estado_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -61,7 +61,7 @@
                        <span class="align-text-bottom">Ningún archivo seleccionado</span>
                     </div>
                  </div>
-                 <p class="field-message-alert" id="imagen_error"></p>
+                 <small id="imagen_error" class="field-message-alert absolute"></small>
             </div>
         </fieldset>
         <fieldset class="row mt-5">
@@ -84,5 +84,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\sistema\caracteristicas\edit.js') }}"></script>
+    <script src="{{ asset('public\js\admin\sistema\caracteristicas\form_modificar.js') }}"></script>
 @endpush

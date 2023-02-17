@@ -1,17 +1,96 @@
-//$("#editar").on("click", function (event) {
-document.getElementById("editar").addEventListener("click", function (event) {
-    let form = document.querySelector("#form-caracteristica");
-    let formData = new FormData(form);
-    formData.append("_method", "PUT");
+
+var regionName = 'Arica y Parinacota'; //variable inicializadora con el nombre inicial de la primera región
+
+//var regionName =  obtenerListaRegiones().find(region => region.reg_nombre === 'Arica y Parinacota').reg_nombre;
+
+cargarRegiones();
+cargarComunasPorRegion();
+
+function obtenerListaComunas(){
+    let comunas = "";
+    $.ajax({
+        method: "GET",
+        url:'/admin/comunas/get/list',
+        async: false,
+        success: (data) => {
+            comunas = data;
+        },
+        error: (error) => console.error("Error al modificar estado:", error)
+    });
+    return comunas;
+}
+
+function obtenerListaComunasPorRegion(){
+    let comunas = "";
+    $.ajax({
+        method: "GET",
+        url:'/admin/comunas/get/list/'+regionName,
+        async: false,
+        success: (data) => {
+            comunas = data;
+        },
+        error: (error) => console.error("Error al modificar estado:", error)
+    });
+    return comunas;
+}
+
+
+//utilizando la misma funcion obtenerListaComunas, que también trae su respectiva región
+//Se extrae la información referente a las regiones y se eliminan los duplicados
+function obtenerListaRegiones(){
+    let comunas = obtenerListaComunas();
+    let regiones = [];
+    comunas.forEach(function (element, i) {
+            regiones.push({ reg_nombre: element.region['reg_nombre'], reg_id: element.region['reg_id'] });
+    });
+    return regiones.filter((v,i,a)=>a.findIndex(v2=>(v2.reg_id===v.reg_id))===i) //remove duplicates
+}
+
+$( '#region' ).change(function() {
+    let e = document.getElementById("region");
+	regionName = e.value; // 2
+	//let strUser = e.options[e.selectedIndex].text; //test2
+    cargarComunasPorRegion()
+});
+
+function cargarComunasPorRegion(){
+        let comunaSelect = $("#comuna");
+        comunaSelect.empty();
+        const comunas = obtenerListaComunasPorRegion();
+        for (let i=0; i<comunas.length; i++) {
+            comunaSelect.append('<option value="' + comunas[i].com_id + '">' + comunas[i].com_nombre + '</option>');
+        }
+        //$('#comunaSelect').niceSelect('update'); //se actualiza el nice select
+}
+
+function cargarRegiones(){
+        //cargar select con lista de regiones
+        let regionSelect = $("#region");
+        regionSelect.empty();
+        const regiones = obtenerListaRegiones();
+        //regionSelect.append('<option value="' + regionName + '">' + regionName + '</option>');
+        for (let i=0; i<regiones.length; i++) {
+           // if(regionName !== regiones[i].reg_nombre){
+                regionSelect.append('<option value="' + regiones[i].reg_nombre + '">' + regiones[i].reg_nombre + '</option>');
+            //}
+        }
+        //$('#regionSelect').niceSelect('update');
+}
+
+
+//////////////////////////////////////////////
+//enviar solicitud al controlador
+
+document.getElementById("guardar").addEventListener("click", function (event) {
     event.preventDefault();
     isLoadingSpinner(true);
-    fetch("/admin/caracteristicas/" + document.getElementById("car_id").value, {
+    fetch("/admin/submercados", {
+        method: "POST",
         headers: {
             "X-CSRF-TOKEN": document.querySelector("input[name='_token']")
                 .value,
         },
-        method: "POST",
-        body: formData,
+        body: new FormData(document.forms.namedItem("form-submercados")),
     })
         .then(function (response) {
             return response.json();
@@ -31,7 +110,7 @@ document.getElementById("editar").addEventListener("click", function (event) {
                         isLoadingSpinner('done');
                         resetValidationMessages();
                         setTimeout(() => {
-                            document.location.href = "/admin/caracteristicas";
+                            document.location.href = "/admin/submercados";
                         }, 2000);
                     } else if (response.error) {
                         isLoadingSpinner(false);
@@ -79,25 +158,25 @@ function isLoadingSpinner(isLoading) {
         document.getElementById("default").classList.add("d-none");
         document.getElementById("loading").classList.remove("d-none");
         document.getElementById("loading").classList.add("d-block");
-        document.getElementById("editar").setAttribute("disabled", true);
+        document.getElementById("guardar").setAttribute("disabled", true);
     }
     if (isLoading == false) {
         document.getElementById("loading").classList.remove("d-block");
         document.getElementById("loading").classList.add("d-none");
         document.getElementById("default").classList.remove("d-none");
         document.getElementById("default").classList.add("d-block");
-        document.getElementById("editar").removeAttribute("disabled");
+        document.getElementById("guardar").removeAttribute("disabled");
     }
     if (isLoading == 'done') {
         document.getElementById("loading").classList.remove("d-block");
         document.getElementById("loading").classList.add("d-none");
         document.getElementById("default").classList.remove("d-none");
         document.getElementById("default").classList.add("d-block");
-        document.getElementById("editar").setAttribute("disabled", true);
+        document.getElementById("guardar").setAttribute("disabled", true);
     }
 }
 
-const inputFieldsIds = ['nombre', 'video', 'posicion', 'estado', 'imagen'];
+const inputFieldsIds = ['nombre', 'estado', 'comuna'];
 
 function setValidationMessages(response) {
     const errors = response.errors;
@@ -110,6 +189,7 @@ function setValidationMessages(response) {
           const fieldId = inputFieldsIds[fieldIndex];
           const errorElement = document.getElementById(`${fieldId}_error`);
           errorElement.innerText = fieldErrors.join(', ');
+          document.getElementById(`${fieldId}_error`).classList.remove('invisible');
         }
       }
     }
@@ -117,7 +197,7 @@ function setValidationMessages(response) {
 
   function resetValidationMessages() {
     inputFieldsIds.forEach(id => {
-      document.getElementById(`${id}_error`).innerText = '';
+      document.getElementById(`${id}_error`).classList.add('invisible');
     });
 }
 
@@ -127,13 +207,3 @@ function setValidationMessages(response) {
         document.getElementById(`${field}_error`).classList.add('invisible');
     });
 });
-
-const inputFiles = document.querySelectorAll('.input-file');
-
-Array.from(inputFiles).forEach(function (inputFile) {
-    inputFile.addEventListener('change', function () {
-        const spanArchivoSeleccionado = document.querySelector('.archivo-seleccionado > span');
-        spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
-    });
-});
-

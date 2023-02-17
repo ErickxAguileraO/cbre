@@ -1,10 +1,26 @@
 
-var regionName = 'Arica y Parinacota'; //variable inicializadora con el nombre inicial de la primera región
+var datosGenerales = obtenerDatosGenerales();
+var regionName = datosGenerales.comuna.region.reg_nombre; //variable inicializadora con el nombre inicial de la primera región
+var check = true; //permite establecer si el select de región cambió, para así no mostrar la comuna inicial y limpiar completamente el select de comunas
 
 //var regionName =  obtenerListaRegiones().find(region => region.reg_nombre === 'Arica y Parinacota').reg_nombre;
 
 cargarRegiones();
 cargarComunasPorRegion();
+
+function obtenerDatosGenerales(){
+    let datosGenerales = "";
+    $.ajax({
+        method: "GET",
+        url:'/admin/datos-generales/get/single/' + document.getElementById("dag_id").value,
+        async: false,
+        success: (data) => {
+            datosGenerales = data;
+        },
+        error: (error) => console.error("Error:", error)
+    });
+    return datosGenerales;
+}
 
 function obtenerListaComunas(){
     let comunas = "";
@@ -15,7 +31,7 @@ function obtenerListaComunas(){
         success: (data) => {
             comunas = data;
         },
-        error: (error) => console.error("Error al modificar estado:", error)
+        error: (error) => console.error("Error:", error)
     });
     return comunas;
 }
@@ -29,11 +45,10 @@ function obtenerListaComunasPorRegion(){
         success: (data) => {
             comunas = data;
         },
-        error: (error) => console.error("Error al modificar estado:", error)
+        error: (error) => console.error("Error:", error)
     });
     return comunas;
 }
-
 
 //utilizando la misma funcion obtenerListaComunas, que también trae su respectiva región
 //Se extrae la información referente a las regiones y se eliminan los duplicados
@@ -46,19 +61,21 @@ function obtenerListaRegiones(){
     return regiones.filter((v,i,a)=>a.findIndex(v2=>(v2.reg_id===v.reg_id))===i) //remove duplicates
 }
 
-$( '#region' ).change(function() {
-    let e = document.getElementById("region");
-	regionName = e.value; // 2
-	//let strUser = e.options[e.selectedIndex].text; //test2
-    cargarComunasPorRegion()
-});
 
 function cargarComunasPorRegion(){
         let comunaSelect = $("#comuna");
         comunaSelect.empty();
         const comunas = obtenerListaComunasPorRegion();
+        if(check){
+            comunaSelect.append('<option value="' + datosGenerales.comuna.com_id + '">' + datosGenerales.comuna.com_nombre + '</option>');
+        }
+        if(check === false && datosGenerales.comuna.region.reg_nombre == document.getElementById("region").value){
+            comunaSelect.append('<option value="' + datosGenerales.comuna.com_id + '">' + datosGenerales.comuna.com_nombre + '</option>');
+        }
         for (let i=0; i<comunas.length; i++) {
-            comunaSelect.append('<option value="' + comunas[i].com_id + '">' + comunas[i].com_nombre + '</option>');
+            if(datosGenerales.comuna.com_nombre !== comunas[i].com_nombre){
+                comunaSelect.append('<option value="' + comunas[i].com_id + '">' + comunas[i].com_nombre + '</option>');
+            }
         }
         //$('#comunaSelect').niceSelect('update'); //se actualiza el nice select
 }
@@ -68,29 +85,36 @@ function cargarRegiones(){
         let regionSelect = $("#region");
         regionSelect.empty();
         const regiones = obtenerListaRegiones();
-        //regionSelect.append('<option value="' + regionName + '">' + regionName + '</option>');
+        regionSelect.append('<option value="' + regionName + '">' + regionName + '</option>');
         for (let i=0; i<regiones.length; i++) {
-           // if(regionName !== regiones[i].reg_nombre){
+             if(regionName !== regiones[i].reg_nombre){
                 regionSelect.append('<option value="' + regiones[i].reg_nombre + '">' + regiones[i].reg_nombre + '</option>');
-            //}
+             }
         }
         //$('#regionSelect').niceSelect('update');
 }
 
+$( '#region' ).change(function() {
+    check = false;
+    let e = document.getElementById("region");
+	regionName = e.value; // 2
+	//let strUser = e.options[e.selectedIndex].text; //test2
+    cargarComunasPorRegion()
+});
 
-//////////////////////////////////////////////
-//enviar solicitud al controlador
-
-document.getElementById("guardar").addEventListener("click", function (event) {
+document.getElementById("editar").addEventListener("click", function (event) {
+    let form = document.querySelector("#form-datos-generales");
+    let formData = new FormData(form);
+    formData.append("_method", "PUT");
     event.preventDefault();
     isLoadingSpinner(true);
-    fetch("/admin/submercados", {
-        method: "POST",
+    fetch("/admin/datos-generales/" + document.getElementById("dag_id").value, {
         headers: {
             "X-CSRF-TOKEN": document.querySelector("input[name='_token']")
                 .value,
         },
-        body: new FormData(document.forms.namedItem("form-submercados")),
+        method: "POST",
+        body: formData,
     })
         .then(function (response) {
             return response.json();
@@ -110,7 +134,7 @@ document.getElementById("guardar").addEventListener("click", function (event) {
                         isLoadingSpinner('done');
                         resetValidationMessages();
                         setTimeout(() => {
-                            document.location.href = "/admin/submercados";
+                            document.location.href = "/admin/datos-generales";
                         }, 2000);
                     } else if (response.error) {
                         isLoadingSpinner(false);
@@ -158,25 +182,25 @@ function isLoadingSpinner(isLoading) {
         document.getElementById("default").classList.add("d-none");
         document.getElementById("loading").classList.remove("d-none");
         document.getElementById("loading").classList.add("d-block");
-        document.getElementById("guardar").setAttribute("disabled", true);
+        document.getElementById("editar").setAttribute("disabled", true);
     }
     if (isLoading == false) {
         document.getElementById("loading").classList.remove("d-block");
         document.getElementById("loading").classList.add("d-none");
         document.getElementById("default").classList.remove("d-none");
         document.getElementById("default").classList.add("d-block");
-        document.getElementById("guardar").removeAttribute("disabled");
+        document.getElementById("editar").removeAttribute("disabled");
     }
     if (isLoading == 'done') {
         document.getElementById("loading").classList.remove("d-block");
         document.getElementById("loading").classList.add("d-none");
         document.getElementById("default").classList.remove("d-none");
         document.getElementById("default").classList.add("d-block");
-        document.getElementById("guardar").setAttribute("disabled", true);
+        document.getElementById("editar").setAttribute("disabled", true);
     }
 }
 
-const inputFieldsIds = ['nombre', 'estado', 'comuna'];
+const inputFieldsIds = ['comuna', 'direccion', 'telefono_uno', 'telefono_dos', 'facebook', 'linkedin', 'instagram', 'twitter', 'youtube', 'email'];
 
 function setValidationMessages(response) {
     const errors = response.errors;
@@ -189,6 +213,7 @@ function setValidationMessages(response) {
           const fieldId = inputFieldsIds[fieldIndex];
           const errorElement = document.getElementById(`${fieldId}_error`);
           errorElement.innerText = fieldErrors.join(', ');
+          document.getElementById(`${fieldId}_error`).classList.remove('invisible');
         }
       }
     }
@@ -196,7 +221,7 @@ function setValidationMessages(response) {
 
   function resetValidationMessages() {
     inputFieldsIds.forEach(id => {
-      document.getElementById(`${id}_error`).innerText = '';
+      document.getElementById(`${id}_error`).classList.add('invisible');
     });
 }
 
@@ -206,3 +231,4 @@ function setValidationMessages(response) {
         document.getElementById(`${field}_error`).classList.add('invisible');
     });
 });
+

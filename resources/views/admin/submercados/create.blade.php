@@ -13,7 +13,7 @@
                     <label for="nombre">Nombre</label>
                     <input id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" type="text"
                         tabindex="1" />
-                        <p class="field-message-alert" id="nombre_error"></p>
+                        <small id="nombre_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -23,13 +23,13 @@
                     <label for="region">Región</label>
                     <select name="region" id="region">
                     </select>
-                    <p class="text-danger" id="region_error"></p>
+                    <small id="region_error" class="field-message-alert absolute"></small>
                 </div>
                 <div class="form-group">
                     <label for="comuna">Comuna</label>
                     <select name="comuna" id="comuna">
                     </select>
-                    <p class="field-message-alert" id="comuna_error"></p>
+                    <small id="comuna_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -41,7 +41,7 @@
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>
                     </select>
-                    <p class="field-message-alert" id="estado_error"></p>
+                    <small id="estado_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -66,5 +66,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\sistema\submercados\create.js') }}"></script>
+    <script src="{{ asset('public\js\admin\sistema\submercados\form_agregar.js') }}"></script>
 @endpush

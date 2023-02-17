@@ -1,114 +1,11 @@
 
-var subMercado = obtenerSubmercado();
-var regionName = subMercado.comuna.region.reg_nombre; //variable inicializadora con el nombre inicial de la primera región
-var check = true; //permite establecer si el select de región cambió, para así no mostrar la comuna inicial y limpiar completamente el select de comunas
-
-//var regionName =  obtenerListaRegiones().find(region => region.reg_nombre === 'Arica y Parinacota').reg_nombre;
-
-cargarRegiones();
-cargarComunasPorRegion();
-
-function obtenerSubmercado(){
-    let subMercado = "";
-    $.ajax({
-        method: "GET",
-        url:'/admin/submercados/get/single/' + document.getElementById("sub_id").value,
-        async: false,
-        success: (data) => {
-            subMercado = data;
-        },
-        error: (error) => console.error("Error:", error)
-    });
-    return subMercado;
-}
-
-function obtenerListaComunas(){
-    let comunas = "";
-    $.ajax({
-        method: "GET",
-        url:'/admin/comunas/get/list',
-        async: false,
-        success: (data) => {
-            comunas = data;
-        },
-        error: (error) => console.error("Error:", error)
-    });
-    return comunas;
-}
-
-function obtenerListaComunasPorRegion(){
-    let comunas = "";
-    $.ajax({
-        method: "GET",
-        url:'/admin/comunas/get/list/'+regionName,
-        async: false,
-        success: (data) => {
-            comunas = data;
-        },
-        error: (error) => console.error("Error:", error)
-    });
-    return comunas;
-}
-
-//utilizando la misma funcion obtenerListaComunas, que también trae su respectiva región
-//Se extrae la información referente a las regiones y se eliminan los duplicados
-function obtenerListaRegiones(){
-    let comunas = obtenerListaComunas();
-    let regiones = [];
-    comunas.forEach(function (element, i) {
-            regiones.push({ reg_nombre: element.region['reg_nombre'], reg_id: element.region['reg_id'] });
-    });
-    return regiones.filter((v,i,a)=>a.findIndex(v2=>(v2.reg_id===v.reg_id))===i) //remove duplicates
-}
-
-
-function cargarComunasPorRegion(){
-        let comunaSelect = $("#comuna");
-        comunaSelect.empty();
-        const comunas = obtenerListaComunasPorRegion();
-        if(check){
-            comunaSelect.append('<option value="' + subMercado.comuna.com_id + '">' + subMercado.comuna.com_nombre + '</option>');
-        }
-        if(check === false && subMercado.comuna.region.reg_nombre == document.getElementById("region").value){
-            comunaSelect.append('<option value="' + subMercado.comuna.com_id + '">' + subMercado.comuna.com_nombre + '</option>');
-        }
-        for (let i=0; i<comunas.length; i++) {
-            if(subMercado.comuna.com_nombre !== comunas[i].com_nombre){
-                comunaSelect.append('<option value="' + comunas[i].com_id + '">' + comunas[i].com_nombre + '</option>');
-            }
-        }
-        //$('#comunaSelect').niceSelect('update'); //se actualiza el nice select
-}
-
-function cargarRegiones(){
-        //cargar select con lista de regiones
-        let regionSelect = $("#region");
-        regionSelect.empty();
-        const regiones = obtenerListaRegiones();
-        regionSelect.append('<option value="' + regionName + '">' + regionName + '</option>');
-        for (let i=0; i<regiones.length; i++) {
-             if(regionName !== regiones[i].reg_nombre){
-                regionSelect.append('<option value="' + regiones[i].reg_nombre + '">' + regiones[i].reg_nombre + '</option>');
-             }
-        }
-        //$('#regionSelect').niceSelect('update');
-}
-
-$( '#region' ).change(function() {
-    check = false;
-    let e = document.getElementById("region");
-	regionName = e.value; // 2
-	//let strUser = e.options[e.selectedIndex].text; //test2
-    cargarComunasPorRegion()
-});
-
 document.getElementById("editar").addEventListener("click", function (event) {
-    let form = document.querySelector("#form-submercados");
+    let form = document.querySelector("#form-indicadores");
     let formData = new FormData(form);
     formData.append("_method", "PUT");
     event.preventDefault();
     isLoadingSpinner(true);
-    fetch("/admin/submercados/" + document.getElementById("sub_id").value, {
+    fetch("/admin/indicadores/" + document.getElementById("ind_id").value, {
         headers: {
             "X-CSRF-TOKEN": document.querySelector("input[name='_token']")
                 .value,
@@ -134,7 +31,7 @@ document.getElementById("editar").addEventListener("click", function (event) {
                         isLoadingSpinner('done');
                         resetValidationMessages();
                         setTimeout(() => {
-                            document.location.href = "/admin/submercados";
+                            document.location.href = "/admin/indicadores";
                         }, 2000);
                     } else if (response.error) {
                         isLoadingSpinner(false);
@@ -200,7 +97,7 @@ function isLoadingSpinner(isLoading) {
     }
 }
 
-const inputFieldsIds = ['nombre', 'estado', 'comuna'];
+const inputFieldsIds = ['edificios_administrados', 'confia_en_nosotros', 'en_todo_chile', 'en_todo_chile2'];
 
 function setValidationMessages(response) {
     const errors = response.errors;
@@ -213,6 +110,7 @@ function setValidationMessages(response) {
           const fieldId = inputFieldsIds[fieldIndex];
           const errorElement = document.getElementById(`${fieldId}_error`);
           errorElement.innerText = fieldErrors.join(', ');
+          document.getElementById(`${fieldId}_error`).classList.remove('invisible');
         }
       }
     }
@@ -220,7 +118,7 @@ function setValidationMessages(response) {
 
   function resetValidationMessages() {
     inputFieldsIds.forEach(id => {
-      document.getElementById(`${id}_error`).innerText = '';
+      document.getElementById(`${id}_error`).classList.add('invisible');
     });
 }
 
@@ -230,5 +128,4 @@ function setValidationMessages(response) {
         document.getElementById(`${field}_error`).classList.add('invisible');
     });
 });
-
 

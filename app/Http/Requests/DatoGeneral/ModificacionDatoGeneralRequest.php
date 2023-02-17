@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\SubMercado;
+namespace App\Http\Requests\DatoGeneral;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSubMercadoRequest extends FormRequest
+class ModificacionDatoGeneralRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,13 +26,20 @@ class UpdateSubMercadoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required',
-            'estado' => 'required',
             'comuna' => 'required',
+            'direccion' => 'required',
+            'telefono_uno' => 'required',
+            'telefono_dos' => 'required',
+            'facebook' => 'required',
+            'linkedin' => 'required',
+            'instagram' => 'required',
+            'twitter' => 'required',
+            'youtube' => 'required',
+            'email' => 'required',
         ];
     }
 
-                    /**
+                /**
      * Handle a failed validation attempt.
      *
      * @param  \Illuminate\Contracts\Validation\Validator  $validator

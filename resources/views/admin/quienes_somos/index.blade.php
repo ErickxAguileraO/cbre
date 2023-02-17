@@ -14,7 +14,7 @@
                     <label for="titulo">Titulo</label>
                     <input id="titulo" name="titulo" value="{{ $quienes_somos->qus_titulo }}" class="form-control"
                         type="text" tabindex="1" />
-                    <p class="field-message-alert" id="titulo_error"></p>
+                        <small id="titulo_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label for="texto">Texto</label>
                     <textarea name="texto" id="texto" class="form-control texto text-tarea-seccion ckeditor-input" rows="5">{{ $quienes_somos->qus_texto }}</textarea>
-                    <p class="field-message-alert" id="texto_error"></p>
+                    <small id="texto_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -42,7 +42,7 @@
                        <span class="align-text-bottom">Ningún archivo seleccionado</span>
                     </div>
                  </div>
-                 <p class="field-message-alert" id="imagen_error"></p>
+                 <small id="imagen_error" class="field-message-alert absolute"></small>
             </div>
         </fieldset>
         <fieldset class="row mt-5">
@@ -65,5 +65,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\sistema\quienes_somos\edit.js') }}"></script>
+    <script src="{{ asset('public\js\admin\sistema\quienes_somos\form_modificar.js') }}"></script>
 @endpush

@@ -10,6 +10,7 @@ use App\Http\Controllers\Administracion\ComunaController;
 use App\Http\Controllers\Administracion\DatosGeneralesController;
 use App\Http\Controllers\Administracion\IndicadorController;
 use App\Http\Controllers\Administracion\ComercioController;
+use App\Http\Controllers\Administracion\AdministradorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +80,12 @@ Route::prefix('admin')->group(function () {
     Route::controller(ComercioController::class)->group(function () {
         Route::resource('comercios', ComercioController::class);
         Route::get('comercios/get/list', 'list');
+    });
+
+    // Administradores
+    Route::controller(AdministradorController::class)->group(function () {
+        Route::resource('administradores', AdministradorController::class);
+        Route::get('administradores/get/list', 'list')->name('administradores.list');
     });
 });
 

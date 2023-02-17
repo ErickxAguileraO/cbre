@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\DatosGeneralesService;
-use App\Http\Requests\DatoGeneral\UpdateDatoGeneralRequest;
+use App\Http\Requests\DatoGeneral\ModificacionDatoGeneralRequest;
 
 class DatosGeneralesController extends Controller
 {
@@ -74,7 +74,7 @@ class DatosGeneralesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDatoGeneralRequest $request, $datosGenerales)
+    public function update(ModificacionDatoGeneralRequest $request, $datosGenerales)
     {
         DB::beginTransaction();
         try {
