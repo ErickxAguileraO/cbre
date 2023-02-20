@@ -106,7 +106,7 @@
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Funcionarios</a>
+                <a href="{{route('funcionarios.index')}}" class="nav-link">Funcionarios</a>
               </span>
             </li>
 

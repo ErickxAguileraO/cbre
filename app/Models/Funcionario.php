@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Funcionario extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'funcionarios';
     protected $primaryKey = 'fun_id';
@@ -18,5 +19,10 @@ class Funcionario extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'fun_user_id', 'id');
+    }
+
+    public function edificio()
+    {
+        return $this->belongsTo(Edificio::class, 'fun_edificio_id', 'edi_id');
     }
 }
