@@ -1,0 +1,203 @@
+/***** ENERGIA COOPELAN - NAF *****/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video,dl,dt,dd {
+	font-size: 100%;
+	font-style: normal;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+	display: block;
+}
+audio, canvas, progress, video {
+	display: inline-block;
+	vertical-align: baseline
+}
+a { color:#0076bc; outline:none; text-decoration: none; }
+a:visited{color:#0076bc;}
+a:hover{text-decoration: underline;}
+a:focus{
+	outline:0px;
+}
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html {	font-size: 62.5%;}
+body{
+	font: 10px 'Noto Sans', Arial, Helvetica, sans-serif;
+	color: #707070;
+	background-color: #333;
+	min-width: 318px;
+}
+
+/***** TEMPLATE *****/
+.center{
+	max-width: 1200px;
+    width: 94%;
+    margin:0 auto;
+}
+#wrapper{ background-color:#FFFFFF; padding: 60px 0; position:absolute; width:100%; height: 100%;}
+#top { background-color: #3E3E3E; text-align:right;}
+
+#login {
+  text-align: center;
+  max-width: 400px;
+  width: 92%;
+  margin: 0 auto;
+}
+#login figure { margin-bottom: 34px;}
+#login label { display: none;}
+#login .form-group { margin-bottom: 20px;}
+
+#aeurus { background-color:#333; position:fixed; width:100%; bottom:0; padding: 8px 10px; text-align: right;}
+#aeurus img { vertical-align: top;}
+
+
+
+
+/***** FORMULARIO *****/
+label, input, textarea, select, button {
+	font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+	color: #707070;
+	font-size: 1.5em;
+	font-size: 1.5rem;
+	margin: 0;
+}
+input:focus, textarea:focus, select:focus{
+	outline: none;
+}
+input[type="date"], input[type="time"], input[type="number"], input[type="text"], input[type="password"], input[type="email"],textarea, select {
+	width: 100%;
+	/*padding: 0 14px;*/
+	background-color: #fff;
+	border: 1px solid #E4E4E4;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
+input[type="text"], input[type="password"], input[type="number"], input[type="date"], input[type="time"], input[type="email"], select {
+	line-height: 20px;
+	padding: 6px 14px;
+}
+textarea {
+	padding: 6px 14px;
+	margin-bottom: 30px;
+	resize: none;
+	moz-resize: none;
+	-webkit-resize: none;
+}
+input::-webkit-input-placeholder {
+    /* Google Chrome y Safari */
+    color: #707070;
+	opacity:1;
+}
+input:-moz-placeholder {
+    /* Firefox anterior a 19 */
+    color: #707070;
+	opacity:1;
+}
+input::-moz-placeholder {
+    /* Firefox 19 y superior */
+    color: #707070;
+	opacity:1;
+}
+input:-ms-input-placeholder {
+    /* Internet Explorer 10 y superior */
+    color: #707070;
+	opacity:1;
+}
+/*input[type="checkbox"], input[type="radio"] {
+    display:none;
+}
+input[type="checkbox"] + label span {
+	display: inline-block;
+	width: 18px;
+	height: 17px;
+	margin: -1px 4px 0 0;
+	vertical-align: middle;
+	background: url(/imagenes/sitio/check.png) left top no-repeat;
+	cursor: pointer;
+}
+input[type="checkbox"]:checked + label span {
+    background:url(/imagenes/sitio/check.png) 0 -17px no-repeat;
+}
+
+input[type="radio"] + label span {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	margin: -2px 4px 0 0;
+	vertical-align: middle;
+	background: url(/imagenes/sitio/radio.png) left top no-repeat;
+	cursor: pointer;
+}
+input[type="radio"]:checked + label span {
+	background: url(/imagenes/sitio/radio.png) 0 -18px no-repeat;
+}
+input[type="text"].datepickerfix{
+	background: #fff url(/imagenes/sitio/calendar.png) 93% center no-repeat;
+}*/
+
+.btn, .btn:visited {
+	font-size: 1.5em;
+	font-size: 1.5rem;
+	font-weight: 400;
+	text-align:center;
+	display: inline-block;
+	margin: 0;
+	padding: 12px 20px;
+	border-radius: 7px;
+	cursor: pointer;
+}
+.btn:hover { text-decoration: none;}
+
+.btn-primary, .btn-primary:visited {
+	background-color: #0076bc;
+	border: 1px solid #0076bc;
+}
+
+
+/*Textos*/
+h1,h2, h3, h4,h6,.text-h2{
+	color: #1C2126;
+	font-weight: bold;
+	margin-bottom: 14px;
+}
+h1{
+	font-size: 2.6em;
+	font-size: 2.6rem;
+	margin-bottom:30px;
+}
+h3{
+	font-size: 1.8em;
+	font-size: 1.8rem;
+	margin-bottom:30px;
+}
+
+.fondo-verde-cbre {
+	background-color: #012A2D;
+}
+
+.field-message-alert {
+    font-size: 11px;
+    padding: 5px 2px;
+    color: red;
+    text-align: left;
+}
+
+.swal2-popup {
+	font-size: 1.6rem !important;
+	font-style: normal !important;
+}
+
+h2.swal2-title {
+	font-size: 3rem !important;
+	font-style: normal !important;
+	font-family: 'Roboto', sans-serif;
+}

@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         ]
         );
         Indicador::create();
+        $this->call(UsuarioSeeder::class);
     }
 }
