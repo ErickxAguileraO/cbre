@@ -89,6 +89,7 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(AdministradorController::class)->group(function () {
             Route::resource('administradores', AdministradorController::class);
             Route::get('administradores/get/list', 'list')->name('administradores.list');
+            Route::post('administradores/restore/{administrador}', 'restore')->name('administradores.restore');
         });
 
         // Funcionarios

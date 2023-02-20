@@ -32,7 +32,7 @@ class AdministradorController extends Controller
     public function list()
     {
         try {
-            return Administrador::with(['user'])->get();
+            return Administrador::with(['user'])->withTrashed()->get();
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
         }
@@ -94,7 +94,7 @@ class AdministradorController extends Controller
      */
     public function edit($administrador)
     {
-        $administrador = Administrador::findOrFail($administrador);
+        $administrador = Administrador::withTrashed()->findOrFail($administrador);
         return view('admin.administradores.edit', compact('administrador'));
     }
 
@@ -109,15 +109,39 @@ class AdministradorController extends Controller
     {
         DB::beginTransaction();
         try {
-            $administrador = Administrador::findOrFail($administrador);
+            $administrador = Administrador::withTrashed()->findOrFail($administrador);
             $administrador->adm_nombre = $request->nombre;
             $administrador->adm_apellido = $request->apellido;
+            if($request->estado == 0){
+                $this->destroy($administrador->adm_id);
+            }elseif($request->estado == 1){
+                $this->restore($administrador->adm_id);
+            }
             $administrador->user->email = $request->email;
             $administrador->user->name = Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2));
             $administrador->save();
             $administrador->user->save();
             DB::commit();
             return response()->json(['success' => '¡Administrador actualizado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json(['error' => $th->getMessage()], 401);
+        }
+    }
+
+            /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($administrador)
+    {
+        try {
+            DB::beginTransaction();
+            Administrador::withTrashed()->where('adm_id', $administrador)->restore();
+            DB::commit();
+            return response()->json(['success' => '¡Administrador habilitado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
@@ -134,9 +158,11 @@ class AdministradorController extends Controller
     {
         DB::beginTransaction();
         try {
-            Administrador::findOrFail($administrador)->delete();
+            if(Administrador::withTrashed()->findOrFail($administrador)->deleted_at == null){
+                Administrador::findOrFail($administrador)->delete();
+            }
             DB::commit();
-            return response()->json(['success' => '¡Administrador eliminado correctamente!'], 200);
+            return response()->json(['success' => '¡Administrador deshabilitado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);
