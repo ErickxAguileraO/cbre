@@ -27,6 +27,11 @@ class Administrador extends Model
         return $this->belongsTo(User::class, 'adm_user_id', 'id');
     }
 
+    public function userTrashed()
+    {
+        return $this->belongsTo(User::class, 'adm_user_id', 'id')->withTrashed();
+    }
+
     public function getNombreCompletoAttribute()
     {
         return "{$this->adm_nombre} {$this->adm_apellido}";

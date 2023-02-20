@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Models\User;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +28,7 @@ class FuncionarioController extends Controller
     public function list()
     {
         try {
-            return Funcionario::with(['user'])->withTrashed()->get();
+            return Funcionario::with(['userTrashed'])->withTrashed()->get();
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
         }
@@ -97,7 +98,8 @@ class FuncionarioController extends Controller
     {
         try {
             DB::beginTransaction();
-            Funcionario::withTrashed()->where('fun_id', $funcionario)->restore();
+            Funcionario::withTrashed()->findOrFail($funcionario)->restore();
+            User::withTrashed()->findOrFail(Funcionario::withTrashed()->findOrFail($funcionario)->fun_user_id)->restore();
             DB::commit();
             return response()->json(['success' => '¡Funcionario habilitado correctamente!'], 200);
         } catch (\Throwable $th) {
@@ -118,6 +120,7 @@ class FuncionarioController extends Controller
         try {
             if(Funcionario::withTrashed()->findOrFail($funcionario)->deleted_at == null){
                 Funcionario::findOrFail($funcionario)->delete();
+                User::findOrFail(Funcionario::withTrashed()->findOrFail($funcionario)->fun_user_id)->delete();
             }
             DB::commit();
             return response()->json(['success' => '¡Funcionario deshabilitado correctamente!'], 200);
