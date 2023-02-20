@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input name="email" type="text" value="{{ $administrador->user->email }}" class="form-control" id="email"
+                    <input name="email" type="text" value="{{ $administrador->userTrashed->email }}" class="form-control" id="email"
                         tabindex="3" />
                         <small id="email_error" class="field-message-alert absolute"></small>
                 </div>

@@ -164,7 +164,7 @@
                         }
                     },
                     {
-                        dataField: "user.email",
+                        dataField: "user_trashed.email",
                         caption: "Email",
                         filterOperations: ["contains"],
                         hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero

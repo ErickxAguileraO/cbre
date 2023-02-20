@@ -21,8 +21,14 @@ class Funcionario extends Model
         return $this->belongsTo(User::class, 'fun_user_id', 'id');
     }
 
+    public function userTrashed()
+    {
+        return $this->belongsTo(User::class, 'fun_user_id', 'id')->withTrashed();
+    }
+
     public function edificio()
     {
         return $this->belongsTo(Edificio::class, 'fun_edificio_id', 'edi_id');
     }
+
 }

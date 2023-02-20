@@ -32,7 +32,7 @@ class AdministradorController extends Controller
     public function list()
     {
         try {
-            return Administrador::with(['user'])->withTrashed()->get();
+            return Administrador::with(['userTrashed'])->withTrashed()->get();
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
         }
@@ -117,10 +117,10 @@ class AdministradorController extends Controller
             }elseif($request->estado == 1){
                 $this->restore($administrador->adm_id);
             }
-            $administrador->user->email = $request->email;
-            $administrador->user->name = Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2));
+            $administrador->userTrashed->email = $request->email;
+            $administrador->userTrashed->name = Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2));
             $administrador->save();
-            $administrador->user->save();
+            $administrador->userTrashed->save();
             DB::commit();
             return response()->json(['success' => '¡Administrador actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
@@ -139,7 +139,8 @@ class AdministradorController extends Controller
     {
         try {
             DB::beginTransaction();
-            Administrador::withTrashed()->where('adm_id', $administrador)->restore();
+            Administrador::withTrashed()->findOrFail($administrador)->restore();
+            User::withTrashed()->findOrFail(Administrador::withTrashed()->findOrFail($administrador)->adm_user_id)->restore();
             DB::commit();
             return response()->json(['success' => '¡Administrador habilitado correctamente!'], 200);
         } catch (\Throwable $th) {
@@ -160,6 +161,7 @@ class AdministradorController extends Controller
         try {
             if(Administrador::withTrashed()->findOrFail($administrador)->deleted_at == null){
                 Administrador::findOrFail($administrador)->delete();
+                User::findOrFail(Administrador::withTrashed()->findOrFail($administrador)->adm_user_id)->delete();
             }
             DB::commit();
             return response()->json(['success' => '¡Administrador deshabilitado correctamente!'], 200);
