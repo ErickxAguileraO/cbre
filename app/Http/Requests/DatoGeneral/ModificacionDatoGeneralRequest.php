@@ -27,15 +27,15 @@ class ModificacionDatoGeneralRequest extends FormRequest
     {
         return [
             'comuna' => 'required',
-            'direccion' => 'required',
-            'telefono_uno' => 'required',
-            'telefono_dos' => 'required',
-            'facebook' => 'required',
-            'linkedin' => 'required',
-            'instagram' => 'required',
-            'twitter' => 'required',
-            'youtube' => 'required',
-            'email' => 'required',
+            'direccion' => 'required|string|max:50',
+            'telefono_uno' => 'required|digits:9',
+            'telefono_dos' => 'required|digits:9',
+            'facebook' => 'required|url',
+            'linkedin' => 'required|url',
+            'instagram' => 'required|url',
+            'twitter' => 'required|url',
+            'youtube' => 'required|url',
+            'email' => 'required|string|email|max:255',
         ];
     }
 

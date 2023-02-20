@@ -26,9 +26,9 @@ class ModificacionQuienesSomosRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'required',
+            'titulo' => 'required|string|max:50',
             'texto' => 'required',
-            'imagen' => 'nullable',
+            'imagen' => 'nullable|file|mimes:jpg,jpeg,png|max:20240',
         ];
     }
 

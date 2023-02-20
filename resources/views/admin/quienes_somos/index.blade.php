@@ -12,7 +12,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="titulo">Titulo</label>
-                    <input id="titulo" name="titulo" value="{{ $quienes_somos->qus_titulo }}" class="form-control"
+                    <input id="titulo" name="titulo" value="{{ $quienes_somos->qus_titulo }}" class="form-control" data-maximo-caracteres="50"
                         type="text" tabindex="1" />
                         <small id="titulo_error" class="field-message-alert absolute"></small>
                 </div>
@@ -22,7 +22,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="texto">Texto</label>
-                    <textarea name="texto" id="texto" class="form-control texto text-tarea-seccion ckeditor-input" rows="5">{{ $quienes_somos->qus_texto }}</textarea>
+                    <textarea name="texto" id="texto" class="form-control texto text-tarea-seccion ckeditor-input" rows="5" data-maximo-caracteres="2000">{{ $quienes_somos->qus_texto }}</textarea>
                     <small id="texto_error" class="field-message-alert absolute"></small>
                 </div>
             </div>

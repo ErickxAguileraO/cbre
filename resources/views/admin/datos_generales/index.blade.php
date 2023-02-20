@@ -12,7 +12,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="direccion">Dirección</label>
-                    <input id="direccion" name="direccion" value="{{ $datos_generales->dag_direccion }}" class="form-control"
+                    <input id="direccion" name="direccion" value="{{ $datos_generales->dag_direccion }}" class="form-control" data-maximo-caracteres="50"
                         type="text" tabindex="1" />
                         <small id="direccion_error" class="field-message-alert absolute"></small>
                 </div>
@@ -38,7 +38,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="telefono_uno">Teléfono</label>
-                    <input id="telefono_uno" name="telefono_uno" value="{{ $datos_generales->dag_telefono_uno }}" class="form-control"
+                    <input id="telefono_uno" name="telefono_uno" value="{{ $datos_generales->dag_telefono_uno }}" class="form-control solo-numeros" data-maximo-caracteres="9"
                         type="text" tabindex="1" />
                         <small id="telefono_uno_error" class="field-message-alert absolute"></small>
                 </div>
@@ -48,7 +48,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="telefono_dos">Teléfono 2</label>
-                    <input id="telefono_dos" name="telefono_dos" value="{{ $datos_generales->dag_telefono_dos }}" class="form-control"
+                    <input id="telefono_dos" name="telefono_dos" value="{{ $datos_generales->dag_telefono_dos }}" class="form-control solo-numeros" data-maximo-caracteres="9"
                         type="text" tabindex="1" />
                         <small id="telefono_dos_error" class="field-message-alert absolute"></small>
                 </div>
