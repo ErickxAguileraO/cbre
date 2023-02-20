@@ -26,8 +26,8 @@ class RegistroSubMercadoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required',
-            'estado' => 'required',
+            'nombre' => 'required|string|max:50',
+            'estado' => 'required|boolean',
             'comuna' => 'required',
         ];
     }

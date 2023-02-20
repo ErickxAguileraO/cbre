@@ -11,7 +11,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" type="text"
+                    <input id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" data-maximo-caracteres="50" type="text"
                         tabindex="1" />
                         <small id="nombre_error" class="field-message-alert absolute"></small>
                 </div>

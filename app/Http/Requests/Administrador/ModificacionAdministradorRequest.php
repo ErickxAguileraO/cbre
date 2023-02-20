@@ -27,8 +27,8 @@ class ModificacionAdministradorRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => ['required', 'string', 'max:255'],
-            'apellido' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:50'],
+            'apellido' => ['required', 'string', 'max:50'],
             'email' => [
                 'required',
                 'string',
