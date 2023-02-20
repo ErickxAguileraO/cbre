@@ -27,12 +27,15 @@
 
 <body>
 <div id="wrapper">
-  <nav class="navbar navbar-dark fixed-top flex-md-nowrap shadow">
-    <figure class="navbar-brand"><img src="{{ asset('public/images/admin/logo-white.svg') }}"></figure>
+  <nav class="navbar navbar-dark fixed-top flex-md-nowrap shadow py-4 header">
+    <div class="navbar-brand"><img src="{{ asset('public/images/admin/logo-white.svg') }}"></div>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nombre usuario</button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;"> <a class="dropdown-item logout" href="">Cerrar sesión</a> </div>
+      @auth
+      <span class="mx-2">{{ auth()->user()->administrador->nombreCompleto }}</span>
+      <a href="" id="logoutLink"><span class="mx-2" title="Salir"><i class="fa-solid fa-right-from-bracket"></i></span></a>
+      <form action="{{ route('logout') }}" method="POST" id="logoutForm" class="oculto">@csrf</form>
+      @endauth
     </div>
   </nav>
   <div class="container-fluid">
@@ -128,6 +131,7 @@
 <script src="{{ asset('public/js/admin/sistema/validaciones_inputs.js') }}"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/35.3.1/classic/ckeditor.js"></script>
 <script src="{{ asset('public/js/admin/sistema/configuracion_componentes.js') }}"></script>
+<script src="{{ asset('public/js/admin/sistema/header/logout.js') }}"></script>
 @stack('scripts')
 </body>
 </html>
