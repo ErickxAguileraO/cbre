@@ -38,39 +38,13 @@
                   <small id="errorPassword" class="field-message-alert invisible absolute"></small>
                </div>
                <div class="text-center">
-                  <button type="submit" id="ingresarButton" class="btn btn-success">Ingresar</button>
+                  <button type="submit" id="ingresarButton" class="btn boton-submit-formulario">Ingresar</button>
                   <br />
                   <br />
-                  @csrf
-                  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">Recuperar contraseña</button>
+                  <button type="button" class="btn btn-link" id="passwordResetButton">Recuperar contraseña</button>
                </div>
             </fieldset>
          </form>
-      </div>
-
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h3 class="modal-title" id="myModalLabel">Recuperar contraseña</h3>
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-               </div>
-               <form action="" method="POST" role="form" id="form-recuperar">
-                  <div class="modal-body">
-                     <input type="text" name="correo_recuperar" value="{{ old('correo_recuperar') }}" placeholder="Indica tu email" />
-                     @error('correo_recuperar')
-                        <p class="field-message-alert" id="correo_recuperar"> {{ $message }}</p>
-                     @enderror
-                  </div>
-                  <div class="modal-footer" style="text-align:center;">
-                     @csrf
-                     <input type="hidden" name="cambio_contrasena" value="true">
-                     <button id="recuperar" type="submit" class="btn btn-success">Enviar</button>
-                  </div>
-               </form>
-            </div>
-         </div>
       </div>
    </div>
    <div id="aeurus">
@@ -85,12 +59,6 @@
    <script src="{{ asset('public/js/admin/jquery/bootstrap/bootstrap.min.js') }}"></script>
    <script src="{{ asset('public/js/admin/jquery/sweetalert2/js/sweetalert2.min.js') }}"></script>
    <script src="{{ asset('public/js/admin/sistema/auth/form_login.js') }}"></script>
-
-   @if (old('cambio_contrasena') !== null)
-      <script>
-         $('.modal').modal('show');
-      </script>
-   @endif
 </body>
 
 </html>

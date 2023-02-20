@@ -59,17 +59,17 @@ body{
 
 
 /***** FORMULARIO *****/
-label, input, textarea, select, button {
+label, input:not(.swal2-input), textarea, select, button {
 	font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
 	color: #707070;
 	font-size: 1.5em;
 	font-size: 1.5rem;
 	margin: 0;
 }
-input:focus, textarea:focus, select:focus{
+input:focus:not(.swal2-input), textarea:focus, select:focus{
 	outline: none;
 }
-input[type="date"], input[type="time"], input[type="number"], input[type="text"], input[type="password"], input[type="email"],textarea, select {
+input[type="date"], input[type="time"], input[type="number"], input[type="text"]:not(.swal2-input), input[type="password"], input[type="email"]:not(.swal2-input),textarea, select {
 	width: 100%;
 	/*padding: 0 14px;*/
 	background-color: #fff;
@@ -81,7 +81,7 @@ input[type="date"], input[type="time"], input[type="number"], input[type="text"]
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
 }
-input[type="text"], input[type="password"], input[type="number"], input[type="date"], input[type="time"], input[type="email"], select {
+input[type="text"]:not(.swal2-input), input[type="password"], input[type="number"], input[type="date"], input[type="time"], input[type="email"]:not(.swal2-input), select {
 	line-height: 20px;
 	padding: 6px 14px;
 }
@@ -200,4 +200,13 @@ h2.swal2-title {
 	font-size: 3rem !important;
 	font-style: normal !important;
 	font-family: 'Roboto', sans-serif;
+}
+
+.boton-submit-formulario {
+	background-color: #005157;
+    border-bottom: 8px solid #005157;
+    border-left: 18px solid #005157;
+    border-right: 18px solid #005157;
+    border-top: 8px solid #005157;
+	color: white;
 }
