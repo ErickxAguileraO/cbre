@@ -1,8 +1,8 @@
-var start = 6; //establece con cuántos objetos se inicializará
-var take = 6; //establece cuántos objetos se obtendrán con cada nueva petición
+var start = 1; //establece con cuántos objetos se inicializará
+var take = 1; //establece cuántos objetos se obtendrán con cada nueva petición
 var noticias = []; //array para almacenar los objetos
 let stop = false; //detiente las peticiones al cambiar su estado a true
-let wait = false;
+let wait = false; //soluciona error al hacer scroll spam
 const noticiasContainer = document.getElementById("lista-noticias"); //contenedor principal para imprimir los elementos
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -21,7 +21,7 @@ async function getNextNoticias() {
     window.onscroll = () => {
       let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
       if (bottomOfWindow) {
-        if (!stop) {
+        if (!stop && !wait) {
             isLoading(true);
           setTimeout(async () => {
             const response = await fetch(`noticias/get/list?skip=${start}&take=${take}`);
@@ -67,8 +67,10 @@ function printNoticias() {
 
 function isLoading(isLoading){
     if(isLoading){
+        wait = true;
         document.getElementById("spinner").style.display = "block";
     }else{
+        wait = false;
         document.getElementById("spinner").style.display = "none";
     }
 }
