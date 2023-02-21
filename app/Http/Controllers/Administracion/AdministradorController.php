@@ -137,8 +137,8 @@ class AdministradorController extends Controller
      */
     public function restore($administrador)
     {
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
             Administrador::withTrashed()->findOrFail($administrador)->restore();
             User::withTrashed()->findOrFail(Administrador::withTrashed()->findOrFail($administrador)->adm_user_id)->restore();
             DB::commit();

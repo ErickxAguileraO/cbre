@@ -96,8 +96,8 @@ class FuncionarioController extends Controller
      */
     public function restore($funcionario)
     {
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
             Funcionario::withTrashed()->findOrFail($funcionario)->restore();
             User::withTrashed()->findOrFail(Funcionario::withTrashed()->findOrFail($funcionario)->fun_user_id)->restore();
             DB::commit();
