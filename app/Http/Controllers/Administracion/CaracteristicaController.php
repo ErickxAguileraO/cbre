@@ -60,7 +60,6 @@ class CaracteristicaController extends Controller
         try {
             Caracteristica::create([
                 'car_nombre' => $request->nombre,
-                'car_video_url' => $request->video,
                 'car_posicion' => $request->posicion,
                 'car_estado' => $request->estado,
                 'car_imagen' => ImagenService::subirImagen($request->file('imagen'), 'caracteristicas'),
@@ -108,7 +107,6 @@ class CaracteristicaController extends Controller
         try {
             $caracteristica->update([
                 'car_nombre' => $request->input('nombre'),
-                'car_video_url' => $request->input('video'),
                 'car_posicion' => $request->input('posicion'),
                 'car_estado' => $request->input('estado'),
             ]);

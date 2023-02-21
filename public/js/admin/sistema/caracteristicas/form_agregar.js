@@ -94,7 +94,7 @@ function isLoadingSpinner(isLoading) {
     }
 }
 
-const inputFieldsIds = ['nombre', 'video', 'posicion', 'estado', 'imagen'];
+const inputFieldsIds = ['nombre', 'posicion', 'estado', 'imagen'];
 
 function setValidationMessages(response) {
     const errors = response.errors;
