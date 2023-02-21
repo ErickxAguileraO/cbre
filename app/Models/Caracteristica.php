@@ -15,7 +15,7 @@ class Caracteristica extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'car_imagen', 'car_nombre', 'car_posicion', 'car_estado', 'car_video_url'
+        'car_imagen', 'car_nombre', 'car_posicion', 'car_estado'
     ];
 
     protected $appends = [
@@ -28,6 +28,7 @@ class Caracteristica extends Model
     }
 
     public function edificios(){
-        return $this->belongsToMany(Edificio::class)->withPivot('edi_id', 'car_id');
+        return $this->belongsToMany(Edificio::class, 'edificio_caracteristica', 'edca_caracteristica_id', 'edca_edificio_id')->withTimestamps();
     }
+
 }

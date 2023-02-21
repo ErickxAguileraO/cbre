@@ -15,12 +15,6 @@
                         tabindex="1" />
                         <small id="nombre_error" class="field-message-alert absolute"></small>
                 </div>
-                <div class="form-group">
-                    <label for="video">Video</label>
-                    <input name="video" type="text" value="{{ old('video') }}" class="form-control" id="video"
-                        tabindex="3" />
-                        <small id="video_error" class="field-message-alert absolute"></small>
-                </div>
             </div>
         </fieldset>
         <fieldset class="row">

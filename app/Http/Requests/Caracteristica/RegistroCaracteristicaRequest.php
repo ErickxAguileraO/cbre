@@ -27,7 +27,6 @@ class RegistroCaracteristicaRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:50',
-            'video' => 'nullable|url',
             'posicion' => 'required|numeric|min:1|max:999',
             'estado' => 'required|boolean',
             'imagen' => 'required|file|mimes:jpg,jpeg,png,svg|max:20240',
