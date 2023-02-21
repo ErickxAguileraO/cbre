@@ -6,7 +6,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="author" content="Aeurus Ltda.">
-   <title>Login</title>
+   <title>Administracion</title>
    <!-- CSS -->
    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -23,13 +23,14 @@
       <!-- contenido -->
       <div id="login">
          <figure class="fondo-verde-cbre rounded"><img src="{{ asset('public/images/admin/logo-white.svg') }}" width="100" height="64" alt="Intranet" /></figure>
-         <h1>Iniciar sesión</h1>
-         <form action="" class="form-horizontal" id="formLogin" name="formLogin" method="POST">
+         <h1>Cambio de contraseña</h1>
+         <form action="" class="form-horizontal" id="formUpdatePassword" name="formUpdatePassword" method="POST">
             @csrf
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
             <fieldset>
                <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" name="email" id="email" placeholder="Email" />
+                  <input type="email" name="email" id="email" placeholder="Email" value="{{ $request->email }}" class="text-dark" readonly/>
                   <small id="errorEmail" class="field-message-alert invisible absolute text-left"></small>
                </div>
                <div class="form-group">
@@ -37,11 +38,16 @@
                   <input type="password" name="password" id="password" placeholder="Contraseña" />
                   <small id="errorPassword" class="field-message-alert invisible absolute"></small>
                </div>
+               <div class="form-group">
+                  <label for="password">Repite la contraseña</label>
+                  <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Repite la contraseña" />
+                  <small id="errorPasswordConfirmation" class="field-message-alert invisible absolute"></small>
+               </div>
                <div class="text-center">
-                  <button type="submit" id="ingresarButton" class="btn boton-submit-formulario">Ingresar</button>
+                  <button type="submit" id="actualizarButton" class="btn boton-submit-formulario">Actualizar</button>
                   <br />
                   <br />
-                  <button type="button" class="btn btn-link" id="passwordResetButton">Recuperar contraseña</button>
+                  <a href="{{ route('login') }}" class="btn btn-link" id="">Volver al login</a>
                </div>
             </fieldset>
          </form>
@@ -58,7 +64,7 @@
    <script src="{{ asset('public/js/admin/jquery/3.6.0/jquery-3.6.0.min.js') }}"></script>
    <script src="{{ asset('public/js/admin/jquery/bootstrap/bootstrap.min.js') }}"></script>
    <script src="{{ asset('public/js/admin/jquery/sweetalert2/js/sweetalert2.min.js') }}"></script>
-   <script src="{{ asset('public/js/admin/sistema/auth/form_login.js') }}"></script>
+   <script src="{{ asset('public/js/admin/sistema/auth/form_reset_password.js') }}"></script>
 </body>
 
 </html>
