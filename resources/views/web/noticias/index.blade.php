@@ -20,7 +20,7 @@
         }
     </style>
     @endpush
-    
+
     <div class="contenido">
         <div class="portada">
             <img class="mostrar-escritorio" src="{{ asset('public/web/imagenes/portada-escritorio.svg') }}" alt="">
@@ -33,126 +33,18 @@
         </div>
         <section class="flex-noticias-home">
             <div class="noticias-home">
-                <div class="lista-noticias">
-                    <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
-                                </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
-                                </a>
-                            </div>
-                            
-                        </a>
-                    </div>
-                    <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
-                                </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
-                                </a>
-                            </div>
-                            
-                        </a>
-                    </div>
-                    <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
-                                </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
-                                </a>
-                            </div>
-                            
-                        </a>
-                    </div>
+                <div class="lista-noticias" id="lista-noticias">
 
-                    <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
-                                </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
-                                </a>
-                            </div>
-                            
-                        </a>
-                    </div>
-
-                    <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
-                                </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
-                                </a>
-                            </div>
-                            
-                        </a>
-                    </div>
-
-                    <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
-                                {{-- <img src="{{ asset('/web/imagenes/img2.svg') }}" alt=""> --}}
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
-                                </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
-                                </a>
-                            </div>
-                            
-                        </a>
-                    </div>
+                </div>
+                <div style="margin-top: 50px">
+                    <span id="spinner" class="loader" style="display: none"></span>
                 </div>
             </div>
         </section>
     </div>
 
     @push('extra-js')
-   
+    <script src="{{ asset('public\web\js\noticias.js') }}"></script>
     @endpush
 
 @endsection

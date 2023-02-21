@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 {
                     dataField: "car_posicion",
-                    caption: "Posicion",
+                    caption: "Posición",
                     filterOperations: ["contains"],
                     alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero

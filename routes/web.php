@@ -12,6 +12,7 @@ use App\Http\Controllers\Administracion\IndicadorController;
 use App\Http\Controllers\Administracion\ComercioController;
 use App\Http\Controllers\Administracion\AdministradorController;
 use App\Http\Controllers\Administracion\FuncionarioController;
+use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,9 +116,14 @@ Route::get('/edificios-oficinas', function () {
 Route::get('/edificios-oficinas-detalle', function () {
     return view('web.edificios.detalle');
 });
-Route::get('/noticias', function () {
-    return view('web.noticias.index');
+
+Route::controller(WebNoticiaController::class)->group(function () {
+    Route::get('/noticias', function () {
+        return view('web.noticias.index');
+    });
+    Route::get('noticias/get/list', 'list')->name('web.noticias.list');
 });
+
 Route::get('/noticias-detalle', function () {
     return view('web.noticias.detalle');
 });
