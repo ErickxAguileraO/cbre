@@ -23,7 +23,6 @@
                     </select>
                 </div>
             </div>
-            <button class="boton-buscar">Buscar por submercado ></button>
         </div>
 
         <section class="quienes-somos-home">
