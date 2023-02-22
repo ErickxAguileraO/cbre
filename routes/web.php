@@ -12,6 +12,7 @@ use App\Http\Controllers\Administracion\IndicadorController;
 use App\Http\Controllers\Administracion\ComercioController;
 use App\Http\Controllers\Administracion\AdministradorController;
 use App\Http\Controllers\Administracion\FuncionarioController;
+use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
 
 /*
@@ -103,8 +104,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::get('/', function () {
-    return view('web.home');
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'home')->name('web.home');
 });
 
 Route::get('/contacto', function () {

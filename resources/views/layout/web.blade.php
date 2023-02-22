@@ -17,7 +17,7 @@
 
     <!-- Estilos -->
     <link rel="stylesheet" type="text/css" href="{{ asset('public/web/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/web/js/niceselect/nice-select.css') }}">
+    <link href="{{ asset('public/js/admin/jquery/select2-4.0.7/dist/css/select2.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('public/web/js/slick/slick.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/web/js/fresco/fresco.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/web/js/lightgallery/lightgallery.css') }}">
@@ -83,18 +83,18 @@
             <a href="/"><img src="{{ asset('public/web/imagenes/logo-white.svg') }}" alt=""></a>
 
             <div class="ubicacion">
-                <p>Isidora Goyenechea 2800, piso 35, Edificio Titanium <br> Las Condes, Santiago</p>
+                <p>{{$datos_generales->dag_direccion}} <br> {{$datos_generales->comuna->com_nombre}}, {{$datos_generales->comuna->region->reg_nombre}}</p>
             </div>
             <div class="telefonos">
-                <p>+56 9 6391 4099</p>
-                <p>+56 2 2280 5454</p>
+                <p>+56 {{ PrintPhone($datos_generales->dag_telefono_uno) }}</p>
+                <p>+56 {{ PrintPhone($datos_generales->dag_telefono_dos) }}</p>
             </div>
             <div class="rrss">
-                <a href="https://web.facebook.com/people/CBRE-Chile/100082811220906/" target="_blank"><img src="{{ asset('public/web/imagenes/i-fb.svg') }}" alt=""></a>
-                <a href="https://www.linkedin.com/company/cbre-chile/posts/?feedView=all" target="_blank"><img src="{{ asset('public/web/imagenes/i-link.svg') }}" alt=""></a>
-                <a href="https://www.instagram.com/cbre_chile/" target="_blank"><img src="{{ asset('public/web/imagenes/i-ig.svg') }}" alt=""></a>
-                <a href="https://twitter.com/cbre_chile" target="_blank"><img src="{{ asset('public/web/imagenes/i-twt.svg') }}" alt=""></a>
-                <a href="https://www.youtube.com/channel/UCWGZ1B04oRa9iIf6xGrB1NQ?app=desktop"x target="_blank"><img src="{{ asset('public/web/imagenes/i-yt.svg') }}" alt=""></a>
+                <a href="{{$datos_generales->dag_facebook}}" target="_blank"><img src="{{ asset('public/web/imagenes/i-fb.svg') }}" alt=""></a>
+                <a href="{{$datos_generales->dag_linkedin}}" target="_blank"><img src="{{ asset('public/web/imagenes/i-link.svg') }}" alt=""></a>
+                <a href="{{$datos_generales->dag_instagram}}" target="_blank"><img src="{{ asset('public/web/imagenes/i-ig.svg') }}" alt=""></a>
+                <a href="{{$datos_generales->dag_twitter}}" target="_blank"><img src="{{ asset('public/web/imagenes/i-twt.svg') }}" alt=""></a>
+                <a href="{{$datos_generales->dag_youtube}}" target="_blank"><img src="{{ asset('public/web/imagenes/i-yt.svg') }}" alt=""></a>
 
             </div>
         </div>
@@ -107,7 +107,8 @@
         </div>
     </footer>
     <!-- Scripts -->
-    <script src="{{ asset('public/web/js/niceselect/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('public/js/admin/jquery/select2-4.0.7/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('public/js/admin/jquery/select2-4.0.7/dist/js/select2-init.js') }}"></script>
     <script src="{{ asset('public/web/js/slick/slick.min.js') }}"></script>
     <script src="{{ asset('public/web/js/fresco/fresco.min.js') }}"></script>
     <script src="{{ asset('public/web/js/lightgallery/lightgallery.min.js') }}"></script>
