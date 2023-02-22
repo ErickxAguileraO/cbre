@@ -52,7 +52,7 @@ function printNoticias() {
             <div class="contenido-noticia-n">
                 <div class="date-noticia">
                     <img src="public/web/imagenes/i-calendario.svg" alt="">
-                    <p>Publicado el ${noticia.created_at}</p>
+                    <p>Publicado el ${noticia.fechaChile} a las ${noticia.hora}</p>
                 </div>
                 <h2>${noticia.not_titulo}</h2>
                 <a href="noticias/${noticia.not_id}-${noticia.not_titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w ]+/g,'').replace(/ +/g,'-')
