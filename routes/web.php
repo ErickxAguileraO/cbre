@@ -121,9 +121,7 @@ Route::controller(WebNoticiaController::class)->group(function () {
     Route::get('/noticias', function () {
         return view('web.noticias.index');
     });
+    Route::get('noticias/{noticia}-{slug}', 'detalle')->name('web.noticias.detalle');
     Route::get('noticias/get/list', 'list')->name('web.noticias.list');
 });
 
-Route::get('/noticias-detalle', function () {
-    return view('web.noticias.detalle');
-});

@@ -75,13 +75,13 @@
             <a class="btn-bar-movil"><img src="{{ asset('public/web/imagenes/i-bar.svg') }}" alt=""></a>
         </div>
     </div>
-    
+
     @yield('content')
 
     <footer>
         <div class="info-footer">
             <a href="/"><img src="{{ asset('public/web/imagenes/logo-white.svg') }}" alt=""></a>
-            
+
             <div class="ubicacion">
                 <p>Isidora Goyenechea 2800, piso 35, Edificio Titanium <br> Las Condes, Santiago</p>
             </div>
@@ -111,16 +111,16 @@
     <script src="{{ asset('public/web/js/slick/slick.min.js') }}"></script>
     <script src="{{ asset('public/web/js/fresco/fresco.min.js') }}"></script>
     <script src="{{ asset('public/web/js/lightgallery/lightgallery.min.js') }}"></script>
-    
+
     <script type="text/javascript">
-        lightGallery(document.getElementById('lightgallery')); 
+        lightGallery(document.getElementById('lightgallery'));
     </script>
 
     <script src="{{ asset('public/web/js/script.js') }}"></script>
     <script>
         $('select').niceSelect();
     </script>
-    
+
     @stack('extra-js')
 
 </body>
