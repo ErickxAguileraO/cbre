@@ -32,9 +32,4 @@ class EdificioService
 
         return true;
     }
-
-    public static function registrarFuncionarios()
-    {
-        
-    }
 }

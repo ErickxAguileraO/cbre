@@ -184,4 +184,9 @@ class EdificioController extends Controller
     {
         //
     }
+
+    public function list()
+    {
+        return Edificio::orderByDesc('created_at')->get();
+    }
 }
