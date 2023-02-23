@@ -17,7 +17,7 @@ class HomeController extends Controller
         return view('web.home', [
             'quienes_somos' => QuienesSomos::first(),
             'indicadores' => Indicador::first(),
-            'noticias' => Noticia::whereNull('not_edificio_id')
+            'noticias' => Noticia::whereNull('not_edificio_id') // se deben mostrar las destacadas
                         ->orderBy('created_at', 'desc')
                         ->get(),
             'certificaciones' => Certificacion::all(),
