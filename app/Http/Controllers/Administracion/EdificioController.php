@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Edificio\RegistroEdificioRequest;
 use App\Models\Certificacion;
 use App\Models\Caracteristica;
@@ -182,7 +183,27 @@ class EdificioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $edificio = Edificio::findOrFail($id);
+
+            $edificio->certificaciones()->detach();
+            $edificio->caracteristicas()->detach();
+
+            Storage::delete($edificio->edi_imagen);
+            EdificioService::eliminarGaleriaImagenes($edificio);
+            $edificio->funcionarios()->delete();
+            $edificio->delete();
+
+            DB::commit();
+
+            return response()->success($edificio, 200);
+        } catch (\Exception $exc) {
+            DB::rollback();
+
+            return response()->error($exc->getMessage(), null);
+        }
     }
 
     public function list()

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Imagen;
 
 use App\Models\Edificio;
+use Illuminate\Support\Facades\Storage;
 
 class EdificioService
 {
@@ -29,6 +30,20 @@ class EdificioService
         }
 
         $edificio->imagenes()->createMany($imagenesStorage);
+
+        return true;
+    }
+
+    public static function eliminarGaleriaImagenes(Edificio $edificio)
+    {
+        $imagenesStorage = [];
+
+        foreach ($edificio->imagenes as $imagen) {
+            $imagenesStorage[] = $imagen->ima_url;
+        }
+
+        Storage::delete($imagenesStorage);
+        $edificio->imagenes()->delete();
 
         return true;
     }

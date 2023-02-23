@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Edificio extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'edificios';
 
@@ -45,5 +46,10 @@ class Edificio extends Model
     public function imagenes()
     {
         return $this->hasMany(Imagen::class, 'ima_edificio_id', 'edi_id');
+    }
+
+    public function funcionarios()
+    {
+        return $this->hasMany(Funcionario::class, 'fun_edificio_id', 'edi_id');
     }
 }
