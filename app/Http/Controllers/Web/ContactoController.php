@@ -29,7 +29,8 @@ class ContactoController extends Controller
                 'con_telefono' => $request->telefono,
                 'con_mensaje' => $request->mensaje,
             ]);
-            //Mail::to(DatoGeneral::firts()->dag_email_encargado)->send(new ContactoEncargado($request));
+            $datos_generales = DatoGeneral::first();
+            Mail::to($datos_generales->dag_email_encargado)->send(new ContactoEncargado($request, $datos_generales));
             DB::commit();
             return response()->json(['success' => '¡Formulario completado con éxito! ¡Gracias por contactarnos! Pronto nos comunicaremos contigo.'], 200);
         } catch (\Throwable $th) {

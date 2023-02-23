@@ -18,9 +18,10 @@ class ContactoEncargado extends Mailable
      *
      * @return void
      */
-    public function __construct($request)
+    public function __construct($request, $datos_generales)
     {
         $this->request = $request;
+        $this->datos_generales = $datos_generales;
     }
 
     /**
@@ -31,6 +32,7 @@ class ContactoEncargado extends Mailable
     public function build()
     {
         $request = $this->request;
-        return $this->view('web.mails.contacto_encargado');
+        $datos_generales = $this->datos_generales;
+        return $this->view('web.mails.contacto_encargado', compact('request', 'datos_generales'));
     }
 }
