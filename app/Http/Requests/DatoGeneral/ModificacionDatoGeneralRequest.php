@@ -27,7 +27,7 @@ class ModificacionDatoGeneralRequest extends FormRequest
     {
         return [
             'comuna' => 'required',
-            'direccion' => 'required|string|max:50',
+            'direccion' => 'required|string|max:100',
             'telefono_uno' => 'required|digits:9',
             'telefono_dos' => 'required|digits:9',
             'facebook' => 'required|url',
