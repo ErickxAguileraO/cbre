@@ -216,3 +216,12 @@ h2.swal2-title {
 nav.header * {
 	color: #c5c5c5 !important;
 }
+
+.boton-submit-formulario {
+	background-color: #005157;
+    border-bottom: 8px solid #005157;
+    border-left: 18px solid #005157;
+    border-right: 18px solid #005157;
+    border-top: 8px solid #005157;
+	color: white;
+}

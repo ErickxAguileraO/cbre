@@ -11,9 +11,17 @@ class Funcionario extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'funcionarios';
+
     protected $primaryKey = 'fun_id';
+
     protected $fillable = [
-        'fun_nombre', 'fun_apellido', 'fun_telefono', 'fun_foto', 'fun_cargo', 'fun_user_id'
+        'fun_nombre', 
+        'fun_apellido', 
+        'fun_telefono', 
+        'fun_foto', 
+        'fun_cargo', 
+        'fun_user_id',
+        'fun_edificio_id',
     ];
 
     public function user()
@@ -30,5 +38,4 @@ class Funcionario extends Model
     {
         return $this->belongsTo(Edificio::class, 'fun_edificio_id', 'edi_id');
     }
-
 }
