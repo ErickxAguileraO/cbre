@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Administrador::class, 'adm_user_id', 'id');
     }
+
+    public function funcionario()
+    {
+        return $this->hasOne(Funcionario::class, 'fun_user_id', 'id');
+    }
 }

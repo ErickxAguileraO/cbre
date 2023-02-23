@@ -52,7 +52,7 @@
 
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="" class="nav-link">Edificios</a>
+                <a href="{{ route('edificios.index') }}" class="nav-link">Edificios</a>
               </span>
             </li>
 

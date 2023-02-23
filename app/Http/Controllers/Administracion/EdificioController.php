@@ -1,0 +1,192 @@
+<?php
+
+namespace App\Http\Controllers\Administracion;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Edificio\RegistroEdificioRequest;
+use App\Models\Certificacion;
+use App\Models\Caracteristica;
+use App\Models\Edificio;
+use App\Models\SubMercado;
+use App\Models\User;
+use App\Models\Funcionario;
+use App\Services\ImagenService;
+use App\Services\EdificioService;
+
+class EdificioController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('admin.edificios.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $certificaciones = Certificacion::where('cer_estado', 1)->get();
+        $caracteristicas = Caracteristica::where('car_estado', 1)->get();
+        $submercados = SubMercado::where('sub_estado', 1)->get();
+        
+        return view('admin.edificios.create', compact(
+            'certificaciones', 
+            'caracteristicas',
+            'submercados'
+        ));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(RegistroEdificioRequest $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            $pathImagenPrincipal = ImagenService::subirImagen($request->file('imagenPrincipal'), 'edificios');
+            
+            if ( !$pathImagenPrincipal ) {
+                return response()->error('No se pudo subir la imagen.', null);
+            }
+
+            $edificio = Edificio::create([
+                'edi_nombre' => $request->nombre,
+                'edi_descripcion' => $request->descripcion,
+                'edi_direccion' => $request->direccion,
+                'edi_imagen' => $pathImagenPrincipal,
+                'edi_submercado_id' => $request->submercado,
+                'ubi_titulo' => $request->ubicacionTitulo,
+                'ubi_descripcion' => $request->ubicacionDescripcion,
+                'edi_latitud' => $request->latitud,
+                'edi_longitud' => $request->longitud,
+                'edi_video' => $request->video,
+                'edi_subdominio' => Str::lower(Str::remove(' ', $request->subdominio), 201),
+            ]);
+
+            EdificioService::subirGaleriaImagenes($edificio, $request->file('imagenesGaleria'));
+
+            $userJefe = User::create([
+                'name' => $request->jefeNombre,
+                'email' => $request->jefeEmail,
+                'password' => Hash::make('12345678')
+            ]);
+
+            $pathFotoJefe = ImagenService::subirImagen($request->file('fotoJefe'), 'funcionarios');
+
+            if ( !$pathFotoJefe ) {
+                return response()->error('No se pudo subir la foto del jefe de operaciones.', null);
+            }
+
+            $funcionarioJefe = $userJefe->funcionario()->create([
+                'fun_nombre' => $request->jefeNombre,
+                'fun_apellido' => $request->jefeApellidos,
+                'fun_telefono' => $request->jefeTelefono,
+                'fun_foto' => $pathFotoJefe,
+                'fun_cargo' => 'Jefe de operaciones',
+                'fun_edificio_id' => $edificio->edi_id
+            ]);
+
+            $userAsistente = User::create([
+                'name' => $request->asistenteNombre,
+                'email' => $request->asistenteEmail,
+                'password' => Hash::make('12345678')
+            ]);
+
+            $pathFotoAsistente = ImagenService::subirImagen($request->file('fotoAsistente'), 'funcionarios');
+
+            if ( !$pathFotoAsistente ) {
+                return response()->error('No se pudo subir la foto del asistente de operaciones.', null);
+            }
+
+            $funcionarioAsistente = $userAsistente->funcionario()->create([
+                'fun_nombre' => $request->asistenteNombre,
+                'fun_apellido' => $request->asistenteApellidos,
+                'fun_telefono' => $request->asistenteTelefono,
+                'fun_foto' => $pathFotoAsistente,
+                'fun_cargo' => 'Asistente de operaciones',
+                'fun_edificio_id' => $edificio->edi_id
+            ]);
+
+            foreach ($request->certificaciones as $certificacion) {
+                $edificio->certificaciones()->attach($certificacion);
+            }
+            
+            foreach ($request->caracteristicas as $caracteristica) {
+                $edificio->caracteristicas()->attach($caracteristica);
+            }
+
+            DB::commit();
+
+            return response()->success($edificio, 201);
+        } catch (\Exception $exc) {
+            DB::rollback();
+
+            return response()->error($exc->getMessage(), null);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    public function list()
+    {
+        return Edificio::orderByDesc('created_at')->get();
+    }
+}
