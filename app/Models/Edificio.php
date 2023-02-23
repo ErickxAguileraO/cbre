@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Edificio extends Model
 {
@@ -26,6 +27,12 @@ class Edificio extends Model
         'edi_longitud',
         'edi_video',
         'edi_subdominio',
+    ];
+
+    protected $appends = [
+        'urlImagen',
+        'jefeOperaciones',
+        'asistenteOperaciones'
     ];
 
     public function submercado()
@@ -51,5 +58,20 @@ class Edificio extends Model
     public function funcionarios()
     {
         return $this->hasMany(Funcionario::class, 'fun_edificio_id', 'edi_id');
+    }
+
+    public function getUrlImagenAttribute()
+    {
+        return '/public' . Storage::url($this->edi_imagen);
+    }
+
+    public function getJefeOperacionesAttribute()
+    {
+        return $this->funcionarios->where('fun_cargo', 'Jefe de operaciones')->first();
+    }
+
+    public function getAsistenteOperacionesAttribute()
+    {
+        return $this->funcionarios->where('fun_cargo', 'Asistente de operaciones')->first();
     }
 }

@@ -49,7 +49,7 @@
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
-               <label for="imagenPrincipal">Imagen principal</label>
+               <label for="">Imagen principal</label>
                <div class="d-flex align-items-end">
                   <div class="file-select">
                      <input id="imagenPrincipal" name="imagenPrincipal" type="file" class="input-file" lang="es" accept=".jpg,.jpeg,.png" tabindex="4">
