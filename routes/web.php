@@ -12,6 +12,7 @@ use App\Http\Controllers\Administracion\IndicadorController;
 use App\Http\Controllers\Administracion\ComercioController;
 use App\Http\Controllers\Administracion\AdministradorController;
 use App\Http\Controllers\Administracion\FuncionarioController;
+use App\Http\Controllers\Administracion\EdificioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,12 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('funcionarios', FuncionarioController::class);
             Route::get('funcionarios/get/list', 'list')->name('funcionarios.list');
             Route::post('funcionarios/restore/{funcionario}', 'restore')->name('funcionarios.restore');
+        });
+
+        // Edificios
+        Route::controller(EdificioController::class)->group(function () {
+            Route::resource('edificios', EdificioController::class);
+            Route::get('edificios/get/list', 'list');
         });
     });
 });

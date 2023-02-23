@@ -21,7 +21,10 @@ class Edificio extends Model
         'edi_submercado_id',
         'ubi_titulo',
         'ubi_descripcion',
-        'ubi_coordenadas'
+        'edi_latitud',
+        'edi_longitud',
+        'edi_video',
+        'edi_subdominio',
     ];
 
     public function submercado()
@@ -31,11 +34,16 @@ class Edificio extends Model
 
     public function caracteristicas()
     {
-        return $this->belongsToMany(Caracteristica::class)->withPivot('album_id', 'car_id');
+        return $this->belongsToMany(Caracteristica::class, 'edificio_caracteristica', 'edca_edificio_id', 'edca_caracteristica_id')->withTimestamps();
     }
 
     public function certificaciones()
     {
         return $this->belongsToMany(Certificacion::class, 'edificio_certificacion', 'edce_edificio_id', 'edce_certificacion_id')->withTimestamps();
+    }
+
+    public function imagenes()
+    {
+        return $this->hasMany(Imagen::class, 'ima_edificio_id', 'edi_id');
     }
 }
