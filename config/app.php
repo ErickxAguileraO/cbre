@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         //intervention image
         Intervention\Image\ImageServiceProvider::class,
+        // laravel share
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,6 +235,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
 
     ],
 

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\DatoGeneral;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Response;
 
@@ -30,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
                 'data' => $datosRespuesta
             ], $codigoHttp);
         });
-        
+
         Response::macro('fail', function ($datosRespuesta, $codigoHttp = 400) {
             return response()->json([
                 'status' => 'fail',
@@ -45,5 +46,15 @@ class AppServiceProvider extends ServiceProvider
                 'data' => $datos
             ], $codigoHttp);
         });
+
+        view()->composer(
+            ['layout.web'],
+            function ($view) {
+                $view->with([
+                    'datos_generales' => DatoGeneral::first(),
+                ]
+            );
+            }
+        );
     }
 }

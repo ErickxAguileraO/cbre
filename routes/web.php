@@ -13,6 +13,9 @@ use App\Http\Controllers\Administracion\ComercioController;
 use App\Http\Controllers\Administracion\AdministradorController;
 use App\Http\Controllers\Administracion\FuncionarioController;
 use App\Http\Controllers\Administracion\EdificioController;
+use App\Http\Controllers\Web\ContactoController;
+use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,22 +112,28 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::get('/', function () {
-    return view('web.home');
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'home')->name('web.home');
+});
+Route::controller(ContactoController::class)->group(function () {
+    Route::get('/contacto', function () {
+        return view('web.contacto.index');
+    });
+    Route::post('contacto/store', 'store')->name('contacto.store');
 });
 
-Route::get('/contacto', function () {
-    return view('web.contacto.index');
-});
 Route::get('/edificios-oficinas', function () {
     return view('web.edificios.index');
 });
 Route::get('/edificios-oficinas-detalle', function () {
     return view('web.edificios.detalle');
 });
-Route::get('/noticias', function () {
-    return view('web.noticias.index');
+
+Route::controller(WebNoticiaController::class)->group(function () {
+    Route::get('/noticias', function () {
+        return view('web.noticias.index');
+    });
+    Route::get('noticias/{noticia}-{slug}', 'detalle')->name('web.noticias.detalle');
+    Route::get('noticias/get/list', 'list')->name('web.noticias.list');
 });
-Route::get('/noticias-detalle', function () {
-    return view('web.noticias.detalle');
-});
+
