@@ -11,13 +11,13 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" type="text"
+                    <input id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control solo-letras" data-maximo-caracteres="50" type="text"
                         tabindex="1" />
                     <small id="nombre_error" class="field-message-alert absolute"></small>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido</label>
-                    <input name="apellido" type="text" value="{{ old('apellido') }}" class="form-control" id="apellido"
+                    <input name="apellido" type="text" value="{{ old('apellido') }}" class="form-control solo-letras" data-maximo-caracteres="50" id="apellido"
                         tabindex="3" />
                         <small id="apellido_error" class="field-message-alert absolute"></small>
                 </div>
