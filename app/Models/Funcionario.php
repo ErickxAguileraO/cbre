@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Funcionario extends Model
 {
@@ -24,6 +25,10 @@ class Funcionario extends Model
         'fun_edificio_id',
     ];
 
+    protected $appends = [
+        'urlImagen',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'fun_user_id', 'id');
@@ -37,5 +42,10 @@ class Funcionario extends Model
     public function edificio()
     {
         return $this->belongsTo(Edificio::class, 'fun_edificio_id', 'edi_id');
+    }
+
+    public function getUrlImagenAttribute()
+    {
+        return '/public' . Storage::url($this->fun_foto);
     }
 }

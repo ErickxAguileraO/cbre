@@ -36,16 +36,8 @@ class EdificioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $certificaciones = Certificacion::where('cer_estado', 1)->get();
-        $caracteristicas = Caracteristica::where('car_estado', 1)->get();
-        $submercados = SubMercado::where('sub_estado', 1)->get();
-        
-        return view('admin.edificios.create', compact(
-            'certificaciones', 
-            'caracteristicas',
-            'submercados'
-        ));
+    { 
+        return view('admin.edificios.create');
     }
 
     /**
@@ -160,7 +152,9 @@ class EdificioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edificio = Edificio::find($id);
+
+        return view('admin.edificios.edit', ['edificio' => $edificio]);
     }
 
     /**
