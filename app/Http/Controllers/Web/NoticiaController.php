@@ -30,7 +30,7 @@ class NoticiaController extends Controller
                 abort(404);
             }else{
                 $shareComponent = ShareFacade::page(
-                    request()->secure() ? 'https://' : 'http://'.request()->getHost().'/'.$noticia->not_id.'-'.Str::slug($noticia->not_titulo , "-").'',
+                    request()->secure() ? 'https://' : 'http://'.request()->getHost().'/'.$noticia->not_id.'-'.Str::slug($noticia->not_titulo , "-").'',Str::slug($noticia->not_titulo , "-")
                 )
                 ->facebook()
                 ->twitter()
