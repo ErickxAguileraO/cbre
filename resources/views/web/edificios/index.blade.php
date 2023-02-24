@@ -18,15 +18,21 @@
         </div>
         <div class="buscador-input">
             <div class="input-buscar">
-                <input type="search" placeholder="Escribe aquí el nombre del edificio">
-                <button class="btn-lupa"><img src="{{ asset('public/web/imagenes/i-buscar.svg') }}" alt=""></button>
-                {{-- <img src="{{ asset('public/web/imagenes/i-buscar.svg') }}" alt=""> --}}
+                <select name="edificio" id="edificio" style="width: 100%;">
+                    <option>Buscar edificio...</option>
+                    @foreach ($edificios as $edificio)
+                    <option value="{{$edificio->edi_id}}" data-href="{{route('web.edificios.detalle', [$edificio->edi_id, Str::slug($edificio->edi_nombre , "-")])}}">{{$edificio->edi_nombre}}</option>
+                   {{--  <option value="{{$edificio->edi_id}}">{{$edificio->edi_nombre}}</option> --}}
+                    @endforeach
+                </select>
             </div>
             <div class="input-buscar">
-                <select name="" id="">
-                    <option value="">opcion 1</option>
-                    <option value="">opcion 2</option>
-                    <option value="">opcion 3</option>
+                <select name="submercado" id="submercado" style="width: 100%;">
+                    <option value="null">Filtrar por submercado...</option>
+                    @foreach ($submercados as $submercado)
+                    <option value="{{$submercado->sub_id}}">{{$submercado->sub_nombre}}</option>
+                   {{--  <option value="{{$edificio->edi_id}}">{{$edificio->edi_nombre}}</option> --}}
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -49,6 +55,15 @@
 
     @push('extra-js')
         <script src="{{ asset('public\web\js\edificio.js') }}"></script>
+        <script>
+            $('#edificio').change(function() {
+                var option = this.options[this.selectedIndex];
+                var url = option.getAttribute('data-href');
+                if (url) {
+                window.location.href = url;
+                }
+            });
+        </script>
     @endpush
 
 @endsection
