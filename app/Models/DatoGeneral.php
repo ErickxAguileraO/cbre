@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DatoGeneral extends Model
 {
@@ -14,8 +15,18 @@ class DatoGeneral extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'dag_direccion', 'dag_telefono_uno', 'dag_telefono_dos', 'dag_facebook', 'dag_linkedin', 'dag_instagram', 'dag_twitter', 'dag_youtube', 'dag_comuna_id', 'dag_email_encargado'
+        'dag_direccion', 'dag_telefono_uno', 'dag_telefono_dos', 'dag_facebook', 'dag_linkedin', 'dag_instagram', 'dag_twitter', 'dag_youtube', 'dag_comuna_id',
+        'dag_email_encargado', 'dag_nombre_encargado', 'dag_telefono_encargado', 'dag_cargo_encargado', 'dag_imagen_encargado'
     ];
+
+    protected $appends = [
+        'urlImagen'
+    ];
+
+    public function getUrlImagenAttribute()
+    {
+        return '/public' . Storage::url($this->dag_imagen_encargado);
+    }
 
     public function comuna()
     {

@@ -54,14 +54,67 @@
                 </div>
             </div>
         </fieldset>
+        <div class="row mb-4">
+            <div class="col-sm-4">
+                <hr>
+            </div>
+        </div>
         <fieldset class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="email">Email Encargado</label>
+                    <label for="nombre">Nombre encargado</label>
+                    <input id="nombre" name="nombre" value="{{ $datos_generales->dag_nombre_encargado }}" data-maximo-caracteres="50" class="form-control"
+                        type="text" tabindex="1" />
+                        <small id="nombre_error" class="field-message-alert absolute"></small>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="cargo">Cargo encargado</label>
+                    <input id="cargo" name="cargo" value="{{ $datos_generales->dag_cargo_encargado }}" data-maximo-caracteres="50" class="form-control"
+                        type="text" tabindex="1" />
+                        <small id="cargo_error" class="field-message-alert absolute"></small>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="telefono">Teléfono encargado</label>
+                    <input id="telefono" name="telefono" value="{{ $datos_generales->dag_telefono_encargado }}" data-maximo-caracteres="9" class="form-control solo-numeros"
+                        type="text" tabindex="1" />
+                        <small id="telefono_error" class="field-message-alert absolute"></small>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="email">Email encargado</label>
                     <input id="email" name="email" value="{{ $datos_generales->dag_email_encargado }}" class="form-control"
                         type="text" tabindex="1" />
                         <small id="email_error" class="field-message-alert absolute"></small>
                 </div>
+            </div>
+        </fieldset>
+        <fieldset class="row my-3">
+            <div class="col-sm-4">
+                <label for="imagen">Imagen</label>
+                <div class="py-2">
+                    <img src="{{$datos_generales->urlImagen}}" width="360" height="260" alt="">
+                </div>
+                <div class="d-flex align-items-end">
+                    <div class="file-select">
+                        <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
+                        lang="es" accept=".jpg,.jpeg,.png,.svg">
+                    </div>
+                    <div class="archivo-seleccionado px-2">
+                       <span class="align-text-bottom">Ningún archivo seleccionado</span>
+                    </div>
+                 </div>
+                 <small id="imagen_error" class="field-message-alert absolute"></small>
             </div>
         </fieldset>
         <div class="row mb-4">

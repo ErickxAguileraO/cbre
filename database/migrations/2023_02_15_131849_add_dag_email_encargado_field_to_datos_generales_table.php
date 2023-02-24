@@ -18,22 +18,9 @@ class AddDagEmailEncargadoFieldToDatosGeneralesTable extends Migration
             $table->string('dag_email_encargado')->nullable();
         });
 
-        $this->run();
+
     }
 
-    private function run()
-    {
-        $datosGenerales = [
-            ['dag_direccion' => null, 'dag_telefono_uno' => null, 'dag_telefono_dos' => null, 'dag_facebook' => null, 'dag_linkedin' => null,
-            'dag_instagram' => null, 'dag_twitter' => null, 'dag_youtube' => null, 'dag_email_encargado' => null, 'dag_comuna_id' => 96,
-            'created_at' => now(), 'updated_at' => now()
-            ],
-        ];
-
-        DB::transaction(function () use ($datosGenerales) {
-            DB::table('datos_generales')->insert($datosGenerales);
-        });
-    }
     /**
      * Reverse the migrations.
      *
