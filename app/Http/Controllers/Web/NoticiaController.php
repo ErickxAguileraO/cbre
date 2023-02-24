@@ -23,7 +23,7 @@ class NoticiaController extends Controller
         }
     }
 
-    public function detalle(Noticia $noticia,$slug){
+    public function detalle(Noticia $noticia, $slug){
         try {
             if(Str::slug($noticia->not_titulo , "-") != $slug){
                 abort(404);

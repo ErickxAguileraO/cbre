@@ -16,7 +16,7 @@ use App\Http\Controllers\Administracion\EdificioController;
 use App\Http\Controllers\Web\ContactoController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
-
+use App\Http\Controllers\Web\EdificioController as  WebEdificioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -115,6 +115,7 @@ Route::middleware(['auth'])->group(function () {
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'home')->name('web.home');
 });
+
 Route::controller(ContactoController::class)->group(function () {
     Route::get('/contacto', function () {
         return view('web.contacto.index');
@@ -122,11 +123,12 @@ Route::controller(ContactoController::class)->group(function () {
     Route::post('contacto/store', 'store')->name('contacto.store');
 });
 
-Route::get('/edificios-oficinas', function () {
-    return view('web.edificios.index');
-});
-Route::get('/edificios-oficinas-detalle', function () {
-    return view('web.edificios.detalle');
+Route::controller(WebEdificioController::class)->group(function () {
+    Route::get('/edificios-oficinas', function () {
+        return view('web.edificios.index');
+    });
+    Route::get('edificios/{edificio}-{slug}', 'detalle')->name('web.edificios.detalle');
+    Route::get('edificios/get/list', 'list')->name('web.edificios.list');
 });
 
 Route::controller(WebNoticiaController::class)->group(function () {

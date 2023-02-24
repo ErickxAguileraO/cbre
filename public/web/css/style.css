@@ -1552,3 +1552,10 @@ div#social-links ul li a:hover {
         color: #538184;
     }
 }
+
+.imagen-edificios {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    overflow: hidden;
+}

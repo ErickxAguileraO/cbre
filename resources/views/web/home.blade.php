@@ -16,6 +16,7 @@
             <div class="input-buscar">
                 <div class="form-group">
                     <select name="edificio" id="edificio" style="width: 100%;">
+                        <option>Buscar edificio...</option>
                         @foreach ($edificios as $edificio)
                         <option value="{{$edificio->edi_id}}" data-href="{{route('web.edificios.detalle', [$edificio->edi_id, Str::slug($edificio->edi_nombre , "-")])}}">{{$edificio->edi_nombre}}</option>
                        {{--  <option value="{{$edificio->edi_id}}">{{$edificio->edi_nombre}}</option> --}}
@@ -104,14 +105,14 @@
 
     @push('extra-js')
     <script>
-        $( '#edificio' ).change(function() {
+        $('#edificio').change(function() {
             var option = this.options[this.selectedIndex];
-          var url = option.getAttribute('data-href');
-          if (url) {
+            var url = option.getAttribute('data-href');
+            if (url) {
             window.location.href = url;
-          }
+            }
         });
-      </script>
+    </script>
     @endpush
 
 @endsection
