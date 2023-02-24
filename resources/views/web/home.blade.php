@@ -54,7 +54,7 @@
             </div>
             <div class="contador-n">
                 <div class="contador ocultar-animate"><h1>+</h1><div class="contador_cantidad" data-cantidad-total="{{$indicadores->ind_en_todo_chile2}}">0</div></div>
-                <p>Oficinas en todo Chile</p>
+                <p>Metros cuadrados administrados</p>
             </div>
         </section>
 

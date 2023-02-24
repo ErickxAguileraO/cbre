@@ -41,7 +41,7 @@
         <fieldset class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="en_todo_chile2">Oficinas en todo Chile 2</label>
+                    <label for="en_todo_chile2">Metros cuadrados administrados</label>
                     <input id="en_todo_chile2" name="en_todo_chile2" value="{{ $indicadores->ind_en_todo_chile2 }}" class="form-control solo-numeros" data-maximo-caracteres="4"
                         type="text" tabindex="1" />
                         <small id="en_todo_chile2_error" class="field-message-alert absolute"></small>
