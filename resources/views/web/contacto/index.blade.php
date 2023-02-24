@@ -34,7 +34,7 @@
                                 <img src="{{ asset('public/web/imagenes/input-nombre.svg') }}" alt="">
                                 <input type="text" id="nombre" name="nombre" placeholder="Nombre y apellido" class="solo-letras" data-maximo-caracteres="50">
                             </div>
-                            <span style="color: #DC1F1F; display: block; text-align: left; font-size: small; margin-bottom: 20px;" id="nombre_error"></span>
+                            <span style="color: red; display: block; text-align: left; font-size: small; margin-bottom: 20px;" id="nombre_error"></span>
                         </div>
 
                         <div>
@@ -42,7 +42,7 @@
                                 <img src="{{ asset('public/web/imagenes/input-email.svg') }}" alt="">
                                 <input type="email" id="email" name="email" placeholder="Email">
                             </div>
-                            <span style="color: #DC1F1F; display: block; text-align: left; font-size: small; margin-bottom: 20px;" id="email_error"></span>
+                            <span style="color: red; display: block; text-align: left; font-size: small; margin-bottom: 20px;" id="email_error"></span>
                         </div>
 
                         <div>
@@ -50,7 +50,7 @@
                                 <img src="{{ asset('public/web/imagenes/input-telefono.svg') }}" alt="">
                                 <input type="text" id="telefono" name="telefono" placeholder="Telefono" class="solo-numeros" data-maximo-caracteres="9">
                             </div>
-                            <span style="color: #DC1F1F; display: block; text-align: left; font-size: small; margin-bottom: 20px;" id="telefono_error"></span>
+                            <span style="color: red; display: block; text-align: left; font-size: small; margin-bottom: 20px;" id="telefono_error"></span>
                         </div>
 
                         <div>
@@ -58,7 +58,7 @@
                                 <img src="{{ asset('public/web/imagenes/input-mensaje.svg') }}" alt="">
                                 <textarea name="mensaje" id="mensaje" placeholder="Mensaje" data-maximo-caracteres="2000"></textarea>
                             </div>
-                            <span style="color: #DC1F1F; display: block; text-align: left; font-size: small; margin-bottom: 20px;" id="mensaje_error"></span>
+                            <span style="color: red; display: block; text-align: left; font-size: small; margin-bottom: 20px;" id="mensaje_error"></span>
                         </div>
 
                         <div class="btn-contacto-div">

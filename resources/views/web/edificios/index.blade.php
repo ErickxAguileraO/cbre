@@ -10,7 +10,7 @@
             }
         </style>
     @endpush
-    
+
     <div class="contenido">
         <div class="portada">
             <img class="mostrar-escritorio" src="{{ asset('public/web/imagenes/portada-escritorio.svg') }}" alt="">
@@ -36,147 +36,19 @@
             <a href="/edificios-oficinas">Edificios y oficinas</a>
         </div>
 
-        <p class="txt-busqueda">1.450 edificios encontrados en “Santiago centro”</p>
+        <p class="txt-busqueda">{{$edificios->count()}} edificios encontrados en total</p>
 
-        <div class="edificios-busqueda">
-            <div class="edificios-n">
-                <div class="img-edificio">
-                    {{-- <img src="{{ asset('public/web/imagenes/img-edificio.svg') }}" alt=""> --}}
-                    <div class="ubi-white">
-                        <img src="{{ asset('public/web/imagenes/i-gps-white.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                </div>
-                <div class="txt-edificio">
-                    <h2>Edificio Bandera</h2>
-                    <div class="ubi-green">
-                        <img src="{{ asset('public/web/imagenes/i-gps-green.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                    <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="/edificios-oficinas-detalle" class="ver-mas">
-                        <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                        <p>Ver edificio</p>
-                    </a>
-                </div>
-            </div>
-            {{--  --}}
-            <div class="edificios-n">
-                <div class="img-edificio">
-                    {{-- <img src="{{ asset('public/web/imagenes/img-edificio.svg') }}" alt=""> --}}
-                    <div class="ubi-white">
-                        <img src="{{ asset('public/web/imagenes/i-gps-white.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                </div>
-                <div class="txt-edificio">
-                    <h2>Edificio Bandera</h2>
-                    <div class="ubi-green">
-                        <img src="{{ asset('public/web/imagenes/i-gps-green.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                    <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="/edificios-oficinas-detalle" class="ver-mas">
-                        <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                        <p>Ver edificio</p>
-                    </a>
-                </div>
-            </div>
-            {{--  --}}
-            <div class="edificios-n">
-                <div class="img-edificio">
-                    {{-- <img src="{{ asset('public/web/imagenes/img-edificio.svg') }}" alt=""> --}}
-                    <div class="ubi-white">
-                        <img src="{{ asset('public/web/imagenes/i-gps-white.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                </div>
-                <div class="txt-edificio">
-                    <h2>Edificio Bandera</h2>
-                    <div class="ubi-green">
-                        <img src="{{ asset('public/web/imagenes/i-gps-green.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                    <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="/edificios-oficinas-detalle" class="ver-mas">
-                        <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                        <p>Ver edificio</p>
-                    </a>
-                </div>
-            </div>
+        <div class="edificios-busqueda" id="edificios-busqueda">
 
-
-
-            <div class="edificios-n">
-                <div class="img-edificio">
-                    {{-- <img src="{{ asset('public/web/imagenes/img-edificio.svg') }}" alt=""> --}}
-                    <div class="ubi-white">
-                        <img src="{{ asset('public/web/imagenes/i-gps-white.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                </div>
-                <div class="txt-edificio">
-                    <h2>Edificio Bandera</h2>
-                    <div class="ubi-green">
-                        <img src="{{ asset('public/web/imagenes/i-gps-green.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                    <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="/edificios-oficinas-detalle" class="ver-mas">
-                        <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                        <p>Ver edificio</p>
-                    </a>
-                </div>
-            </div>
-            {{--  --}}
-            <div class="edificios-n">
-                <div class="img-edificio">
-                    {{-- <img src="{{ asset('public/web/imagenes/img-edificio.svg') }}" alt=""> --}}
-                    <div class="ubi-white">
-                        <img src="{{ asset('public/web/imagenes/i-gps-white.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                </div>
-                <div class="txt-edificio">
-                    <h2>Edificio Bandera</h2>
-                    <div class="ubi-green">
-                        <img src="{{ asset('public/web/imagenes/i-gps-green.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                    <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="/edificios-oficinas-detalle" class="ver-mas">
-                        <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                        <p>Ver edificio</p>
-                    </a>
-                </div>
-            </div>
-            {{--  --}}
-            <div class="edificios-n">
-                <div class="img-edificio">
-                    {{-- <img src="{{ asset('public/web/imagenes/img-edificio.svg') }}" alt=""> --}}
-                    <div class="ubi-white">
-                        <img src="{{ asset('public/web/imagenes/i-gps-white.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                </div>
-                <div class="txt-edificio">
-                    <h2>Edificio Bandera</h2>
-                    <div class="ubi-green">
-                        <img src="{{ asset('public/web/imagenes/i-gps-green.svg') }}" alt="">
-                        <p>Santiago Centro, Santiago</p>
-                    </div>
-                    <p>Edificio Bandera, es un edificio clase B, el cual cuenta con sistema de clima y de detección de incendios [...]</p>
-                    <a href="/edificios-oficinas-detalle" class="ver-mas">
-                        <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                        <p>Ver edificio</p>
-                    </a>
-                </div>
-            </div>
         </div>
+        <div style="margin-top: 50px">
+            <span id="spinner" class="loader" style="display: none"></span>
+        </div>
+
     </div>
 
     @push('extra-js')
-   
+        <script src="{{ asset('public\web\js\edificio.js') }}"></script>
     @endpush
 
 @endsection

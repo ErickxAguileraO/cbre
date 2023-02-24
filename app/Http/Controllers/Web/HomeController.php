@@ -17,10 +17,11 @@ class HomeController extends Controller
         return view('web.home', [
             'quienes_somos' => QuienesSomos::first(),
             'indicadores' => Indicador::first(),
-            'noticias' => Noticia::whereNull('not_edificio_id')
-                        ->orderBy('created_at', 'desc')
+            //'noticias' => Noticia::where('not_destacada', 1) // se deben mostrar las destacadas
+            //'noticias' => Noticia::whereNull('not_edificio_id') // noticias generales
+            'noticias' => Noticia::orderBy('created_at', 'desc')
                         ->get(),
-            'certificaciones' => Certificacion::all(),
+            'certificaciones' => Certificacion::orderBy('cer_posicion', 'desc')->get(),
             'edificios' => Edificio::all(),
         ]);
     }

@@ -13,8 +13,7 @@ class NoticiaController extends Controller
     public function list(){
         try {
             return response()->json([
-                'noticias' => Noticia::whereNull('not_edificio_id')
-                ->orderBy('created_at', 'desc')
+                'noticias' => Noticia::orderBy('created_at', 'desc') // se muestran todas las noticias
                 ->skip(request('skip'))
                 ->take(request('take'))
                 ->get(),
@@ -24,7 +23,7 @@ class NoticiaController extends Controller
         }
     }
 
-    public function detalle(Noticia $noticia,$slug){
+    public function detalle(Noticia $noticia, $slug){
         try {
             if(Str::slug($noticia->not_titulo , "-") != $slug){
                 abort(404);

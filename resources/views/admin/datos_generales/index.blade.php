@@ -12,7 +12,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="direccion">Dirección</label>
-                    <input id="direccion" name="direccion" value="{{ $datos_generales->dag_direccion }}" class="form-control" data-maximo-caracteres="50"
+                    <input id="direccion" name="direccion" value="{{ $datos_generales->dag_direccion }}" class="form-control" data-maximo-caracteres="100"
                         type="text" tabindex="1" />
                         <small id="direccion_error" class="field-message-alert absolute"></small>
                 </div>
