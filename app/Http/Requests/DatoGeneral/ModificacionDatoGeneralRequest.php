@@ -36,6 +36,10 @@ class ModificacionDatoGeneralRequest extends FormRequest
             'twitter' => 'required|url',
             'youtube' => 'required|url',
             'email' => 'required|string|email|max:255',
+            'nombre' => 'required|string|max:50',
+            'telefono' => 'required|digits:9',
+            'cargo' => 'required|string|max:50',
+            'imagen' => 'nullable|file|mimes:jpg,jpeg,png|max:20240',
         ];
     }
 

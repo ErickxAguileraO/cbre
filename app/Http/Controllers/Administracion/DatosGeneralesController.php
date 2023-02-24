@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Administracion;
 use App\Models\Region;
 use App\Models\DatoGeneral;
 use Illuminate\Http\Request;
+use App\Services\ImagenService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\DatosGeneralesService;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\DatoGeneral\ModificacionDatoGeneralRequest;
 
 class DatosGeneralesController extends Controller
@@ -78,7 +80,8 @@ class DatosGeneralesController extends Controller
     {
         DB::beginTransaction();
         try {
-            DatoGeneral::findOrFail($datosGenerales)->update([
+            $datoGeneral = DatoGeneral::findOrFail($datosGenerales);
+            $datoGeneral->update([
                 'dag_comuna_id' => $request->input('comuna'),
                 'dag_direccion' => $request->input('direccion'),
                 'dag_telefono_uno' => $request->input('telefono_uno'),
@@ -89,7 +92,16 @@ class DatosGeneralesController extends Controller
                 'dag_twitter' => $request->input('twitter'),
                 'dag_youtube' => $request->input('youtube'),
                 'dag_email_encargado' => $request->input('email'),
+                'dag_nombre_encargado' => $request->input('nombre'),
+                'dag_telefono_encargado' => $request->input('telefono'),
+                'dag_cargo_encargado' => $request->input('cargo'),
             ]);
+            if ($request->hasFile('imagen')) {
+                Storage::delete($datoGeneral->dag_imagen_encargado);
+                $datoGeneral->update([
+                    'dag_imagen_encargado' => ImagenService::subirImagen($request->file('imagen'), 'datos_generales'),
+                ]);
+            }
             DB::commit();
             return response()->json(['success' => '¡Los datos generales se han actualizado correctamente!'], 200);
         } catch (\Throwable $th) {

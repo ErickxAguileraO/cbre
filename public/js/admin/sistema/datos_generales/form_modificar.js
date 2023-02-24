@@ -200,7 +200,9 @@ function isLoadingSpinner(isLoading) {
     }
 }
 
-const inputFieldsIds = ['comuna', 'direccion', 'telefono_uno', 'telefono_dos', 'facebook', 'linkedin', 'instagram', 'twitter', 'youtube', 'email'];
+const inputFieldsIds = ['comuna', 'direccion', 'telefono_uno', 'telefono_dos',
+'facebook', 'linkedin', 'instagram', 'twitter', 'youtube',
+'nombre', 'cargo', 'telefono', 'email', 'imagen'];
 
 function setValidationMessages(response) {
     const errors = response.errors;
@@ -232,3 +234,11 @@ function setValidationMessages(response) {
     });
 });
 
+const inputFiles = document.querySelectorAll('.input-file');
+
+Array.from(inputFiles).forEach(function (inputFile) {
+    inputFile.addEventListener('change', function () {
+        const spanArchivoSeleccionado = document.querySelector('.archivo-seleccionado > span');
+        spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
+    });
+});
