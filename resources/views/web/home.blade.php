@@ -17,8 +17,8 @@
                 <div class="form-group">
                     <select name="edificio" id="edificio" style="width: 100%;">
                         @foreach ($edificios as $edificio)
-                        {{-- <option value="{{$edificio->edi_id}}" data-href="{{route('edificios.show', $edificio->edi_id)}}">{{$edificio->edi_nombre}}</option> --}}
-                        <option value="{{$edificio->edi_id}}">{{$edificio->edi_nombre}}</option>
+                        <option value="{{$edificio->edi_id}}" data-href="{{route('web.edificios.detalle', [$edificio->edi_id, Str::slug($edificio->edi_nombre , "-")])}}">{{$edificio->edi_nombre}}</option>
+                       {{--  <option value="{{$edificio->edi_id}}">{{$edificio->edi_nombre}}</option> --}}
                         @endforeach
                     </select>
                 </div>
@@ -104,8 +104,8 @@
 
     @push('extra-js')
     <script>
-        document.getElementById('edificio').addEventListener('change', function() {
-          var option = this.options[this.selectedIndex];
+        $( '#edificio' ).change(function() {
+            var option = this.options[this.selectedIndex];
           var url = option.getAttribute('data-href');
           if (url) {
             window.location.href = url;
