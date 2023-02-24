@@ -6,17 +6,33 @@ use App\Models\Edificio;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\SubMercado;
 
 class EdificioController extends Controller
 {
+
+    public function index(){
+        $submercados = SubMercado::all();
+        return view('web.edificios.index', compact('submercados'));
+    }
+
     public function list(){
         try {
-            return response()->json([
-                'edificios' => Edificio::with(['submercado.comuna.region'])->orderBy('created_at', 'desc')
-                ->skip(request('skip'))
-                ->take(request('take'))
-                ->get(),
-            ]);
+            if(request('submercado') === 'null'){
+                return response()->json([
+                    'edificios' => Edificio::with(['submercado.comuna.region'])->orderBy('created_at', 'desc')
+                    ->skip(request('skip'))
+                    ->take(request('take'))
+                    ->get(),
+                ]);
+            }else{
+                return response()->json([
+                    'edificios' => Edificio::where('edi_submercado_id', request('submercado'))->with(['submercado.comuna.region'])->orderBy('created_at', 'desc')
+                    ->skip(request('skip'))
+                    ->take(request('take'))
+                    ->get(),
+                ]);
+            }
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 401);
         }

@@ -124,11 +124,9 @@ Route::controller(ContactoController::class)->group(function () {
 });
 
 Route::controller(WebEdificioController::class)->group(function () {
-    Route::get('/edificios-oficinas', function () {
-        return view('web.edificios.index');
-    });
-    Route::get('edificios/{edificio}-{slug}', 'detalle')->name('web.edificios.detalle');
-    Route::get('edificios/get/list', 'list')->name('web.edificios.list');
+    Route::get('edificios-oficinas', 'index')->name('web.edificios.index');
+    Route::get('edificios-oficinas/{edificio}-{slug}', 'detalle')->name('web.edificios.detalle');
+    Route::get('edificios-oficinas/get/list', 'list')->name('web.edificios.list');
 });
 
 Route::controller(WebNoticiaController::class)->group(function () {
