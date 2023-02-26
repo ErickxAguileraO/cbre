@@ -88,6 +88,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     dataField: 'sub_estado',
                     caption: 'Estado',
                     allowEditing: false,
+                    hidingPriority: 3,
+                    width: '100',
+                    minWidth: '100',
                     // width:300,
                     lookup: {
                         dataSource: {
@@ -114,6 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     caption: "Opciones",
                     alignment: "center",
                     hidingPriority: 4,
+                    width: '100',
+                    minWidth: '100',
                     cellTemplate(container, options) {
                         const idSubMercado = options.data.sub_id;
                         let urlModificar = `/admin/submercados/${idSubMercado}/edit`;

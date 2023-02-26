@@ -174,6 +174,8 @@
                         caption: 'Estado',
                         filterOperations: ["contains"],
                         hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
+                        width: '100',
+                        minWidth: '100',
                         alignment: 'center',
                         cellTemplate: function(container, options) {
                              let switchable;
@@ -194,6 +196,8 @@
                         caption: "Opciones",
                         alignment: "center",
                         hidingPriority: 4,
+                        width: '100',
+                        minWidth: '100',
                         cellTemplate(container, options) {
                             const idAdministrador = options.data.adm_id;
                             let urlModificar = `/admin/administradores/${idAdministrador}/edit`;

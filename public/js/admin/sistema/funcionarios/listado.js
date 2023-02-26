@@ -126,6 +126,8 @@
                         caption: 'Estado',
                         filterOperations: ["contains"],
                         hidingPriority: 2, // prioridad para ocultar columna, 0 se oculta primero
+                        width: '100',
+                        minWidth: '100',
                         alignment: 'center',
                         cellTemplate: function(container, options) {
                              let switchable;

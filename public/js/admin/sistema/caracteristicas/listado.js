@@ -83,11 +83,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     filterOperations: ["contains"],
                     alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
+                    width: '100',
+                    minWidth: '100',
                 },
                 {
                     dataField: "car_estado",
                     caption: "Estado",
                     allowEditing: false,
+                    hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
+                    width: '100',
+                    minWidth: '100',
                     // width:300,
                     lookup: {
                         dataSource: {
@@ -115,6 +120,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     caption: "Opciones",
                     alignment: "center",
                     hidingPriority: 4,
+                    width: '100',
+                    minWidth: '100',
                     cellTemplate(container, options) {
                         const idCaracteristica = options.data.car_id;
                         let urlModificar = `/admin/caracteristicas/${idCaracteristica}/edit`;
