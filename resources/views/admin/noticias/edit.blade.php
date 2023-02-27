@@ -17,7 +17,17 @@
          </div>
       </fieldset>
       <fieldset class="row">
-         <div class="col-sm-4">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label for="titulo">Fecha publicación</label>
+                <input type="datetime-local" class="form-control" min="{{ Carbon\Carbon::now('America/Santiago')->toDateString() }}" id="fecha"
+                    name="fecha" placeholder="DD/MM/AAAA" value="{{ date('Y-m-d\TH:i:s', strtotime($noticia->not_fecha)) }}">
+                <small id="errorFecha" class="field-message-alert invisible absolute"></small>
+            </div>
+        </div>
+     </fieldset>
+      <fieldset class="row">
+         <div class="col-sm-8">
             <div class="form-group">
                <label for="nombre">Cuerpo</label>
                <div class="">
@@ -51,6 +61,15 @@
             </div>
          </div>
       </fieldset>
+      <fieldset class="row mb-5">
+        <div class="col-sm-4">
+            <div class="form-check">
+                <input type="checkbox" name="destacada" id="destacada" class="form-check-input" value="" {{ $noticia->not_destacada == 1 ? 'checked' : '' }}>
+                <span class="ml-2">Noticia destacada</span>
+            </div>
+        </div>B
+    </fieldset>
+
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
@@ -59,14 +78,14 @@
                     <option value="">Sin edificio</option>
 
                     @foreach ($edificios as $edificio)
-                        <option value="{{ $edificio->edi_id }}" 
+                        <option value="{{ $edificio->edi_id }}"
 
                         {{ isset($noticia->edificio) && ($edificio->edi_id == $noticia->edificio->edi_id) ? 'selected' : '' }}
                         >
                            {{ $edificio->edi_nombre }}
                         </option>
                     @endforeach
-        
+
                </select>
                <small id="errorEdificio" class="field-message-alert invisible"></small>
             </div>

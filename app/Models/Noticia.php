@@ -44,12 +44,12 @@ class Noticia extends Model
 
     public function getFechaChileAttribute()
     {
-        return Carbon::parse($this->created_at)->format('d-m-Y');
+        return Carbon::parse($this->not_fecha)->format('d-m-Y');
     }
 
     public function getHoraAttribute()
     {
-        return Carbon::parse($this->created_at)->format('H:i');
+        return Carbon::parse($this->not_fecha)->format('H:i');
     }
 
     public function getUrlImagenAttribute()

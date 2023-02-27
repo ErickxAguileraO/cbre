@@ -3,7 +3,7 @@ ClassicEditor.create(document.querySelector('#cuerpoTextarea'), {
     removePlugins: ['MediaEmbed'],
     ckfinder: {
         uploadUrl: '/image-upload?_token='+$("input[name='_token']").val(),
-    }
+    },
 })
 .then(editor => {
     ckEditor = editor;
@@ -14,6 +14,10 @@ ClassicEditor.create(document.querySelector('#cuerpoTextarea'), {
 
 document.getElementById('titulo').addEventListener('input', function () {
     document.getElementById('errorTitulo').classList.add('invisible');
+})
+
+document.getElementById('fecha').addEventListener('input', function () {
+    document.getElementById('errorFecha').classList.add('invisible');
 })
 
 document.getElementById('imagen').addEventListener('input', function () {
@@ -33,7 +37,12 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorTitulo').innerHTML = errores.titulo[0];
         document.getElementById('errorTitulo').classList.remove('invisible');
     }
-    
+
+    if ( typeof errores.fecha !== 'undefined' ) {
+        document.getElementById('errorFecha').innerHTML = errores.fecha[0];
+        document.getElementById('errorFecha').classList.remove('invisible');
+    }
+
     if ( typeof errores.cuerpo !== 'undefined' ) {
         document.getElementById('errorCuerpo').innerHTML = errores.cuerpo[0];
         document.getElementById('errorCuerpo').classList.remove('invisible');
@@ -66,7 +75,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     const formData = new FormData(document.forms.namedItem('formNoticia'));
     formData.append('cuerpo', ckEditor.getData());
     const url = '/admin/noticias';
-    
+
     fetch(url, {
         method: 'POST',
         headers: {
@@ -82,7 +91,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
 
             return;
         }
-        
+
         if ( typeof response.status == 'undefined' ) {
             Swal.fire({
                 icon: 'error',

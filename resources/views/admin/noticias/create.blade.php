@@ -16,7 +16,17 @@
          </div>
       </fieldset>
       <fieldset class="row">
-         <div class="col-sm-4">
+        <div class="col-sm-4">
+           <div class="form-group">
+                <label for="titulo">Fecha publicación</label>
+                <input type="datetime-local" class="form-control" min="{{ Carbon\Carbon::now('America/Santiago')->toDateString() }}" id="fecha"
+                    name="fecha" placeholder="DD/MM/AAAA">
+                    <small id="errorFecha" class="field-message-alert invisible absolute"></small>
+           </div>
+        </div>
+     </fieldset>
+      <fieldset class="row">
+         <div class="col-sm-8">
             <div class="form-group">
                <label for="cuerpoTextarea">Cuerpo</label>
                <div class="">
@@ -46,6 +56,13 @@
             </div>
          </div>
       </fieldset>
+      <fieldset class="row mb-5">
+        <div class="col-sm-4">
+            <div class="form-check">
+                  <input type="checkbox" name="destacada" id="destacada" class="form-check-input" value=""> <span class="ml-2">Noticia destacada</span>
+              </div>
+        </div>
+     </fieldset>
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
@@ -56,7 +73,7 @@
                     @foreach ($edificios as $edificio)
                         <option value="{{ $edificio->edi_id }}" >{{ $edificio->edi_nombre }}</option>
                     @endforeach
-        
+
                </select>
                <small id="errorEdificio" class="field-message-alert invisible"></small>
             </div>
