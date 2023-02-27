@@ -9,31 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class EdificioService
 {
-    public static function subirGaleriaImagenes(Edificio $edificio, $galeriaImagenes)
-    {
-        $imagenesStorage = [];
-
-        foreach ($galeriaImagenes as $imagen) {
-            $pathImagen = ImagenService::subirImagen($imagen, 'edificios');
-            
-            if ( !$pathImagen ) {
-                continue;
-            }
-
-            $imagenesStorage[] = [
-                'ima_url' => $pathImagen
-            ];
-        }
-
-        if ( count($imagenesStorage) == 0 ) {
-            return false;
-        }
-
-        $edificio->imagenes()->createMany($imagenesStorage);
-
-        return true;
-    }
-
     public static function eliminarGaleriaImagenes(Edificio $edificio)
     {
         $imagenesStorage = [];
@@ -46,5 +21,11 @@ class EdificioService
         $edificio->imagenes()->delete();
 
         return true;
+    }
+
+    public function actualizarGaleriaImagenes(Edificio $edificio)
+    {
+        //obtenemos los nombres de imagenes que fueron eliminados en pantalla
+        $nombres = $edificio->imagenes->whereNotIn('ima_id', request('idImagenes', []))->get()->pluck('nombre');
     }
 }

@@ -3,13 +3,15 @@
 @section('title', 'Edificios')
 
 @push('stylesheets')
-   <link rel="stylesheet" type="text/css" href="{{ asset('public/css/admin/edificios/form-agregar.css') }}">
+   <link rel="stylesheet" type="text/css" href="{{ asset('public/css/admin/edificios/form-modificar.css') }}">
+   <link rel="stylesheet" type="text/css" href="{{ asset('public/js/admin/jquery/croppie/css/croppie.min.css') }}"  />
 @endpush
 
 @section('content')
    <h1>Modificar edificio</h1>
    <form action="" id="formEdificio" name="formEdificio" class="formulario">
    @csrf
+   @method('PUT')
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
@@ -70,13 +72,38 @@
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
-               <label for="imagenesGaleria">Imágenes de la galería</label>
-               <div class="d-flex align-items-end">
-                  <div class="file-select">
-                     <input multiple id="imagenesGaleria" name="imagenesGaleria[]" type="file" class="input-file" lang="es" accept=".jpg,.jpeg,.png" tabindex="5">
-                  </div>
-                  <div class="archivo-seleccionado px-2">
-                     <span class="align-text-bottom">Ningún archivo seleccionado</span>
+               <div class="contenedor croppie-container">
+                  <label for="" class="pb-4">Imágenes de la galería</label>
+                  <div class="imagen1"><span>Galeria (tamaño mínimo 520px X 385px)</span>
+                     <div class="container-content my-5">
+                           <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" />
+                           <div class="d-none my-4 croppie-image" data-min-width="520" data-min-height="385"></div>
+                     </div>
+                     <div class="position-relative">
+                        <div class="custom-file">
+                           <input type="file" id="inputFileGaleria" class="custom-file-input imagen-input" lang="es" accept=".jpg,.jpeg,.png">
+                           <label class="custom-file-label" for="imagen-input">Buscar un archivo</label>
+                        </div>
+                     </div>
+                     <div class="modal-footer_imagen" style="text-align:left;margin-top: 15px;">
+                        <button type="button" class="btn btn-outline-dark cancel-croppie">Cancelar</button>
+                        <button type="button" class="btn btn-outline-primary add-image-croppie">Agregar</button>
+                     </div>
+                     <br>
+                     <div class="mt-4 container-gallery">
+                        <label class="mb-4">Imagenes cargadas</label>
+                        <div class="row images-gallery">
+                           @foreach ($edificio->imagenes as $imagen)
+                           <div class="col-sm-6 col-md-4 pb-5">
+                              <input type="hidden" name="idImagenes[]" value="{{ $imagen->ima_id }}" />
+                              <img src="{{ $imagen->urlImagen }}" class="w-100" />
+                              <button class="btn btn-danger position-absolute delete-image-croppie" type="button" style="right:20px">
+                                 <i class="fas fa-trash-alt text-white pointer-none"></i>
+                              </button>
+                           </div>
+                           @endforeach
+                        </div>
+                     </div>
                   </div>
                </div>
                <small id="errorImagenesGaleria" class="field-message-alert invisible"></small>
@@ -145,7 +172,7 @@
          <div class="col-sm-4">
             <div class="form-group">
                <input id="autocompletadoMap" type="text" class="form-control mb-1" tabindex="10" placeholder="Ingresa una ubicación"/>
-               <div id="map"></div>
+               <div id="map" data-latitud="{{ $edificio->edi_latitud }}" data-longitud="{{ $edificio->edi_longitud }}"></div>
                <small id="errorAutocompletadoMap" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
@@ -284,7 +311,11 @@
                      <select id="certificaciones" name="certificaciones[]" class="form-control" multiple="multiple" tabindex="19">
 
                         @foreach ($certificaciones as $certificacion)
-                        <option value="{{ $certificacion->cer_id }}">{{ $certificacion->cer_nombre }}</option>
+                        <option value="{{ $certificacion->cer_id }}"
+                        {{ in_array($certificacion->cer_id, Arr::pluck($edificio->certificaciones, 'cer_id')) ? 'selected' : '' }}
+                        >
+                           {{ $certificacion->cer_nombre }}
+                        </option>
                         @endforeach
             
                      </select>
@@ -300,7 +331,11 @@
                      <select id="caracteristicas" name="caracteristicas[]" class="form-control" multiple="multiple" tabindex="20">
 
                         @foreach ($caracteristicas as $caracteristica)
-                        <option value="{{ $caracteristica->car_id }}">{{ $caracteristica->car_nombre }}</option>
+                        <option value="{{ $caracteristica->car_id }}"
+                        {{ in_array($caracteristica->car_id, Arr::pluck($edificio->caracteristicas, 'car_id')) ? 'selected' : '' }}
+                        >
+                           {{ $caracteristica->car_nombre }}
+                        </option>
                         @endforeach
             
                      </select>
@@ -329,11 +364,13 @@
             </div>
          </div>
       </fieldset>
+      <input type="hidden" id="idEdificio" name="idEdificio" data-id-edificio="{{ $edificio->edi_id }}" value="{{ $edificio->edi_id }}">
    </form>
 @endsection
 
 @push('scripts')
 <script src="{{ asset('public/js/admin/sistema/edificios/form_modificar.js') }}"></script>
-<script src="{{ asset('public/js/admin/sistema/edificios/map_ubicacion.js') }}"></script>
+<script src="{{ asset('public/js/admin/sistema/edificios/google_map_modificar.js') }}"></script>
+<script src="{{ asset('public/js/admin/jquery/croppie/js/croppie.min.js') }}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap"></script>
 @endpush

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Edificio\RegistroEdificioRequest;
+use App\Http\Requests\Edificio\ModificacionEdificioRequest;
 use App\Models\Certificacion;
 use App\Models\Caracteristica;
 use App\Models\Edificio;
@@ -68,10 +69,11 @@ class EdificioController extends Controller
                 'edi_latitud' => $request->latitud,
                 'edi_longitud' => $request->longitud,
                 'edi_video' => $request->video,
-                'edi_subdominio' => Str::lower(Str::remove(' ', $request->subdominio), 201),
+                'edi_subdominio' => Str::lower(Str::remove(' ', $request->subdominio))
             ]);
 
-            EdificioService::subirGaleriaImagenes($edificio, $request->file('imagenesGaleria'));
+            $imagenesStorage = ImagenService::subirGaleriaCroppie('edificios', $request->imagenesGaleria);
+            $edificio->imagenes()->createMany($imagenesStorage);
 
             $userJefe = User::create([
                 'name' => $request->jefeNombre,
@@ -153,7 +155,7 @@ class EdificioController extends Controller
     public function edit($id)
     {
         $edificio = Edificio::find($id);
-
+        
         return view('admin.edificios.edit', ['edificio' => $edificio]);
     }
 
@@ -164,9 +166,101 @@ class EdificioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ModificacionEdificioRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $edificio = Edificio::findOrFail($id);
+
+            if ( $request->file('imagenPrincipal') !== null ) {
+                Storage::delete($edificio->edi_imagen);
+                $pathImagenPrincipal = ImagenService::subirImagen($request->file('imagenPrincipal'), 'edificios');
+            
+                if ( !$pathImagenPrincipal ) {
+                    return response()->error('No se pudo subir la imagen.', null);
+                }
+
+                $edificio->edi_imagen = $pathImagenPrincipal;
+            }
+            
+            $edificio->edi_nombre = $request->nombre;
+            $edificio->edi_descripcion = $request->descripcion;
+            $edificio->edi_direccion = $request->direccion;
+            $edificio->edi_submercado_id = $request->submercado;
+            $edificio->ubi_titulo = $request->ubicacionTitulo;
+            $edificio->ubi_descripcion = $request->ubicacionDescripcion;
+            $edificio->edi_latitud = $request->latitud;
+            $edificio->edi_longitud = $request->longitud;
+            $edificio->edi_video = $request->video;
+            $edificio->edi_subdominio = Str::lower(Str::remove(' ', $request->subdominio));
+            $edificio->save();
+
+            EdificioService::eliminarGaleriaImagenes($edificio);
+            $imagenesStorage = ImagenService::subirGaleriaCroppie('edificios', $request->imagenesGaleria);
+            $edificio->imagenes()->createMany($imagenesStorage);
+
+            /* $userJefe = User::create([
+                'name' => $request->jefeNombre,
+                'email' => $request->jefeEmail,
+                'password' => Hash::make('12345678')
+            ]);
+
+            $pathFotoJefe = ImagenService::subirImagen($request->file('fotoJefe'), 'funcionarios');
+
+            if ( !$pathFotoJefe ) {
+                return response()->error('No se pudo subir la foto del jefe de operaciones.', null);
+            }
+
+            $funcionarioJefe = $userJefe->funcionario()->create([
+                'fun_nombre' => $request->jefeNombre,
+                'fun_apellido' => $request->jefeApellidos,
+                'fun_telefono' => $request->jefeTelefono,
+                'fun_foto' => $pathFotoJefe,
+                'fun_cargo' => 'Jefe de operaciones',
+                'fun_edificio_id' => $edificio->edi_id
+            ]);
+
+            $userAsistente = User::create([
+                'name' => $request->asistenteNombre,
+                'email' => $request->asistenteEmail,
+                'password' => Hash::make('12345678')
+            ]);
+
+            $pathFotoAsistente = ImagenService::subirImagen($request->file('fotoAsistente'), 'funcionarios');
+
+            if ( !$pathFotoAsistente ) {
+                return response()->error('No se pudo subir la foto del asistente de operaciones.', null);
+            }
+
+            $funcionarioAsistente = $userAsistente->funcionario()->create([
+                'fun_nombre' => $request->asistenteNombre,
+                'fun_apellido' => $request->asistenteApellidos,
+                'fun_telefono' => $request->asistenteTelefono,
+                'fun_foto' => $pathFotoAsistente,
+                'fun_cargo' => 'Asistente de operaciones',
+                'fun_edificio_id' => $edificio->edi_id
+            ]); */
+
+            $edificio->certificaciones()->detach();
+            $edificio->caracteristicas()->detach();
+
+            foreach ($request->certificaciones as $certificacion) {
+                $edificio->certificaciones()->attach($certificacion);
+            }
+            
+            foreach ($request->caracteristicas as $caracteristica) {
+                $edificio->caracteristicas()->attach($caracteristica);
+            }
+
+            DB::commit();
+
+            return response()->success($edificio, 201);
+        } catch (\Exception $exc) {
+            DB::rollback();
+
+            return response()->error($exc->getMessage(), null);
+        }
     }
 
     /**
