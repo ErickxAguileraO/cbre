@@ -46,7 +46,7 @@ document.getElementById('imagenPrincipal').addEventListener('input', function ()
     document.getElementById('errorImagenPrincipal').classList.add('invisible');
 })
 
-document.getElementById('imagenesGaleria').addEventListener('input', function () {
+document.getElementById('inputFileGaleria').addEventListener('input', function () {
     document.getElementById('errorImagenesGaleria').classList.add('invisible');
 })
 
@@ -234,31 +234,30 @@ function mostrarErroresValidacion(errores) {
 /** 
  * Configuración de los elementos de tipo inputfile
  */ 
-const inputFiles = document.querySelectorAll('.input-file');
+ const inputFiles = document.querySelectorAll('.input-file');
 
-Array.from(inputFiles).forEach(function (inputFile) {
-    inputFile.addEventListener('change', function () {
-        const spanArchivoSeleccionado = this.parentElement.nextElementSibling.firstElementChild;
-
-        switch (true) {
-            case inputFile.files.length == 0:
-                spanArchivoSeleccionado.innerHTML = 'Ningún archivo seleccionado';
-                break;
-
-            case inputFile.files.length == 1:
-                spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
-                break;
-
-            case inputFile.files.length > 1:
-                spanArchivoSeleccionado.innerHTML = `${inputFile.files.length} archivos seleccionados`;
-                break;
-
-            default:
-                break;
-        }
-    });
-});
-
+ Array.from(inputFiles).forEach(function (inputFile) {
+     inputFile.addEventListener('change', function () {
+         const spanArchivoSeleccionado = this.parentElement.nextElementSibling.firstElementChild;
+ 
+         switch (true) {
+             case inputFile.files.length == 0:
+                 spanArchivoSeleccionado.innerHTML = 'Ningún archivo seleccionado';
+                 break;
+ 
+             case inputFile.files.length == 1:
+                 spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
+                 break;
+ 
+             case inputFile.files.length > 1:
+                 spanArchivoSeleccionado.innerHTML = `${inputFile.files.length} archivos seleccionados`;
+                 break;
+ 
+             default:
+                 break;
+         }
+     });
+ });
 /** 
  * Envío del formulario
  */ 
@@ -266,12 +265,13 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     event.preventDefault();
     
     const token = document.querySelector("input[name='_token']").value;
+    const idEdificio = document.querySelector("input[name='idEdificio']").getAttribute('data-id-edificio');
     const formData = new FormData(document.forms.namedItem('formEdificio'));
     formData.append('descripcion', ckEditorDescripcion.getData());
     formData.append('ubicacionDescripcion', ckEditorUbicacion.getData());
     formData.append('latitud', map.center.lat());
     formData.append('longitud', map.center.lng());
-    const url = '/admin/edificios';
+    const url = `/admin/edificios/${idEdificio}`;
     
     fetch(url, {
         method: 'POST',
@@ -312,7 +312,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
         if ( response.status == 'success' ) {
             Swal.fire({
                 icon: 'success',
-                title: 'Edificio agregado',
+                title: 'Edificio modificado',
                 showConfirmButton: false,
                 timer: 2000
             });

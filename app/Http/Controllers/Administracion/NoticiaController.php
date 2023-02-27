@@ -105,7 +105,7 @@ class NoticiaController extends Controller
         try {
             $noticia = Noticia::findOrFail($id);
 
-            if ($request->file('imagen') !== null) {
+            if ( $request->file('imagen') !== null ) {
                 Storage::delete($noticia->not_imagen);
                 $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'noticias');
 

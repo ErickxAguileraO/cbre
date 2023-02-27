@@ -4,7 +4,7 @@ namespace App\Http\Requests\Edificio;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegistroEdificioRequest extends FormRequest
+class ModificacionEdificioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -36,14 +36,6 @@ class RegistroEdificioRequest extends FormRequest
             'direccion' => [
                 'required',
                 'max:255'
-            ],
-            'imagenPrincipal' => [
-                'required',
-                'mimes:jpg,jpeg,png',
-                'max:5120'
-            ],
-            'imagenesGaleria' => [
-                'required'
             ],
             'video' => [
                 'nullable',
@@ -81,7 +73,7 @@ class RegistroEdificioRequest extends FormRequest
                 'digits_between:8,9'
             ],
             'fotoJefe' => [
-                'required',
+                'nullable',
                 'mimes:jpg,jpeg,png',
                 'max:5120'
             ],
@@ -104,7 +96,7 @@ class RegistroEdificioRequest extends FormRequest
                 'digits_between:8,9'
             ],
             'fotoAsistente' => [
-                'required',
+                'nullable',
                 'mimes:jpg,jpeg,png',
                 'max:5120'
             ],

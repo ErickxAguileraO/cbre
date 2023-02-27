@@ -46,7 +46,7 @@ document.getElementById('imagenPrincipal').addEventListener('input', function ()
     document.getElementById('errorImagenPrincipal').classList.add('invisible');
 })
 
-document.getElementById('imagenesGaleria').addEventListener('input', function () {
+document.getElementById('inputFileGaleria').addEventListener('input', function () {
     document.getElementById('errorImagenesGaleria').classList.add('invisible');
 })
 
