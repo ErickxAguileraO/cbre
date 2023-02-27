@@ -23,9 +23,12 @@ class EdificioService
         return true;
     }
 
-    public function actualizarGaleriaImagenes(Edificio $edificio)
+    public function descartarImagenes(Edificio $edificio, $idsImagenesDescartadas)
     {
-        //obtenemos los nombres de imagenes que fueron eliminados en pantalla
-        $nombres = $edificio->imagenes->whereNotIn('ima_id', request('idImagenes', []))->get()->pluck('nombre');
+        $imagenesDescartadas = $edificio->imagenes->whereNotIn('ima_id', $idsImagenesDescartadas)->pluck('ima_url');
+        $edificio->imagenes()->whereNotIn('ima_id', $idsImagenesDescartadas)->delete();
+        Storage::delete($imagenesDescartadas);
+
+        return true;
     }
 }
