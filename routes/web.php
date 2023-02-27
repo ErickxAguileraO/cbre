@@ -13,7 +13,8 @@ use App\Http\Controllers\Administracion\ComercioController;
 use App\Http\Controllers\Administracion\AdministradorController;
 use App\Http\Controllers\Administracion\FuncionarioController;
 use App\Http\Controllers\Administracion\EdificioController;
-use App\Http\Controllers\Web\ContactoController;
+use App\Http\Controllers\Administracion\ContactoController;
+use App\Http\Controllers\Web\ContactoController as WebContactoController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
 use App\Http\Controllers\Web\EdificioController as  WebEdificioController;
@@ -108,6 +109,12 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('edificios', EdificioController::class);
             Route::get('edificios/get/list', 'list');
         });
+
+        // Contactos
+        Route::controller(ContactoController::class)->group(function () {
+            Route::resource('contactos', ContactoController::class);
+            Route::get('contactos/get/list', 'list')->name('contactos.list');
+        });
     });
 });
 
@@ -116,7 +123,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'home')->name('web.home');
 });
 
-Route::controller(ContactoController::class)->group(function () {
+Route::controller(WebContactoController::class)->group(function () {
     Route::get('/contacto', function () {
         return view('web.contacto.index');
     });

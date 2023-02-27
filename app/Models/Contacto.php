@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Contacto extends Model
 {
@@ -16,4 +18,20 @@ class Contacto extends Model
     protected $fillable = [
         'con_nombre_completo', 'con_email', 'con_telefono', 'con_mensaje'
     ];
+
+    protected $appends = [
+        'fechaChile',
+        'hora',
+    ];
+
+    public function getFechaChileAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('d-m-Y');
+    }
+
+    public function getHoraAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('H:i');
+    }
+
 }

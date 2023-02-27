@@ -1559,3 +1559,10 @@ div#social-links ul li a:hover {
     object-fit: cover;
     overflow: hidden;
 }
+
+.imagen-jefe-operaciones {
+    width: 137px;
+    height: 165px;
+    object-fit: cover;
+    overflow: hidden;
+}

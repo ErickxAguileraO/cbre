@@ -71,15 +71,15 @@
                     <div class="operaciones-contenido" style="text-align: left;">
                         <h2>Jefe de operaciones</h2>
                         <div class="operacion-n">
-                            <img class="img" src="{{ asset('public/web/imagenes/img-jefe.svg') }}" alt="">
+                            <img class="imagen-jefe-operaciones img" src="{{ $datos_generales->urlImagen }}" alt="">
                             <div class="txt-operacion">
-                                <h4>Carlos Ambiado</h4>
-                                <p class="cursive">Asset & Property Managing Director</p>
+                                <h4>{{$datos_generales->dag_nombre_encargado}}</h4>
+                                <p class="cursive">{{$datos_generales->dag_cargo_encargado}}</p>
                                 <div class="telefono-correo-operacion">
                                     <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
-                                    <p>+56934567898</p>
+                                    <p>+56{{PrintPhone($datos_generales->dag_telefono_encargado)}}</p>
                                 </div>
-                                <a href="mailto:prueba@aeurus.cl" class="telefono-correo-operacion">
+                                <a href="mailto:{{$datos_generales->dag_email_encargado}}" class="telefono-correo-operacion">
                                     <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
                                     <p>Enviar un correo</p>
                                 </a>
