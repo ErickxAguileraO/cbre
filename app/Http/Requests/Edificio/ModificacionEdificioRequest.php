@@ -37,6 +37,14 @@ class ModificacionEdificioRequest extends FormRequest
                 'required',
                 'max:255'
             ],
+            'imagenPrincipal' => [
+                'nullable',
+                'mimes:jpg,jpeg,png',
+                'max:5120'
+            ],
+            'imagenesGaleria' => [
+                'required_without:idImagenes'
+            ],
             'video' => [
                 'nullable',
                 'max:255'
@@ -124,6 +132,7 @@ class ModificacionEdificioRequest extends FormRequest
         return [
             'imagenPrincipal.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
             'imagenPrincipal.max' => 'Tamaño de imagen máximo: 5MB',
+            'imagenesGaleria.required_without' => 'La galería debe tener al menos una imagen.',
             'fotoJefe.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
             'fotoJefe.max' => 'Tamaño de imagen máximo: 5MB.',
             'fotoAsistente.mimes' => 'Formatos permitidos: jpg, jpeg, png.',

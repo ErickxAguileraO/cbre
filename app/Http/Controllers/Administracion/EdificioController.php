@@ -196,9 +196,13 @@ class EdificioController extends Controller
             $edificio->edi_subdominio = Str::lower(Str::remove(' ', $request->subdominio));
             $edificio->save();
 
-            EdificioService::eliminarGaleriaImagenes($edificio);
+            EdificioService::descartarImagenes($edificio, $request->idImagenes);
             $imagenesStorage = ImagenService::subirGaleriaCroppie('edificios', $request->imagenesGaleria);
-            $edificio->imagenes()->createMany($imagenesStorage);
+
+            if ( !empty($imagenesStorage) ) {
+                $edificio->imagenes()->createMany($imagenesStorage);
+            }
+            
 
             /* $userJefe = User::create([
                 'name' => $request->jefeNombre,
