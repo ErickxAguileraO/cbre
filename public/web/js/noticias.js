@@ -7,21 +7,21 @@ const noticiasContainer = document.getElementById("lista-noticias"); //contenedo
 
 document.addEventListener("DOMContentLoaded", async function () {
     await getInitialNoticias();
-    printNoticias();
     await getNextNoticias();
 });
 
 async function getInitialNoticias() {
-    const response = await fetch(`noticias/get/list?skip=${0}&take=${start}`);
+    const response = await fetch(`noticias/get/list?skip=${0}&take=${take}`);
     const data = await response.json();
     noticias = data.noticias;
+    printNoticias();
 }
 
 async function getNextNoticias() {
     window.onscroll = () => {
       let bottomOfnoticiasContainer = window.innerHeight + window.pageYOffset >= noticiasContainer.offsetTop + noticiasContainer.offsetHeight;
       if (bottomOfnoticiasContainer && !stop && !isLoading) {
-            isLoadingSniper(true);
+        isLoadingSpinner(true);
           setTimeout(async () => {
             const response = await fetch(`noticias/get/list?skip=${start}&take=${take}`);
             const data = await response.json();
@@ -30,7 +30,7 @@ async function getNextNoticias() {
             if (data.noticias.length === 0) {
               stop = true;
             }
-            isLoadingSniper(false);
+            isLoadingSpinner(false);
             printNoticias();
           }, Math.floor(Math.random() * (1100 - 300 + 1) + 300))
       }
@@ -68,7 +68,7 @@ function printNoticias() {
 });
 }
 
-function isLoadingSniper(status){
+function isLoadingSpinner(status){
     isLoading = status;
     document.getElementById("spinner").style.display = isLoading ? "block" : "none";
 }

@@ -8,21 +8,21 @@ const edificiosContainer = document.getElementById("edificios-busqueda"); //cont
 
 document.addEventListener("DOMContentLoaded", async function () {
     await getInitialEdificios();
-    printEdificios();
     await getNextEdificios();
 });
 
 async function getInitialEdificios() {
-    const response = await fetch(`edificios-oficinas/get/list?skip=${0}&take=${start}&submercado=${submercado}`);
+    const response = await fetch(`edificios-oficinas/get/list?skip=${0}&take=${take}&submercado=${submercado}`);
     const data = await response.json();
     edificios = data.edificios;
+    printEdificios();
 }
 
 async function getNextEdificios() {
     window.onscroll = () => {
       let bottomOfedificiosContainer = window.innerHeight + window.pageYOffset >= edificiosContainer.offsetTop + edificiosContainer.offsetHeight;
       if (bottomOfedificiosContainer && !stop && !isLoading) {
-            isLoadingSniper(true);
+        isLoadingSpinner(true);
           setTimeout(async () => {
             const response = await fetch(`edificios-oficinas/get/list?skip=${start}&take=${take}&submercado=${submercado}`);
             const data = await response.json();
@@ -31,7 +31,7 @@ async function getNextEdificios() {
             if (data.edificios.length === 0) {
               stop = true;
             }
-            isLoadingSniper(false);
+            isLoadingSpinner(false);
             printEdificios();
           }, Math.floor(Math.random() * (1100 - 300 + 1) + 300))
       }
@@ -71,7 +71,7 @@ function printEdificios() {
 });
 }
 
-function isLoadingSniper(status){
+function isLoadingSpinner(status){
     isLoading = status;
     document.getElementById("spinner").style.display = isLoading ? "block" : "none";
 }
@@ -79,7 +79,7 @@ function isLoadingSniper(status){
 $('#submercado').change(async function() {
     submercado = document.getElementById("submercado").value;
     await getInitialEdificios();
-    printEdificios();
     stop = false;
     isLoading = false;
+    start = 6;
 });
