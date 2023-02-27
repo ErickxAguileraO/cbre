@@ -19,7 +19,7 @@
             </div>
         </fieldset>
         <fieldset class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-8">
                 <div class="form-group">
                     <label for="texto">Texto</label>
                     <textarea name="texto" id="texto" class="form-control texto text-tarea-seccion ckeditor-input" rows="5" data-maximo-caracteres="2000">{{ $quienes_somos->qus_texto }}</textarea>

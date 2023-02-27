@@ -225,3 +225,7 @@ nav.header * {
     border-top: 8px solid #005157;
 	color: white;
 }
+
+.ck-editor__editable {
+    min-height: 300px;
+  }
