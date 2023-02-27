@@ -20,7 +20,9 @@ class Noticia extends Model
         'not_imagen',
         'not_titulo',
         'not_texto',
-        'not_edificio_id'
+        'not_fecha',
+        'not_destacada',
+        'not_edificio_id',
     ];
 
     protected $appends = [
