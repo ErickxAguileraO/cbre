@@ -38,10 +38,6 @@ document.getElementById('descripcionTextarea').addEventListener('input', functio
     document.getElementById('errorDescripcion').classList.add('invisible');
 })
 
-document.getElementById('direccion').addEventListener('input', function () {
-    document.getElementById('errorDireccion').classList.add('invisible');
-})
-
 document.getElementById('imagenPrincipal').addEventListener('input', function () {
     document.getElementById('errorImagenPrincipal').classList.add('invisible');
 })
@@ -128,11 +124,6 @@ function mostrarErroresValidacion(errores) {
     if ( typeof errores.descripcion !== 'undefined' ) {
         document.getElementById('errorDescripcion').innerHTML = errores.descripcion[0];
         document.getElementById('errorDescripcion').classList.remove('invisible');
-    }
-
-    if ( typeof errores.direccion !== 'undefined' ) {
-        document.getElementById('errorDireccion').innerHTML = errores.direccion[0];
-        document.getElementById('errorDireccion').classList.remove('invisible');
     }
 
     if ( typeof errores.imagenPrincipal !== 'undefined' ) {
@@ -271,6 +262,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     formData.append('ubicacionDescripcion', ckEditorUbicacion.getData());
     formData.append('latitud', map.center.lat());
     formData.append('longitud', map.center.lng());
+    formData.append('direccion', direccion);
     const url = '/admin/edificios';
     
     fetch(url, {

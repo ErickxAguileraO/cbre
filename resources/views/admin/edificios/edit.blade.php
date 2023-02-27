@@ -37,17 +37,7 @@
                <small id="errorDescripcion" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
-      </fieldset>
-
-      <fieldset class="row">
-         <div class="col-sm-4">
-            <div class="form-group">
-               <label for="direccion">Dirección</label>
-               <input id="direccion" name="direccion" value="{{ $edificio->edi_direccion }}" class="form-control" type="text" tabindex="3" data-maximo-caracteres="255"/>
-               <small id="errorDireccion" class="field-message-alert invisible absolute"></small>
-            </div>
-         </div>
-      </fieldset>    
+      </fieldset>  
 
       <fieldset class="row">
          <div class="col-sm-4">
@@ -144,7 +134,7 @@
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
-               <label for="ubicacionTitulo">Ubicación</label>
+               <label for="ubicacionTitulo">Título ubicación</label>
                <input id="ubicacionTitulo" name="ubicacionTitulo" value="{{ $edificio->ubi_titulo }}" class="form-control" type="text" tabindex="8" data-maximo-caracteres="255"/>
                <small id="errorUbicacionTitulo" class="field-message-alert invisible absolute"></small>
             </div>
@@ -173,8 +163,11 @@
             <div class="form-group">
                <input id="autocompletadoMap" type="text" class="form-control mb-1" tabindex="10" placeholder="Ingresa una ubicación"/>
                <div id="map" data-latitud="{{ $edificio->edi_latitud }}" data-longitud="{{ $edificio->edi_longitud }}"></div>
-               <small id="errorAutocompletadoMap" class="field-message-alert invisible absolute"></small>
-            </div>
+               <div class="pt-2">
+               <span id="direccionRegistrada" data-direccion-registrada="{{ $edificio->edi_direccion }}">Dirección registrada: {{ $edificio->edi_direccion }}</span>
+               </div>
+               
+            </div> 
          </div>
       </fieldset>  
 

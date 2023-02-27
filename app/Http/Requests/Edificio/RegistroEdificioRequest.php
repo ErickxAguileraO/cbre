@@ -33,10 +33,6 @@ class RegistroEdificioRequest extends FormRequest
                 'max:1000',
                 'min:30'
             ],
-            'direccion' => [
-                'required',
-                'max:255'
-            ],
             'imagenPrincipal' => [
                 'required',
                 'mimes:jpg,jpeg,png',

@@ -35,17 +35,7 @@
                <small id="errorDescripcion" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
-      </fieldset>
-
-      <fieldset class="row">
-         <div class="col-sm-4">
-            <div class="form-group">
-               <label for="direccion">Dirección</label>
-               <input id="direccion" name="direccion" value="" class="form-control" type="text" tabindex="6" data-maximo-caracteres="255"/>
-               <small id="errorDireccion" class="field-message-alert invisible absolute"></small>
-            </div>
-         </div>
-      </fieldset>    
+      </fieldset>   
 
       <fieldset class="row">
          <div class="col-sm-4">
@@ -126,7 +116,7 @@
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
-               <label for="ubicacionTitulo">Ubicación</label>
+               <label for="ubicacionTitulo">Título ubicación</label>
                <input id="ubicacionTitulo" name="ubicacionTitulo" value="" class="form-control" type="text" tabindex="10" data-maximo-caracteres="255"/>
                <small id="errorUbicacionTitulo" class="field-message-alert invisible absolute"></small>
             </div>
