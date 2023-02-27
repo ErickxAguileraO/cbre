@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Web;
 
+use Carbon\Carbon;
 use App\Models\Noticia;
+use App\Models\Edificio;
 use App\Models\Indicador;
+use App\Models\DatoGeneral;
 use App\Models\QuienesSomos;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Certificacion;
-use App\Models\DatoGeneral;
-use App\Models\Edificio;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -19,7 +20,7 @@ class HomeController extends Controller
             'indicadores' => Indicador::first(),
             //'noticias' => Noticia::where('not_destacada', 1) // se deben mostrar las destacadas
             //'noticias' => Noticia::whereNull('not_edificio_id') // noticias generales
-            'noticias' => Noticia::orderBy('created_at', 'desc')
+            'noticias' => Noticia::where('not_destacada', 1)->where('not_fecha', '<', Carbon::now('America/Santiago'))->orderBy('not_fecha', 'desc')->take(6)
                         ->get(),
             'certificaciones' => Certificacion::orderBy('cer_posicion', 'desc')->get(),
             'edificios' => Edificio::all(),

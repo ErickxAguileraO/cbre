@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use Carbon\Carbon;
 use App\Models\Noticia;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class NoticiaController extends Controller
     public function list(){
         try {
             return response()->json([
-                'noticias' => Noticia::orderBy('created_at', 'desc') // se muestran todas las noticias
+                'noticias' => Noticia::where('not_fecha', '<', Carbon::now('America/Santiago'))->orderBy('not_fecha', 'desc')
                 ->skip(request('skip'))
                 ->take(request('take'))
                 ->get(),
