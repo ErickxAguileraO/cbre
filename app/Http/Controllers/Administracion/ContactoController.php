@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Administracion;
-use App\Http\Controllers\Controller;
 use App\Models\Contacto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class ContactoController extends Controller
 {
@@ -91,8 +92,16 @@ class ContactoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($contacto)
     {
-        //
+        DB::beginTransaction();
+        try {
+            Contacto::findOrFail($contacto)->delete();
+            DB::commit();
+            return response()->json(['success' => '¡Formulario de contacto eliminado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json(['error' => $th->getMessage()], 401);
+        }
     }
 }
