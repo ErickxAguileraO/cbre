@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer(
-            ['layout.web'],
+            ['layout.web', 'web.contacto.index'],
             function ($view) {
                 $view->with([
                     'datos_generales' => DatoGeneral::first(),
