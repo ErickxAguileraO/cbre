@@ -18,8 +18,6 @@ class HomeController extends Controller
         return view('web.home', [
             'quienes_somos' => QuienesSomos::first(),
             'indicadores' => Indicador::first(),
-            //'noticias' => Noticia::where('not_destacada', 1) // se deben mostrar las destacadas
-            //'noticias' => Noticia::whereNull('not_edificio_id') // noticias generales
             'noticias' => Noticia::where('not_destacada', 1)->where('not_fecha', '<', Carbon::now('America/Santiago'))->orderBy('not_fecha', 'desc')->take(6)
                         ->get(),
             'certificaciones' => Certificacion::orderBy('cer_posicion', 'desc')->get(),
