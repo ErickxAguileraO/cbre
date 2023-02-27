@@ -26,7 +26,7 @@ class ContactoController extends Controller
     public function list()
     {
         try {
-            return Contacto::orderBy('created_at', 'asc')->get();
+            return Contacto::orderBy('created_at', 'desc')->get();
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
         }
@@ -58,9 +58,9 @@ class ContactoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($contacto)
     {
-        //
+        return view('admin.contactos.show', ['contacto' => Contacto::FindOrFail($contacto)]);
     }
 
     /**

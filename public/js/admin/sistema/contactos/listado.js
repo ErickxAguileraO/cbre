@@ -115,13 +115,13 @@
                         cellTemplate(container, options) {
                             console.log(options.data)
                             const idContacto = options.data.con_id;
-                            let urlModificar = `/admin/contactos/${idContacto}/edit`;
+                            let urlMostrar = `/admin/contactos/${idContacto}`;
                             let urlEliminar = `/admin/contactos/${idContacto}`;
 
                             return $(
                                 '<a href="' +
-                                    urlModificar +
-                                    '" class="edit"><i class="color-texto-cbre fas fa-pencil fa-fw"></i></a>  <a class="eliminar_pedido" href="#" data-id="' +
+                                    urlMostrar +
+                                    '" class="edit"><i class="color-texto-cbre fa-solid fa-eye"></i></a>  <a class="eliminar_pedido" href="#" data-id="' +
                                     idContacto +
                                     '" onclick=eliminar("' +
                                     urlEliminar +
