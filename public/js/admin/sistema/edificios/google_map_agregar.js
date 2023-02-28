@@ -3,6 +3,7 @@ let marker;
 const coordenadasChile = { lat: -35.675147, lng: -71.542969 };
 let autocompletado;
 const mapInput = document.getElementById('autocompletadoMap');
+let direccion;
 
 function initMap() {
     // Objeto mapa
@@ -26,6 +27,7 @@ function iniciarAutocompletado() {
         const ubicacion = this.getPlace();
         map.setCenter(ubicacion.geometry.location);
         marker.setPosition(ubicacion.geometry.location);
+        direccion = ubicacion.formatted_address;
     });
 }
 

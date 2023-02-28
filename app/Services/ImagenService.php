@@ -18,28 +18,32 @@ class ImagenService
 
     public static function subirGaleriaCroppie($directorio, $galeriaImagenes)
     {
-        $imagenesStorage = [];
+        if ( !empty($galeriaImagenes) ) {
+            $imagenesStorage = [];
 
-        foreach ($galeriaImagenes as $imagen) {
-            $extension = Arr::last(explode('/', explode(';', $imagen)[0]));
-            $hashName = Str::replace('/', '', Hash::make(microtime(true)));
-            $nombreArchivo = Str::replace(".", "", $hashName) . '.' . $extension;
-            $pathStorage = "public/{$directorio}/imagenes";
-            $pathImagen = Storage::putFileAs($pathStorage, $imagen, $nombreArchivo);
-
-            if ( !$pathImagen ) {
-                continue;
+            foreach ($galeriaImagenes as $imagen) {
+                $extension = Arr::last(explode('/', explode(';', $imagen)[0]));
+                $hashName = Str::replace('/', '', Hash::make(microtime(true)));
+                $nombreArchivo = Str::replace(".", "", $hashName) . '.' . $extension;
+                $pathStorage = "public/{$directorio}/imagenes";
+                $pathImagen = Storage::putFileAs($pathStorage, $imagen, $nombreArchivo);
+    
+                if ( !$pathImagen ) {
+                    continue;
+                }
+    
+                $imagenesStorage[] = [
+                    'ima_url' => $pathImagen
+                ];
             }
 
-            $imagenesStorage[] = [
-                'ima_url' => $pathImagen
-            ];
-        }
+            if ( count($imagenesStorage) == 0 ) {
+                return false;
+            }
 
-        if ( count($imagenesStorage) == 0 ) {
-            return false;
+            return $imagenesStorage;
         }
-
-        return $imagenesStorage;
+        
+        return false;
     }
 }

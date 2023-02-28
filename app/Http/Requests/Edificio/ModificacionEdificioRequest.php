@@ -33,9 +33,13 @@ class ModificacionEdificioRequest extends FormRequest
                 'max:1000',
                 'min:30'
             ],
-            'direccion' => [
-                'required',
-                'max:255'
+            'imagenPrincipal' => [
+                'nullable',
+                'mimes:jpg,jpeg,png',
+                'max:5120'
+            ],
+            'imagenesGaleria' => [
+                'required_without:idImagenes'
             ],
             'video' => [
                 'nullable',
@@ -53,52 +57,6 @@ class ModificacionEdificioRequest extends FormRequest
                 'required',
                 'max:1000',
                 'min:30'
-            ],
-            'jefeNombre' => [
-                'required',
-                'max:255'
-            ],
-            'jefeApellidos' => [
-                'required',
-                'max:255'
-            ],
-            'jefeEmail' => [
-                'required',
-                'max:255',
-                'email'
-            ],
-            'jefeTelefono' => [
-                'required',
-                'numeric',
-                'digits_between:8,9'
-            ],
-            'fotoJefe' => [
-                'nullable',
-                'mimes:jpg,jpeg,png',
-                'max:5120'
-            ],
-            'asistenteNombre' => [
-                'required',
-                'max:255'
-            ],
-            'asistenteApellidos' => [
-                'required',
-                'max:255'
-            ],
-            'asistenteEmail' => [
-                'required',
-                'max:255',
-                'email'
-            ],
-            'asistenteTelefono' => [
-                'required',
-                'numeric',
-                'digits_between:8,9'
-            ],
-            'fotoAsistente' => [
-                'nullable',
-                'mimes:jpg,jpeg,png',
-                'max:5120'
             ],
             'certificaciones' => [
                 'required'
@@ -124,6 +82,7 @@ class ModificacionEdificioRequest extends FormRequest
         return [
             'imagenPrincipal.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
             'imagenPrincipal.max' => 'Tamaño de imagen máximo: 5MB',
+            'imagenesGaleria.required_without' => 'La galería debe tener al menos una imagen.',
             'fotoJefe.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
             'fotoJefe.max' => 'Tamaño de imagen máximo: 5MB.',
             'fotoAsistente.mimes' => 'Formatos permitidos: jpg, jpeg, png.',

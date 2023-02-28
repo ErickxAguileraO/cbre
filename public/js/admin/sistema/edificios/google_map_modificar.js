@@ -6,6 +6,7 @@ const longitudEdificio = parseFloat(mapDiv.getAttribute('data-longitud'));
 const coordenadasInicio = { lat: latitudEdificio, lng: longitudEdificio };
 let autocompletado;
 const mapInput = document.getElementById('autocompletadoMap');
+let direccion = document.getElementById('direccionRegistrada').getAttribute('data-direccion-registrada');
 
 function initMap() {
     // Objeto mapa
@@ -29,6 +30,7 @@ function iniciarAutocompletado() {
         const ubicacion = this.getPlace();
         map.setCenter(ubicacion.geometry.location);
         marker.setPosition(ubicacion.geometry.location);
+        direccion = ubicacion.formatted_address;
     });
 }
 
