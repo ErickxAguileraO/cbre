@@ -10,7 +10,7 @@
             }
         </style>
     @endpush
-    
+
     <div class="contenido">
         <div class="portada">
             <img class="mostrar-escritorio" src="{{ asset('public/web/imagenes/portada-escritorio.svg') }}" alt="">
@@ -29,8 +29,7 @@
                 <p class="txt-1">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete</p>
             </div>
             <div class="caracteristicas">
-                <h2>Características del edificio</h2>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti </p>
+                <h2>Amenities del edificio</h2>
                 <div class="carruselCaracteristicas">
                     <div class="caracteristica-n">
                         <img src="{{ asset('public/web/imagenes/i-areas-verdes.svg') }}" alt="">
@@ -77,7 +76,7 @@
         <section class="flex-noticias-edificio">
             <div class="noticias-home">
                 <h2 class="h2-internas">Noticias destacadas</h2>
-                <p class="p-txt-seccion">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias</p>
+                <p class="p-txt-seccion">Conoce las últimas novedades o acontecimientos de nuestro Edificio</p>
                 <div class="carruselNoticias">
                     <div  class="noticia-home-n">
                         <a href="#">
@@ -94,7 +93,7 @@
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
-                            
+
                         </a>
                     </div>
                     <div  class="noticia-home-n">
@@ -112,7 +111,7 @@
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
-                            
+
                         </a>
                     </div>
                     <div  class="noticia-home-n">
@@ -130,7 +129,7 @@
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
-                            
+
                         </a>
                     </div>
 
@@ -150,18 +149,18 @@
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
-                            
+
                         </a>
                     </div>
                 </div>
                 <a href="/noticias" class="style-link">Ver todas las noticias</a>
             </div>
         </section>
-        
+
         <section class="flex-certificaciones-edificio">
             <div class="certificaciones-home">
                 <h2 class="h2-internas">Locales comerciales</h2>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias</p>
+                <p>En el edificio podrás encontrar diferentes locales comerciales, visítalos:</p>
                 <div class="carruselCertificaciones">
                     <div class="certificacion-home-n">
                         <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
@@ -211,7 +210,7 @@
                         <img src="{{ asset('public/web/imagenes/certificaciones-5.svg') }}" alt="">
                     </div>
                 </div>
-                <p class="p-txt-seccion">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete</p>
+                <p class="p-txt-seccion">Te presentamos las certificaciones que hemos obtenido</p>
             </div>
         </section>
 
@@ -246,7 +245,7 @@
                     </div>
                 </div>
 
-{{-- 
+{{--
 
                 <div  class="operaciones-contenido">
                     <h2>Asistente de operaciones</h2>
@@ -266,14 +265,14 @@
                         </div>
                     </div>
                 </div> --}}
-                
+
             </div>
-            
+
         </section>
     </div>
 
     @push('extra-js')
-   
+
     @endpush
 
 @endsection
