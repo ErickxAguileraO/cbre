@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     hidingPriority: 3,
                     width: '100',
                     minWidth: '100',
+                    alignment: "center",
                     // width:300,
                     lookup: {
                         dataSource: {

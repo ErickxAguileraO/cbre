@@ -20,7 +20,9 @@ class Noticia extends Model
         'not_imagen',
         'not_titulo',
         'not_texto',
-        'not_edificio_id'
+        'not_fecha',
+        'not_destacada',
+        'not_edificio_id',
     ];
 
     protected $appends = [
@@ -42,12 +44,12 @@ class Noticia extends Model
 
     public function getFechaChileAttribute()
     {
-        return Carbon::parse($this->created_at)->format('d-m-Y');
+        return Carbon::parse($this->not_fecha)->format('d-m-Y');
     }
 
     public function getHoraAttribute()
     {
-        return Carbon::parse($this->created_at)->format('H:i');
+        return Carbon::parse($this->not_fecha)->format('H:i');
     }
 
     public function getUrlImagenAttribute()

@@ -28,10 +28,11 @@ class ModificacionNoticiaRequest extends FormRequest
                 'required',
                 'max:255'
             ],
-            'imagen' => [
+            'fecha' => [
+                'required',
+            ],
+            'imagenesGaleria' => [
                 'nullable',
-                'mimes:jpg,jpeg,png',
-                'max:5120'
             ],
             'cuerpo' => [
                 'required',

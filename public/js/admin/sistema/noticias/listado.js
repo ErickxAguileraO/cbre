@@ -7,16 +7,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
             },
         });
-    
+
         DevExpress.localization.locale(navigator.language);
-    
+
         // Función para el origen de datos.
-        const noticias = new DevExpress.data.CustomStore({ 
+        const noticias = new DevExpress.data.CustomStore({
             load: function() {
                 return sendRequest("/admin/noticias/get/list");
             }
         });
-    
+
         $('#dataGridNoticias').dxDataGrid({
             dataSource: noticias,
             columns: [
@@ -30,15 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 {
                     dataField: 'fechaChile',
-                    caption: 'Fecha',
-                    width: '100',
-                    minWidth: '100',
+                    caption: 'Fecha publicación',
+                    width: '150',
+                    minWidth: '150',
+                    alignment: 'center',
                 },
                 {
                     dataField: 'hora',
                     caption: 'Hora',
                     width: '70',
                     minWidth: '70',
+                    alignment: 'center',
                 },
                 {
                     dataField: '',
@@ -49,17 +51,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     hidingPriority: 4,
                     cellTemplate(container, options) {
                         const idNoticia = options.data.not_id;
-    
+
                         let urlModificar = `/admin/noticias/${idNoticia}/edit`;
                         let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
                         let templateEliminar = `<a href="" title="Eliminar" id="eliminarNoticiaEnlace" data-id="${idNoticia}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
-    
+
                         const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
                         const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);
-                        
+
                         enlaceEliminar.click(function (event) {
                             event.preventDefault();
-                            
+
                             Swal.fire({
                                 title: '¿Deseas continuar?',
                                 text: "¡No podrás revertir esto!",
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                                 title: 'Un momento...',
                                                 text: response.message
                                             })
-                                
+
                                             return;
                                         }
 
@@ -98,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                                 title: 'Un momento...',
                                                 text: response.message
                                             })
-                            
+
                                             return;
                                         }
 

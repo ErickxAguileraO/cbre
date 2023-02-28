@@ -44,8 +44,8 @@ class NoticiaController extends Controller
         DB::beginTransaction();
 
         try {
-            $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'noticias');
-            
+            $pathImagen = ImagenService::subirGaleriaCroppie('noticias', $request->imagenesGaleria)[0]['ima_url'];
+
             if ( !$pathImagen ) {
                 return response()->error('No se pudo subir la imagen.', null);
             }
@@ -53,7 +53,9 @@ class NoticiaController extends Controller
             $noticia = Noticia::create([
                 'not_imagen' => $pathImagen,
                 'not_titulo' => $request->titulo,
+                'not_fecha' => $request->fecha,
                 'not_texto' => $request->cuerpo,
+                'not_destacada' => $request->has('destacada') ? 1 : 0,
                 'not_edificio_id' => $request->edificio
             ]);
 
@@ -87,7 +89,7 @@ class NoticiaController extends Controller
     public function edit($id)
     {
         $noticia = Noticia::find($id);
-        
+
         return view('admin.noticias.edit', ['noticia' => $noticia]);
     }
 
@@ -105,9 +107,9 @@ class NoticiaController extends Controller
         try {
             $noticia = Noticia::findOrFail($id);
 
-            if ( $request->file('imagen') !== null ) {
+            if ( $request->imagenesGaleria !== null ) {
                 Storage::delete($noticia->not_imagen);
-                $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'noticias');
+                $pathImagen = ImagenService::subirGaleriaCroppie('noticias', $request->imagenesGaleria)[0]['ima_url'];
 
                 if ( !$pathImagen ) {
                     return response()->error('No se pudo subir la imagen.', null);
@@ -117,7 +119,9 @@ class NoticiaController extends Controller
             }
 
             $noticia->not_titulo = $request->titulo;
+            $noticia->not_fecha = $request->fecha;
             $noticia->not_texto = $request->cuerpo;
+            $noticia->not_destacada = $request->has('destacada') ? 1 : 0;
             $noticia->not_edificio_id = $request->edificio;
             $noticia->save();
 
@@ -143,7 +147,7 @@ class NoticiaController extends Controller
             $noticia = Noticia::findOrFail($id);
             Storage::delete($noticia->not_imagen);
             $noticia->delete();
-            
+
             DB::commit();
 
             return response()->success($noticia, 200);

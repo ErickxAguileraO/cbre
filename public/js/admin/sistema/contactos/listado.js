@@ -97,6 +97,7 @@
                         width: '100',
                         minWidth: '100',
                         hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
+                        alignment: 'center',
                     },
                     {
                         dataField: "hora",
@@ -104,6 +105,7 @@
                         width: '100',
                         minWidth: '100',
                         hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
+                        alignment: 'center',
                     },
                     {
                         dataField: "",

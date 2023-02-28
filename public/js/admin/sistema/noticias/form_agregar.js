@@ -3,7 +3,7 @@ ClassicEditor.create(document.querySelector('#cuerpoTextarea'), {
     removePlugins: ['MediaEmbed'],
     ckfinder: {
         uploadUrl: '/image-upload?_token='+$("input[name='_token']").val(),
-    }
+    },
 })
 .then(editor => {
     ckEditor = editor;
@@ -16,8 +16,12 @@ document.getElementById('titulo').addEventListener('input', function () {
     document.getElementById('errorTitulo').classList.add('invisible');
 })
 
-document.getElementById('imagen').addEventListener('input', function () {
-    document.getElementById('errorImagen').classList.add('invisible');
+document.getElementById('fecha').addEventListener('input', function () {
+    document.getElementById('errorFecha').classList.add('invisible');
+})
+
+document.getElementById('inputFileGaleria').addEventListener('input', function () {
+    document.getElementById('errorImagenesGaleria').classList.add('invisible');
 })
 
 document.getElementById('cuerpoTextarea').addEventListener('input', function () {
@@ -33,7 +37,12 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorTitulo').innerHTML = errores.titulo[0];
         document.getElementById('errorTitulo').classList.remove('invisible');
     }
-    
+
+    if ( typeof errores.fecha !== 'undefined' ) {
+        document.getElementById('errorFecha').innerHTML = errores.fecha[0];
+        document.getElementById('errorFecha').classList.remove('invisible');
+    }
+
     if ( typeof errores.cuerpo !== 'undefined' ) {
         document.getElementById('errorCuerpo').innerHTML = errores.cuerpo[0];
         document.getElementById('errorCuerpo').classList.remove('invisible');
@@ -44,9 +53,9 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorEdificio').classList.remove('invisible');
     }
 
-    if ( typeof errores.imagen !== 'undefined' ) {
-        document.getElementById('errorImagen').innerHTML = errores.imagen[0];
-        document.getElementById('errorImagen').classList.remove('invisible');
+    if ( typeof errores.imagenesGaleria !== 'undefined' ) {
+        document.getElementById('errorImagenesGaleria').innerHTML = errores.imagenesGaleria[0];
+        document.getElementById('errorImagenesGaleria').classList.remove('invisible');
     }
 }
 
@@ -66,7 +75,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     const formData = new FormData(document.forms.namedItem('formNoticia'));
     formData.append('cuerpo', ckEditor.getData());
     const url = '/admin/noticias';
-    
+
     fetch(url, {
         method: 'POST',
         headers: {
@@ -82,7 +91,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
 
             return;
         }
-        
+
         if ( typeof response.status == 'undefined' ) {
             Swal.fire({
                 icon: 'error',
