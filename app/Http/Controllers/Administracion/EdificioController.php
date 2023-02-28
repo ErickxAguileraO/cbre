@@ -75,48 +75,6 @@ class EdificioController extends Controller
             $imagenesStorage = ImagenService::subirGaleriaCroppie('edificios', $request->imagenesGaleria);
             $edificio->imagenes()->createMany($imagenesStorage);
 
-            $userJefe = User::create([
-                'name' => $request->jefeNombre,
-                'email' => $request->jefeEmail,
-                'password' => Hash::make('12345678')
-            ]);
-
-            $pathFotoJefe = ImagenService::subirImagen($request->file('fotoJefe'), 'funcionarios');
-
-            if ( !$pathFotoJefe ) {
-                return response()->error('No se pudo subir la foto del jefe de operaciones.', null);
-            }
-
-            $funcionarioJefe = $userJefe->funcionario()->create([
-                'fun_nombre' => $request->jefeNombre,
-                'fun_apellido' => $request->jefeApellidos,
-                'fun_telefono' => $request->jefeTelefono,
-                'fun_foto' => $pathFotoJefe,
-                'fun_cargo' => 'Jefe de operaciones',
-                'fun_edificio_id' => $edificio->edi_id
-            ]);
-
-            $userAsistente = User::create([
-                'name' => $request->asistenteNombre,
-                'email' => $request->asistenteEmail,
-                'password' => Hash::make('12345678')
-            ]);
-
-            $pathFotoAsistente = ImagenService::subirImagen($request->file('fotoAsistente'), 'funcionarios');
-
-            if ( !$pathFotoAsistente ) {
-                return response()->error('No se pudo subir la foto del asistente de operaciones.', null);
-            }
-
-            $funcionarioAsistente = $userAsistente->funcionario()->create([
-                'fun_nombre' => $request->asistenteNombre,
-                'fun_apellido' => $request->asistenteApellidos,
-                'fun_telefono' => $request->asistenteTelefono,
-                'fun_foto' => $pathFotoAsistente,
-                'fun_cargo' => 'Asistente de operaciones',
-                'fun_edificio_id' => $edificio->edi_id
-            ]);
-
             foreach ($request->certificaciones as $certificacion) {
                 $edificio->certificaciones()->attach($certificacion);
             }
@@ -202,49 +160,6 @@ class EdificioController extends Controller
             if ( !empty($imagenesStorage) ) {
                 $edificio->imagenes()->createMany($imagenesStorage);
             }
-            
-
-            /* $userJefe = User::create([
-                'name' => $request->jefeNombre,
-                'email' => $request->jefeEmail,
-                'password' => Hash::make('12345678')
-            ]);
-
-            $pathFotoJefe = ImagenService::subirImagen($request->file('fotoJefe'), 'funcionarios');
-
-            if ( !$pathFotoJefe ) {
-                return response()->error('No se pudo subir la foto del jefe de operaciones.', null);
-            }
-
-            $funcionarioJefe = $userJefe->funcionario()->create([
-                'fun_nombre' => $request->jefeNombre,
-                'fun_apellido' => $request->jefeApellidos,
-                'fun_telefono' => $request->jefeTelefono,
-                'fun_foto' => $pathFotoJefe,
-                'fun_cargo' => 'Jefe de operaciones',
-                'fun_edificio_id' => $edificio->edi_id
-            ]);
-
-            $userAsistente = User::create([
-                'name' => $request->asistenteNombre,
-                'email' => $request->asistenteEmail,
-                'password' => Hash::make('12345678')
-            ]);
-
-            $pathFotoAsistente = ImagenService::subirImagen($request->file('fotoAsistente'), 'funcionarios');
-
-            if ( !$pathFotoAsistente ) {
-                return response()->error('No se pudo subir la foto del asistente de operaciones.', null);
-            }
-
-            $funcionarioAsistente = $userAsistente->funcionario()->create([
-                'fun_nombre' => $request->asistenteNombre,
-                'fun_apellido' => $request->asistenteApellidos,
-                'fun_telefono' => $request->asistenteTelefono,
-                'fun_foto' => $pathFotoAsistente,
-                'fun_cargo' => 'Asistente de operaciones',
-                'fun_edificio_id' => $edificio->edi_id
-            ]); */
 
             $edificio->certificaciones()->detach();
             $edificio->caracteristicas()->detach();

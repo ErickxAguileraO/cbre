@@ -58,52 +58,6 @@ class RegistroEdificioRequest extends FormRequest
                 'max:1000',
                 'min:30'
             ],
-            'jefeNombre' => [
-                'required',
-                'max:255'
-            ],
-            'jefeApellidos' => [
-                'required',
-                'max:255'
-            ],
-            'jefeEmail' => [
-                'required',
-                'max:255',
-                'email'
-            ],
-            'jefeTelefono' => [
-                'required',
-                'numeric',
-                'digits_between:8,9'
-            ],
-            'fotoJefe' => [
-                'required',
-                'mimes:jpg,jpeg,png',
-                'max:5120'
-            ],
-            'asistenteNombre' => [
-                'required',
-                'max:255'
-            ],
-            'asistenteApellidos' => [
-                'required',
-                'max:255'
-            ],
-            'asistenteEmail' => [
-                'required',
-                'max:255',
-                'email'
-            ],
-            'asistenteTelefono' => [
-                'required',
-                'numeric',
-                'digits_between:8,9'
-            ],
-            'fotoAsistente' => [
-                'required',
-                'mimes:jpg,jpeg,png',
-                'max:5120'
-            ],
             'certificaciones' => [
                 'required'
             ],
@@ -127,13 +81,7 @@ class RegistroEdificioRequest extends FormRequest
     {
         return [
             'imagenPrincipal.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
-            'imagenPrincipal.max' => 'Tamaño de imagen máximo: 5MB',
-            'fotoJefe.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
-            'fotoJefe.max' => 'Tamaño de imagen máximo: 5MB.',
-            'fotoAsistente.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
-            'fotoAsistente.max' => 'Tamaño de imagen máximo: 5MB.',
-            'jefeTelefono.digits_between' => 'El teléfono debe tener 8 o 9 dígitos.',
-            'asistenteTelefono.digits_between' => 'El teléfono debe tener 8 o 9 dígitos.'
+            'imagenPrincipal.max' => 'Tamaño de imagen máximo: 5MB'
         ];
     }
 }
