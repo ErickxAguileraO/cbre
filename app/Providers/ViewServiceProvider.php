@@ -33,6 +33,7 @@ class ViewServiceProvider extends ServiceProvider
             'admin.noticias.edit',
             'admin.comercios.create',
             'admin.comercios.edit',
+            'admin.funcionarios.create',
             'web.edificios.index'
         ], EdificioComposer::class);
 

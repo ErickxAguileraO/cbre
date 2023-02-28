@@ -93,7 +93,7 @@ document.getElementById('passwordResetButton').addEventListener('click', functio
         const { value: email } = await Swal.fire({
             title: 'Ingresa tu email',
             input: 'email',
-            text: 'Te enviaremos un mensaje con las instrucciones para recuperar tu contraseña.',
+            text: 'Te enviaremos un mensaje con las instrucciones para cambiar tu contraseña.',
             inputPlaceholder: 'ejemplo@email.com',
             inputValidator: (valorInput) => {
                 if ( valorInput == '' ) {

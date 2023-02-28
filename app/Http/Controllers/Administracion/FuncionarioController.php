@@ -7,6 +7,9 @@ use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Funcionario\RegistroFuncionarioRequest;
+use Illuminate\Support\Facades\Hash;
+use App\Services\ImagenService;
 
 class FuncionarioController extends Controller
 {
@@ -40,7 +43,7 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.funcionarios.create');
     }
 
     /**
@@ -49,9 +52,40 @@ class FuncionarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegistroFuncionarioRequest $request)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $pathFoto = ImagenService::subirImagen($request->file('foto'), 'funcionarios');
+            
+            if ( !$pathFoto ) {
+                return response()->error('No se pudo subir la imagen.', null);
+            }
+
+            $user = User::create([
+                'name' => $request->nombre,
+                'email' => $request->email,
+                'password' => Hash::make('12345678')
+            ]);
+
+            $funcionario = $user->funcionario()->create([
+                'fun_nombre' => $request->nombre,
+                'fun_apellido' => $request->apellidos,
+                'fun_telefono' => $request->telefono,
+                'fun_foto' => $pathFoto,
+                'fun_cargo' => $request->cargo,
+                'fun_edificio_id' => $request->edificio
+            ]);
+
+            DB::commit();
+
+            return response()->success($funcionario, 201);
+        } catch (\Exception $exc) {
+            DB::rollback();
+
+            return response()->error($exc->getMessage(), null);
+        }
     }
 
     /**
