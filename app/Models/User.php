@@ -34,6 +34,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $appends = [
+        'nombreCompleto'
+    ];
+
     /**
      * The attributes that should be cast.
      *
@@ -51,5 +55,18 @@ class User extends Authenticatable
     public function funcionario()
     {
         return $this->hasOne(Funcionario::class, 'fun_user_id', 'id');
+    }
+
+    public function getNombreCompletoAttribute()
+    {
+        $nombreCompleto = $this->name;
+        
+        if ( $this->funcionario != null ) {
+            $nombreCompleto = "{$this->funcionario->fun_nombre} {$this->funcionario->fun_apellido}";
+        } elseif ($this->administrador != null) {
+            $nombreCompleto = "{$this->administrador->adm_nombre} {$this->administrador->adm_apellido}";
+        }
+
+        return $nombreCompleto;
     }
 }

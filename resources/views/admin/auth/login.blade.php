@@ -41,7 +41,8 @@
                   <button type="submit" id="ingresarButton" class="btn boton-submit-formulario">Ingresar</button>
                   <br />
                   <br />
-                  <button type="button" class="btn btn-link" id="passwordResetButton">Recuperar contraseña</button>
+                  <p id="mensaje-cambio-password" class="mt-5 text-center">Si olvidaste tu contraseña o es tu primer inicio de sesión, puedes hacer clic en el siguiente enlace:</p>
+                  <button type="button" class="btn btn-link" id="passwordResetButton">Cambiar contraseña</button>
                </div>
             </fieldset>
          </form>
