@@ -7,16 +7,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
             },
         });
-    
+
         DevExpress.localization.locale(navigator.language);
-    
+
         // Función para el origen de datos.
-        const certificaciones = new DevExpress.data.CustomStore({ 
+        const certificaciones = new DevExpress.data.CustomStore({
             load: function() {
                 return sendRequest("/admin/certificaciones/get/list");
             }
         });
-    
+
         $('#dataGridCertificaciones').dxDataGrid({
             dataSource: certificaciones,
             columns: [
@@ -29,12 +29,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     caption: 'Posición',
                     width: '80',
                     minWidth: '80',
+                    alignment: "center",
                 },
                 {
                     dataField: 'estado',
                     caption: 'Estado',
                     width: '75',
                     minWidth: '75',
+                    alignment: "center",
                 },
                 {
                     dataField: '',
@@ -45,17 +47,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     hidingPriority: 4,
                     cellTemplate(container, options) {
                         const idCertificacion = options.data.cer_id;
-    
+
                         let urlModificar = `/admin/certificaciones/${idCertificacion}/edit`;
                         let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
                         let templateEliminar = `<a href="" title="Eliminar" id="eliminarPerfilEnlace" data-id="${idCertificacion}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
-    
+
                         const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
                         const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);
-                        
+
                         enlaceEliminar.click(function (event) {
                             event.preventDefault();
-                            
+
                             Swal.fire({
                                 title: '¿Deseas continuar?',
                                 text: "¡No podrás revertir esto!",
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                                 title: 'Un momento...',
                                                 text: response.message
                                             })
-                            
+
                                             return;
                                         }
 
