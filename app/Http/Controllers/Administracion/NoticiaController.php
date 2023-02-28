@@ -44,7 +44,7 @@ class NoticiaController extends Controller
         DB::beginTransaction();
 
         try {
-            $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'noticias');
+            $pathImagen = ImagenService::subirGaleriaCroppie('noticias', $request->imagenesGaleria)[0]['ima_url'];
 
             if ( !$pathImagen ) {
                 return response()->error('No se pudo subir la imagen.', null);
@@ -107,9 +107,9 @@ class NoticiaController extends Controller
         try {
             $noticia = Noticia::findOrFail($id);
 
-            if ( $request->file('imagen') !== null ) {
+            if ( $request->imagenesGaleria !== null ) {
                 Storage::delete($noticia->not_imagen);
-                $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'noticias');
+                $pathImagen = ImagenService::subirGaleriaCroppie('noticias', $request->imagenesGaleria)[0]['ima_url'];
 
                 if ( !$pathImagen ) {
                     return response()->error('No se pudo subir la imagen.', null);

@@ -20,8 +20,8 @@ document.getElementById('fecha').addEventListener('input', function () {
     document.getElementById('errorFecha').classList.add('invisible');
 })
 
-document.getElementById('imagen').addEventListener('input', function () {
-    document.getElementById('errorImagen').classList.add('invisible');
+document.getElementById('inputFileGaleria').addEventListener('input', function () {
+    document.getElementById('errorImagenesGaleria').classList.add('invisible');
 })
 
 document.getElementById('cuerpoTextarea').addEventListener('input', function () {
@@ -53,9 +53,9 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorEdificio').classList.remove('invisible');
     }
 
-    if ( typeof errores.imagen !== 'undefined' ) {
-        document.getElementById('errorImagen').innerHTML = errores.imagen[0];
-        document.getElementById('errorImagen').classList.remove('invisible');
+    if ( typeof errores.imagenesGaleria !== 'undefined' ) {
+        document.getElementById('errorImagenesGaleria').innerHTML = errores.imagenesGaleria[0];
+        document.getElementById('errorImagenesGaleria').classList.remove('invisible');
     }
 }
 

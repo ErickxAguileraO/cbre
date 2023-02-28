@@ -31,10 +31,8 @@ class RegistroNoticiaRequest extends FormRequest
             'fecha' => [
                 'required',
             ],
-            'imagen' => [
+            'imagenesGaleria' => [
                 'required',
-                'mimes:jpg,jpeg,png',
-                'max:5120'
             ],
             'cuerpo' => [
                 'required',
