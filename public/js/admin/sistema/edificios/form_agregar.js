@@ -1,11 +1,6 @@
 // Campos con CKEditor
 let ckEditorDescripcion;
-ClassicEditor.create(document.querySelector('#descripcionTextarea'), {
-    removePlugins: ['MediaEmbed'],
-    ckfinder: {
-        uploadUrl: '/image-upload?_token='+$("input[name='_token']").val(),
-    }
-})
+ClassicEditor.create(document.querySelector('#descripcionTextarea'), configuracionCkeditor)
 .then(editor => {
     ckEditorDescripcion = editor;
     ckEditorDescripcion.model.document.on( 'change:data', () => {
@@ -14,12 +9,7 @@ ClassicEditor.create(document.querySelector('#descripcionTextarea'), {
 });
 
 let ckEditorUbicacion;
-ClassicEditor.create(document.querySelector('#ubicacionDescripcionTextarea'), {
-    removePlugins: ['MediaEmbed'],
-    ckfinder: {
-        uploadUrl: '/image-upload?_token='+$("input[name='_token']").val(),
-    }
-})
+ClassicEditor.create(document.querySelector('#ubicacionDescripcionTextarea'), configuracionCkeditor)
 .then(editor => {
     ckEditorUbicacion = editor;
     ckEditorUbicacion.model.document.on( 'change:data', () => {
@@ -36,10 +26,6 @@ document.getElementById('nombre').addEventListener('input', function () {
 
 document.getElementById('descripcionTextarea').addEventListener('input', function () {
     document.getElementById('errorDescripcion').classList.add('invisible');
-})
-
-document.getElementById('direccion').addEventListener('input', function () {
-    document.getElementById('errorDireccion').classList.add('invisible');
 })
 
 document.getElementById('imagenPrincipal').addEventListener('input', function () {
@@ -66,46 +52,6 @@ document.getElementById('ubicacionDescripcionTextarea').addEventListener('input'
     document.getElementById('errorUbicacionDescripcion').classList.add('invisible');
 })
 
-document.getElementById('jefeNombre').addEventListener('input', function () {
-    document.getElementById('errorJefeNombre').classList.add('invisible');
-})
-
-document.getElementById('jefeApellidos').addEventListener('input', function () {
-    document.getElementById('errorJefeApellidos').classList.add('invisible');
-})
-
-document.getElementById('jefeEmail').addEventListener('input', function () {
-    document.getElementById('errorJefeEmail').classList.add('invisible');
-})
-
-document.getElementById('jefeTelefono').addEventListener('input', function () {
-    document.getElementById('errorJefeTelefono').classList.add('invisible');
-})
-
-document.getElementById('fotoJefe').addEventListener('input', function () {
-    document.getElementById('errorFotoJefe').classList.add('invisible');
-})
-
-document.getElementById('asistenteNombre').addEventListener('input', function () {
-    document.getElementById('errorAsistenteNombre').classList.add('invisible');
-})
-
-document.getElementById('asistenteApellidos').addEventListener('input', function () {
-    document.getElementById('errorAsistenteApellidos').classList.add('invisible');
-})
-
-document.getElementById('asistenteEmail').addEventListener('input', function () {
-    document.getElementById('errorAsistenteEmail').classList.add('invisible');
-})
-
-document.getElementById('asistenteTelefono').addEventListener('input', function () {
-    document.getElementById('errorAsistenteTelefono').classList.add('invisible');
-})
-
-document.getElementById('fotoAsistente').addEventListener('input', function () {
-    document.getElementById('errorFotoAsistente').classList.add('invisible');
-})
-
 // Quitar mensaje de select2
 $('#certificaciones').change(function () {
     document.getElementById('errorCertificaciones').classList.add('invisible');;
@@ -128,11 +74,6 @@ function mostrarErroresValidacion(errores) {
     if ( typeof errores.descripcion !== 'undefined' ) {
         document.getElementById('errorDescripcion').innerHTML = errores.descripcion[0];
         document.getElementById('errorDescripcion').classList.remove('invisible');
-    }
-
-    if ( typeof errores.direccion !== 'undefined' ) {
-        document.getElementById('errorDireccion').innerHTML = errores.direccion[0];
-        document.getElementById('errorDireccion').classList.remove('invisible');
     }
 
     if ( typeof errores.imagenPrincipal !== 'undefined' ) {
@@ -163,56 +104,6 @@ function mostrarErroresValidacion(errores) {
     if ( typeof errores.ubicacionDescripcion !== 'undefined' ) {
         document.getElementById('errorUbicacionDescripcion').innerHTML = errores.ubicacionDescripcion[0];
         document.getElementById('errorUbicacionDescripcion').classList.remove('invisible');
-    }
-
-    if ( typeof errores.jefeNombre !== 'undefined' ) {
-        document.getElementById('errorJefeNombre').innerHTML = errores.jefeNombre[0];
-        document.getElementById('errorJefeNombre').classList.remove('invisible');
-    }
-
-    if ( typeof errores.jefeApellidos !== 'undefined' ) {
-        document.getElementById('errorJefeApellidos').innerHTML = errores.jefeApellidos[0];
-        document.getElementById('errorJefeApellidos').classList.remove('invisible');
-    }
-
-    if ( typeof errores.jefeEmail !== 'undefined' ) {
-        document.getElementById('errorJefeEmail').innerHTML = errores.jefeEmail[0];
-        document.getElementById('errorJefeEmail').classList.remove('invisible');
-    }
-
-    if ( typeof errores.jefeTelefono !== 'undefined' ) {
-        document.getElementById('errorJefeTelefono').innerHTML = errores.jefeTelefono[0];
-        document.getElementById('errorJefeTelefono').classList.remove('invisible');
-    }
-
-    if ( typeof errores.fotoJefe !== 'undefined' ) {
-        document.getElementById('errorFotoJefe').innerHTML = errores.fotoJefe[0];
-        document.getElementById('errorFotoJefe').classList.remove('invisible');
-    }
-
-    if ( typeof errores.asistenteNombre !== 'undefined' ) {
-        document.getElementById('errorAsistenteNombre').innerHTML = errores.asistenteNombre[0];
-        document.getElementById('errorAsistenteNombre').classList.remove('invisible');
-    }
-
-    if ( typeof errores.asistenteApellidos !== 'undefined' ) {
-        document.getElementById('errorAsistenteApellidos').innerHTML = errores.asistenteApellidos[0];
-        document.getElementById('errorAsistenteApellidos').classList.remove('invisible');
-    }
-
-    if ( typeof errores.asistenteEmail !== 'undefined' ) {
-        document.getElementById('errorAsistenteEmail').innerHTML = errores.asistenteEmail[0];
-        document.getElementById('errorAsistenteEmail').classList.remove('invisible');
-    }
-
-    if ( typeof errores.asistenteTelefono !== 'undefined' ) {
-        document.getElementById('errorAsistenteTelefono').innerHTML = errores.asistenteTelefono[0];
-        document.getElementById('errorAsistenteTelefono').classList.remove('invisible');
-    }
-
-    if ( typeof errores.fotoAsistente !== 'undefined' ) {
-        document.getElementById('errorFotoAsistente').innerHTML = errores.fotoAsistente[0];
-        document.getElementById('errorFotoAsistente').classList.remove('invisible');
     }
 
     if ( typeof errores.certificaciones !== 'undefined' ) {
@@ -271,6 +162,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     formData.append('ubicacionDescripcion', ckEditorUbicacion.getData());
     formData.append('latitud', map.center.lat());
     formData.append('longitud', map.center.lng());
+    formData.append('direccion', direccion);
     const url = '/admin/edificios';
     
     fetch(url, {

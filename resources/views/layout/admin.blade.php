@@ -135,7 +135,8 @@
 <script src="{{ asset('public/js/admin/jquery/devextreme/dx.messages.es.js') }}"></script>
 <script src="{{ asset('public/js/admin/jquery/sweetalert2/js/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('public/js/admin/sistema/validaciones_inputs.js') }}"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/35.3.1/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/translations/de.js"></script>
 <script src="{{ asset('public/js/admin/sistema/configuracion_componentes.js') }}"></script>
 <script src="{{ asset('public/js/admin/sistema/header/logout.js') }}"></script>
 @stack('scripts')
