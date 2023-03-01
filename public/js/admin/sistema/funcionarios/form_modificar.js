@@ -79,8 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
 
         const token = document.querySelector("input[name='_token']").value;
+        const idFuncionario = document.getElementById('idFuncionario').getAttribute('data-id-funcionario');
         const formData = new FormData(document.forms.namedItem('formFuncionario'));
-        const url = '/admin/funcionarios';
+        const url = `/admin/funcionarios/${idFuncionario}`;
         
         fetch(url, {
             method: 'POST',
@@ -120,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             Swal.fire({
                 icon: 'success',
-                title: 'Funcionario agregado',
+                title: 'Funcionario actualizado',
                 showConfirmButton: false,
                 timer: 2000
             });

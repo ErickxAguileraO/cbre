@@ -57,7 +57,7 @@
                     </div>
                     <div class="position-relative">
                        <div class="custom-file">
-                          <input type="file" id="imagen" name="imagen" class="custom-file-input imagen-input" lang="es" accept=".jpg,.jpeg,.png">
+                          <input type="file" id="inputFileGaleria" name="inputFileGaleria" class="custom-file-input imagen-input" lang="es" accept=".jpg,.jpeg,.png">
                           <label class="custom-file-label" for="imagen-input">Buscar un archivo</label>
                        </div>
                     </div>
@@ -89,7 +89,7 @@
                 <input type="checkbox" name="destacada" id="destacada" class="form-check-input" value="" {{ $noticia->not_destacada == 1 ? 'checked' : '' }}>
                 <span class="ml-2">Noticia destacada</span>
             </div>
-        </div>B
+        </div>
     </fieldset>
 
       <fieldset class="row">
