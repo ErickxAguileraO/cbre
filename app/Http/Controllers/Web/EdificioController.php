@@ -20,14 +20,14 @@ class EdificioController extends Controller
         try {
             if(request('submercado') === 'null'){
                 return response()->json([
-                    'edificios' => Edificio::with(['submercado.comuna.region'])->orderBy('edi_nombre')
+                    'edificios' => Edificio::with(['submercado.comuna.region'])->orderBy('edi_nombre', 'asc')
                     ->skip(request('skip'))
                     ->take(request('take'))
                     ->get(),
                 ]);
             }else{
                 return response()->json([
-                    'edificios' => Edificio::where('edi_submercado_id', request('submercado'))->with(['submercado.comuna.region'])->orderBy('edi_nombre')
+                    'edificios' => Edificio::where('edi_submercado_id', request('submercado'))->with(['submercado.comuna.region'])->orderBy('edi_nombre', 'asc')
                     ->skip(request('skip'))
                     ->take(request('take'))
                     ->get(),
