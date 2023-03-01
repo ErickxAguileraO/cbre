@@ -6,8 +6,10 @@ use App\Models\User;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Funcionario\RegistroFuncionarioRequest;
+use App\Http\Requests\Funcionario\ModificacionFuncionarioRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Services\ImagenService;
 
@@ -23,18 +25,14 @@ class FuncionarioController extends Controller
         return view('admin.funcionarios.index');
     }
 
-            /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function list()
     {
-        try {
-            return Funcionario::with(['userTrashed'])->withTrashed()->get();
-        } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()]);
-        }
+        return Funcionario::orderByDesc('created_at')->get();
     }
     /**
      * Show the form for creating a new resource.
@@ -105,9 +103,9 @@ class FuncionarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Funcionario $funcionario)
     {
-        //
+        return view('admin.funcionarios.edit', ['funcionario' => $funcionario]);
     }
 
     /**
@@ -117,9 +115,38 @@ class FuncionarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ModificacionFuncionarioRequest $request, Funcionario $funcionario)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            if ($request->file('foto') !== null) {
+                Storage::delete($funcionario->fun_foto);
+                $pathFoto = ImagenService::subirImagen($request->file('foto'), 'funcionarios');
+
+                if ( !$pathFoto ) {
+                    return response()->error('No se pudo subir la imagen.', null);
+                }
+
+                $funcionario->fun_foto = $pathFoto;
+            }
+
+            $funcionario->fun_nombre = $request->nombre;
+            $funcionario->fun_apellido = $request->apellidos;
+            $funcionario->fun_telefono = $request->telefono;
+            $funcionario->fun_cargo = $request->cargo;
+            $funcionario->fun_edificio_id = $request->edificio;
+            $funcionario->save();
+
+            $funcionario->user->email = $request->email;
+            $funcionario->user->save();
+
+            DB::commit();
+
+            return response()->success($funcionario, 201);
+        } catch (\Exception $exc) {
+            return response()->error($exc->getMessage(), null);
+        }
     }
 
         /**
@@ -128,19 +155,6 @@ class FuncionarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function restore($funcionario)
-    {
-        DB::beginTransaction();
-        try {
-            Funcionario::withTrashed()->findOrFail($funcionario)->restore();
-            User::withTrashed()->findOrFail(Funcionario::withTrashed()->findOrFail($funcionario)->fun_user_id)->restore();
-            DB::commit();
-            return response()->json(['success' => '¡Funcionario habilitado correctamente!'], 200);
-        } catch (\Throwable $th) {
-            DB::rollback();
-            return response()->json(['error' => $th->getMessage()], 401);
-        }
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -150,17 +164,6 @@ class FuncionarioController extends Controller
      */
     public function destroy($funcionario)
     {
-        DB::beginTransaction();
-        try {
-            if(Funcionario::withTrashed()->findOrFail($funcionario)->deleted_at == null){
-                Funcionario::findOrFail($funcionario)->delete();
-                User::findOrFail(Funcionario::withTrashed()->findOrFail($funcionario)->fun_user_id)->delete();
-            }
-            DB::commit();
-            return response()->json(['success' => '¡Funcionario deshabilitado correctamente!'], 200);
-        } catch (\Throwable $th) {
-            DB::rollback();
-            return response()->json(['error' => $th->getMessage()], 401);
-        }
+        
     }
 }

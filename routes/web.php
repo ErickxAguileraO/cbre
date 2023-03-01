@@ -101,7 +101,6 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(FuncionarioController::class)->group(function () {
             Route::resource('funcionarios', FuncionarioController::class);
             Route::get('funcionarios/get/list', 'list')->name('funcionarios.list');
-            Route::post('funcionarios/restore/{funcionario}', 'restore')->name('funcionarios.restore');
         });
 
         // Edificios

@@ -27,16 +27,13 @@ class Funcionario extends Model
 
     protected $appends = [
         'urlImagen',
+        'nombreCompleto',
+        'email'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'fun_user_id', 'id');
-    }
-
-    public function userTrashed()
-    {
-        return $this->belongsTo(User::class, 'fun_user_id', 'id')->withTrashed();
     }
 
     public function edificio()
@@ -47,5 +44,15 @@ class Funcionario extends Model
     public function getUrlImagenAttribute()
     {
         return '/public' . Storage::url($this->fun_foto);
+    }
+
+    public function getNombreCompletoAttribute()
+    {
+        return "{$this->fun_nombre} {$this->fun_apellido}";
+    }
+
+    public function getEmailAttribute()
+    {
+        return $this->user->email;
     }
 }
