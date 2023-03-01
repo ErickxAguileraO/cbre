@@ -38,6 +38,12 @@ class ModificacionEdificioRequest extends FormRequest
                 'mimes:jpg,jpeg,png',
                 'max:5120'
             ],
+            'imagenListado' => [
+                'nullable',
+                'dimensions:width=435,height=285',
+                'mimes:jpg,jpeg,png',
+                'max:5120'
+            ],
             'imagenesGaleria' => [
                 'required_without:idImagenes'
             ],
@@ -83,12 +89,7 @@ class ModificacionEdificioRequest extends FormRequest
             'imagenPrincipal.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
             'imagenPrincipal.max' => 'Tamaño de imagen máximo: 5MB',
             'imagenesGaleria.required_without' => 'La galería debe tener al menos una imagen.',
-            'fotoJefe.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
-            'fotoJefe.max' => 'Tamaño de imagen máximo: 5MB.',
-            'fotoAsistente.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
-            'fotoAsistente.max' => 'Tamaño de imagen máximo: 5MB.',
-            'jefeTelefono.digits_between' => 'El teléfono debe tener 8 o 9 dígitos.',
-            'asistenteTelefono.digits_between' => 'El teléfono debe tener 8 o 9 dígitos.'
+            'imagenListado.dimensions' => 'La imagen debe tener el tamaño 435x285.'
         ];
     }
 }

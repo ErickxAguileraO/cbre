@@ -57,11 +57,28 @@
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
+               <label for="">Imagen del listado</label>
+               <div class="d-flex align-items-end">
+                  <div class="file-select">
+                     <input id="imagenListado" name="imagenListado" type="file" class="input-file" lang="es" accept=".jpg,.jpeg,.png" tabindex="8">
+                  </div>
+                  <div class="archivo-seleccionado px-2">
+                     <span class="align-text-bottom">Ningún archivo seleccionado</span>
+                  </div>
+               </div>
+               <small id="errorImagenListado" class="field-message-alert invisible"></small>
+            </div>
+         </div>
+      </fieldset>
+
+      <fieldset class="row">
+         <div class="col-sm-4">
+            <div class="form-group">
                <div class="contenedor croppie-container">
                   <label for="" class="pb-4">Imágenes de la galería</label>
-                  <div class="imagen1"><span>Galeria (tamaño mínimo 520px X 385px)</span>
+                  <div class="imagen1">
                      <div class="container-content my-5">
-                           <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" />
+                           <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" title="Agrega una imagen para recortarla."/>
                            <div class="d-none my-4 croppie-image" data-min-width="520" data-min-height="385"></div>
                      </div>
                      <div class="position-relative">
@@ -90,7 +107,7 @@
          <div class="col-sm-4">
             <div class="form-group">
                <label for="video">Video</label>
-               <input id="video" name="video" value="" class="form-control" type="text" tabindex="8" data-maximo-caracteres="255"/>
+               <input id="video" name="video" value="" class="form-control" type="text" tabindex="9" data-maximo-caracteres="255"/>
                <small id="errorVideo" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
@@ -100,7 +117,7 @@
          <div class="col-sm-4">
             <div class="form-group">
                <label for="submercado">Submercado</label>
-               <select id="submercado" name="submercado" class="form-control busqueda-select2" tabindex="9">
+               <select id="submercado" name="submercado" class="form-control busqueda-select2" tabindex="10">
                   <option value="">Selecciona...</option>
                   
                   @foreach ($submercados as $submercado)
@@ -117,7 +134,7 @@
          <div class="col-sm-4">
             <div class="form-group">
                <label for="ubicacionTitulo">Título ubicación</label>
-               <input id="ubicacionTitulo" name="ubicacionTitulo" value="" class="form-control" type="text" tabindex="10" data-maximo-caracteres="255"/>
+               <input id="ubicacionTitulo" name="ubicacionTitulo" value="" class="form-control" type="text" tabindex="11" data-maximo-caracteres="255"/>
                <small id="errorUbicacionTitulo" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
@@ -130,7 +147,7 @@
                <div class="">
                   <div>
                      <textarea name="ubicacionDescripcionTextarea" id="ubicacionDescripcionTextarea"
-                           class="form-control texto text-tarea-seccion" rows="5" tabindex="11">
+                           class="form-control texto text-tarea-seccion" rows="5" tabindex="12">
                      </textarea>
                   </div>
                </div>
@@ -142,7 +159,7 @@
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
-               <input id="autocompletadoMap" type="text" class="form-control mb-1" tabindex="12" placeholder="Ingresa una ubicación"/>
+               <input id="autocompletadoMap" type="text" class="form-control mb-1" tabindex="13" placeholder="Ingresa una ubicación"/>
                <div id="map"></div>
                <small id="errorAutocompletadoMap" class="field-message-alert invisible absolute"></small>
             </div>
@@ -154,7 +171,7 @@
             <div class="col-sm-4">
                <div class="form-group">
                   <label for="certificaciones">Certificaciones</label>
-                  <select id="certificaciones" name="certificaciones[]" class="form-control" multiple="multiple" tabindex="23">
+                  <select id="certificaciones" name="certificaciones[]" class="form-control" multiple="multiple" tabindex="14">
 
                      @foreach ($certificaciones as $certificacion)
                      <option value="{{ $certificacion->cer_id }}">{{ $certificacion->cer_nombre }}</option>
@@ -170,7 +187,7 @@
             <div class="col-sm-4">
                <div class="form-group">
                   <label for="caracteristicas">Características</label>
-                  <select id="caracteristicas" name="caracteristicas[]" class="form-control" multiple="multiple" tabindex="24">
+                  <select id="caracteristicas" name="caracteristicas[]" class="form-control" multiple="multiple" tabindex="15">
 
                      @foreach ($caracteristicas as $caracteristica)
                      <option value="{{ $caracteristica->car_id }}">{{ $caracteristica->car_nombre }}</option>
@@ -186,7 +203,7 @@
             <div class="col-sm-4">
                <div class="form-group">
                   <label for="subdominio">Subdominio</label>
-                  <input id="subdominio" name="subdominio" value="" class="form-control solo-letras" type="text" tabindex="25" data-maximo-caracteres="255"/>
+                  <input id="subdominio" name="subdominio" value="" class="form-control solo-letras" type="text" tabindex="16" data-maximo-caracteres="255"/>
                   <small id="errorSubdominio" class="field-message-alert invisible absolute"></small>
                </div>
             </div>

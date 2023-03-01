@@ -62,6 +62,26 @@
       <fieldset class="row">
          <div class="col-sm-4">
             <div class="form-group">
+               <label for="">Imagen del listado</label>
+               <div class="py-2">
+                  <img src="{{ $edificio->urlImagenListado }}" alt="" width="360" height="260">
+               </div>
+               <div class="d-flex align-items-end">
+                  <div class="file-select">
+                     <input id="imagenListado" name="imagenListado" type="file" class="input-file" lang="es" accept=".jpg,.jpeg,.png" tabindex="4">
+                  </div>
+                  <div class="archivo-seleccionado px-2">
+                     <span class="align-text-bottom">Ningún archivo seleccionado</span>
+                  </div>
+               </div>
+               <small id="errorImagenListado" class="field-message-alert invisible"></small>
+            </div>
+         </div>
+      </fieldset>
+
+      <fieldset class="row">
+         <div class="col-sm-4">
+            <div class="form-group">
                <div class="contenedor croppie-container">
                   <label for="" class="pb-4">Imágenes de la galería</label>
                   <div class="imagen1"><span>Galeria (tamaño mínimo 520px X 385px)</span>

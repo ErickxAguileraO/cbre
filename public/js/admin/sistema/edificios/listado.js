@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 {
                     dataField: 'edi_subdominio',
-                    caption: 'Subdominio'
+                    caption: 'Subdominio',
+                    width: '140',
+                    minWidth: '140',
                 },
                 {
                     dataField: '',
