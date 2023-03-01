@@ -51,6 +51,7 @@
         <section class="galeria-imagenes">
             <h2>Galería de imágenes</h2>
             <div class="galeria">
+                @if ($edificio->imagenes->count() != 0)
                 <div class="galeria-img-1">
                     <div>
                         <a href="{{$edificio->imagenes->first()->urlImagen}}" data-fancybox="gallery">
@@ -67,6 +68,7 @@
                     </div>
                     @endforeach
                 </div>
+                @endif
             </div>
         </section>
 
