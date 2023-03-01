@@ -9,7 +9,9 @@ use App\Models\Noticia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Services\ImagenService;
+use App\Services\EdificioService;
 
 class NoticiaController extends Controller
 {
@@ -56,7 +58,7 @@ class NoticiaController extends Controller
                 'not_fecha' => $request->fecha,
                 'not_texto' => $request->cuerpo,
                 'not_destacada' => $request->has('destacada') ? 1 : 0,
-                'not_edificio_id' => $request->edificio
+                'not_edificio_id' => EdificioService::obtenerEdificioRoleFuncionario() ?: $request->edificio
             ]);
 
             DB::commit();
@@ -122,7 +124,7 @@ class NoticiaController extends Controller
             $noticia->not_fecha = $request->fecha;
             $noticia->not_texto = $request->cuerpo;
             $noticia->not_destacada = $request->has('destacada') ? 1 : 0;
-            $noticia->not_edificio_id = $request->edificio;
+            $noticia->not_edificio_id = EdificioService::obtenerEdificioRoleFuncionario() ?: $request->edificio;
             $noticia->save();
 
             DB::commit();
@@ -160,6 +162,12 @@ class NoticiaController extends Controller
 
     public function list()
     {
-        return Noticia::orderByDesc('created_at')->get();
+        $usuarioSesion = Auth::user();
+
+        if ( $usuarioSesion->hasRole('funcionario') && $usuarioSesion->funcionario != null ) {
+            return $usuarioSesion->funcionario->edificio->noticias;
+        } else {
+            return Noticia::orderByDesc('created_at')->get();
+        }
     }
 }

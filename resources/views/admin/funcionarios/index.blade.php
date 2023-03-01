@@ -2,10 +2,12 @@
 @section('title', 'Funcionarios')
 
 @section('content')
-<a class="btn btn-primary float-right" href="{{ route('funcionarios.create') }}">Crear funcionario</a>
+   @role('super-admin')
+      <a class="btn btn-primary float-right" href="{{ route('funcionarios.create') }}">Crear funcionario</a>
+   @endrole
    <h1>Funcionarios</h1>
    <div class="dx-viewport">
-      <div id="dataGridFuncionarios"></div>
+      <div id="dataGridFuncionarios" data-user-role="{{ auth()->user()->hasRole('super-admin') }}"></div>
    </div>
    @csrf
 @endsection
