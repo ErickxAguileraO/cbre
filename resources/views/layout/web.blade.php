@@ -18,10 +18,11 @@
     <!-- Estilos -->
     <link rel="stylesheet" type="text/css" href="{{ asset('public/web/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/web/js/slick/slick.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/web/js/fresco/fresco.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/web/js/lightgallery/lightgallery.css') }}">
+{{--     <link rel="stylesheet" type="text/css" href="{{ asset('public/web/js/fresco/fresco.css') }}"> --}}
+   {{--  <link rel="stylesheet" type="text/css" href="{{ asset('public/web/js/lightgallery/lightgallery.css') }}"> --}}
     <link href="{{ asset('public/js/admin/jquery/select2-4.0.7/dist/css/select2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('public/js/admin/jquery/sweetalert2/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
 
     @stack('extra-css')
 </head>
@@ -109,20 +110,20 @@
     <!-- Scripts -->
     <script src="{{ asset('public/web/js/slick/slick.min.js') }}"></script>
     <script src="{{ asset('public/web/js/fresco/fresco.min.js') }}"></script>
-    <script src="{{ asset('public/web/js/lightgallery/lightgallery.min.js') }}"></script>
+  {{--   <script src="{{ asset('public/web/js/lightgallery/lightgallery.min.js') }}"></script> --}}
     <script src="{{ asset('public/js/admin/jquery/select2-4.0.7/dist/js/select2.min.js') }}"></script>
     <script src="{{ asset('public/js/admin/jquery/select2-4.0.7/dist/js/select2-init.js') }}"></script>
     <script src="{{ asset('public/js/admin/sistema/validaciones_inputs.js') }}"></script>
     <script src="{{ asset('public/js/admin/jquery/sweetalert2/js/sweetalert2.min.js') }}"></script>
-
-    <script type="text/javascript">
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+{{--     <script type="text/javascript">
         lightGallery(document.getElementById('lightgallery'));
-    </script>
+    </script> --}}
 
     <script src="{{ asset('public/web/js/script.js') }}"></script>
-    <script>
+{{--     <script>
         $('select').niceSelect();
-    </script>
+    </script> --}}
 
     @stack('extra-js')
 

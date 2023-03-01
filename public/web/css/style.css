@@ -446,6 +446,7 @@ footer .rrss{
     cursor: pointer;
     opacity: .5;
 }
+
 .carruselNoticias .slick-prev, .carruselNoticias .slick-next{
     top: 200px;
 }
@@ -698,8 +699,8 @@ footer .rrss{
     max-width: 100%;
     margin-bottom: 20px;
     margin-top: 70px;
-
 }
+
 .caracteristica-n{
     display: flex !important;
     flex-direction: column;
@@ -754,9 +755,9 @@ footer .rrss{
     background-color: var(--verde2);
     text-align: center;
 }
-.ubicacion-edificio div{
+/* .ubicacion-edificio div{
     padding: 20px;
-}
+} */
 .ubicacion-edificio h2{
     font-weight: 400;
     font-size: 40px;
@@ -1566,3 +1567,21 @@ div#social-links ul li a:hover {
     object-fit: cover;
     overflow: hidden;
 }
+
+.imagen-funcionarios {
+    width: 137px;
+    height: 165px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.imagen-icon-caracteristicas{
+    width: 87px;
+    height: 85px;
+}
+
+.imagen-comercio{
+    width: 206px;
+    height: 206px;
+}
+
