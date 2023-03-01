@@ -76,6 +76,8 @@ class FuncionarioController extends Controller
                 'fun_edificio_id' => $request->edificio
             ]);
 
+            $user->assignRole('funcionario');
+
             DB::commit();
 
             return response()->success($funcionario, 201);

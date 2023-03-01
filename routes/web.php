@@ -28,7 +28,11 @@ use App\Http\Controllers\Web\EdificioController as  WebEdificioController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::middleware(['guest'])->group(function () {
+    Route::get('/logout', function () { 
+        abort(404);
+    });
+});
 /**
  * Rutas para la administración
  */
