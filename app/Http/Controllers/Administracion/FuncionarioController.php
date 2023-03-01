@@ -162,8 +162,22 @@ class FuncionarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($funcionario)
+    public function destroy(Funcionario $funcionario)
     {
-        
+        DB::beginTransaction();
+
+        try {
+            Storage::delete($funcionario->fun_foto);
+            $funcionario->delete();
+            $funcionario->user->delete();
+            
+            DB::commit();
+
+            return response()->success($funcionario, 200);
+        } catch (\Exception $exc) {
+            DB::rollback();
+
+            return response()->error($exc->getMessage(), null);
+        }
     }
 }
