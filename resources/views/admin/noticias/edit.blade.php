@@ -89,7 +89,7 @@
                 <input type="checkbox" name="destacada" id="destacada" class="form-check-input" value="" {{ $noticia->not_destacada == 1 ? 'checked' : '' }}>
                 <span class="ml-2">Noticia destacada</span>
             </div>
-        </div>B
+        </div>
     </fieldset>
 
       <fieldset class="row">

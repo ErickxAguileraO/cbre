@@ -30,9 +30,7 @@ class Edificio extends Model
     ];
 
     protected $appends = [
-        'urlImagen',
-        'jefeOperaciones',
-        'asistenteOperaciones'
+        'urlImagen'
     ];
 
     public function submercado()
@@ -73,15 +71,5 @@ class Edificio extends Model
     public function getUrlImagenAttribute()
     {
         return '/public' . Storage::url($this->edi_imagen);
-    }
-
-    public function getJefeOperacionesAttribute()
-    {
-        return $this->funcionarios->where('fun_cargo', 'Jefe de operaciones')->first();
-    }
-
-    public function getAsistenteOperacionesAttribute()
-    {
-        return $this->funcionarios->where('fun_cargo', 'Asistente de operaciones')->first();
     }
 }

@@ -32,7 +32,7 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     <div class="dropdown">
       @auth
-      <span class="mx-2">{{ auth()->user()->administrador->nombreCompleto }}</span>
+      <span class="mx-2">{{ auth()->user()->name }}</span>
       <a href="" id="logoutLink"><span class="mx-2" title="Salir"><i class="fa-solid fa-right-from-bracket"></i></span></a>
       <form action="{{ route('logout') }}" method="POST" id="logoutForm" class="oculto">@csrf</form>
       @endauth
