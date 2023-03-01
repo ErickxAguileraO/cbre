@@ -61,7 +61,7 @@
         <section class="flex-noticias-home">
             <div class="noticias-home">
                 <h1>Noticias destacadas</h1>
-                <p class="p-txt-seccion">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias</p>
+                <p class="p-txt-seccion">Revisa las noticias destacadas de los edificios que administramos</p>
                 <div class="carruselNoticias">
                     @foreach ($noticias as $noticia)
                     <div  class="noticia-home-n">
@@ -98,7 +98,7 @@
                     </div>
                     @endforeach
                 </div>
-                <p class="p-txt-seccion">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete</p>
+                <p class="p-txt-seccion">Conoce las certificaciones que tienen nuestros edificios</p>
             </div>
         </section>
     </div>

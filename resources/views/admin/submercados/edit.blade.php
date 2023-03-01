@@ -18,7 +18,7 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset class="row">
+        <fieldset class="row mb-5">
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="region">Región</label>

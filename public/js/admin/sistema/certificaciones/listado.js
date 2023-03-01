@@ -27,15 +27,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 {
                     dataField: 'cer_posicion',
                     caption: 'Posición',
-                    width: '80',
-                    minWidth: '80',
+                    width: '110',
+                    minWidth: '110',
                     alignment: "center",
                 },
                 {
                     dataField: 'estado',
                     caption: 'Estado',
-                    width: '75',
-                    minWidth: '75',
+                    width: '100',
+                    minWidth: '100',
                     alignment: "center",
                 },
                 {

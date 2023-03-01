@@ -77,7 +77,7 @@
                                 <p class="cursive">{{$datos_generales->dag_cargo_encargado}}</p>
                                 <div class="telefono-correo-operacion">
                                     <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
-                                    <p>+56{{PrintPhone($datos_generales->dag_telefono_encargado)}}</p>
+                                    <p>+56 {{PrintPhone($datos_generales->dag_telefono_encargado)}}</p>
                                 </div>
                                 <a href="mailto:{{$datos_generales->dag_email_encargado}}" class="telefono-correo-operacion">
                                     <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">

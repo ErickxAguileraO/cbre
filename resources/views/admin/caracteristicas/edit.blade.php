@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <h1>Editar Característica</h1>
+    <h1>Editar característica</h1>
 
     <form action="#" method="POST" id="form-caracteristica" class="formulario">
         @csrf
@@ -15,6 +15,26 @@
                     <input id="nombre" name="nombre" value="{{ $caracteristica->car_nombre }}" class="form-control" data-maximo-caracteres="50"
                         type="text" tabindex="1" />
                         <small id="nombre_error" class="field-message-alert absolute"></small>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="imagen">Imagen</label>
+                    <div class="py-2">
+                        <img src="{{$caracteristica->url_imagen}}" width="360" height="260" alt="">
+                    </div>
+                    <div class="d-flex align-items-end">
+                        <div class="file-select">
+                            <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
+                            lang="es" accept=".jpg,.jpeg,.png,.svg">
+                        </div>
+                        <div class="archivo-seleccionado px-2">
+                           <span class="align-text-bottom">Ningún archivo seleccionado</span>
+                        </div>
+                     </div>
+                     <small id="imagen_error" class="field-message-alert absolute"></small>
                 </div>
             </div>
         </fieldset>
@@ -38,24 +58,6 @@
                     </select>
                     <small id="estado_error" class="field-message-alert absolute"></small>
                 </div>
-            </div>
-        </fieldset>
-        <fieldset class="row my-3">
-            <div class="col-sm-4">
-                <label for="imagen">Imagen</label>
-                <div class="py-2">
-                    <img src="{{$caracteristica->url_imagen}}" width="360" height="260" alt="">
-                </div>
-                <div class="d-flex align-items-end">
-                    <div class="file-select">
-                        <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
-                        lang="es" accept=".jpg,.jpeg,.png,.svg">
-                    </div>
-                    <div class="archivo-seleccionado px-2">
-                       <span class="align-text-bottom">Ningún archivo seleccionado</span>
-                    </div>
-                 </div>
-                 <small id="imagen_error" class="field-message-alert absolute"></small>
             </div>
         </fieldset>
         <fieldset class="row mt-5">

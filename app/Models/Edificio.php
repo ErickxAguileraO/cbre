@@ -53,6 +53,16 @@ class Edificio extends Model
         return $this->hasMany(Imagen::class, 'ima_edificio_id', 'edi_id');
     }
 
+    public function noticias()
+    {
+        return $this->hasMany(Noticia::class, 'not_edificio_id', 'edi_id');
+    }
+
+    public function comercios()
+    {
+        return $this->hasMany(Comercio::class, 'loc_edificio_id', 'edi_id');
+    }
+
     public function funcionarios()
     {
         return $this->hasMany(Funcionario::class, 'fun_edificio_id', 'edi_id');

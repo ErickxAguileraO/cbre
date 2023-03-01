@@ -8,9 +8,12 @@
             body{
                 background-color: #F1F7F9;
             }
+            #map {
+	height: 480px !important;
+}
         </style>
     @endpush
-    
+
     <div class="contenido">
         <div class="portada">
             <img class="mostrar-escritorio" src="{{ asset('public/web/imagenes/portada-escritorio.svg') }}" alt="">
@@ -29,158 +32,87 @@
                 <p class="txt-1">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete</p>
             </div>
             <div class="caracteristicas">
-                <h2>Características del edificio</h2>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti </p>
+                <h2>Amenities del edificio</h2>
                 <div class="carruselCaracteristicas">
+                    @foreach ($edificio->caracteristicas as $caracteristica)
                     <div class="caracteristica-n">
-                        <img src="{{ asset('public/web/imagenes/i-areas-verdes.svg') }}" alt="">
-                        <p>Áreas verdes</p>
+                        <img class="imagen-icon-caracteristicas" src="{{ $caracteristica->urlImagen }}" alt="">
+                        <p>{{$caracteristica->car_nombre}}</p>
                     </div>
-                    <div class="caracteristica-n">
-                        <img src="{{ asset('public/web/imagenes/i-ascensor.svg') }}" alt="">
-                        <p>Ascensor</p>
-                    </div>
-                    <div class="caracteristica-n">
-                        <img src="{{ asset('public/web/imagenes/i-bicicleta.svg') }}" alt="">
-                        <p>Bicicletero</p>
-                    </div>
-                    <div class="caracteristica-n">
-                        <img src="{{ asset('public/web/imagenes/i-banco.svg') }}" alt="">
-                        <p>Banco</p>
-                    </div>
-                    <div class="caracteristica-n">
-                        <img src="{{ asset('public/web/imagenes/i-camarines.svg') }}" alt="">
-                        <p>Camarines</p>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+        @if ($edificio->edi_video)
         <section class="video-edificio">
-            <iframe src="https://www.youtube.com/embed/u4GvS85tf-U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="{{$edificio->edi_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </section>
-
+        @endif
         <section class="galeria-imagenes">
             <h2>Galería de imágenes</h2>
             <div class="galeria">
+                @if ($edificio->imagenes->count() != 0)
                 <div class="galeria-img-1">
-                    <div><a href="{{ asset('public/web/imagenes/galeria1.svg') }}" class="fresco"><img src="{{ asset('public/web/imagenes/galeria1.svg') }}" alt=""></a></div>
+                    <div>
+                        <a href="{{$edificio->imagenes->first()->urlImagen}}" data-fancybox="gallery">
+                            <img src="{{$edificio->imagenes->first()->urlImagen}}" />
+                          </a>
+                    </div>
                 </div>
                 <div class="galeria-img-2">
-                    <div><a href="{{ asset('public/web/imagenes/galeria2.svg') }}" class="fresco"><img src="{{ asset('public/web/imagenes/galeria2.svg') }}" alt=""></a></div>
-                    <div><a href="{{ asset('public/web/imagenes/galeria3.svg') }}" class="fresco"><img src="{{ asset('public/web/imagenes/galeria3.svg') }}" alt=""></a></div>
-                    <div><a href="{{ asset('public/web/imagenes/galeria4.svg') }}" class="fresco"><img src="{{ asset('public/web/imagenes/galeria4.svg') }}" alt=""></a></div>
-                    <div><a href="{{ asset('public/web/imagenes/galeria5.svg') }}" class="fresco"><img src="{{ asset('public/web/imagenes/galeria5.svg') }}" alt=""></a></div>
+                    @foreach($edificio->imagenes->skip(1) as $imagen)
+                    <div>
+                        <a href="{{ $imagen->urlImagen }}" data-fancybox="gallery">
+                            <img src="{{ $imagen->urlImagen }}">
+                        </a>
+                    </div>
+                    @endforeach
                 </div>
+                @endif
             </div>
         </section>
 
         <section class="flex-noticias-edificio">
             <div class="noticias-home">
                 <h2 class="h2-internas">Noticias destacadas</h2>
-                <p class="p-txt-seccion">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias</p>
+                <p class="p-txt-seccion">Conoce las últimas novedades o acontecimientos de nuestro Edificio</p>
                 <div class="carruselNoticias">
+                    @foreach ($edificio->noticias as $noticia)
                     <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
+                        <a href="{{route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo , "-")])}}">
+                            <div class="">
+                                <img src="{{ $noticia->urlImagen }}" class="imagen-noticias" alt="">
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
                                     <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
+                                    <p>Publicado el {{$noticia->fechaChile}} {{$noticia->hora}}</p>
                                 </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
+                                <h2>{{$noticia->not_titulo}}</h2>
+                                <a href="{{route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo , "-")])}}" class="ver-mas">
                                     <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                     <p>Ver noticia</p>
                                 </a>
                             </div>
-                            
-                        </a>
-                    </div>
-                    <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
-                                </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
-                                </a>
-                            </div>
-                            
-                        </a>
-                    </div>
-                    <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
-                                </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
-                                </a>
-                            </div>
-                            
-                        </a>
-                    </div>
 
-                    <div  class="noticia-home-n">
-                        <a href="#">
-                            <div class="img-noticia">
-                                {{-- <img src="{{ asset('/web/imagenes/img2.svg') }}" alt=""> --}}
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el 21 Enero 2023</p>
-                                </div>
-                                <h2>But I must explain to you how all this mistaken idea of denouncing</h2>
-                                <a href="/noticias-detalle" class="ver-mas">
-                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
-                                </a>
-                            </div>
-                            
                         </a>
                     </div>
+                    @endforeach
                 </div>
                 <a href="/noticias" class="style-link">Ver todas las noticias</a>
             </div>
         </section>
-        
+
         <section class="flex-certificaciones-edificio">
             <div class="certificaciones-home">
                 <h2 class="h2-internas">Locales comerciales</h2>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias</p>
+                <p>En el edificio podrás encontrar diferentes locales comerciales, visítalos:</p>
                 <div class="carruselCertificaciones">
+                    @foreach ($edificio->comercios as $comercio)
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
+                        <img class="imagen-comercio" src="{{ $edificio->urlImagen }}" alt="">
                     </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
-                    </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
-                    </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
-                    </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
-                    </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/cuadrado.svg') }}" alt="">
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -189,29 +121,13 @@
             <div class="certificaciones-home">
                 <h1 class="h2-internas">Nuestras certificaciones</h1>
                 <div class="carruselCertificaciones">
+                    @foreach ($edificio->certificaciones as $certificacion)
                     <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/certificaciones-1.svg') }}" alt="">
+                        <img src="{{ $certificacion->urlImagen }}" alt="">
                     </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/certificaciones-2.svg') }}" alt="">
-                    </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/certificaciones-3.svg') }}" alt="">
-                    </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/certificaciones-4.svg') }}" alt="">
-                    </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/certificaciones-5.svg') }}" alt="">
-                    </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/certificaciones-4.svg') }}" alt="">
-                    </div>
-                    <div class="certificacion-home-n">
-                        <img src="{{ asset('public/web/imagenes/certificaciones-5.svg') }}" alt="">
-                    </div>
+                    @endforeach
                 </div>
-                <p class="p-txt-seccion">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete</p>
+                <p class="p-txt-seccion">Te presentamos las certificaciones que hemos obtenido</p>
             </div>
         </section>
 
@@ -219,61 +135,70 @@
             <div class="ubicacion-edificio">
                 <div>
                     <h2>Excelente ubicación</h2>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                    <p id="direccionRegistrada" data-direccion-registrada="{{ $edificio->edi_direccion }}">Dirección: {{ $edificio->edi_direccion }}</p>
                 </div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25553.02992894051!2d-73.03175265790662!3d-36.81543480483304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b43c049c81c9%3A0x5738f7fe1749e32f!2sTerminal%20Collao%20Concepcion!5e0!3m2!1ses!2scl!4v1675110667488!5m2!1ses!2scl"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div>
+                    <div id="map" data-latitud="{{ $edificio->edi_latitud }}" data-longitud="{{ $edificio->edi_longitud }}"></div>
+                 </div>
             </div>
         </section>
 
         <section class="flex-operaciones">
             <div class="operaciones">
+
+                @foreach($edificio->funcionarios->filter(function($funcionario) { return $funcionario->fun_cargo == "Jefe de operaciones"; }) as $funcionario)
                 <div class="operaciones-contenido">
                     <h2>Jefe de operaciones del edificio</h2>
                     <div class="operacion-n">
-                        <img class="img" src="{{ asset('public/web/imagenes/img-jefe.svg') }}" alt="">
+                        <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                         <div class="txt-operacion">
-                            <h4>Carlos Ambiado</h4>
-                            <p class="cursive">Asset & Property Managing Director</p>
+                            <h4>{{$funcionario->fun_nombre}} {{$funcionario->fun_apellido}}</h4>
+                            <p class="cursive">{{$funcionario->fun_cargo}}</p>
                             <div class="telefono-correo-operacion">
                                 <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
-                                <p>+56934567898</p>
+                                <p>+56 {{PrintPhone($funcionario->fun_telefono)}}</p>
                             </div>
-                            <a href="mailto:prueba@aeurus.cl" class="telefono-correo-operacion">
+                            <a href="mailto:{{$funcionario->user->email}}" class="telefono-correo-operacion">
                                 <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
                                 <p>Enviar un correo</p>
                             </a>
                         </div>
                     </div>
                 </div>
-
-{{-- 
-
+                @endforeach
+                @foreach($edificio->funcionarios->filter(function($funcionario) { return $funcionario->fun_cargo == "Asistente de operaciones"; }) as $funcionario)
                 <div  class="operaciones-contenido">
                     <h2>Asistente de operaciones</h2>
                     <div class="operacion-n">
-                        <img class="img" src="{{ asset('public/web/imagenes/img-jefe.svg') }}" alt="">
+                        <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                         <div class="txt-operacion">
-                            <h4>Carlos Ambiado</h4>
-                            <p class="cursive">Asset & Property Managing Director</p>
+                            <h4>{{$funcionario->fun_nombre}} {{$funcionario->fun_apellido}}</h4>
+                            <p class="cursive">{{$funcionario->fun_cargo}}</p>
                             <div class="telefono-correo-operacion">
                                 <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
-                                <p>+56934567898</p>
+                                <p>+56 {{PrintPhone($funcionario->fun_telefono)}}</p>
                             </div>
-                            <a href="" class="telefono-correo-operacion">
+                            <a href="mailto:{{$funcionario->user->email}}" class="telefono-correo-operacion">
                                 <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
                                 <p>Enviar un correo</p>
                             </a>
                         </div>
                     </div>
-                </div> --}}
-                
+                </div>
+                @endforeach
             </div>
-            
+
         </section>
     </div>
 
     @push('extra-js')
-   
+    <script>
+        Fancybox.bind('[data-fancybox="gallery"]', {
+  // Your custom options
+});
+    </script>
+    <script src="{{ asset('public/js/admin/sistema/edificios/google_map_modificar.js') }}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap"></script>
     @endpush
 
 @endsection

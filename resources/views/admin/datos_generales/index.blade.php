@@ -18,7 +18,7 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset class="row">
+        <fieldset class="row mb-5">
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="region">Región</label>
@@ -99,22 +99,24 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset class="row my-3">
+        <fieldset class="row">
             <div class="col-sm-4">
-                <label for="imagen">Imagen</label>
-                <div class="py-2">
-                    <img src="{{$datos_generales->urlImagen}}" width="360" height="260" alt="">
+                <div class="form-group">
+                    <label for="imagen">Imagen</label>
+                    <div class="py-2">
+                        <img src="{{$datos_generales->urlImagen}}" width="360" height="260" alt="">
+                    </div>
+                    <div class="d-flex align-items-end">
+                        <div class="file-select">
+                            <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
+                            lang="es" accept=".jpg,.jpeg,.png,.svg">
+                        </div>
+                        <div class="archivo-seleccionado px-2">
+                           <span class="align-text-bottom">Ningún archivo seleccionado</span>
+                        </div>
+                     </div>
+                     <small id="imagen_error" class="field-message-alert absolute"></small>
                 </div>
-                <div class="d-flex align-items-end">
-                    <div class="file-select">
-                        <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
-                        lang="es" accept=".jpg,.jpeg,.png,.svg">
-                    </div>
-                    <div class="archivo-seleccionado px-2">
-                       <span class="align-text-bottom">Ningún archivo seleccionado</span>
-                    </div>
-                 </div>
-                 <small id="imagen_error" class="field-message-alert absolute"></small>
             </div>
         </fieldset>
         <div class="row mb-4">

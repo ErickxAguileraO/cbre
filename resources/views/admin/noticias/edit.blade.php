@@ -24,7 +24,7 @@
         <div class="col-sm-4">
             <div class="form-group">
                 <label for="titulo">Fecha publicación</label>
-                <input type="datetime-local" class="form-control" min="{{ \Carbon\Carbon::now('America/Santiago')->format('Y-m-d\TH:i') }}" id="fecha"
+                <input type="datetime-local" class="form-control" min="{{ date('Y-m-d\TH:i:s', strtotime($noticia->not_fecha)) }}" id="fecha"
                     name="fecha" placeholder="DD/MM/AAAA" value="{{ date('Y-m-d\TH:i:s', strtotime($noticia->not_fecha)) }}">
                 <small id="errorFecha" class="field-message-alert invisible absolute"></small>
             </div>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="position-relative">
                        <div class="custom-file">
-                          <input type="file" id="inputFileGaleria" name="inputFileGaleria" class="custom-file-input imagen-input" lang="es" accept=".jpg,.jpeg,.png">
+                          <input type="file" id="inputFileGaleria" class="custom-file-input imagen-input" lang="es" accept=".jpg,.jpeg,.png">
                           <label class="custom-file-label" for="imagen-input">Buscar un archivo</label>
                        </div>
                     </div>

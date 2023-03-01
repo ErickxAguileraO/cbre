@@ -31,15 +31,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 {
                     dataField: 'fechaChile',
                     caption: 'Fecha publicación',
-                    width: '150',
-                    minWidth: '150',
+                    width: '180',
+                    minWidth: '180',
                     alignment: 'center',
                 },
                 {
                     dataField: 'hora',
                     caption: 'Hora',
-                    width: '70',
-                    minWidth: '70',
+                    width: '100',
+                    minWidth: '100',
                     alignment: 'center',
                 },
                 {
