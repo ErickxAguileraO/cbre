@@ -44,77 +44,101 @@
         <div class="sidebar-sticky accordion" id="accordionMenu">
           <ul class="nav flex-column">
 
+            @can('index noticias')            
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{ route('noticias.index') }}" class="nav-link">Noticias</a>
               </span>
             </li>
+            @endcan
 
+            @can('index edificios')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{ route('edificios.index') }}" class="nav-link">Edificios</a>
               </span>
             </li>
+            @endcan            
 
+            @can('index certificaciones')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{ route('certificaciones.index') }}" class="nav-link">Certificaciones</a>
               </span>
             </li>
-
+            @endcan
+            
+            @can('index caracteristicas')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{route('caracteristicas.index')}}" class="nav-link">Características</a>
               </span>
             </li>
+            @endcan
 
+            @can('index submercados')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{route('submercados.index')}}" class="nav-link">Submercados</a>
               </span>
             </li>
+            @endcan
 
+            @can('index comercios')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{ route('comercios.index') }}" class="nav-link">Locales comerciales</a>
               </span>
             </li>
+            @endcan
 
+            @can('index indicadores')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{route('indicadores.index')}}" class="nav-link">Indicadores</a>
               </span>
             </li>
+            @endcan
 
+            @can('index quienes somos')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{route('quienes-somos.index')}}" class="nav-link">Quiénes somos</a>
               </span>
             </li>
+            @endcan
 
+            @can('index datos generales')
             <li>
                 <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                   <a href="{{route('datos-generales.index')}}" class="nav-link">Datos generales</a>
                 </span>
             </li>
+            @endcan
 
+            @can('index administradores')
             <li>
                 <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                   <a href="{{route('administradores.index')}}" class="nav-link">Administradores</a>
                 </span>
             </li>
+            @endcan
 
+            @can('index funcionarios')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{route('funcionarios.index')}}" class="nav-link">Funcionarios</a>
               </span>
             </li>
+            @endcan
 
+            @can('index contactos')
             <li>
                 <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                   <a href="{{route('contactos.index')}}" class="nav-link">Contactos</a>
                 </span>
             </li>
+            @endcan
 
           </ul>
         </div>

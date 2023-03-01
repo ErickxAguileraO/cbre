@@ -56,21 +56,28 @@ class AdministradorController extends Controller
     public function store(RegistroAdministradorRequest $request)
     {
         DB::beginTransaction();
+
         try {
             $user = User::create([
                 'name' => Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2)),
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
+
             Administrador::create([
                 'adm_user_id' => $user->id,
                 'adm_nombre' => $request->nombre,
                 'adm_apellido' => $request->apellido,
             ]);
+
+            $user->assignRole('super-admin');
+
             DB::commit();
+
             return response()->json(['success' => '¡Administrador creado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+            
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
