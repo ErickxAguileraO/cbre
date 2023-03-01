@@ -39,6 +39,7 @@ async function getNextEdificios() {
   }
 
 function printEdificios() {
+    document.getElementById("total-edificios").innerText = edificios.length+ ' ' +'edificio(s) encontrados';
     while (edificiosContainer.firstChild) {
         edificiosContainer.removeChild(edificiosContainer.firstChild);
     }

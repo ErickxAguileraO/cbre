@@ -12,7 +12,7 @@ function initMap() {
     // Objeto mapa
     map = new google.maps.Map(document.getElementById("map"), {
         center: coordenadasInicio,
-        zoom: 8,
+        zoom: 15,
     });
 
     // El marcador, posicionado en Chile
