@@ -49,73 +49,77 @@ document.addEventListener("DOMContentLoaded", function () {
     
                         let urlModificar = `/admin/funcionarios/${idFuncionario}/edit`;
                         let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
-                        let templateEliminar = `<a href="" title="Eliminar" id="eliminarFuncionarioEnlace" data-id="${idFuncionario}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
-    
                         const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
-                        const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);
+                        
+                        const usuarioEsSuperAdmin = document.getElementById('dataGridFuncionarios').getAttribute('data-user-role');
 
-                        enlaceEliminar.click(function (event) {
-                            event.preventDefault();
-                            
-                            Swal.fire({
-                                title: '¿Deseas continuar?',
-                                text: "¡No podrás revertir esto!",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Sí, eliminar',
-                                cancelButtonText: 'Cancelar',
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    url = `/admin/funcionarios/${idFuncionario}`;
-                                    const token = document.querySelector("input[name='_token']").value;
+                        if ( usuarioEsSuperAdmin ) {
+                            let templateEliminar = `<a href="" title="Eliminar" id="eliminarFuncionarioEnlace" data-id="${idFuncionario}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
+                            const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);
 
-                                    fetch(url, {
-                                        method: 'DELETE',
-                                        headers: {
-                                            'X-CSRF-TOKEN': token
-                                        }
-                                    })
-                                    .then(response => response.json())
-                                    .then(function (response) {
-                                        if ( typeof response.status == 'undefined' ) {
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: 'Un momento...',
-                                                text: response.message
-                                            })
+                            enlaceEliminar.click(function (event) {
+                                event.preventDefault();
                                 
-                                            return;
-                                        }
-
-                                        if ( response.status == 'error' ) {
+                                Swal.fire({
+                                    title: '¿Deseas continuar?',
+                                    text: "¡No podrás revertir esto!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Sí, eliminar',
+                                    cancelButtonText: 'Cancelar',
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        url = `/admin/funcionarios/${idFuncionario}`;
+                                        const token = document.querySelector("input[name='_token']").value;
+    
+                                        fetch(url, {
+                                            method: 'DELETE',
+                                            headers: {
+                                                'X-CSRF-TOKEN': token
+                                            }
+                                        })
+                                        .then(response => response.json())
+                                        .then(function (response) {
+                                            if ( typeof response.status == 'undefined' ) {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Un momento...',
+                                                    text: response.message
+                                                })
+                                    
+                                                return;
+                                            }
+    
+                                            if ( response.status == 'error' ) {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Un momento...',
+                                                    text: response.message
+                                                })
+                                
+                                                return;
+                                            }
+    
+                                            Swal.fire(
+                                                '¡Listo!',
+                                                'El funcionario ha sido eliminado.',
+                                                'success'
+                                            )
+                                        })
+                                        .then(() => cargarFuncionarios())
+                                        .catch(error => {
                                             Swal.fire({
                                                 icon: 'error',
                                                 title: 'Un momento...',
-                                                text: response.message
-                                            })
-                            
-                                            return;
-                                        }
-
-                                        Swal.fire(
-                                            '¡Listo!',
-                                            'El funcionario ha sido eliminado.',
-                                            'success'
-                                        )
-                                    })
-                                    .then(() => cargarFuncionarios())
-                                    .catch(error => {
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Un momento...',
-                                            text: error.message
+                                                text: error.message
+                                            });
                                         });
-                                    });
-                                }
-                            })
-                        });
+                                    }
+                                })
+                            });
+                        }
                     },
                 },
             ],

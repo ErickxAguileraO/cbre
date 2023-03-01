@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Edificio\RegistroEdificioRequest;
 use App\Http\Requests\Edificio\ModificacionEdificioRequest;
 use App\Models\Certificacion;
@@ -215,6 +216,12 @@ class EdificioController extends Controller
 
     public function list()
     {
-        return Edificio::orderByDesc('created_at')->get();
+        $usuarioSesion = Auth::user();
+
+        if ( $usuarioSesion->hasRole('funcionario') && $usuarioSesion->funcionario != null ) {
+            return $usuarioSesion->funcionario->edificio;
+        } else {
+            return Edificio::orderByDesc('created_at')->get();
+        }
     }
 }

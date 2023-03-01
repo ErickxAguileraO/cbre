@@ -7,11 +7,13 @@ use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Funcionario\RegistroFuncionarioRequest;
 use App\Http\Requests\Funcionario\ModificacionFuncionarioRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Services\ImagenService;
+use App\Services\EdificioService;
 
 class FuncionarioController extends Controller
 {
@@ -32,7 +34,13 @@ class FuncionarioController extends Controller
      */
     public function list()
     {
-        return Funcionario::orderByDesc('created_at')->get();
+        $usuarioSesion = Auth::user();
+
+        if ( $usuarioSesion->hasRole('funcionario') && $usuarioSesion->funcionario != null ) {
+            return $usuarioSesion->funcionario;
+        } else {
+            return Funcionario::orderByDesc('created_at')->get();
+        }
     }
     /**
      * Show the form for creating a new resource.
@@ -73,7 +81,7 @@ class FuncionarioController extends Controller
                 'fun_telefono' => $request->telefono,
                 'fun_foto' => $pathFoto,
                 'fun_cargo' => $request->cargo,
-                'fun_edificio_id' => $request->edificio
+                'fun_edificio_id' => EdificioService::obtenerEdificioRoleFuncionario() ?: $request->edificio
             ]);
 
             $user->assignRole('funcionario');
@@ -137,7 +145,7 @@ class FuncionarioController extends Controller
             $funcionario->fun_apellido = $request->apellidos;
             $funcionario->fun_telefono = $request->telefono;
             $funcionario->fun_cargo = $request->cargo;
-            $funcionario->fun_edificio_id = $request->edificio;
+            $funcionario->fun_edificio_id = EdificioService::obtenerEdificioRoleFuncionario() ?: $request->edificio;
             $funcionario->save();
 
             $funcionario->user->email = $request->email;

@@ -41,70 +41,72 @@ Route::middleware(['auth'])->group(function () {
     Route::view('admin', 'admin.noticias.index');
 
     Route::prefix('admin')->group(function () {
+        Route::group(['middleware' => ['role:super-admin']], function () {
+            // Certificaciones
+            Route::controller(CertificacionController::class)->group(function () {
+                Route::resource('certificaciones', CertificacionController::class);
+                Route::get('certificaciones/get/list', 'list');
+            });
+
+            // Características
+            Route::controller(CaracteristicaController::class)->group(function () {
+                Route::resource('caracteristicas', CaracteristicaController::class);
+                Route::get('caracteristicas/get/list', 'list')->name('caracteristicas.list');
+            });
+
+            // Quiénes somos
+            Route::controller(QuienesSomosController::class)->group(function () {
+                Route::resource('quienes-somos', QuienesSomosController::class);
+            });
+
+            // SubMercados
+            Route::controller(SubMercadoController::class)->group(function () {
+                Route::resource('submercados', SubMercadoController::class);
+                Route::get('submercados/get/list', 'list')->name('submercados.list');
+                Route::get('submercados/get/single/{subMercado}', 'get')->name('submercados.single');
+            });
+
+            // Comunas
+            Route::controller(ComunaController::class)->group(function () {
+                Route::get('comunas/get/list', 'comunasList')->name('comunas.list');
+                Route::get('comunas/get/list/{regionName}', 'comunasPorRegionList')->name('comunas.por.region.list');
+            });
+
+            // Datos Empresa/Generales
+            Route::controller(DatosGeneralesController::class)->group(function () {
+                Route::resource('datos-generales', DatosGeneralesController::class);
+                Route::get('datos-generales/get/single/{datosGenerales}', 'get')->name('datos-generales.single');
+            });
+
+            // Indicadores
+            Route::controller(IndicadorController::class)->group(function () {
+                Route::resource('indicadores', IndicadorController::class);
+            });
+
+            // Locales comerciales
+            Route::controller(ComercioController::class)->group(function () {
+                Route::resource('comercios', ComercioController::class);
+                Route::get('comercios/get/list', 'list');
+            });
+
+            // Administradores
+            Route::controller(AdministradorController::class)->group(function () {
+                Route::resource('administradores', AdministradorController::class);
+                Route::get('administradores/get/list', 'list')->name('administradores.list');
+                Route::post('administradores/restore/{administrador}', 'restore')->name('administradores.restore');
+            });
+
+            // Contactos
+            Route::controller(ContactoController::class)->group(function () {
+                Route::resource('contactos', ContactoController::class);
+                Route::get('contactos/get/list', 'list')->name('contactos.list');
+            });
+        });
+
         // Noticias
         Route::controller(NoticiaController::class)->group(function () {
             Route::resource('noticias', NoticiaController::class);
             Route::get('noticias/get/list', 'list');
-        });
-
-        // Certificaciones
-        Route::controller(CertificacionController::class)->group(function () {
-            Route::resource('certificaciones', CertificacionController::class);
-            Route::get('certificaciones/get/list', 'list');
-        });
-
-        // Características
-        Route::controller(CaracteristicaController::class)->group(function () {
-            Route::resource('caracteristicas', CaracteristicaController::class);
-            Route::get('caracteristicas/get/list', 'list')->name('caracteristicas.list');
-        });
-
-        // Quiénes somos
-        Route::controller(QuienesSomosController::class)->group(function () {
-            Route::resource('quienes-somos', QuienesSomosController::class);
-        });
-
-        // SubMercados
-        Route::controller(SubMercadoController::class)->group(function () {
-            Route::resource('submercados', SubMercadoController::class);
-            Route::get('submercados/get/list', 'list')->name('submercados.list');
-            Route::get('submercados/get/single/{subMercado}', 'get')->name('submercados.single');
-        });
-
-        // Comunas
-        Route::controller(ComunaController::class)->group(function () {
-            Route::get('comunas/get/list', 'comunasList')->name('comunas.list');
-            Route::get('comunas/get/list/{regionName}', 'comunasPorRegionList')->name('comunas.por.region.list');
-        });
-
-        // Datos Empresa/Generales
-        Route::controller(DatosGeneralesController::class)->group(function () {
-            Route::resource('datos-generales', DatosGeneralesController::class);
-            Route::get('datos-generales/get/single/{datosGenerales}', 'get')->name('datos-generales.single');
-         });
-
-        // Indicadores
-        Route::controller(IndicadorController::class)->group(function () {
-            Route::resource('indicadores', IndicadorController::class);
-        });
-
-        // Locales comerciales
-        Route::controller(ComercioController::class)->group(function () {
-            Route::resource('comercios', ComercioController::class);
-            Route::get('comercios/get/list', 'list');
-        });
-
-        // Administradores
-        Route::controller(AdministradorController::class)->group(function () {
-            Route::resource('administradores', AdministradorController::class);
-            Route::get('administradores/get/list', 'list')->name('administradores.list');
-            Route::post('administradores/restore/{administrador}', 'restore')->name('administradores.restore');
-        });
-
-        // Funcionarios
-        Route::controller(FuncionarioController::class)->group(function () {
-            Route::resource('funcionarios', FuncionarioController::class);
-            Route::get('funcionarios/get/list', 'list')->name('funcionarios.list');
         });
 
         // Edificios
@@ -113,10 +115,10 @@ Route::middleware(['auth'])->group(function () {
             Route::get('edificios/get/list', 'list');
         });
 
-        // Contactos
-        Route::controller(ContactoController::class)->group(function () {
-            Route::resource('contactos', ContactoController::class);
-            Route::get('contactos/get/list', 'list')->name('contactos.list');
+        // Funcionarios
+        Route::controller(FuncionarioController::class)->group(function () {
+            Route::resource('funcionarios', FuncionarioController::class);
+            Route::get('funcionarios/get/list', 'list')->name('funcionarios.list');
         });
     });
 });
