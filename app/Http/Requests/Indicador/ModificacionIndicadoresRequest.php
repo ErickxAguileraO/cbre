@@ -26,10 +26,10 @@ class ModificacionIndicadoresRequest extends FormRequest
     public function rules()
     {
         return [
-            'edificios_administrados' => 'required|numeric|min:1|max:9999',
-            'confia_en_nosotros' => 'required|numeric|min:1|max:9999',
-            'en_todo_chile' => 'required|numeric|min:1|max:9999',
-            'en_todo_chile2' => 'required|numeric|min:1|max:9999',
+            'edificios_administrados' => 'required|numeric|min:1|max:999999999',
+            'confia_en_nosotros' => 'required|numeric|min:1|max:999999999',
+            'en_todo_chile' => 'required|numeric|min:1|max:999999999',
+            'en_todo_chile2' => 'required|numeric|min:1|max:999999999', //metros cuadrados
         ];
     }
 
