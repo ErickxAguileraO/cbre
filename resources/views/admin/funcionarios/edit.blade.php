@@ -85,26 +85,34 @@
             </div>
         </fieldset>
 
-        <fieldset class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="edificio">Edificio</label>
-                    <select id="edificio" name="edificio" class="form-control busqueda-select2" tabindex="6">
-                        <option value="">Selecciona...</option>
-                        
-                        @foreach ($edificios as $edificio)
-                        <option value="{{ $edificio->edi_id }}"
-                        {{ $funcionario->fun_edificio_id == $edificio->edi_id ? 'selected' : '' }}
-                        >
-                        {{ $edificio->edi_nombre }}</option>
-                        @endforeach
+        @role('super-admin')
+            <fieldset class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="edificio">Edificio</label>
+                        <select id="edificio" name="edificio" class="form-control busqueda-select2" tabindex="6">
+                            <option value="">Selecciona...</option>
+                            
+                            @foreach ($edificios as $edificio)
+                            <option value="{{ $edificio->edi_id }}"
+                            {{ $funcionario->fun_edificio_id == $edificio->edi_id ? 'selected' : '' }}
+                            >
+                            {{ $edificio->edi_nombre }}</option>
+                            @endforeach
 
-                    </select>
-                    <small id="errorEdificio" class="field-message-alert invisible"></small>
+                        </select>
+                        <small id="errorEdificio" class="field-message-alert invisible"></small>
+                    </div>
                 </div>
-            </div>
-        </fieldset>
-
+            </fieldset>
+        @else
+            @if ( auth()->user()->funcionario != null )
+                <input type="hidden" id="edificio" name="edificio" value="{{ auth()->user()->funcionario->edificio->edi_id }}">
+            @else
+                <input type="hidden" id="edificio" name="edificio" value="">
+            @endif
+        @endrole
+        
         <br>
         <br>
     

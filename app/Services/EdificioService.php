@@ -6,6 +6,7 @@ use App\Models\Imagen;
 
 use App\Models\Edificio;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class EdificioService
 {
@@ -30,5 +31,16 @@ class EdificioService
         Storage::delete($imagenesDescartadas);
 
         return true;
+    }
+
+    public static function obtenerEdificioRoleFuncionario()
+    {
+        $usuarioSesion = Auth::user();
+
+        if ( $usuarioSesion->funcionario != null && $usuarioSesion->hasRole('funcionario') ) {
+            return $usuarioSesion->funcionario->edificio->edi_id;
+        } else {
+            return false;
+        }
     }
 }

@@ -2,11 +2,13 @@
 @section('title', 'Edificios')
 
 @section('content')
-   <a class="btn btn-primary float-right" href="{{ route('edificios.create') }}">Crear edificio</a>
+   @role('super-admin')
+      <a class="btn btn-primary float-right" href="{{ route('edificios.create') }}">Crear edificio</a>
+   @endrole
    <h1>Edificios</h1>
    @csrf
    <div class="dx-viewport">
-      <div id="dataGridEdificios"></div>
+      <div id="dataGridEdificios" data-user-role="{{ auth()->user()->hasRole('super-admin') }}"></div>
    </div>
 @endsection
 
