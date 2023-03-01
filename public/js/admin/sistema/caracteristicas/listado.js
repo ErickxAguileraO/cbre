@@ -83,8 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     filterOperations: ["contains"],
                     alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
-                    width: '80',
-                    minWidth: '80',
+                    width: '110',
+                    minWidth: '110',
                     alignment: "center",
                 },
                 {
@@ -92,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     caption: "Estado",
                     allowEditing: false,
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
-                    width: '75',
-                    minWidth: '75',
+                    width: '100',
+                    minWidth: '100',
                     alignment: "center",
                     // width:300,
                     lookup: {
