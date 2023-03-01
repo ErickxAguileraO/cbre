@@ -1585,3 +1585,8 @@ div#social-links ul li a:hover {
     height: 206px;
 }
 
+.ubicacion-edificio-left-content{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+

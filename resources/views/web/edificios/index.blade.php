@@ -42,7 +42,7 @@
             <a href="/edificios-oficinas">Edificios y oficinas</a>
         </div>
 
-        <p class="txt-busqueda">{{$edificios->count()}} edificios encontrados en total</p>
+        <p class="txt-busqueda" id="total-edificios"></p>
 
         <div class="edificios-busqueda" id="edificios-busqueda">
 

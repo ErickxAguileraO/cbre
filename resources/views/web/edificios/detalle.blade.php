@@ -135,7 +135,10 @@
             <div class="ubicacion-edificio">
                 <div>
                     <h2>Excelente ubicación</h2>
-                    <p id="direccionRegistrada" data-direccion-registrada="{{ $edificio->edi_direccion }}">Dirección: {{ $edificio->edi_direccion }}</p>
+                    <div class="ubicacion-edificio-left-content">
+                        <p id="direccionRegistrada" data-direccion-registrada="{{ $edificio->edi_direccion }}">Dirección: {{ $edificio->edi_direccion }}</p>
+                        <p>@php echo htmlspecialchars_decode($edificio->ubi_descripcion) @endphp</p>
+                    </div>
                 </div>
                 <div>
                     <div id="map" data-latitud="{{ $edificio->edi_latitud }}" data-longitud="{{ $edificio->edi_longitud }}"></div>
@@ -199,6 +202,7 @@
     </script>
     <script src="{{ asset('public/js/admin/sistema/edificios/google_map_modificar.js') }}"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap"></script>
+    <script src="https://cdn.rawgit.com/googlemaps/js-map-label/gh-pages/src/maplabel-compiled.js"></script>
     @endpush
 
 @endsection
