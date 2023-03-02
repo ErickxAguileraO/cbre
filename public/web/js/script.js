@@ -8,15 +8,15 @@ $(".btn-cerrar-menu-bar").click(function(){
 
 
 $(document).ready(function(){
-    var carruselNoticias = $('.carruselNoticias');
-    var noticiasCount = carruselNoticias.find('.noticia-home-n').length;
-    var slidesToShow = (noticiasCount < 3) ? noticiasCount : 3;
+    let carruselNoticias = $('.carruselNoticias');
+    let noticiasCount = carruselNoticias.find('.noticia-home-n').length;
+    let noticiasSlidesToShow = (noticiasCount < 3) ? noticiasCount : 3;
 
     carruselNoticias.slick({
       dots: false,
       infinite: true,
       speed: 300,
-      slidesToShow: slidesToShow,
+      slidesToShow: noticiasSlidesToShow,
       slidesToScroll: 1,
       responsive: [
         {
@@ -65,15 +65,15 @@ $(document).ready(function(){
 
 
   $(document).ready(function(){
-    var carruselCaracteristicas = $('.carruselCaracteristicas');
-    var caracteristicasCount = carruselCaracteristicas.find('.caracteristica-n').length;
-    var slidesToShow = (caracteristicasCount < 5) ? caracteristicasCount : 5;
+    let carruselCaracteristicas = $('.carruselCaracteristicas');
+    let caracteristicasCount = carruselCaracteristicas.find('.caracteristica-n').length;
+    let caracteristicasSlidesToShow = (caracteristicasCount < 5) ? caracteristicasCount : 5;
 
     carruselCaracteristicas.slick({
       dots: false,
       infinite: true,
       speed: 300,
-      slidesToShow: slidesToShow,
+      slidesToShow: caracteristicasSlidesToShow,
       slidesToScroll: 1,
       responsive: [
         {
@@ -123,15 +123,15 @@ $(document).ready(function(){
 //este lo comparten certificaciones y locales comerciales, por qué? no sé
 $(document).ready(function(){
     $('.carruselCertificaciones').each(function(){
-      var carruselCertificaciones = $(this);
-      var certificacionesCount = carruselCertificaciones.find('.certificacion-home-n').length;
-      var slidesToShow = (certificacionesCount < 5) ? certificacionesCount : 5;
+      let carruselCertificaciones = $(this);
+      let certificacionesCount = carruselCertificaciones.find('.certificacion-home-n').length;
+      let certificacionesSlidesToShow = (certificacionesCount < 5) ? certificacionesCount : 5;
 
       carruselCertificaciones.slick({
         dots: false,
         infinite: true,
         speed: 300,
-        slidesToShow: slidesToShow,
+        slidesToShow: certificacionesSlidesToShow,
         slidesToScroll: 1,
         responsive: [
           {
