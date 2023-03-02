@@ -59,11 +59,18 @@ class EdificioController extends Controller
                 return response()->error('No se pudo subir la imagen.', null);
             }
 
+            $pathImagenListado = ImagenService::subirImagen($request->file('imagenListado'), 'edificios');
+            
+            if ( !$pathImagenListado ) {
+                return response()->error('No se pudo subir la imagen.', null);
+            }
+
             $edificio = Edificio::create([
                 'edi_nombre' => $request->nombre,
                 'edi_descripcion' => $request->descripcion,
                 'edi_direccion' => $request->direccion,
                 'edi_imagen' => $pathImagenPrincipal,
+                'edi_imagen_listado' => $pathImagenListado,
                 'edi_submercado_id' => $request->submercado,
                 'ubi_titulo' => $request->ubicacionTitulo,
                 'ubi_descripcion' => $request->ubicacionDescripcion,
@@ -142,6 +149,17 @@ class EdificioController extends Controller
 
                 $edificio->edi_imagen = $pathImagenPrincipal;
             }
+
+            if ( $request->file('imagenListado') !== null ) {
+                Storage::delete($edificio->edi_imagen_listado);
+                $pathImagenListado = ImagenService::subirImagen($request->file('imagenListado'), 'edificios');
+            
+                if ( !$pathImagenListado ) {
+                    return response()->error('No se pudo subir la imagen.', null);
+                }
+
+                $edificio->edi_imagen_listado = $pathImagenListado;
+            }
             
             $edificio->edi_nombre = $request->nombre;
             $edificio->edi_descripcion = $request->descripcion;
@@ -200,6 +218,7 @@ class EdificioController extends Controller
             $edificio->caracteristicas()->detach();
 
             Storage::delete($edificio->edi_imagen);
+            Storage::delete($edificio->edi_imagen_listado);
             EdificioService::eliminarGaleriaImagenes($edificio);
             $edificio->funcionarios()->delete();
             $edificio->delete();

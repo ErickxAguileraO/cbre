@@ -50,7 +50,7 @@ function printEdificios() {
         <a href="edificios-oficinas/${edificio.edi_id}-${edificio.edi_nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w ]+/g,'').replace(/ +/g,'-')
 }">
         <div class="">
-            <img src="${edificio.urlImagen}" class="imagen-edificios" alt="">
+            <img src="${edificio.urlImagenListado}" class="imagen-edificios" alt="">
         </div>
             <div class="txt-edificio">
                 <h2 style="color:black">${edificio.edi_nombre}</h2>

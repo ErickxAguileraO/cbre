@@ -20,6 +20,7 @@ class Edificio extends Model
         'edi_descripcion',
         'edi_direccion',
         'edi_imagen',
+        'edi_imagen_listado',
         'edi_submercado_id',
         'ubi_titulo',
         'ubi_descripcion',
@@ -30,7 +31,8 @@ class Edificio extends Model
     ];
 
     protected $appends = [
-        'urlImagen'
+        'urlImagen',
+        'urlImagenListado',
     ];
 
     public function submercado()
@@ -71,5 +73,10 @@ class Edificio extends Model
     public function getUrlImagenAttribute()
     {
         return '/public' . Storage::url($this->edi_imagen);
+    }
+
+    public function getUrlImagenListadoAttribute()
+    {
+        return '/public' . Storage::url($this->edi_imagen_listado);
     }
 }

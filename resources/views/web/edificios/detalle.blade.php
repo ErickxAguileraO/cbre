@@ -16,8 +16,8 @@
 
     <div class="contenido">
         <div class="portada">
-            <img class="mostrar-escritorio" src="{{ asset('public/web/imagenes/portada-escritorio.svg') }}" alt="">
-            <img class="mostrar-movil" src="{{ asset('public/web/imagenes/portada-movil.svg') }}" alt="">
+            <img class="mostrar-escritorio" src="{{ $edificio->urlImagen }}" alt="">
+            <img class="mostrar-movil" src="{{ $edificio->urlImagen }}" alt="">
         </div>
 
         <div class="txt-caracteristicas">
@@ -110,7 +110,7 @@
                 <div class="carruselCertificaciones">
                     @foreach ($edificio->comercios as $comercio)
                     <div class="certificacion-home-n">
-                        <img class="imagen-comercio" src="{{ $edificio->urlImagen }}" alt="">
+                        <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
                     </div>
                     @endforeach
                 </div>

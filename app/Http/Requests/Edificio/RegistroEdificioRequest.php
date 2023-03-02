@@ -38,6 +38,12 @@ class RegistroEdificioRequest extends FormRequest
                 'mimes:jpg,jpeg,png',
                 'max:5120'
             ],
+            'imagenListado' => [
+                'required',
+                'dimensions:width=435,height=285',
+                'mimes:jpg,jpeg,png',
+                'max:5120'
+            ],
             'imagenesGaleria' => [
                 'required'
             ],
@@ -81,7 +87,8 @@ class RegistroEdificioRequest extends FormRequest
     {
         return [
             'imagenPrincipal.mimes' => 'Formatos permitidos: jpg, jpeg, png.',
-            'imagenPrincipal.max' => 'Tamaño de imagen máximo: 5MB'
+            'imagenPrincipal.max' => 'Tamaño de imagen máximo: 5MB',
+            'imagenListado.dimensions' => 'La imagen debe tener el tamaño 435x285.'
         ];
     }
 }
