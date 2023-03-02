@@ -1,14 +1,14 @@
 //document.addEventListener('DOMContentLoaded', function () {
 // document.getElementById("guardar").addEventListener("click", function (event) {
-    function eliminar(url) {
+    function turnOff(url) {
         Swal.fire({
             title: "¿Estás seguro?",
-            text: "¡No podrás revertir esto!",
+            text: "¡Un usuario deshabilitado no podrá acceder al sistema!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "¡Sí, Eliminalo!",
+            confirmButtonText: "¡Sí, deshabilítalo!",
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(url, {
@@ -21,16 +21,7 @@
                     .then((response) => response.json())
                     .then((response) => {
                         if (response.success) {
-                            Swal.fire({
-                                position: "center",
-                                icon: "success",
-                                title: response.success,
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
-                            setTimeout(() => {
-                                document.location.href = "/admin/administradores";
-                            }, 1500);
+                            document.location.href = "/admin/administradores";
                         } else {
                             Swal.fire({
                                 position: "center",
@@ -54,48 +45,6 @@
         });
     }
 
-    function turnOff(url) {
-        fetch(url, {
-            method: "DELETE",
-            headers: {
-                "X-CSRF-TOKEN":
-                    document.querySelector("[name=_token]").value,
-            },
-        })
-            .then((response) => response.json())
-            .then((response) => {
-                if (response.success) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: response.success,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    setTimeout(() => {
-                        document.location.href = "/admin/administradores";
-                    }, 1500);
-                } else {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: response.error,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                }
-            })
-            .catch((error) => {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "¡Ha ocurrido un error!",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-            });
-    }
-
     function turnOn(url) {
         fetch(url, {
             method: "POST",
@@ -107,16 +56,7 @@
             .then((response) => response.json())
             .then((response) => {
                 if (response.success) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: response.success,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    setTimeout(() => {
-                        document.location.href = "/admin/administradores";
-                    }, 1500);
+                    document.location.href = "/admin/administradores";
                 } else {
                     Swal.fire({
                         position: "center",
