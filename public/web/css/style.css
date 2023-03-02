@@ -475,6 +475,12 @@ footer .rrss{
     opacity: 1;
 
 }
+.flex-carrusel{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 .carruselNoticias{
     display: flex;
     align-items: center;

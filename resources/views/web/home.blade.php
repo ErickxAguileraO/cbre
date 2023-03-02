@@ -62,28 +62,51 @@
             <div class="noticias-home">
                 <h1>Noticias destacadas</h1>
                 <p class="p-txt-seccion">Revisa las noticias destacadas de los edificios que administramos</p>
-                <div class="carruselNoticias">
-                    @foreach ($noticias as $noticia)
-                    <div  class="noticia-home-n">
-                        <a href="{{route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo , "-")])}}">
-                            <div class="">
-                                <img src="{{ $noticia->urlImagen }}" class="imagen-noticias" alt="">
-                            </div>
-                            <div class="contenido-noticia-n">
-                                <div class="date-noticia">
-                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                    <p>Publicado el {{$noticia->fechaChile}} {{$noticia->hora}}</p>
-                                </div>
-                                <h2>{{$noticia->not_titulo}}</h2>
-                                <a href="{{route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo , "-")])}}" class="ver-mas">
-                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                    <p>Ver noticia</p>
+                @if (count($noticias) >= 3)
+                    <div class="carruselNoticias">
+                        @foreach ($noticias as $noticia)
+                            <div  class="noticia-home-n">
+                                <a href="{{route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo , "-")])}}">
+                                    <div class="">
+                                        <img src="{{ $noticia->urlImagen }}" class="imagen-noticias" alt="">
+                                    </div>
+                                    <div class="contenido-noticia-n">
+                                        <div class="date-noticia">
+                                            <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
+                                            <p>Publicado el {{$noticia->fechaChile}} {{$noticia->hora}}</p>
+                                        </div>
+                                        <h2>{{$noticia->not_titulo}}</h2>
+                                        <a href="{{route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo , "-")])}}" class="ver-mas">
+                                            <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
+                                            <p>Ver noticia</p>
+                                        </a>
+                                    </div>
                                 </a>
                             </div>
-                        </a>
+                        @endforeach
                     </div>
-                    @endforeach
-                </div>
+                @else
+                    <div class="flex-carrusel">
+                        <div  class="noticia-home-n">
+                            <a href="{{route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo , "-")])}}">
+                                <div class="">
+                                    <img src="{{ $noticia->urlImagen }}" class="imagen-noticias" alt="">
+                                </div>
+                                <div class="contenido-noticia-n">
+                                    <div class="date-noticia">
+                                        <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
+                                        <p>Publicado el {{$noticia->fechaChile}} {{$noticia->hora}}</p>
+                                    </div>
+                                    <h2>{{$noticia->not_titulo}}</h2>
+                                    <a href="{{route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo , "-")])}}" class="ver-mas">
+                                        <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
+                                        <p>Ver noticia</p>
+                                    </a>
+                                </div>
+                            </a>
+                        </div> 
+                    </div>
+                @endif
                 <a href="/noticias" class="style-link">Ver todas las noticias</a>
             </div>
         </section>
