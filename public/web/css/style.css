@@ -581,6 +581,17 @@ footer .rrss{
     width: 100%;
     height: 100%;
 }
+
+.comercial-home-n{
+    height: auto !important;
+    margin: 20px;
+    transition: all 300ms;
+}
+.comercial-home-n img{
+    width: 100%;
+    height: 100%;
+}
+
 /* Edificios y oficinas */
 .buscador-input{
     display: grid;
