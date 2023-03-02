@@ -6,181 +6,13 @@ $(".btn-cerrar-menu-bar").click(function(){
   $(".barra-menu-movil").css({'left':'-150%'});
 });
 
-
-$(document).ready(function(){
-    let carruselNoticias = $('.carruselNoticias');
-    let noticiasCount = carruselNoticias.find('.noticia-home-n').length;
-    let noticiasSlidesToShow = (noticiasCount < 3) ? noticiasCount : 3;
-
-    carruselNoticias.slick({
-      dots: false,
-      infinite: true,
-      speed: 300,
-      slidesToShow: noticiasSlidesToShow,
-      slidesToScroll: 1,
-      responsive: [
-        {
-          breakpoint: 1300,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: false
-          }
-        },
-        {
-          breakpoint: 1100,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 990,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 780,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 580,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
-      ]
-    });
-  });
-
-
-  $(document).ready(function(){
-    let carruselCaracteristicas = $('.carruselCaracteristicas');
-    let caracteristicasCount = carruselCaracteristicas.find('.caracteristica-n').length;
-    let caracteristicasSlidesToShow = (caracteristicasCount < 5) ? caracteristicasCount : 5;
-
-    carruselCaracteristicas.slick({
-      dots: false,
-      infinite: true,
-      speed: 300,
-      slidesToShow: caracteristicasSlidesToShow,
-      slidesToScroll: 1,
-      responsive: [
-        {
-          breakpoint: 1300,
-          settings: {
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: false
-          }
-        },
-        {
-          breakpoint: 1100,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 990,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 780,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 580,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
-      ]
-    });
-  });
-
-//este lo comparten certificaciones y locales comerciales, por qué? no sé
-$(document).ready(function(){
-    $('.carruselCertificaciones').each(function(){
-      let carruselCertificaciones = $(this);
-      let certificacionesCount = carruselCertificaciones.find('.certificacion-home-n').length;
-      let certificacionesSlidesToShow = (certificacionesCount < 5) ? certificacionesCount : 5;
-
-      carruselCertificaciones.slick({
-        dots: false,
-        infinite: true,
-        speed: 300,
-        slidesToShow: certificacionesSlidesToShow,
-        slidesToScroll: 1,
-        responsive: [
-          {
-            breakpoint: 1300,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 1,
-              infinite: true,
-              dots: false
-            }
-          },
-          {
-            breakpoint: 1100,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 990,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 780,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 580,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-          // You can unslick at a given breakpoint now by adding:
-          // settings: "unslick"
-          // instead of a settings object
-        ]
-      });
-    });
-  });
-
 // Contador home
 addEventListener('DOMContentLoaded', ()=>{
+
+$('.carruselNoticias').slick('refresh');
+$('.carruselCertificaciones').slick('refresh');
+$('.carruselCaracteristicas').slick('refresh');
+
   const contadores = document.querySelectorAll('.contador_cantidad');
   const velocidad = 1000;
 
@@ -222,6 +54,89 @@ addEventListener('DOMContentLoaded', ()=>{
   })
 
 })
+
+const carouselSettings = {
+    dots: false,
+    infinite: true,
+    speed: 300,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 990,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 780,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 580,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const carruselNoticias = $('.carruselNoticias');
+  const noticiasCount = carruselNoticias.find('.noticia-home-n').length;
+  const noticiasSlidesToShow = noticiasCount < 3 ? noticiasCount : 3;
+
+  carruselNoticias.slick({
+    ...carouselSettings,
+    slidesToShow: noticiasSlidesToShow,
+    slidesToScroll: 1,
+  });
+
+  $('.carruselCertificaciones').each((index, element) => {
+    const carruselCertificaciones = $(element);
+    const certificacionesCount = carruselCertificaciones.find(
+      '.certificacion-home-n'
+    ).length;
+    const certificacionesSlidesToShow =
+      certificacionesCount < 5 ? certificacionesCount : 5;
+
+    carruselCertificaciones.slick({
+      ...carouselSettings,
+      slidesToShow: certificacionesSlidesToShow,
+      slidesToScroll: 1,
+    });
+  });
+
+  const carruselCaracteristicas = $('.carruselCaracteristicas');
+  const caracteristicasCount = carruselCaracteristicas.find('.caracteristica-n')
+    .length;
+  const caracteristicasSlidesToShow =
+    caracteristicasCount < 5 ? caracteristicasCount : 5;
+
+  carruselCaracteristicas.slick({
+    ...carouselSettings,
+    slidesToShow: caracteristicasSlidesToShow,
+    slidesToScroll: 1,
+  });
+
 
 /// old shit to resize carousel elements
 /* $('.carruselCertificaciones').on('setPosition', function (event, slick) {
