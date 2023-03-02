@@ -6,12 +6,97 @@ $(".btn-cerrar-menu-bar").click(function(){
   $(".barra-menu-movil").css({'left':'-150%'});
 });
 
+
+$(document).ready(function(){
+    const carouselSettings = {
+        dots: false,
+        infinite: true,
+        speed: 300,
+        responsive: [
+          {
+            breakpoint: 1300,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: false,
+            },
+          },
+          {
+            breakpoint: 1100,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 990,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 780,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 580,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      };
+
+      const carruselNoticias = $('.carruselNoticias');
+      const noticiasCount = carruselNoticias.find('.noticia-home-n').length;
+      const noticiasSlidesToShow = noticiasCount < 3 ? noticiasCount : 3;
+
+      carruselNoticias.slick({
+        ...carouselSettings,
+        slidesToShow: noticiasSlidesToShow,
+        slidesToScroll: 1,
+      });
+
+      $('.carruselCertificaciones').each((index, element) => {
+        const carruselCertificaciones = $(element);
+        const certificacionesCount = carruselCertificaciones.find(
+          '.certificacion-home-n'
+        ).length;
+        const certificacionesSlidesToShow =
+          certificacionesCount < 5 ? certificacionesCount : 5;
+
+        carruselCertificaciones.slick({
+          ...carouselSettings,
+          slidesToShow: certificacionesSlidesToShow,
+          slidesToScroll: 1,
+        });
+      });
+
+      const carruselCaracteristicas = $('.carruselCaracteristicas');
+      const caracteristicasCount = carruselCaracteristicas.find('.caracteristica-n')
+        .length;
+      const caracteristicasSlidesToShow =
+        caracteristicasCount < 5 ? caracteristicasCount : 5;
+
+      carruselCaracteristicas.slick({
+        ...carouselSettings,
+        slidesToShow: caracteristicasSlidesToShow,
+        slidesToScroll: 1,
+      });
+
+    $('.carruselNoticias').slick('refresh');
+    $('.carruselCertificaciones').slick('refresh');
+    $('.carruselCaracteristicas').slick('refresh');
+  });
+
 // Contador home
 addEventListener('DOMContentLoaded', ()=>{
-
-$('.carruselNoticias').slick('refresh');
-$('.carruselCertificaciones').slick('refresh');
-$('.carruselCaracteristicas').slick('refresh');
 
   const contadores = document.querySelectorAll('.contador_cantidad');
   const velocidad = 1000;
@@ -54,89 +139,6 @@ $('.carruselCaracteristicas').slick('refresh');
   })
 
 })
-
-const carouselSettings = {
-    dots: false,
-    infinite: true,
-    speed: 300,
-    responsive: [
-      {
-        breakpoint: 1300,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 1100,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 990,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 780,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 580,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  const carruselNoticias = $('.carruselNoticias');
-  const noticiasCount = carruselNoticias.find('.noticia-home-n').length;
-  const noticiasSlidesToShow = noticiasCount < 3 ? noticiasCount : 3;
-
-  carruselNoticias.slick({
-    ...carouselSettings,
-    slidesToShow: noticiasSlidesToShow,
-    slidesToScroll: 1,
-  });
-
-  $('.carruselCertificaciones').each((index, element) => {
-    const carruselCertificaciones = $(element);
-    const certificacionesCount = carruselCertificaciones.find(
-      '.certificacion-home-n'
-    ).length;
-    const certificacionesSlidesToShow =
-      certificacionesCount < 5 ? certificacionesCount : 5;
-
-    carruselCertificaciones.slick({
-      ...carouselSettings,
-      slidesToShow: certificacionesSlidesToShow,
-      slidesToScroll: 1,
-    });
-  });
-
-  const carruselCaracteristicas = $('.carruselCaracteristicas');
-  const caracteristicasCount = carruselCaracteristicas.find('.caracteristica-n')
-    .length;
-  const caracteristicasSlidesToShow =
-    caracteristicasCount < 5 ? caracteristicasCount : 5;
-
-  carruselCaracteristicas.slick({
-    ...carouselSettings,
-    slidesToShow: caracteristicasSlidesToShow,
-    slidesToScroll: 1,
-  });
-
 
 /// old shit to resize carousel elements
 /* $('.carruselCertificaciones').on('setPosition', function (event, slick) {
