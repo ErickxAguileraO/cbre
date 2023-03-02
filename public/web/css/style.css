@@ -1048,6 +1048,9 @@ footer .rrss{
         width: 100%;
         height: 170px;
     }
+    .noticia-home-n{
+        max-width: 400px;
+    }
 
 }
 
