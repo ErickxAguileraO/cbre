@@ -478,7 +478,6 @@ footer .rrss{
 .flex-carrusel{
     display: flex;
     justify-content: center;
-    flex-direction: row;
     flex-wrap: wrap;
 }
 .carruselNoticias{
@@ -495,6 +494,7 @@ footer .rrss{
     background-color: white;
     margin: 20px;
     transition: all 300ms;
+    max-width: 540px;
 }
 .noticia-home-n a{
     width: 100%;
