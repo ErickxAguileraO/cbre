@@ -107,9 +107,9 @@
             <div class="certificaciones-home">
                 <h2 class="h2-internas">Locales comerciales</h2>
                 <p>En el edificio podrás encontrar diferentes locales comerciales, visítalos:</p>
-                <div class="carruselComercial">
+                <div class="carruselCertificaciones">
                     @foreach ($edificio->comercios as $comercio)
-                    <div class="comercial-home-n">
+                    <div class="certificacion-home-n">
                         <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
                     </div>
                     @endforeach
