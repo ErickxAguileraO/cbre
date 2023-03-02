@@ -62,7 +62,7 @@
             <div class="noticias-home">
                 <h1>Noticias destacadas</h1>
                 <p class="p-txt-seccion">Revisa las noticias destacadas de los edificios que administramos</p>
-                @if (count($noticias) >= 3)
+                @if (count($noticias -> $noticia) >= 3)
                     <div class="carruselNoticias">
                         @foreach ($noticias as $noticia)
                             <div  class="noticia-home-n">
