@@ -453,10 +453,13 @@ footer .rrss{
 .carruselCertificaciones .slick-prev, .carruselCertificaciones .slick-next{
     top: 100px;
 }
-
+.carruselComercial .slick-prev, .carruselComercial .slick-next{
+    top: 100px;
+}
 .carruselCaracteristicas .slick-prev, .carruselCaracteristicas .slick-next{
     top: 50px;
 }
+
 .slick-next{
     position: absolute;
     right: 10px;
