@@ -76,7 +76,7 @@
             <div class="noticias-home">
                 <h2 class="h2-internas">Noticias destacadas</h2>
                 <p class="p-txt-seccion">Conoce las últimas novedades o acontecimientos de nuestro Edificio</p>
-                @if (count($edificio->noticias) > 3)
+                @if (count($edificio->noticias) >= 3)
                     <div class="carruselNoticias">
                         @foreach ($edificio->noticias as $noticia)
                         <div class="noticia-home-n">
@@ -134,13 +134,24 @@
             <div class="certificaciones-home">
                 <h2 class="h2-internas">Locales comerciales</h2>
                 <p>En el edificio podrás encontrar diferentes locales comerciales, visítalos:</p>
-                <div class="carruselCertificaciones">
-                    @foreach ($edificio->comercios as $comercio)
-                    <div class="certificacion-home-n">
-                        <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
+                @if (count($edificio->comercios) >= 4)
+                    <div class="carruselCertificaciones">
+                        @foreach ($edificio->comercios as $comercio)
+                        <div class="certificacion-home-n">
+                            <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
-                </div>
+                @else
+                    <div class="flex-carrusel">
+                        @foreach ($edificio->comercios as $comercio)
+                        <div class="certificacion-home-n">
+                            <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
+                        </div>
+                        @endforeach
+                    </div>
+                @endif
+                
             </div>
         </section>
 
