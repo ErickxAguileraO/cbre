@@ -32,6 +32,10 @@ document.getElementById('imagenPrincipal').addEventListener('input', function ()
     document.getElementById('errorImagenPrincipal').classList.add('invisible');
 });
 
+document.getElementById('imagenListado').addEventListener('input', function () {
+    document.getElementById('errorImagenListado').classList.add('invisible');
+});
+
 document.getElementById('inputFileGaleria').addEventListener('input', function () {
     document.getElementById('errorImagenesGaleria').classList.add('invisible');
 });
@@ -81,6 +85,11 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorImagenPrincipal').classList.remove('invisible');
     }
 
+    if ( typeof errores.imagenListado !== 'undefined' ) {
+        document.getElementById('errorImagenListado').innerHTML = errores.imagenListado[0];
+        document.getElementById('errorImagenListado').classList.remove('invisible');
+    }
+
     if ( typeof errores.imagenesGaleria !== 'undefined' ) {
         document.getElementById('errorImagenesGaleria').innerHTML = errores.imagenesGaleria[0];
         document.getElementById('errorImagenesGaleria').classList.remove('invisible');
@@ -104,56 +113,6 @@ function mostrarErroresValidacion(errores) {
     if ( typeof errores.ubicacionDescripcion !== 'undefined' ) {
         document.getElementById('errorUbicacionDescripcion').innerHTML = errores.ubicacionDescripcion[0];
         document.getElementById('errorUbicacionDescripcion').classList.remove('invisible');
-    }
-
-    if ( typeof errores.jefeNombre !== 'undefined' ) {
-        document.getElementById('errorJefeNombre').innerHTML = errores.jefeNombre[0];
-        document.getElementById('errorJefeNombre').classList.remove('invisible');
-    }
-
-    if ( typeof errores.jefeApellidos !== 'undefined' ) {
-        document.getElementById('errorJefeApellidos').innerHTML = errores.jefeApellidos[0];
-        document.getElementById('errorJefeApellidos').classList.remove('invisible');
-    }
-
-    if ( typeof errores.jefeEmail !== 'undefined' ) {
-        document.getElementById('errorJefeEmail').innerHTML = errores.jefeEmail[0];
-        document.getElementById('errorJefeEmail').classList.remove('invisible');
-    }
-
-    if ( typeof errores.jefeTelefono !== 'undefined' ) {
-        document.getElementById('errorJefeTelefono').innerHTML = errores.jefeTelefono[0];
-        document.getElementById('errorJefeTelefono').classList.remove('invisible');
-    }
-
-    if ( typeof errores.fotoJefe !== 'undefined' ) {
-        document.getElementById('errorFotoJefe').innerHTML = errores.fotoJefe[0];
-        document.getElementById('errorFotoJefe').classList.remove('invisible');
-    }
-
-    if ( typeof errores.asistenteNombre !== 'undefined' ) {
-        document.getElementById('errorAsistenteNombre').innerHTML = errores.asistenteNombre[0];
-        document.getElementById('errorAsistenteNombre').classList.remove('invisible');
-    }
-
-    if ( typeof errores.asistenteApellidos !== 'undefined' ) {
-        document.getElementById('errorAsistenteApellidos').innerHTML = errores.asistenteApellidos[0];
-        document.getElementById('errorAsistenteApellidos').classList.remove('invisible');
-    }
-
-    if ( typeof errores.asistenteEmail !== 'undefined' ) {
-        document.getElementById('errorAsistenteEmail').innerHTML = errores.asistenteEmail[0];
-        document.getElementById('errorAsistenteEmail').classList.remove('invisible');
-    }
-
-    if ( typeof errores.asistenteTelefono !== 'undefined' ) {
-        document.getElementById('errorAsistenteTelefono').innerHTML = errores.asistenteTelefono[0];
-        document.getElementById('errorAsistenteTelefono').classList.remove('invisible');
-    }
-
-    if ( typeof errores.fotoAsistente !== 'undefined' ) {
-        document.getElementById('errorFotoAsistente').innerHTML = errores.fotoAsistente[0];
-        document.getElementById('errorFotoAsistente').classList.remove('invisible');
     }
 
     if ( typeof errores.certificaciones !== 'undefined' ) {
