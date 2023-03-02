@@ -110,7 +110,7 @@
                 <div class="carruselCertificaciones">
                     @foreach ($edificio->comercios as $comercio)
                     <div class="certificacion-home-n">
-                        <img class="imagen-comercio" src="{{ $edificio->urlImagen }}" alt="">
+                        <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
                     </div>
                     @endforeach
                 </div>
