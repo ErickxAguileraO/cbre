@@ -260,7 +260,7 @@ background-color: #eee; cursor: default; }
 .select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option { margin-left: -3em; padding-left: 4em;}
 .select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option { margin-left: -4em;	padding-left: 5em; }
 .select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option { margin-left: -5em; padding-left: 6em; }
-.select2-container--default .select2-results__option--highlighted[aria-selected] {background-color: #5897fb; color: white;}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {background: #538184; color: white;}
 .select2-container--default .select2-results__group {
 	cursor: default;
 	display: block;
