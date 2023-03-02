@@ -29,7 +29,7 @@
                     <p>></p>
                     <a href="/edificios-oficinas-detalle">Nombre edificio</a>
                 </div>
-                <p class="txt-1">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete</p>
+                <p class="txt-1">@php echo htmlspecialchars_decode($edificio->edi_descripcion) @endphp</p>
             </div>
             <div class="caracteristicas">
                 <h2>Amenities del edificio</h2>
@@ -136,7 +136,7 @@
                 <div>
                     <h2>Excelente ubicación</h2>
                     <div class="ubicacion-edificio-left-content">
-                        <p id="direccionRegistrada" data-direccion-registrada="{{ $edificio->edi_direccion }}">Dirección: {{ $edificio->edi_direccion }}</p>
+                        <p id="direccionRegistrada" data-direccion-registrada="{{ $edificio->edi_direccion }}"><span class="edificio-detalle-direccion">Dirección:</span> {{ $edificio->edi_direccion }}</p>
                         <p>@php echo htmlspecialchars_decode($edificio->ubi_descripcion) @endphp</p>
                     </div>
                 </div>
@@ -202,7 +202,6 @@
     </script>
     <script src="{{ asset('public/js/admin/sistema/edificios/google_map_modificar.js') }}"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap"></script>
-    <script src="https://cdn.rawgit.com/googlemaps/js-map-label/gh-pages/src/maplabel-compiled.js"></script>
     @endpush
 
 @endsection

@@ -58,7 +58,9 @@ function printEdificios() {
                         <img src="public/web/imagenes/i-gps-green.svg" alt="">
                         <p>${edificio.submercado.sub_nombre}, ${edificio.submercado.comuna.com_nombre}</p>
                     </div>
-                        <p>${edificio.edi_descripcion}</p>
+                        <div class="lista-detalle-edificio-descripcion">
+                        <p>${htmlDecode(edificio.edi_descripcion)}</p>
+                        </div>
                     <a href="edificios-oficinas/${edificio.edi_id}-${edificio.edi_nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w ]+/g,'').replace(/ +/g,'-')
                 }" class="ver-mas">
                         <img src="public/web/imagenes/i-linea.svg" alt="">
@@ -70,6 +72,11 @@ function printEdificios() {
 `;
     edificiosContainer.insertAdjacentHTML('beforeend', edificioHTML);
 });
+}
+
+function htmlDecode(input) {
+    const doc = new DOMParser().parseFromString(input, "text/html");
+    return doc.documentElement.textContent;
 }
 
 function isLoadingSpinner(status){
