@@ -56,26 +56,28 @@ $(document).ready(function(){
       const carruselNoticias = $('.carruselNoticias');
       const noticiasCount = carruselNoticias.find('.noticia-home-n').length;
       const noticiasSlidesToShow = noticiasCount < 3 ? noticiasCount : 3;
-
       carruselNoticias.slick({
         ...carouselSettings,
         slidesToShow: noticiasSlidesToShow,
         slidesToScroll: 1,
       });
 
-      $('.carruselCertificaciones').each((index, element) => {
-        const carruselCertificaciones = $(element);
-        const certificacionesCount = carruselCertificaciones.find(
-          '.certificacion-home-n'
-        ).length;
-        const certificacionesSlidesToShow =
-          certificacionesCount < 5 ? certificacionesCount : 5;
+      const carruselCertificaciones = $('.carruselCertificaciones');
+      const certificacionesCount = carruselCertificaciones.find('.certificacion-home-n').length;
+      const certificacionesSlidesToShow = certificacionesCount < 5 ? certificacionesCount : 5;
+      carruselCertificaciones.slick({
+        ...carouselSettings,
+        slidesToShow: certificacionesSlidesToShow,
+        slidesToScroll: 1,
+      });
 
-        carruselCertificaciones.slick({
-          ...carouselSettings,
-          slidesToShow: certificacionesSlidesToShow,
-          slidesToScroll: 1,
-        });
+      const carruselComercial = $('.carruselComercial');
+      const comercialCount = carruselComercial.find('.comercial-home-n').length;
+      const comercialSlidesToShow = comercialCount < 5 ? comercialCount : 5;
+      carruselComercial.slick({
+        ...carouselSettings,
+        slidesToShow: comercialSlidesToShow,
+        slidesToScroll: 1,
       });
 
       const carruselCaracteristicas = $('.carruselCaracteristicas');
@@ -83,20 +85,21 @@ $(document).ready(function(){
         .length;
       const caracteristicasSlidesToShow =
         caracteristicasCount < 5 ? caracteristicasCount : 5;
-
       carruselCaracteristicas.slick({
         ...carouselSettings,
         slidesToShow: caracteristicasSlidesToShow,
         slidesToScroll: 1,
       });
 
-    $('.carruselNoticias').slick('refresh');
-    $('.carruselCertificaciones').slick('refresh');
-    $('.carruselCaracteristicas').slick('refresh');
   });
 
 // Contador home
 addEventListener('DOMContentLoaded', ()=>{
+
+    $('.carruselNoticias').slick('refresh');
+    $('.carruselComercial').slick('refresh');
+    $('.carruselCertificaciones').slick('refresh');
+    $('.carruselCaracteristicas').slick('refresh');
 
   const contadores = document.querySelectorAll('.contador_cantidad');
   const velocidad = 1000;
