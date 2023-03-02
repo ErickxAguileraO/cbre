@@ -91,15 +91,14 @@ $(document).ready(function(){
         slidesToScroll: 1,
       });
 
+      $('.carruselNoticias').slick('refresh');
+      $('.carruselComercial').slick('refresh');
+      $('.carruselCertificaciones').slick('refresh');
+      $('.carruselCaracteristicas').slick('refresh');
   });
 
 // Contador home
 addEventListener('DOMContentLoaded', ()=>{
-
-    $('.carruselNoticias').slick('refresh');
-    $('.carruselComercial').slick('refresh');
-    $('.carruselCertificaciones').slick('refresh');
-    $('.carruselCaracteristicas').slick('refresh');
 
   const contadores = document.querySelectorAll('.contador_cantidad');
   const velocidad = 1000;
