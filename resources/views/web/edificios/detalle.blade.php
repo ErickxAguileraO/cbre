@@ -134,7 +134,7 @@
             <div class="certificaciones-home">
                 <h2 class="h2-internas">Locales comerciales</h2>
                 <p>En el edificio podrás encontrar diferentes locales comerciales, visítalos:</p>
-                @if (count($edificio->comercios) >= 4)
+                @if (count($edificio->comercios) >= 5)
                     <div class="carruselCertificaciones">
                         @foreach ($edificio->comercios as $comercio)
                         <div class="certificacion-home-n">
