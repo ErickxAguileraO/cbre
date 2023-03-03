@@ -13,32 +13,11 @@
     </div>
 
     {{-- Cuerpo del mensaje --}}
-    <div style="padding-left: 20px; padding-right: 20px; padding-top: 20px;">
-        <h2 style="margin-bottom: 20px;">Nuevo mensaje de contacto</h2>
-        <p>Estimado/a, {{$datos_generales->dag_nombre_encargado}}</p>
-        <p>Le informamos que ha recibido un nuevo mensaje de contacto en su sitio web. Los detalles del mensaje se indican a continuación:</p>
-    </div>
-
-    <div style="padding: 28px">
-        <div style="margin-bottom: 20px;">
-            <span style="display: block; font-weight: bold; margin-bottom: 5px;">Nombre:</span>
-            <span>{{ $request->nombre }}</span>
-        </div>
-
-        <div style="margin-bottom: 20px;">
-            <span style="display: block; font-weight: bold; margin-bottom: 5px;">Email:</span>
-            <span>{{ $request->email }}</span>
-        </div>
-
-        <div style="margin-bottom: 20px;">
-            <span style="display: block; font-weight: bold; margin-bottom: 5px;">Teléfono:</span>
-            <span>+56 {{ $request->telefono }}</span>
-        </div>
-
-        <div style="margin-bottom: 20px;">
-            <span style="display: block; font-weight: bold; margin-bottom: 5px;">Mensaje:</span>
-            <span>{{ $request->mensaje }}</span>
-        </div>
+    <div style="padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px">
+        <h2 style="margin-bottom: 20px;">Confirmación de recepción de formulario</h2>
+        <p>Estimado/a, {{$request->nombre}}</p>
+        <p>Confirmamos que hemos recibido su formulario de contacto y nos pondremos en contacto con usted lo antes posible para proporcionarle una respuesta o solución a su consulta.</p>
+        <p>Atentamente,</p>
     </div>
 
     {{-- Pie de página con información de la empresa --}}
