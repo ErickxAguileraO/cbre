@@ -15,7 +15,7 @@
     {{-- Cuerpo del mensaje --}}
     <div style="padding-left: 20px; padding-right: 20px; padding-top: 20px;">
         <h2 style="margin-bottom: 20px;">Nuevo mensaje de contacto</h2>
-        <p>Estimado/a,</p>
+        <p>Estimado/a, {{$datos_generales->dag_nombre_encargado}}</p>
         <p>Le informamos que ha recibido un nuevo mensaje de contacto en su sitio web. Los detalles del mensaje se indican a continuación:</p>
     </div>
 
@@ -45,8 +45,8 @@
     <div style="background-color: #012A2D; padding: 20px; color: #ffff; text-align: center;">
         <p>{{$datos_generales->dag_direccion}}</p>
         <p>{{$datos_generales->comuna->com_nombre}}, {{$datos_generales->comuna->region->reg_nombre}}</p>
-        <p>+56 {{$datos_generales->dag_telefono_uno}}</p>
-        <p>+56 {{$datos_generales->dag_telefono_dos}}</p>
+        <p>+56 {{ PrintPhone($datos_generales->dag_telefono_uno)}}</p>
+        <p>+56 {{ PrintPhone($datos_generales->dag_telefono_dos)}}</p>
         <div>
             <a href="{{$datos_generales->dag_facebook}}" target="_blank" style="text-decoration: none; margin-right: 5px">
                 <svg xmlns="http://www.w3.org/2000/svg" width="7.501" height="15" viewBox="0 0 7.501 15">
