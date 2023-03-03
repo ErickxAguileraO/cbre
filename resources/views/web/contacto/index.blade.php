@@ -69,7 +69,7 @@
                         </div>
                     </form>
                     <div class="operaciones-contenido" style="text-align: left;">
-                        <h2>Jefe de operaciones</h2>
+                        <h2>Gerente Property Managment</h2>
                         <div class="operacion-n">
                             <img class="imagen-jefe-operaciones img" src="{{ $datos_generales->urlImagen }}" alt="">
                             <div class="txt-operacion">
