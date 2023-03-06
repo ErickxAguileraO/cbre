@@ -28,8 +28,10 @@
 <body>
 <div id="wrapper">
   <nav class="navbar navbar-dark fixed-top flex-md-nowrap shadow py-4 header">
-    <div class="navbar-brand"><img src="{{ asset('public/images/admin/logo-white.svg') }}"></div>
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <div class="navbar-brand">
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <img class="ml-sm-0 pl-sm-0 ml-5 pl-4" src="{{ asset('public/images/admin/logo-white.svg') }}">
+    </div>
     <div class="dropdown">
       @auth
       <span class="mx-2">{{ auth()->user()->name }}</span>
@@ -44,7 +46,7 @@
         <div class="sidebar-sticky accordion" id="accordionMenu">
           <ul class="nav flex-column">
 
-            @can('index noticias')            
+            @can('index noticias')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{ route('noticias.index') }}" class="nav-link">Noticias</a>
@@ -58,7 +60,7 @@
                 <a href="{{ route('edificios.index') }}" class="nav-link">Edificios</a>
               </span>
             </li>
-            @endcan            
+            @endcan
 
             @can('index certificaciones')
             <li>
@@ -67,7 +69,7 @@
               </span>
             </li>
             @endcan
-            
+
             @can('index caracteristicas')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
