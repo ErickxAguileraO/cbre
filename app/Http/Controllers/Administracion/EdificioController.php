@@ -38,7 +38,7 @@ class EdificioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
+    {
         return view('admin.edificios.create');
     }
 
@@ -54,20 +54,20 @@ class EdificioController extends Controller
 
         try {
             $pathImagenPrincipal = ImagenService::subirImagen($request->file('imagenPrincipal'), 'edificios');
-            
+
             if ( !$pathImagenPrincipal ) {
                 return response()->error('No se pudo subir la imagen.', null);
             }
 
             $pathImagenListado = ImagenService::subirImagen($request->file('imagenListado'), 'edificios');
-            
+
             if ( !$pathImagenListado ) {
                 return response()->error('No se pudo subir la imagen.', null);
             }
 
             $edificio = Edificio::create([
                 'edi_nombre' => $request->nombre,
-                'edi_descripcion' => $request->descripcion,
+                'edi_descripcion' => $request->descripcionTextarea,
                 'edi_direccion' => $request->direccion,
                 'edi_imagen' => $pathImagenPrincipal,
                 'edi_imagen_listado' => $pathImagenListado,
@@ -86,7 +86,7 @@ class EdificioController extends Controller
             foreach ($request->certificaciones as $certificacion) {
                 $edificio->certificaciones()->attach($certificacion);
             }
-            
+
             foreach ($request->caracteristicas as $caracteristica) {
                 $edificio->caracteristicas()->attach($caracteristica);
             }
@@ -121,7 +121,7 @@ class EdificioController extends Controller
     public function edit($id)
     {
         $edificio = Edificio::find($id);
-        
+
         return view('admin.edificios.edit', ['edificio' => $edificio]);
     }
 
@@ -142,7 +142,7 @@ class EdificioController extends Controller
             if ( $request->file('imagenPrincipal') !== null ) {
                 Storage::delete($edificio->edi_imagen);
                 $pathImagenPrincipal = ImagenService::subirImagen($request->file('imagenPrincipal'), 'edificios');
-            
+
                 if ( !$pathImagenPrincipal ) {
                     return response()->error('No se pudo subir la imagen.', null);
                 }
@@ -153,16 +153,16 @@ class EdificioController extends Controller
             if ( $request->file('imagenListado') !== null ) {
                 Storage::delete($edificio->edi_imagen_listado);
                 $pathImagenListado = ImagenService::subirImagen($request->file('imagenListado'), 'edificios');
-            
+
                 if ( !$pathImagenListado ) {
                     return response()->error('No se pudo subir la imagen.', null);
                 }
 
                 $edificio->edi_imagen_listado = $pathImagenListado;
             }
-            
+
             $edificio->edi_nombre = $request->nombre;
-            $edificio->edi_descripcion = $request->descripcion;
+            $edificio->edi_descripcion = $request->descripcionTextarea;
             $edificio->edi_direccion = $request->direccion;
             $edificio->edi_submercado_id = $request->submercado;
             $edificio->ubi_titulo = $request->ubicacionTitulo;
@@ -186,7 +186,7 @@ class EdificioController extends Controller
             foreach ($request->certificaciones as $certificacion) {
                 $edificio->certificaciones()->attach($certificacion);
             }
-            
+
             foreach ($request->caracteristicas as $caracteristica) {
                 $edificio->caracteristicas()->attach($caracteristica);
             }

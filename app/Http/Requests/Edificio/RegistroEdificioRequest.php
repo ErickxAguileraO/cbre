@@ -28,7 +28,7 @@ class RegistroEdificioRequest extends FormRequest
                 'required',
                 'max:255'
             ],
-            'descripcion' => [
+            'descripcionTextarea' => [
                 'required',
                 'max:1000',
                 'min:30'

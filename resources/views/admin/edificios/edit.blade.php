@@ -28,16 +28,13 @@
                <label for="descripcionTextarea">Descripción</label>
                <div class="">
                     <div>
-                        <textarea name="descripcionTextarea" id="descripcionTextarea"
-                            class="form-control texto text-tarea-seccion ckeditor" rows="5" tabindex="2">
-                            {{ $edificio->edi_descripcion }}
-                        </textarea>
+                        <textarea name="descripcionTextarea" id="descripcionTextarea" class="form-control texto text-tarea-seccion ckeditor" rows="5" tabindex="2">{{ $edificio->edi_descripcion }}</textarea>
                     </div>
                 </div>
                <small id="errorDescripcion" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
-      </fieldset>  
+      </fieldset>
 
       <fieldset class="row">
          <div class="col-sm-4">
@@ -137,7 +134,7 @@
                <label for="submercado">Submercado</label>
                <select id="submercado" name="submercado" class="form-control busqueda-select2" tabindex="7">
                   <option value="">Selecciona...</option>
-                  
+
                   @foreach ($submercados as $submercado)
                   <option value="{{ $submercado->sub_id }}"
                   {{ $submercado->sub_id == $edificio->submercado->sub_id ? 'selected' : '' }}
@@ -159,7 +156,7 @@
                <small id="errorUbicacionTitulo" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
-      </fieldset>  
+      </fieldset>
 
       <fieldset class="row">
          <div class="col-sm-6">
@@ -176,7 +173,7 @@
                <small id="errorUbicacionDescripcion" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
-      </fieldset>  
+      </fieldset>
 
       <fieldset class="row">
          <div class="col-sm-4">
@@ -186,8 +183,8 @@
                <div class="pt-2">
                <span id="direccionRegistrada" data-direccion-registrada="{{ $edificio->edi_direccion }}">Dirección registrada: {{ $edificio->edi_direccion }}</span>
                </div>
-               
-            </div> 
+
+            </div>
          </div>
       </fieldset>
 
@@ -205,7 +202,7 @@
                         {{ $certificacion->cer_nombre }}
                      </option>
                      @endforeach
-         
+
                   </select>
                   <small id="errorCertificaciones" class="field-message-alert invisible"></small>
                </div>
@@ -225,7 +222,7 @@
                         {{ $caracteristica->car_nombre }}
                      </option>
                      @endforeach
-         
+
                   </select>
                   <small id="errorCaracteristicas" class="field-message-alert invisible"></small>
                </div>

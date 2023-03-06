@@ -29,7 +29,7 @@
                     <p>></p>
                     <a href="/edificios-oficinas-detalle">Nombre edificio</a>
                 </div>
-                <p class="txt-1">@php echo htmlspecialchars_decode($edificio->edi_descripcion) @endphp</p>
+                <p class="txt-1">{{ $edificio->edi_descripcion }}</p>
             </div>
             <div class="caracteristicas">
                 <h2>Amenities del edificio</h2>
@@ -125,7 +125,7 @@
                         @endforeach
                     </div>
                 @endif
-                
+
                 <a href="/noticias" class="style-link">Ver todas las noticias</a>
             </div>
         </section>
@@ -151,7 +151,7 @@
                         @endforeach
                     </div>
                 @endif
-                
+
             </div>
         </section>
 

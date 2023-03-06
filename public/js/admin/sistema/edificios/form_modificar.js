@@ -1,12 +1,12 @@
 // Campos con CKEditor
-let ckEditorDescripcion;
+/* let ckEditorDescripcion;
 ClassicEditor.create(document.querySelector('#descripcionTextarea'), configuracionCkeditor)
 .then(editor => {
     ckEditorDescripcion = editor;
     ckEditorDescripcion.model.document.on( 'change:data', () => {
         document.getElementById('errorDescripcion').classList.add('invisible');
     } );
-});
+}); */
 
 let ckEditorUbicacion;
 ClassicEditor.create(document.querySelector('#ubicacionDescripcionTextarea'), configuracionCkeditor)
@@ -17,9 +17,9 @@ ClassicEditor.create(document.querySelector('#ubicacionDescripcionTextarea'), co
     } );
 });
 
-/** 
+/**
  * Quitar mensaje de validación de los campos
- */ 
+ */
 document.getElementById('nombre').addEventListener('input', function () {
     document.getElementById('errorNombre').classList.add('invisible');
 });
@@ -74,7 +74,7 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorNombre').innerHTML = errores.nombre[0];
         document.getElementById('errorNombre').classList.remove('invisible');
     }
-    
+
     if ( typeof errores.descripcion !== 'undefined' ) {
         document.getElementById('errorDescripcion').innerHTML = errores.descripcion[0];
         document.getElementById('errorDescripcion').classList.remove('invisible');
@@ -131,49 +131,49 @@ function mostrarErroresValidacion(errores) {
     }
 }
 
-/** 
+/**
  * Configuración de los elementos de tipo inputfile
- */ 
+ */
  const inputFiles = document.querySelectorAll('.input-file');
 
  Array.from(inputFiles).forEach(function (inputFile) {
      inputFile.addEventListener('change', function () {
          const spanArchivoSeleccionado = this.parentElement.nextElementSibling.firstElementChild;
- 
+
          switch (true) {
              case inputFile.files.length == 0:
                  spanArchivoSeleccionado.innerHTML = 'Ningún archivo seleccionado';
                  break;
- 
+
              case inputFile.files.length == 1:
                  spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
                  break;
- 
+
              case inputFile.files.length > 1:
                  spanArchivoSeleccionado.innerHTML = `${inputFile.files.length} archivos seleccionados`;
                  break;
- 
+
              default:
                  break;
          }
      });
  });
-/** 
+/**
  * Envío del formulario
- */ 
+ */
 document.getElementById('guardarButton').addEventListener('click', function (event) {
     event.preventDefault();
-    
+
     const token = document.querySelector("input[name='_token']").value;
     const idEdificio = document.querySelector("input[name='idEdificio']").getAttribute('data-id-edificio');
     const formData = new FormData(document.forms.namedItem('formEdificio'));
-    formData.append('descripcion', ckEditorDescripcion.getData());
+    //formData.append('descripcion', ckEditorDescripcion.getData());
     formData.append('ubicacionDescripcion', ckEditorUbicacion.getData());
     formData.append('latitud', map.center.lat());
     formData.append('longitud', map.center.lng());
     formData.append('direccion', direccion);
     const url = `/admin/edificios/${idEdificio}`;
-    
+
     fetch(url, {
         method: 'POST',
         headers: {
@@ -189,7 +189,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
 
             return;
         }
-        
+
         if ( typeof response.status == 'undefined' ) {
             Swal.fire({
                 icon: 'error',
