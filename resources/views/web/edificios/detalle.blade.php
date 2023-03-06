@@ -29,7 +29,7 @@
                     <p>></p>
                     <a href="/edificios-oficinas-detalle">Nombre edificio</a>
                 </div>
-                <p class="txt-1">@php echo htmlspecialchars_decode($edificio->edi_descripcion) @endphp</p>
+                <p class="txt-2">@php echo htmlspecialchars_decode($edificio->edi_descripcion) @endphp</p>
             </div>
             <div class="caracteristicas">
                 <h2>Amenities del edificio</h2>
