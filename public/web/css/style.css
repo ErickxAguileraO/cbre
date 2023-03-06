@@ -685,6 +685,13 @@ footer .rrss{
     text-align: center;
     padding: 0px 200px 80px 200px;
 }
+.txt-2{
+    font-family: calibre-Regular;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 44px;
+    color: #4A4A4A;
+}
 .txt-caracteristicas .txt .txt-1{
     font-size: 28px;
     line-height: 44px;
@@ -702,6 +709,7 @@ footer .rrss{
     line-height: 55px;
     color: #FFFFFF;
     text-align: center;
+    font-weight: 400;
     margin-block-end: 0.3em;
 }
 .caracteristicas p{
