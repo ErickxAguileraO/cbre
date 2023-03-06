@@ -27,15 +27,13 @@
                <label for="descripcionTextarea">Descripción</label>
                <div class="">
                     <div>
-                        <textarea name="descripcionTextarea" id="descripcionTextarea"
-                            class="form-control texto text-tarea-seccion" rows="" tabindex="2">
-                        </textarea>
+                        <textarea name="descripcionTextarea" id="descripcionTextarea"class="form-control texto text-tarea-seccion" rows="" tabindex="2"></textarea>
                     </div>
                 </div>
                <small id="errorDescripcion" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
-      </fieldset>   
+      </fieldset>
 
       <fieldset class="row">
          <div class="col-sm-4">
@@ -119,7 +117,7 @@
                <label for="submercado">Submercado</label>
                <select id="submercado" name="submercado" class="form-control busqueda-select2" tabindex="10">
                   <option value="">Selecciona...</option>
-                  
+
                   @foreach ($submercados as $submercado)
                   <option value="{{ $submercado->sub_id }}">{{ $submercado->sub_nombre }}</option>
                   @endforeach
@@ -138,7 +136,7 @@
                <small id="errorUbicacionTitulo" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
-      </fieldset>  
+      </fieldset>
 
       <fieldset class="row">
          <div class="col-sm-6">
@@ -154,7 +152,7 @@
                <small id="errorUbicacionDescripcion" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
-      </fieldset>  
+      </fieldset>
 
       <fieldset class="row">
          <div class="col-sm-4">
@@ -164,7 +162,7 @@
                <small id="errorAutocompletadoMap" class="field-message-alert invisible absolute"></small>
             </div>
          </div>
-      </fieldset>  
+      </fieldset>
 
       <div class="border-top py-4">
          <fieldset class="row">
@@ -176,7 +174,7 @@
                      @foreach ($certificaciones as $certificacion)
                      <option value="{{ $certificacion->cer_id }}">{{ $certificacion->cer_nombre }}</option>
                      @endforeach
-         
+
                   </select>
                   <small id="errorCertificaciones" class="field-message-alert invisible"></small>
                </div>
@@ -192,7 +190,7 @@
                      @foreach ($caracteristicas as $caracteristica)
                      <option value="{{ $caracteristica->car_id }}">{{ $caracteristica->car_nombre }}</option>
                      @endforeach
-         
+
                   </select>
                   <small id="errorCaracteristicas" class="field-message-alert invisible"></small>
                </div>
