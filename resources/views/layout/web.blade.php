@@ -73,7 +73,7 @@
     <div class="header-movil mostrar-movil">
         <a href="/"><img src="{{ asset('public/web/imagenes/logo-white.svg') }}" alt=""></a>
         <div>
-            <a href=""><img src="{{ asset('public/web/imagenes/i-user.svg') }}" alt=""></a>
+            <a href="/login"><img src="{{ asset('public/web/imagenes/i-user.svg') }}" alt=""></a>
             <a class="btn-bar-movil"><img src="{{ asset('public/web/imagenes/i-bar.svg') }}" alt=""></a>
         </div>
     </div>
