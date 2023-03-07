@@ -22,11 +22,13 @@ document.addEventListener('DOMContentLoaded', function () {
             columns: [
                 {
                     dataField: 'not_titulo',
-                    caption: 'Título'
+                    caption: 'Título',
+                    hidingPriority: 5,
                 },
                 {
                     dataField: 'nombreEdificio',
                     caption: 'Edificio',
+                    hidingPriority: 3,
                 },
                 {
                     dataField: 'fechaChile',
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     width: '180',
                     minWidth: '180',
                     alignment: 'center',
+                    hidingPriority: 4,
                 },
                 {
                     dataField: 'hora',
@@ -41,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     width: '100',
                     minWidth: '100',
                     alignment: 'center',
+                    hidingPriority: 1,
                 },
                 {
                     dataField: '',
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     alignment: 'center',
                     width: '90',
                     minWidth: '90',
-                    hidingPriority: 4,
+                    hidingPriority: 2,
                     cellTemplate(container, options) {
                         const idNoticia = options.data.not_id;
 
