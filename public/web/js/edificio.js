@@ -56,7 +56,7 @@ function printEdificios() {
                 <h2 style="color:black">${edificio.edi_nombre}</h2>
                     <div class="ubi-green">
                         <img src="public/web/imagenes/i-gps-green.svg" alt="">
-                        <p>${edificio.submercado.sub_nombre}, ${edificio.submercado.comuna.com_nombre}</p>
+                        <p>${edificio.edi_direccion}</p>
                     </div>
                         <div class="lista-detalle-edificio-descripcion">
                         <p>${htmlDecode(edificio.edi_descripcion)}</p>

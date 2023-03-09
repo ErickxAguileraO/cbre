@@ -1,6 +1,6 @@
 @extends('layout.web')
 
-@section('title', 'Inicio')
+@section('title', $noticia->not_titulo)
 
 @section('content')
     @push('extra-css')
