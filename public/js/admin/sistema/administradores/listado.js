@@ -45,11 +45,11 @@
                              let method;
 
                         if(options.data.deleted_at === null){
-                            switchableTemplate = `<a href="" title="Eliminar" id="eliminarPerfilEnlace" data-id="${idAdministrador}"><i class='fas fa-toggle-on text-success'></i></a>`;
+                            switchableTemplate = `<a href="" title="Eliminar" data-id="${idAdministrador}"><i class='fas fa-toggle-on text-success'></i></a>`;
                             url_change_status = `/admin/administradores/${idAdministrador}`;
                             method = "DELETE";
                           }else{
-                            switchableTemplate = `<a href="" title="Eliminar" id="eliminarPerfilEnlace" data-id="${idAdministrador}"><i class='fas fa-toggle-off text-danger'></i></a>`;
+                            switchableTemplate = `<a href="" title="Eliminar" data-id="${idAdministrador}"><i class='fas fa-toggle-off text-danger'></i></a>`;
                             url_change_status = `/admin/administradores/restore/${idAdministrador}`;
                             method = "POST";
                         }

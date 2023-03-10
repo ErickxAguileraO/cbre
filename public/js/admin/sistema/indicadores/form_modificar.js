@@ -31,7 +31,7 @@ document.getElementById("editar").addEventListener("click", function (event) {
                         isLoadingSpinner("editar", 'done');
                         resetValidationMessages();
                         setTimeout(() => {
-                            document.location.href = "/admin/indicadores";
+                            isLoadingSpinner("editar", false);
                         }, 2000);
                     } else if (response.error) {
                         isLoadingSpinner("editar", false);

@@ -52,7 +52,8 @@ document.getElementById("editar").addEventListener("click", function (event) {
                         isLoadingSpinner("editar", "done");
                         resetValidationMessages();
                         setTimeout(() => {
-                            document.location.href = "/admin/quienes-somos";
+                            refreshImg();
+                            isLoadingSpinner("editar", false);
                         }, 2000);
                     } else if (response.error) {
                         isLoadingSpinner("editar", false);
@@ -134,3 +135,14 @@ Array.from(inputFiles).forEach(function (inputFile) {
         spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
     });
 });
+
+function refreshImg(){
+const quienesSomosImg = document.getElementById('quienes-somos-img');
+fetch('/admin/quienes-somos/get/single')
+  .then(response => response.json())
+  .then(data => {
+    const newSrc = data.urlImagen;
+    quienesSomosImg.src = newSrc;
+  })
+  .catch(error => console.error(error));
+}

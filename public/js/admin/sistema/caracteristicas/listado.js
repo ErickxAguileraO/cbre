@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         let urlEliminar = `/admin/caracteristicas/${idCaracteristica}`;
 
                         let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
-                        let templateEliminar = `<a href="" title="Eliminar" id="eliminarPerfilEnlace" data-id="${idCaracteristica}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
+                        let templateEliminar = `<a href="" title="Eliminar" data-id="${idCaracteristica}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
 
                         const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
                         const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);

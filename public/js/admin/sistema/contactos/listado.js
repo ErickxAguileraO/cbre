@@ -1,58 +1,3 @@
-//document.addEventListener('DOMContentLoaded', function () {
-// document.getElementById("guardar").addEventListener("click", function (event) {
-    function eliminar(url) {
-        Swal.fire({
-            title: "¿Estás seguro?",
-            text: "¡No podrás revertir esto!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "¡Sí, Eliminalo!",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(url, {
-                    method: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN":
-                            document.querySelector("[name=_token]").value,
-                    },
-                })
-                    .then((response) => response.json())
-                    .then((response) => {
-                        if (response.success) {
-                            Swal.fire({
-                                position: "center",
-                                icon: "success",
-                                title: response.success,
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
-                            setTimeout(() => {
-                                document.location.href = "/admin/contactos";
-                            }, 1500);
-                        } else {
-                            Swal.fire({
-                                position: "center",
-                                icon: "error",
-                                title: response.error,
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
-                        }
-                    })
-                    .catch((error) => {
-                        Swal.fire({
-                            position: "center",
-                            icon: "error",
-                            title: "¡Ha ocurrido un error!",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                    });
-            }
-        });
-    }
 
     document.addEventListener("DOMContentLoaded", function () {
         cargarContactos();
@@ -120,15 +65,66 @@
                             let urlMostrar = `/admin/contactos/${idContacto}`;
                             let urlEliminar = `/admin/contactos/${idContacto}`;
 
-                            return $(
-                                '<a href="' +
-                                    urlMostrar +
-                                    '" class="edit"><i class="color-texto-cbre fa-solid fa-eye"></i></a>  <a class="eliminar_pedido" href="#" data-id="' +
-                                    idContacto +
-                                    '" onclick=eliminar("' +
-                                    urlEliminar +
-                                    '")><i class="fas fa-trash-can fa-fw pointer-none color-texto-cbre"></i></a>'
-                            );
+                            let templateMostrar = `<a href="${urlMostrar}" title="Mostrar"><i class='color-texto-cbre fa-solid fa-eye'></i></a>`;
+                            let templateEliminar = `<a href="" title="Eliminar" data-id="${idContacto}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
+
+                            const enlaceMostrar = $('<a />').append(templateMostrar).appendTo(container);
+                            const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);
+
+                            enlaceEliminar.click(function (event) {
+                                event.preventDefault();
+                                Swal.fire({
+                                    title: "¿Estás seguro?",
+                                    text: "¡No podrás revertir esto!",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "¡Sí, Eliminalo!",
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        fetch(urlEliminar, {
+                                            method: "DELETE",
+                                            headers: {
+                                                "X-CSRF-TOKEN":
+                                                    document.querySelector("[name=_token]").value,
+                                            },
+                                        })
+                                            .then((response) => response.json())
+                                            .then((response) => {
+                                                if (response.success) {
+                                                    Swal.fire({
+                                                        position: "center",
+                                                        icon: "success",
+                                                        title: response.success,
+                                                        showConfirmButton: false,
+                                                        timer: 1500,
+                                                    });
+                                                    setTimeout(() => {
+                                                        cargarContactos();
+                                                    }, 1500);
+                                                } else {
+                                                    Swal.fire({
+                                                        position: "center",
+                                                        icon: "error",
+                                                        title: response.error,
+                                                        showConfirmButton: false,
+                                                        timer: 1500,
+                                                    });
+                                                }
+                                            })
+                                            .catch((error) => {
+                                                Swal.fire({
+                                                    position: "center",
+                                                    icon: "error",
+                                                    title: "¡Ha ocurrido un error!",
+                                                    showConfirmButton: false,
+                                                    timer: 1500,
+                                                });
+                                            });
+                                    }
+                                });
+                            });
                         },
                     },
                 ],

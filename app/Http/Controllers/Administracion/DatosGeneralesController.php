@@ -23,8 +23,13 @@ class DatosGeneralesController extends Controller
         return view('admin.datos_generales.index', ['datos_generales' => DatoGeneral::first()]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function get(Request $request){
-        return DatoGeneral::where('dag_id', $request->datosGenerales)->with(['comuna.region'])->first();
+        return DatoGeneral::with(['comuna.region'])->first();
     }
     /**
      * Show the form for creating a new resource.

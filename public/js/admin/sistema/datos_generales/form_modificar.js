@@ -44,7 +44,8 @@ document.getElementById("editar").addEventListener("click", function (event) {
                         isLoadingSpinner("editar", 'done');
                         resetValidationMessages();
                         setTimeout(() => {
-                            document.location.href = "/admin/datos-generales";
+                            refreshImg();
+                            isLoadingSpinner("editar", false);
                         }, 2000);
                     } else if (response.error) {
                         isLoadingSpinner("editar", false);
@@ -162,7 +163,7 @@ function obtenerDatosGenerales(){
     let datosGenerales = "";
     $.ajax({
         method: "GET",
-        url:'/admin/datos-generales/get/single/' + document.getElementById("dag_id").value,
+        url:'/admin/datos-generales/get/single',
         async: false,
         success: (data) => {
             datosGenerales = data;
@@ -210,3 +211,11 @@ function obtenerListaRegiones(){
     });
     return regiones.filter((v,i,a)=>a.findIndex(v2=>(v2.reg_id===v.reg_id))===i) //remove duplicates
 }
+
+function refreshImg(){
+    const datosGeneralesImg = document.getElementById('datos-generales-img');
+    const newSrc = obtenerDatosGenerales().urlImagen;
+    datosGeneralesImg.src = newSrc;
+}
+
+
