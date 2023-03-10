@@ -43,18 +43,18 @@ class CertificacionController extends Controller
     {
         try {
             $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'certificaciones');
-            
+
             if ( !$pathImagen ) {
                 return response()->error('No se pudo subir la imagen.', null);
             }
-            
+
             $certificacion = Certificacion::create([
                 'cer_imagen' => $pathImagen,
                 'cer_nombre' => $request->nombre,
                 'cer_posicion' => $request->posicion,
                 'cer_estado' => $request->estado
             ]);
-    
+
             return response()->success($certificacion, 201);
         } catch (\Exception $exc) {
             return response()->error($exc->getMessage(), null);
@@ -81,7 +81,7 @@ class CertificacionController extends Controller
     public function edit($id)
     {
         $certificacion = Certificacion::find($id);
-        
+
         return view('admin.certificaciones.edit', ['certificacion' => $certificacion]);
     }
 
@@ -138,10 +138,10 @@ class CertificacionController extends Controller
             $certificacion->edificios()->detach();
             Storage::delete($certificacion->cer_imagen);
             $certificacion->delete();
-            
+
             DB::commit();
 
-            return response()->success($certificacion, 204);
+            return response()->success($certificacion, 200);
         } catch (\Exception $exc) {
             DB::rollback();
 
