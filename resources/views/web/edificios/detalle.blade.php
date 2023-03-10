@@ -36,6 +36,7 @@
             </div>
             <div class="caracteristicas">
                 <h2>Amenities del edificio</h2>
+                @if (count($edificio->caracteristicas) >= 5)
                 <div class="carruselCaracteristicas">
                     @foreach ($edificio->caracteristicas as $caracteristica)
                         <div class="caracteristica-n">
@@ -44,6 +45,16 @@
                         </div>
                     @endforeach
                 </div>
+                @else
+                <div class="flex-carrusel">
+                    @foreach ($edificio->caracteristicas as $caracteristica)
+                        <div class="caracteristica-n">
+                            <img class="imagen-icon-caracteristicas" src="{{ $caracteristica->urlImagen }}" alt="">
+                            <p>{{ $caracteristica->car_nombre }}</p>
+                        </div>
+                    @endforeach
+                </div>
+                @endif
             </div>
         </div>
         @if ($edificio->edi_video)
@@ -171,6 +182,7 @@
     <section class="flex-certificaciones-edificio">
         <div class="certificaciones-home">
             <h1 class="h2-internas">Nuestras certificaciones</h1>
+            @if (count($edificio->certificaciones) >= 5)
             <div class="carruselCertificaciones">
                 @foreach ($edificio->certificaciones as $certificacion)
                     <div class="certificacion-home-n">
@@ -178,6 +190,15 @@
                     </div>
                 @endforeach
             </div>
+                @else
+                <div class="flex-carrusel">
+                    @foreach ($edificio->certificaciones as $certificacion)
+                        <div class="certificacion-home-n">
+                            <img src="{{ $certificacion->urlImagen }}" alt="">
+                        </div>
+                    @endforeach
+                </div>
+            @endif
             <p class="p-txt-seccion">Te presentamos las certificaciones que hemos obtenido</p>
         </div>
     </section>

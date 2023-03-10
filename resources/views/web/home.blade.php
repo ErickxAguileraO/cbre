@@ -116,13 +116,23 @@
         <section class="flex-certificaciones-home">
             <div class="certificaciones-home">
                 <h1>Nuestras certificaciones</h1>
-                <div class="carruselCertificaciones">
-                    @foreach ($certificaciones as $certificacion)
-                    <div class="certificacion-home-n">
-                        <img src="{{ $certificacion->urlImagen }}" alt="">
+                    @if (count($certificaciones) >= 5)
+                    <div class="carruselCertificaciones">
+                        @foreach ($certificaciones as $certificacion)
+                        <div class="certificacion-home-n">
+                            <img src="{{ $certificacion->urlImagen }}" alt="">
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
-                </div>
+                    @else
+                    <div class="flex-carrusel">
+                        @foreach ($certificaciones as $certificacion)
+                        <div class="certificacion-home-n">
+                            <img src="{{ $certificacion->urlImagen }}" alt="">
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
                 <p class="p-txt-seccion">Conoce las certificaciones que tienen nuestros edificios</p>
             </div>
         </section>
