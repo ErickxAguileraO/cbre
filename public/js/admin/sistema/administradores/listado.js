@@ -1,82 +1,3 @@
-//document.addEventListener('DOMContentLoaded', function () {
-// document.getElementById("guardar").addEventListener("click", function (event) {
-    function turnOff(url) {
-        Swal.fire({
-            title: "¿Estás seguro?",
-            text: "¡Un usuario deshabilitado no podrá acceder al sistema!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "¡Sí, deshabilítalo!",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(url, {
-                    method: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN":
-                            document.querySelector("[name=_token]").value,
-                    },
-                })
-                    .then((response) => response.json())
-                    .then((response) => {
-                        if (response.success) {
-                            document.location.href = "/admin/administradores";
-                        } else {
-                            Swal.fire({
-                                position: "center",
-                                icon: "error",
-                                title: response.error,
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
-                        }
-                    })
-                    .catch((error) => {
-                        Swal.fire({
-                            position: "center",
-                            icon: "error",
-                            title: "¡Ha ocurrido un error!",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                    });
-            }
-        });
-    }
-
-    function turnOn(url) {
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "X-CSRF-TOKEN":
-                    document.querySelector("[name=_token]").value,
-            },
-        })
-            .then((response) => response.json())
-            .then((response) => {
-                if (response.success) {
-                    document.location.href = "/admin/administradores";
-                } else {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: response.error,
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                }
-            })
-            .catch((error) => {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "¡Ha ocurrido un error!",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-            });
-    }
 
     document.addEventListener("DOMContentLoaded", function () {
         cargarAdministradores();
@@ -118,17 +39,101 @@
                         minWidth: '100',
                         alignment: 'center',
                         cellTemplate: function(container, options) {
-                             let switchable;
-                             const idAdministrador = options.data.adm_id;
-                             let url_change_status_off = `/admin/administradores/${idAdministrador}`;
-                             let url_change_status_on = `/admin/administradores/restore/${idAdministrador}`;
+                            const idAdministrador = options.data.adm_id;
+                             let switchableTemplate;
+                             let url_change_status;
+                             let method;
 
-                           if(options.data.deleted_at === null){
-                            switchable = "<a class='text-primary mr-2' href='#' onclick=\"turnOff('" + url_change_status_off + "')\"><i class='fas fa-toggle-on text-success'></i></a>";
+                        if(options.data.deleted_at === null){
+                            switchableTemplate = `<a href="" title="Eliminar" id="eliminarPerfilEnlace" data-id="${idAdministrador}"><i class='fas fa-toggle-on text-success'></i></a>`;
+                            url_change_status = `/admin/administradores/${idAdministrador}`;
+                            method = "DELETE";
                           }else{
-                            switchable = "<a class='text-primary mr-2' href='#' onclick=\"turnOn('" + url_change_status_on + "')\"><i class='fas fa-toggle-off text-danger'></i></a>";
-                          }
-                           return $('<div>').append(switchable);
+                            switchableTemplate = `<a href="" title="Eliminar" id="eliminarPerfilEnlace" data-id="${idAdministrador}"><i class='fas fa-toggle-off text-danger'></i></a>`;
+                            url_change_status = `/admin/administradores/restore/${idAdministrador}`;
+                            method = "POST";
+                        }
+
+                          const enlaceChangeStatus = $('<a />').append(switchableTemplate).appendTo(container);
+
+                          enlaceChangeStatus.click(function (event) {
+                            event.preventDefault();
+                            if(method === "DELETE"){
+                                Swal.fire({
+                                    title: "¿Estás seguro?",
+                                    text: "¡Un usuario deshabilitado no podrá acceder al sistema!",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "¡Sí, deshabilítalo!",
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        fetch(url_change_status, {
+                                            method: method,
+                                            headers: {
+                                                "X-CSRF-TOKEN":
+                                                    document.querySelector("[name=_token]").value,
+                                            },
+                                        })
+                                            .then((response) => response.json())
+                                            .then((response) => {
+                                                if (response.success) {
+                                                    cargarAdministradores();
+                                                } else {
+                                                    Swal.fire({
+                                                        position: "center",
+                                                        icon: "error",
+                                                        title: response.error,
+                                                        showConfirmButton: false,
+                                                        timer: 1500,
+                                                    });
+                                                }
+                                            })
+                                            .catch((error) => {
+                                                Swal.fire({
+                                                    position: "center",
+                                                    icon: "error",
+                                                    title: "¡Ha ocurrido un error!",
+                                                    showConfirmButton: false,
+                                                    timer: 1500,
+                                                });
+                                            });
+                                    }
+                                });
+                            }else{
+                                fetch(url_change_status, {
+                                    method: method,
+                                    headers: {
+                                        "X-CSRF-TOKEN":
+                                            document.querySelector("[name=_token]").value,
+                                    },
+                                })
+                                    .then((response) => response.json())
+                                    .then((response) => {
+                                        if (response.success) {
+                                            cargarAdministradores();
+                                        } else {
+                                            Swal.fire({
+                                                position: "center",
+                                                icon: "error",
+                                                title: response.error,
+                                                showConfirmButton: false,
+                                                timer: 1500,
+                                            });
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        Swal.fire({
+                                            position: "center",
+                                            icon: "error",
+                                            title: "¡Ha ocurrido un error!",
+                                            showConfirmButton: false,
+                                            timer: 1500,
+                                        });
+                                    });
+                            }
+                        });
                         },
                      },
                     {
@@ -141,7 +146,6 @@
                         cellTemplate(container, options) {
                             const idAdministrador = options.data.adm_id;
                             let urlModificar = `/admin/administradores/${idAdministrador}/edit`;
-                            //let urlEliminar = `/admin/administradores/${idAdministrador}`;
                             return $(
                                 '<a href="' +
                                     urlModificar +
