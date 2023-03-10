@@ -15,7 +15,7 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorEmail').innerHTML = errores.email[0];
         document.getElementById('errorEmail').classList.remove('invisible');
     }
-    
+
     if ( typeof errores.password !== 'undefined' ) {
         document.getElementById('errorPassword').innerHTML = errores.password[0];
         document.getElementById('errorPassword').classList.remove('invisible');
@@ -33,7 +33,9 @@ document.getElementById('actualizarButton').addEventListener('click', function (
     const token = document.querySelector("input[name='_token']").value;
     const formData = new FormData(document.forms.namedItem('formUpdatePassword'));
     const url = '/reset-password';
-    
+
+    isLoadingSpinner("actualizarButton", true);
+
     fetch(url, {
         method: 'POST',
         headers: {
@@ -44,32 +46,42 @@ document.getElementById('actualizarButton').addEventListener('click', function (
     })
     .then(response => response.json().then(data => ({ok: response.ok, body: data})))
     .then(function (response) {
-        if ( typeof response.body.errors !== 'undefined' ) {
-            mostrarErroresValidacion(response.body.errors);
 
-            return;
-        }
+        isLoadingSpinner("actualizarButton", true);
 
-        if ( !response.ok ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Un momento...',
-                text: response.body.message
-            })
+        setTimeout(() => {
+            if ( typeof response.body.errors !== 'undefined' ) {
+                isLoadingSpinner("actualizarButton", false);
+                mostrarErroresValidacion(response.body.errors);
 
-            return;
-        }
+                return;
+            }
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Contraseña actualizada',
-            showConfirmButton: false,
-            timer: 2000
-        });
+            if ( !response.ok ) {
+                isLoadingSpinner("actualizarButton", false);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Un momento...',
+                    text: response.body.message
+                })
 
-        setTimeout(function () {
-            window.location.href = '/login';
-        }, 2000);
+                return;
+            }
+
+                isLoadingSpinner("actualizarButton", 'done');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Contraseña actualizada',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+
+                setTimeout(function () {
+                    window.location.href = '/login';
+                }, 2000);
+
+        }, 1000);
+
     })
     .catch(error => {
         Swal.fire({

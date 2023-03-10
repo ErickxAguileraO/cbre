@@ -3,7 +3,7 @@
 @section('title', 'Funcionarios')
 
 @push('stylesheets')
-   
+
 @endpush
 
 @section('content')
@@ -92,7 +92,7 @@
                         <label for="edificio">Edificio</label>
                         <select id="edificio" name="edificio" class="form-control busqueda-select2" tabindex="6">
                             <option value="">Selecciona...</option>
-                            
+
                             @foreach ($edificios as $edificio)
                             <option value="{{ $edificio->edi_id }}"
                             {{ $funcionario->fun_edificio_id == $edificio->edi_id ? 'selected' : '' }}
@@ -112,16 +112,23 @@
                 <input type="hidden" id="edificio" name="edificio" value="">
             @endif
         @endrole
-        
-        <br>
-        <br>
-    
-        <fieldset class="row">
-        <div class="col-sm-4">
-            <div class="form-group">
-                <input id="guardarButton" type="submit" class="btn boton-submit-formulario btn-lg" value="Guardar" />
+
+        <fieldset class="row mt-5">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <button id="editar" type="submit" class="btn btn-success btn-lg" value="Editar"
+                        class="btn btn-success btn-lg" type="button">
+                        <div id="default" class="d-block">
+                            <span class="mr-2">Editar</span>
+                        </div>
+                        <div id="loading" class="d-none">
+                            <span class="mr-2">Editando</span>
+                            <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
+                        </div>
+                    </button>
+
+                </div>
             </div>
-        </div>
         </fieldset>
         <input type="hidden" id="idFuncionario" name="idFuncionario" data-id-funcionario="{{ $funcionario->fun_id }}" value="{{ $funcionario->fun_id }}">
     </form>

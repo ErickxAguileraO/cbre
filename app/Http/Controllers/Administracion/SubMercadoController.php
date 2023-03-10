@@ -25,7 +25,7 @@ class SubMercadoController extends Controller
     }
 
     public function list(){
-        return SubMercado::with('comuna.region')->get();
+        return SubMercado::with('comuna.region')->orderByDesc('created_at')->get();
     }
 
     public function get(Request $request){

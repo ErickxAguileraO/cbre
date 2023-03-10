@@ -2,7 +2,7 @@
 @section('title', 'Certificaciones')
 
 @section('content')
-   <a class="btn btn-primary float-right" href="{{ route('certificaciones.create') }}">Crear certificación</a>
+   <a class="btn btn-success float-right text-white" href="{{ route('certificaciones.create') }}">Crear certificación</a>
    <h1>Certificaciones</h1>
    @csrf
    <div class="dx-viewport">

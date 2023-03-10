@@ -3,7 +3,7 @@
 
 @section('content')
    @role('super-admin')
-      <a class="btn btn-primary float-right" href="{{ route('funcionarios.create') }}">Crear funcionario</a>
+      <a class="btn btn-success float-right text-white" href="{{ route('funcionarios.create') }}">Crear funcionario</a>
    @endrole
    <h1>Funcionarios</h1>
    <div class="dx-viewport">

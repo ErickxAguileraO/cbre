@@ -185,6 +185,11 @@ transform: rotate(0deg);
 	bottom: 0;
 }
 
+.file-select:hover::before {
+    background-color: #005157;
+    /* Change the background color on hover */
+  }
+
 .swal2-popup {
 	font-size: 1.6rem !important;
 	font-style: normal !important;
@@ -229,3 +234,104 @@ nav.header * {
 .ck-editor__editable_inline {
     min-height: 200px;
 }
+
+.btn-outline-success {
+    color: #538184!important;
+    border-color: #538184!important;
+  }
+
+  .btn-outline-success:hover {
+    color: #fff!important;
+    background-color: #00353A!important;
+    border-color: #00353A!important;
+  }
+
+.btn-success{
+    color: #fff;
+    background-color: #005157!important;
+    border-color: #005157!important;
+  }
+  .btn-success:hover {
+    color: #fff;
+    background-color: #00353A!important;
+    border-color: #00353A!important;
+  }
+  .btn-success:focus,
+  .btn-success.focus {
+    color: #fff;
+    background-color: #00353A!important;
+    border-color: #00353A!important;
+    outline: 0 !important;
+    box-shadow:
+      0 0 0 .2rem rgba(0, 53, 58, 0.5) !important; /* faux focus ring color */
+  }
+  .btn-success:active,
+  .btn-success.active,
+  .open > .btn-success.dropdown-toggle {
+    color: #fff;
+    background-color: #00353A!important;
+    border-color: #00353A!important;
+    background-image: none;
+  }
+  .btn-success:active:hover,
+  .btn-success:active:focus,
+  .btn-success:active.focus,
+  .btn-success.active:hover,
+  .btn-success.active:focus,
+  .btn-success.active.focus,
+  .open > .btn-success.dropdown-toggle:hover,
+  .open > .btn-success.dropdown-toggle:focus,
+  .open > .btn-success.dropdown-toggle.focus {
+    color: #fff;
+    background-color: #00353A!important;
+    border-color: #00353A!important;
+  }
+  .btn-success.disabled:focus,
+  .btn-success.disabled.focus,
+  .btn-success:disabled:focus,
+  .btn-success:disabled.focus {
+    background-color: #006771!important;
+    border-color: #006771!important;
+    outline: 0 !important;
+    box-shadow:
+    0 0 0 .2rem rgba(0, 103, 113, 0.5) !important; /* faux focus ring color */
+  }
+  .btn-success.disabled:hover,
+  .btn-success:disabled:hover {
+    background-color: #006771!important;
+    border-color: #006771!important;
+  }
+  .btn-success.disabled,
+.btn-success:disabled {
+  opacity: 0.65; /* Reduce the opacity of the button to indicate that it's disabled */
+  pointer-events: none; /* Disable pointer events on the button */
+}
+
+.custom-file-input:focus~.custom-file-label,
+.custom-file-input:active~.custom-file-label,
+.custom-file-input:hover~.custom-file-label {
+  border-color: #538184!important;
+  /* Add a border color to the label when the file input is active or hovered over */
+}
+.custom-file-label::after {
+  content: 'Seleccionar';
+  background-color: #538184!important;
+  border: 1px solid #538184!important;
+  color: white!important;
+}
+
+.custom-file-input:focus~.custom-file-label::after,
+.custom-file-input:active~.custom-file-label::after,
+.custom-file-input:hover~.custom-file-label::after {
+  background-color: #00353A!important;
+  border-color: #00353A!important;
+  color: white!important;
+  /* Change the background color, border color, and text color of the button when it is active or hovered over */
+}
+
+
+.dx-selection{
+    background-color: #00353A!important;
+}
+
+

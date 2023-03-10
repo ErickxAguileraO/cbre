@@ -3,7 +3,7 @@
 
 @section('content')
    @role('super-admin')
-      <a class="btn btn-primary float-right" href="{{ route('edificios.create') }}">Crear edificio</a>
+      <a class="btn btn-success float-right text-white" href="{{ route('edificios.create') }}">Crear edificio</a>
    @endrole
    <h1>Edificios</h1>
    @csrf

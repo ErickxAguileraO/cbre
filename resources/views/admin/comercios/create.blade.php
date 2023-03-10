@@ -56,21 +56,29 @@
                     @foreach ($edificios as $edificio)
                         <option value="{{ $edificio->edi_id }}" >{{ $edificio->edi_nombre }}</option>
                     @endforeach
-        
+
                </select>
                <small id="errorEdificio" class="field-message-alert invisible"></small>
             </div>
          </div>
       </fieldset>
-      <br>
-      <br>
-      <fieldset class="row">
-         <div class="col-sm-4">
+      <fieldset class="row mt-5">
+        <div class="col-sm-8">
             <div class="form-group">
-               <input id="guardarButton" type="submit" class="btn btn-success btn-lg" value="Guardar" />
+                <button id="guardar" type="submit" class="btn btn-success btn-lg" value="Guardar"
+                    class="btn btn-success btn-lg" type="button">
+                    <div id="default" class="d-block">
+                        <span class="mr-2">Guardar</span>
+                    </div>
+                    <div id="loading" class="d-none">
+                        <span class="mr-2">Guardando</span>
+                        <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
+                    </div>
+                </button>
+
             </div>
-         </div>
-      </fieldset>
+        </div>
+    </fieldset>
    </form>
 @endsection
 

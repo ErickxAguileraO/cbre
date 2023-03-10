@@ -2,7 +2,7 @@
 @section('title', 'Submercados')
 
 @section('content')
-   <a class="btn btn-primary float-right" href="{{ route('submercados.create') }}">Crear Submercado</a>
+   <a class="btn btn-success float-right text-white" href="{{ route('submercados.create') }}">Crear Submercado</a>
    <h1>Submercados</h1>
    <div class="dx-viewport">
       <div id="dataGridSubmercados"></div>

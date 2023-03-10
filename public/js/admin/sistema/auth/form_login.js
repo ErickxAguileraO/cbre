@@ -13,7 +13,7 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorEmail').innerHTML = errores.email[0];
         document.getElementById('errorEmail').classList.remove('invisible');
     }
-    
+
     if ( typeof errores.password !== 'undefined' ) {
         document.getElementById('errorPassword').innerHTML = errores.password[0];
         document.getElementById('errorPassword').classList.remove('invisible');
@@ -27,7 +27,9 @@ document.getElementById('ingresarButton').addEventListener('click', function (ev
 
     const formData = new FormData(document.forms.namedItem('formLogin'));
     const url = '/login';
-    
+
+    isLoadingSpinner("ingresarButton", true);
+
     fetch(url, {
         method: 'POST',
         headers: {
@@ -38,13 +40,19 @@ document.getElementById('ingresarButton').addEventListener('click', function (ev
     })
     .then(response => response.json())
     .then(function (response) {
+
+        isLoadingSpinner("ingresarButton", true);
+
+    setTimeout(() => {
         if ( typeof response.errors !== 'undefined' ) {
+            isLoadingSpinner("ingresarButton", false);
             mostrarErroresValidacion(response.errors);
 
             return;
         }
-        
+
         if ( typeof response.status == 'undefined' ) {
+            isLoadingSpinner("ingresarButton", false);
             Swal.fire({
                 icon: 'error',
                 title: 'Un momento...',
@@ -55,6 +63,7 @@ document.getElementById('ingresarButton').addEventListener('click', function (ev
         }
 
         if ( response.status == 'error' ) {
+            isLoadingSpinner("ingresarButton", false);
             Swal.fire({
                 icon: 'error',
                 title: 'Un momento...',
@@ -65,6 +74,7 @@ document.getElementById('ingresarButton').addEventListener('click', function (ev
         }
 
         if ( response.status == 'success' ) {
+            isLoadingSpinner("ingresarButton", 'done');
             Swal.fire({
                 icon: 'success',
                 title: '¡Bienvenido!',
@@ -76,6 +86,9 @@ document.getElementById('ingresarButton').addEventListener('click', function (ev
                 window.location.href = response.data.urlHome;
             }, 2000);
         }
+
+    }, 1000);
+
     })
     .catch(error => {
         Swal.fire({
@@ -101,7 +114,7 @@ document.getElementById('passwordResetButton').addEventListener('click', functio
                 }
             }
         })
-        
+
         if ( email ) {
             url = '/forgot-password';
             let datosPost = {
@@ -125,7 +138,7 @@ document.getElementById('passwordResetButton').addEventListener('click', functio
                         title: 'Un momento...',
                         text: response.body.errors.email[0]
                     });
-    
+
                     return;
                 }
 
@@ -138,7 +151,7 @@ document.getElementById('passwordResetButton').addEventListener('click', functio
 
                     return;
                 }
-    
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Mensaje enviado',

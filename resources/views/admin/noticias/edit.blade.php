@@ -63,7 +63,7 @@
                     </div>
                     <div class="modal-footer_imagen" style="text-align:left;margin-top: 15px;">
                        <button type="button" class="btn btn-outline-dark cancel-croppie">Cancelar</button>
-                       <button type="button" class="btn btn-outline-primary add-image-croppie">Agregar</button>
+                       <button type="button" class="btn btn-outline-success add-image-croppie">Agregar</button>
                     </div>
                     <br>
                     <div class="mt-4 container-gallery">
@@ -121,16 +121,24 @@
             <input type="hidden" id="edificio" name="edificio" value="">
          @endif
       @endrole
-      
-      <br>
-      <br>
-      <fieldset class="row">
-         <div class="col-sm-4">
+
+      <fieldset class="row mt-5">
+        <div class="col-sm-8">
             <div class="form-group">
-               <input id="guardarButton" type="submit" class="btn btn-success btn-lg" value="Guardar" />
+                <button id="editar" type="submit" class="btn btn-success btn-lg" value="Editar"
+                    class="btn btn-success btn-lg" type="button">
+                    <div id="default" class="d-block">
+                        <span class="mr-2">Editar</span>
+                    </div>
+                    <div id="loading" class="d-none">
+                        <span class="mr-2">Editando</span>
+                        <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
+                    </div>
+                </button>
+
             </div>
-         </div>
-      </fieldset>
+        </div>
+    </fieldset>
       <input type="hidden" id="idNoticia" name="idNoticia" data-id-noticia="{{ $noticia->not_id }}" value="{{ $noticia->not_id }}">
    </form>
 @endsection

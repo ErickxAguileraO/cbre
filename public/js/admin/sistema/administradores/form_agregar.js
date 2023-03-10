@@ -1,7 +1,7 @@
 //$("#guardar").on("click", function (event) {
     document.getElementById("guardar").addEventListener("click", function (event) {
         event.preventDefault();
-        isLoadingSpinner(true);
+        isLoadingSpinner("guardar", true);
         fetch("/admin/administradores", {
             method: "POST",
             headers: {
@@ -15,7 +15,7 @@
             })
             .then(function (response) {
                 if ($.isEmptyObject(response.errors)) {
-                    isLoadingSpinner(true);
+                    isLoadingSpinner("guardar", true);
                     setTimeout(() => {
                         if (response.success) {
                             Swal.fire({
@@ -25,13 +25,13 @@
                                 showConfirmButton: false,
                                 timer: 1500,
                             });
-                            isLoadingSpinner('done');
+                            isLoadingSpinner("guardar", 'done');
                             resetValidationMessages();
                             setTimeout(() => {
                                 document.location.href = "/admin/administradores";
                             }, 2000);
                         } else if (response.error) {
-                            isLoadingSpinner(false);
+                            isLoadingSpinner("guardar", false);
                             resetValidationMessages();
                             Swal.fire({
                                 position: "center",
@@ -43,9 +43,9 @@
                         }
                     }, 1000);
                 } else {
-                    isLoadingSpinner(true);
+                    isLoadingSpinner("guardar", true);
                     setTimeout(() => {
-                        isLoadingSpinner(false);
+                        isLoadingSpinner("guardar", false);
                         resetValidationMessages();
                         setValidationMessages(response);
                         Swal.fire({
@@ -58,7 +58,7 @@
                     }, 1000);
                 }
             })
-            .catch((mensajeError) => {
+            .catch((error) => {
                 Swal.fire({
                     position: "center",
                     icon: "error",
@@ -66,33 +66,9 @@
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                isLoadingSpinner(false);
+                isLoadingSpinner("guardar", false);
             });
     });
-
-    function isLoadingSpinner(isLoading) {
-        if (isLoading == true) {
-            document.getElementById("default").classList.remove("d-block");
-            document.getElementById("default").classList.add("d-none");
-            document.getElementById("loading").classList.remove("d-none");
-            document.getElementById("loading").classList.add("d-block");
-            document.getElementById("guardar").setAttribute("disabled", true);
-        }
-        if (isLoading == false) {
-            document.getElementById("loading").classList.remove("d-block");
-            document.getElementById("loading").classList.add("d-none");
-            document.getElementById("default").classList.remove("d-none");
-            document.getElementById("default").classList.add("d-block");
-            document.getElementById("guardar").removeAttribute("disabled");
-        }
-        if (isLoading == 'done') {
-            document.getElementById("loading").classList.remove("d-block");
-            document.getElementById("loading").classList.add("d-none");
-            document.getElementById("default").classList.remove("d-none");
-            document.getElementById("default").classList.add("d-block");
-            document.getElementById("guardar").setAttribute("disabled", true);
-        }
-    }
 
     const inputFieldsIds = ['nombre', 'apellido', 'email', 'password', 'password_confirmation'];
 

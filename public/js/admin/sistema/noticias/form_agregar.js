@@ -68,13 +68,15 @@ Array.from(inputFiles).forEach(function (inputFile) {
     });
 });
 
-document.getElementById('guardarButton').addEventListener('click', function (event) {
+document.getElementById('guardar').addEventListener('click', function (event) {
     event.preventDefault();
 
     const token = document.querySelector("input[name='_token']").value;
     const formData = new FormData(document.forms.namedItem('formNoticia'));
     formData.append('cuerpo', ckEditor.getData());
     const url = '/admin/noticias';
+
+    isLoadingSpinner("guardar", true);
 
     fetch(url, {
         method: 'POST',
@@ -86,44 +88,62 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     })
     .then(response => response.json())
     .then(function (response) {
-        if ( typeof response.errors !== 'undefined' ) {
-            mostrarErroresValidacion(response.errors);
 
-            return;
-        }
+        isLoadingSpinner("guardar", true);
 
-        if ( typeof response.status == 'undefined' ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Un momento...',
-                text: response.message
-            })
+        setTimeout(() => {
+            if ( typeof response.errors !== 'undefined' ) {
+                isLoadingSpinner("guardar", false);
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Debes completar todos los campos",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                mostrarErroresValidacion(response.errors);
 
-            return;
-        }
+                return;
+            }
 
-        if ( response.status == 'error' ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Un momento...',
-                text: response.message
-            })
+            if ( typeof response.status == 'undefined' ) {
+                isLoadingSpinner("guardar", false);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Un momento...',
+                    text: response.message
+                })
 
-            return;
-        }
+                return;
+            }
 
-        if ( response.status == 'success' ) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Noticia agregada',
-                showConfirmButton: false,
-                timer: 2000
-            });
+            if ( response.status == 'error' ) {
+                isLoadingSpinner("guardar", false);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Un momento...',
+                    text: response.message
+                })
 
-            setTimeout(function () {
-                window.location.href = '/admin/noticias';
-            }, 2000);
-        }
+                return;
+            }
+
+            if ( response.status == 'success' ) {
+                isLoadingSpinner("guardar", 'done');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Noticia agregada',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                setTimeout(function () {
+                    window.location.href = '/admin/noticias';
+                }, 2000);
+            }
+
+        }, 1000);
+
     })
     .catch(error => {
         Swal.fire({
@@ -131,5 +151,6 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
             title: 'Un momento...',
             text: error.message
         });
+        isLoadingSpinner("guardar", false)
     });
 });

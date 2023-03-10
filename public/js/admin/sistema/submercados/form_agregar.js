@@ -11,7 +11,7 @@ $( '#region' ).change(function() {
 
 document.getElementById("guardar").addEventListener("click", function (event) {
     event.preventDefault();
-    isLoadingSpinner(true);
+    isLoadingSpinner("guardar", true);
     fetch("/admin/submercados", {
         method: "POST",
         headers: {
@@ -25,7 +25,7 @@ document.getElementById("guardar").addEventListener("click", function (event) {
         })
         .then(function (response) {
             if ($.isEmptyObject(response.errors)) {
-                isLoadingSpinner(true);
+                isLoadingSpinner("guardar", true);
                 setTimeout(() => {
                     if (response.success) {
                         Swal.fire({
@@ -35,13 +35,13 @@ document.getElementById("guardar").addEventListener("click", function (event) {
                             showConfirmButton: false,
                             timer: 1500,
                         });
-                        isLoadingSpinner('done');
+                        isLoadingSpinner("guardar", 'done');
                         resetValidationMessages();
                         setTimeout(() => {
                             document.location.href = "/admin/submercados";
                         }, 2000);
                     } else if (response.error) {
-                        isLoadingSpinner(false);
+                        isLoadingSpinner("guardar", false);
                         resetValidationMessages();
                         Swal.fire({
                             position: "center",
@@ -53,9 +53,9 @@ document.getElementById("guardar").addEventListener("click", function (event) {
                     }
                 }, 1000);
             } else {
-                isLoadingSpinner(true);
+                isLoadingSpinner("guardar", true);
                 setTimeout(() => {
-                    isLoadingSpinner(false);
+                    isLoadingSpinner("guardar", false);
                     resetValidationMessages();
                     setValidationMessages(response);
                     Swal.fire({
@@ -76,33 +76,9 @@ document.getElementById("guardar").addEventListener("click", function (event) {
                 showConfirmButton: false,
                 timer: 1500,
             });
-            isLoadingSpinner(false);
+            isLoadingSpinner("guardar", false);
         });
 });
-
-function isLoadingSpinner(isLoading) {
-    if (isLoading == true) {
-        document.getElementById("default").classList.remove("d-block");
-        document.getElementById("default").classList.add("d-none");
-        document.getElementById("loading").classList.remove("d-none");
-        document.getElementById("loading").classList.add("d-block");
-        document.getElementById("guardar").setAttribute("disabled", true);
-    }
-    if (isLoading == false) {
-        document.getElementById("loading").classList.remove("d-block");
-        document.getElementById("loading").classList.add("d-none");
-        document.getElementById("default").classList.remove("d-none");
-        document.getElementById("default").classList.add("d-block");
-        document.getElementById("guardar").removeAttribute("disabled");
-    }
-    if (isLoading == 'done') {
-        document.getElementById("loading").classList.remove("d-block");
-        document.getElementById("loading").classList.add("d-none");
-        document.getElementById("default").classList.remove("d-none");
-        document.getElementById("default").classList.add("d-block");
-        document.getElementById("guardar").setAttribute("disabled", true);
-    }
-}
 
 const inputFieldsIds = ['nombre', 'estado', 'comuna'];
 
