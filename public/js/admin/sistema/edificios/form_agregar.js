@@ -75,8 +75,8 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorNombre').classList.remove('invisible');
     }
 
-    if ( typeof errores.descripcion !== 'undefined' ) {
-        document.getElementById('errorDescripcion').innerHTML = errores.descripcion[0];
+    if ( typeof errores.descripcionTextarea !== 'undefined' ) {
+        document.getElementById('errorDescripcion').innerHTML = errores.descripcionTextarea[0];
         document.getElementById('errorDescripcion').classList.remove('invisible');
     }
 
