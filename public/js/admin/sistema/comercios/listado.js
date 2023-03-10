@@ -7,16 +7,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
             },
         });
-    
+
         DevExpress.localization.locale(navigator.language);
-    
+
         // Función para el origen de datos.
-        const comercios = new DevExpress.data.CustomStore({ 
+        const comercios = new DevExpress.data.CustomStore({
             load: function() {
                 return sendRequest("/admin/comercios/get/list");
             }
         });
-    
+
         $('#dataGridComercios').dxDataGrid({
             dataSource: comercios,
             columns: [
@@ -37,17 +37,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     hidingPriority: 4,
                     cellTemplate(container, options) {
                         const idComercio = options.data.loc_id;
-    
+
                         let urlModificar = `/admin/comercios/${idComercio}/edit`;
                         let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
                         let templateEliminar = `<a href="" title="Eliminar" id="eliminarComercioEnlace" data-id="${idComercio}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
-    
+
                         const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
                         const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);
-                        
+
                         enlaceEliminar.click(function (event) {
                             event.preventDefault();
-                            
+
                             Swal.fire({
                                 title: '¿Deseas continuar?',
                                 text: "¡No podrás revertir esto!",
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                                 title: 'Un momento...',
                                                 text: response.message
                                             })
-                                
+
                                             return;
                                         }
 
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                                 title: 'Un momento...',
                                                 text: response.message
                                             })
-                            
+
                                             return;
                                         }
 
