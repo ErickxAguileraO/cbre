@@ -33,7 +33,7 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorNombre').innerHTML = errores.nombre[0];
         document.getElementById('errorNombre').classList.remove('invisible');
     }
-    
+
     if ( typeof errores.descripcion !== 'undefined' ) {
         document.getElementById('errorDescripcion').innerHTML = errores.descripcion[0];
         document.getElementById('errorDescripcion').classList.remove('invisible');
@@ -59,7 +59,7 @@ Array.from(inputFiles).forEach(function (inputFile) {
     });
 });
 
-document.getElementById('guardarButton').addEventListener('click', function (event) {
+document.getElementById('editar').addEventListener('click', function (event) {
     event.preventDefault();
 
     const token = document.querySelector("input[name='_token']").value;
@@ -67,7 +67,9 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     const formData = new FormData(document.forms.namedItem('formComercio'));
     formData.append('descripcion', ckEditor.getData());
     const url = `/admin/comercios/${idComercio}`;
-    
+
+    isLoadingSpinner("editar", true);
+
     fetch(url, {
         method: 'POST',
         headers: {
@@ -78,44 +80,61 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     })
     .then(response => response.json())
     .then(function (response) {
-        if ( typeof response.errors !== 'undefined' ) {
-            mostrarErroresValidacion(response.errors);
 
-            return;
-        }
-        
-        if ( typeof response.status == 'undefined' ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Un momento...',
-                text: response.message
-            })
+        isLoadingSpinner("editar", true);
 
-            return;
-        }
+        setTimeout(() => {
+            if ( typeof response.errors !== 'undefined' ) {
+                isLoadingSpinner("editar", false);
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Debes completar todos los campos",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                mostrarErroresValidacion(response.errors);
 
-        if ( response.status == 'error' ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Un momento...',
-                text: response.message
-            })
+                return;
+            }
 
-            return;
-        }
+            if ( typeof response.status == 'undefined' ) {
+                isLoadingSpinner("editar", false);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Un momento...',
+                    text: response.message
+                })
 
-        if ( response.status == 'success' ) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Local actualizado',
-                showConfirmButton: false,
-                timer: 2000
-            });
+                return;
+            }
 
-            setTimeout(function () {
-                window.location.href = '/admin/comercios';
-            }, 2000);
-        }
+            if ( response.status == 'error' ) {
+                isLoadingSpinner("editar", false);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Un momento...',
+                    text: response.message
+                })
+
+                return;
+            }
+
+            if ( response.status == 'success' ) {
+                isLoadingSpinner("editar", 'done');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Local actualizado',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+
+                setTimeout(function () {
+                    window.location.href = '/admin/comercios';
+                }, 2000);
+            }
+
+        }, 1000);
     })
     .catch(error => {
         Swal.fire({

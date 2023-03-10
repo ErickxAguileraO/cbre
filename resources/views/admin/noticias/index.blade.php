@@ -2,7 +2,7 @@
 @section('title', 'Noticias')
 
 @section('content')
-   <a class="btn btn-primary float-right" href="{{ route('noticias.create') }}">Crear noticia</a>
+   <a class="btn btn-success float-right text-white" href="{{ route('noticias.create') }}">Crear noticia</a>
    <h1>Noticias</h1>
    @csrf
    <div class="dx-viewport">

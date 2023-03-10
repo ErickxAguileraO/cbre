@@ -221,6 +221,7 @@ class EdificioController extends Controller
             Storage::delete($edificio->edi_imagen_listado);
             EdificioService::eliminarGaleriaImagenes($edificio);
             $edificio->funcionarios()->delete();
+            $edificio->comercios()->delete();
             $edificio->delete();
 
             DB::commit();

@@ -165,6 +165,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/translations/de.js"></script>
 <script src="{{ asset('public/js/admin/sistema/configuracion_componentes.js') }}"></script>
 <script src="{{ asset('public/js/admin/sistema/header/logout.js') }}"></script>
+<script src="{{ asset('public\js\admin\sistema\spinner.js') }}"></script>
 @stack('scripts')
 </body>
 </html>

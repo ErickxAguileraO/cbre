@@ -108,13 +108,20 @@ document.addEventListener('DOMContentLoaded', function () {
                                             return;
                                         }
 
-                                        Swal.fire(
-                                            '¡Listo!',
-                                            'La noticia ha sido eliminada.',
-                                            'success'
-                                        )
+                                        Swal.fire({
+                                            position: "center",
+                                            icon: "success",
+                                            title: 'La noticia ha sido eliminada.',
+                                            showConfirmButton: false,
+                                            timer: 1500,
+                                        });
+
                                     })
-                                    .then(() => cargarNoticias())
+                                    .then(() => {
+                                        setTimeout(() => {
+                                          cargarNoticias();
+                                        }, 2000);
+                                    })
                                     .catch(error => {
                                         Swal.fire({
                                             icon: 'error',

@@ -7,16 +7,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
             },
         });
-    
+
         DevExpress.localization.locale(navigator.language);
-    
+
         // Función para el origen de datos.
-        const edificios = new DevExpress.data.CustomStore({ 
+        const edificios = new DevExpress.data.CustomStore({
             load: function() {
                 return sendRequest("/admin/edificios/get/list");
             }
         });
-    
+
         $('#dataGridEdificios').dxDataGrid({
             dataSource: edificios,
             columns: [
@@ -43,20 +43,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     hidingPriority: 4,
                     cellTemplate(container, options) {
                         const idEdificio = options.data.edi_id;
-                        
+
                         let urlModificar = `/admin/edificios/${idEdificio}/edit`;
                         let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
                         const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
 
                         const usuarioEsSuperAdmin = document.getElementById('dataGridEdificios').getAttribute('data-user-role');
-                        
+
                         if ( usuarioEsSuperAdmin ) {
                             let templateEliminar = `<a href="" title="Eliminar" id="eliminarEdificioEnlace" data-id="${idEdificio}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
                             const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);
 
                             enlaceEliminar.click(function (event) {
                                 event.preventDefault();
-                                
+
                                 Swal.fire({
                                     title: '¿Deseas continuar?',
                                     text: "¡No podrás revertir esto!",
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     if (result.isConfirmed) {
                                         url = `/admin/edificios/${idEdificio}`;
                                         const token = document.querySelector("input[name='_token']").value;
-    
+
                                         fetch(url, {
                                             method: 'DELETE',
                                             headers: {
@@ -85,27 +85,34 @@ document.addEventListener('DOMContentLoaded', function () {
                                                     title: 'Un momento...',
                                                     text: response.message
                                                 })
-                                    
+
                                                 return;
                                             }
-    
+
                                             if ( response.status == 'error' ) {
                                                 Swal.fire({
                                                     icon: 'error',
                                                     title: 'Un momento...',
                                                     text: response.message
                                                 })
-                                
+
                                                 return;
                                             }
-    
-                                            Swal.fire(
-                                                '¡Listo!',
-                                                'El edificio ha sido eliminado.',
-                                                'success'
-                                            )
+
+                                            Swal.fire({
+                                                position: "center",
+                                                icon: "success",
+                                                title: 'El edificio ha sido eliminado.',
+                                                showConfirmButton: false,
+                                                timer: 1500,
+                                            });
+
                                         })
-                                        .then(() => cargarEdificios())
+                                        .then(() => {
+                                            setTimeout(() => {
+                                                cargarEdificios();
+                                            }, 2000);
+                                        })
                                         .catch(error => {
                                             Swal.fire({
                                                 icon: 'error',

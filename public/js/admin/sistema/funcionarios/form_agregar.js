@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('errorNombre').innerHTML = errores.nombre[0];
             document.getElementById('errorNombre').classList.remove('invisible');
         }
-        
+
         if ( typeof errores.apellidos !== 'undefined' ) {
             document.getElementById('errorApellidos').innerHTML = errores.apellidos[0];
             document.getElementById('errorApellidos').classList.remove('invisible');
@@ -75,13 +75,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    document.getElementById('guardarButton').addEventListener('click', function (event) {
+    document.getElementById('guardar').addEventListener('click', function (event) {
         event.preventDefault();
 
         const token = document.querySelector("input[name='_token']").value;
         const formData = new FormData(document.forms.namedItem('formFuncionario'));
         const url = '/admin/funcionarios';
-        
+
+        isLoadingSpinner("guardar", true);
+
         fetch(url, {
             method: 'POST',
             headers: {
@@ -92,23 +94,37 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(function (response) {
+
+        isLoadingSpinner("guardar", true);
+
+        setTimeout(() => {
             if ( typeof response.errors !== 'undefined' ) {
+                isLoadingSpinner("guardar", false);
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Debes completar todos los campos",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
                 mostrarErroresValidacion(response.errors);
 
                 return;
             }
 
             if ( typeof response.status == 'undefined' ) {
+                isLoadingSpinner("guardar", false);
                 Swal.fire({
                     icon: 'error',
                     title: 'Un momento...',
                     text: response.message
                 })
-    
+
                 return;
             }
 
             if ( response.status == 'error' ) {
+                isLoadingSpinner("guardar", false);
                 Swal.fire({
                     icon: 'error',
                     title: 'Un momento...',
@@ -118,16 +134,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            Swal.fire({
-                icon: 'success',
-                title: 'Funcionario agregado',
-                showConfirmButton: false,
-                timer: 2000
-            });
+            if ( response.status == 'success' ) {
+                isLoadingSpinner("guardar", 'done');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Funcionario agregado',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
 
-            setTimeout(function () {
-                window.location.href = '/admin/funcionarios';
-            }, 2000);
+                setTimeout(function () {
+                    window.location.href = '/admin/funcionarios';
+                }, 2000);
+            }
+
+        }, 1000);
+
         })
         .catch(error => {
             Swal.fire({

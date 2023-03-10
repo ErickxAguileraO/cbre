@@ -38,7 +38,16 @@
                   <small id="errorPassword" class="field-message-alert invisible absolute"></small>
                </div>
                <div class="text-center">
-                  <button type="submit" id="ingresarButton" class="btn boton-submit-formulario">Ingresar</button>
+                <button id="ingresarButton" type="submit" class="btn btn-success btn-lg"
+                class="btn btn-success btn-lg" type="button">
+                <div id="default" class="d-block">
+                    <span class="">Ingresar</span>
+                </div>
+                <div id="loading" class="d-none">
+                    <span class="mr-2">Ingresar</span>
+                    <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
+                </div>
+            </button>
                   <br />
                   <br />
                   <p id="mensaje-cambio-password" class="mt-5 text-center">Si olvidaste tu contraseña o es tu primer inicio de sesión, puedes hacer clic en el siguiente enlace:</p>
@@ -60,6 +69,7 @@
    <script src="{{ asset('public/js/admin/jquery/bootstrap/bootstrap.min.js') }}"></script>
    <script src="{{ asset('public/js/admin/jquery/sweetalert2/js/sweetalert2.min.js') }}"></script>
    <script src="{{ asset('public/js/admin/sistema/auth/form_login.js') }}"></script>
+   <script src="{{ asset('public\js\admin\sistema\spinner.js') }}"></script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@
 @section('title', 'Funcionarios')
 
 @push('stylesheets')
-   
+
 @endpush
 
 @section('content')
@@ -87,7 +87,7 @@
                     <label for="edificio">Edificio</label>
                     <select id="edificio" name="edificio" class="form-control busqueda-select2" tabindex="6">
                         <option value="">Selecciona...</option>
-                        
+
                         @foreach ($edificios as $edificio)
                         <option value="{{ $edificio->edi_id }}">{{ $edificio->edi_nombre }}</option>
                         @endforeach
@@ -98,15 +98,22 @@
             </div>
         </fieldset>
 
-        <br>
-        <br>
-    
-        <fieldset class="row">
-        <div class="col-sm-4">
-            <div class="form-group">
-                <input id="guardarButton" type="submit" class="btn boton-submit-formulario btn-lg" value="Guardar" />
+        <fieldset class="row mt-5">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <button id="guardar" type="submit" class="btn btn-success btn-lg" value="Guardar"
+                        class="btn btn-success btn-lg" type="button">
+                        <div id="default" class="d-block">
+                            <span class="">Guardar</span>
+                        </div>
+                        <div id="loading" class="d-none">
+                            <span class="mr-2">Guardando</span>
+                            <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
+                        </div>
+                    </button>
+
+                </div>
             </div>
-        </div>
         </fieldset>
     </form>
 @endsection

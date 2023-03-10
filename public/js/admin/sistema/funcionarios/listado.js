@@ -46,11 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     alignment: 'center',
                     cellTemplate: function(container, options) {
                         const idFuncionario = options.data.fun_id;
-    
+
                         let urlModificar = `/admin/funcionarios/${idFuncionario}/edit`;
                         let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
                         const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
-                        
+
                         const usuarioEsSuperAdmin = document.getElementById('dataGridFuncionarios').getAttribute('data-user-role');
 
                         if ( usuarioEsSuperAdmin ) {
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             enlaceEliminar.click(function (event) {
                                 event.preventDefault();
-                                
+
                                 Swal.fire({
                                     title: '¿Deseas continuar?',
                                     text: "¡No podrás revertir esto!",
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     if (result.isConfirmed) {
                                         url = `/admin/funcionarios/${idFuncionario}`;
                                         const token = document.querySelector("input[name='_token']").value;
-    
+
                                         fetch(url, {
                                             method: 'DELETE',
                                             headers: {
@@ -88,27 +88,34 @@ document.addEventListener("DOMContentLoaded", function () {
                                                     title: 'Un momento...',
                                                     text: response.message
                                                 })
-                                    
+
                                                 return;
                                             }
-    
+
                                             if ( response.status == 'error' ) {
                                                 Swal.fire({
                                                     icon: 'error',
                                                     title: 'Un momento...',
                                                     text: response.message
                                                 })
-                                
+
                                                 return;
                                             }
-    
-                                            Swal.fire(
-                                                '¡Listo!',
-                                                'El funcionario ha sido eliminado.',
-                                                'success'
-                                            )
+
+                                            Swal.fire({
+                                                position: "center",
+                                                icon: "success",
+                                                title: 'El funcionario ha sido eliminado.',
+                                                showConfirmButton: false,
+                                                timer: 1500,
+                                            });
+
                                         })
-                                        .then(() => cargarFuncionarios())
+                                        .then(() => {
+                                            setTimeout(() => {
+                                                cargarFuncionarios();
+                                            }, 2000);
+                                        })
                                         .catch(error => {
                                             Swal.fire({
                                                 icon: 'error',

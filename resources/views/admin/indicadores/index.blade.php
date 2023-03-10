@@ -54,7 +54,7 @@
                     <button id="editar" type="submit" class="btn btn-success btn-lg" value="Editar"
                         class="btn btn-success btn-lg" type="button">
                         <div id="default" class="d-block">
-                            <span class="mr-2">Editar</span>
+                            <span class="">Editar</span>
                         </div>
                         <div id="loading" class="d-none">
                             <span class="mr-2">Editando</span>

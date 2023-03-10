@@ -45,7 +45,7 @@ class ComercioController extends Controller
 
         try {
             $pathImagen = ImagenService::subirImagen($request->file('imagen'), 'comercios');
-            
+
             if ( !$pathImagen ) {
                 return response()->error('No se pudo subir la imagen.', null);
             }
@@ -87,7 +87,7 @@ class ComercioController extends Controller
     public function edit($id)
     {
         $comercio = Comercio::find($id);
-        
+
         return view('admin.comercios.edit', ['comercio' => $comercio]);
     }
 
@@ -143,7 +143,7 @@ class ComercioController extends Controller
             $comercio = Comercio::findOrFail($id);
             Storage::delete($comercio->loc_imagen);
             $comercio->delete();
-            
+
             DB::commit();
 
             return response()->success($comercio, 200);
@@ -156,6 +156,10 @@ class ComercioController extends Controller
 
     public function list()
     {
-        return Comercio::orderByDesc('created_at')->get();
+        return Comercio::whereHas('edificio', function ($query) {
+            $query->whereNull('deleted_at');
+        })
+        ->orderByDesc('created_at')
+        ->get();
     }
 }

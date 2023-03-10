@@ -161,7 +161,7 @@ function mostrarErroresValidacion(errores) {
 /**
  * Envío del formulario
  */
-document.getElementById('guardarButton').addEventListener('click', function (event) {
+document.getElementById('editar').addEventListener('click', function (event) {
     event.preventDefault();
 
     const token = document.querySelector("input[name='_token']").value;
@@ -174,6 +174,8 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     formData.append('direccion', direccion);
     const url = `/admin/edificios/${idEdificio}`;
 
+    isLoadingSpinner("editar", true);
+
     fetch(url, {
         method: 'POST',
         headers: {
@@ -184,44 +186,61 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     })
     .then(response => response.json())
     .then(function (response) {
-        if ( typeof response.errors !== 'undefined' ) {
-            mostrarErroresValidacion(response.errors);
 
-            return;
-        }
+        isLoadingSpinner("editar", true);
 
-        if ( typeof response.status == 'undefined' ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Un momento...',
-                text: response.message
-            })
+        setTimeout(() => {
+            if ( typeof response.errors !== 'undefined' ) {
+                isLoadingSpinner("editar", false);
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Debes completar todos los campos",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                mostrarErroresValidacion(response.errors);
 
-            return;
-        }
+                return;
+            }
 
-        if ( response.status == 'error' ) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Un momento...',
-                text: response.message
-            })
+            if ( typeof response.status == 'undefined' ) {
+                isLoadingSpinner("editar", false);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Un momento...',
+                    text: response.message
+                })
 
-            return;
-        }
+                return;
+            }
 
-        if ( response.status == 'success' ) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Edificio modificado',
-                showConfirmButton: false,
-                timer: 2000
-            });
+            if ( response.status == 'error' ) {
+                isLoadingSpinner("editar", false);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Un momento...',
+                    text: response.message
+                })
 
-            setTimeout(function () {
-                window.location.href = '/admin/edificios';
-            }, 2000);
-        }
+                return;
+            }
+
+            if ( response.status == 'success' ) {
+                isLoadingSpinner("editar", 'done');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Edificio modificado',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+
+                setTimeout(function () {
+                    window.location.href = '/admin/edificios';
+                }, 2000);
+            }
+
+        }, 1000);
     })
     .catch(error => {
         Swal.fire({

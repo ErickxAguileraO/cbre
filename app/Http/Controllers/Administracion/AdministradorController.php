@@ -32,7 +32,7 @@ class AdministradorController extends Controller
     public function list()
     {
         try {
-            return Administrador::with(['userTrashed'])->withTrashed()->get();
+            return Administrador::with(['userTrashed'])->withTrashed()->orderByDesc('created_at')->get();
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
         }
@@ -77,7 +77,7 @@ class AdministradorController extends Controller
             return response()->json(['success' => '¡Administrador creado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
-            
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }

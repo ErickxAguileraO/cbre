@@ -60,14 +60,16 @@ Array.from(inputFiles).forEach(function (inputFile) {
     });
 });
 
-document.getElementById('guardarButton').addEventListener('click', function (event) {
+document.getElementById('guardar').addEventListener('click', function (event) {
     event.preventDefault();
 
     const token = document.querySelector("input[name='_token']").value;
     const formData = new FormData(document.forms.namedItem('formComercio'));
     formData.append('descripcion', ckEditor.getData());
     const url = '/admin/comercios';
-    
+
+    isLoadingSpinner("guardar", true);
+
     fetch(url, {
         method: 'POST',
         headers: {
@@ -78,13 +80,26 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
     })
     .then(response => response.json())
     .then(function (response) {
+
+    isLoadingSpinner("guardar", true);
+
+    setTimeout(() => {
         if ( typeof response.errors !== 'undefined' ) {
+            isLoadingSpinner("guardar", false);
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Debes completar todos los campos",
+                showConfirmButton: false,
+                timer: 1500,
+            });
             mostrarErroresValidacion(response.errors);
 
             return;
         }
-        
+
         if ( typeof response.status == 'undefined' ) {
+            isLoadingSpinner("guardar", false);
             Swal.fire({
                 icon: 'error',
                 title: 'Un momento...',
@@ -95,6 +110,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
         }
 
         if ( response.status == 'error' ) {
+            isLoadingSpinner("guardar", false);
             Swal.fire({
                 icon: 'error',
                 title: 'Un momento...',
@@ -105,6 +121,7 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
         }
 
         if ( response.status == 'success' ) {
+            isLoadingSpinner("guardar", 'done');
             Swal.fire({
                 icon: 'success',
                 title: 'Local comercial agregado',
@@ -116,6 +133,9 @@ document.getElementById('guardarButton').addEventListener('click', function (eve
                 window.location.href = '/admin/comercios';
             }, 2000);
         }
+
+    }, 1000);
+
     })
     .catch(error => {
         Swal.fire({

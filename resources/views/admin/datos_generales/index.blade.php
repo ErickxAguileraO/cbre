@@ -104,7 +104,7 @@
                 <div class="form-group">
                     <label for="imagen">Imagen</label>
                     <div class="py-2">
-                        <img src="{{$datos_generales->urlImagen}}" width="360" height="260" alt="">
+                        <img id="datos-generales-img" src="{{$datos_generales->urlImagen}}" width="360" height="260" alt="">
                     </div>
                     <div class="d-flex align-items-end">
                         <div class="file-select">
@@ -180,7 +180,7 @@
                     <button id="editar" type="submit" class="btn btn-success btn-lg" value="Editar"
                         class="btn btn-success btn-lg" type="button">
                         <div id="default" class="d-block">
-                            <span class="mr-2">Editar</span>
+                            <span class="">Editar</span>
                         </div>
                         <div id="loading" class="d-none">
                             <span class="mr-2">Editando</span>

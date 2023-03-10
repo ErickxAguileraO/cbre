@@ -1,57 +1,3 @@
-function eliminar(url) {
-    console.log(url)
-    Swal.fire({
-        title: "¿Estás seguro?",
-        text: "¡No podrás revertir esto!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "¡Sí, Eliminalo!",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(url, {
-                method: "DELETE",
-                headers: {
-                    "X-CSRF-TOKEN":
-                        document.querySelector("[name=_token]").value,
-                },
-            })
-                .then((response) => response.json())
-                .then((response) => {
-                    if (response.success) {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: response.success,
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                        setTimeout(() => {
-                            document.location.href = "/admin/submercados";
-                        }, 1500);
-                    } else {
-                        Swal.fire({
-                            position: "center",
-                            icon: "error",
-                            title: response.error,
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                    }
-                })
-                .catch((error) => {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "¡Ha ocurrido un error!",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                });
-        }
-    });
-}
 
 document.addEventListener("DOMContentLoaded", function () {
     cargarSubmercados();
@@ -125,11 +71,66 @@ document.addEventListener("DOMContentLoaded", function () {
                         let urlModificar = `/admin/submercados/${idSubMercado}/edit`;
                         let urlEliminar = `/admin/submercados/${idSubMercado}`;
 
-                        return $('<a href="' + urlModificar +
-                        '" class="edit"><i class="color-texto-cbre fas fa-pencil fa-fw"></i></a>  <a class="eliminar_pedido" href="#" data-id="' +
-                        idSubMercado + '" onclick=eliminar("' + urlEliminar +
-                        '")><i class="fas fa-trash-can fa-fw pointer-none color-texto-cbre"></i></a>'
-                    );
+                        let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
+                        let templateEliminar = `<a href="" title="Eliminar" data-id="${idSubMercado}"><i class='fas fa-trash-can fa-fw pointer-none color-texto-cbre'></i></a>`;
+
+                        const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
+                        const enlaceEliminar = $('<a />').append(templateEliminar).appendTo(container);
+
+                    enlaceEliminar.click(function (event) {
+                        event.preventDefault();
+                        Swal.fire({
+                            title: "¿Estás seguro?",
+                            text: "¡No podrás revertir esto!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "¡Sí, Eliminalo!",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                fetch(urlEliminar, {
+                                    method: "DELETE",
+                                    headers: {
+                                        "X-CSRF-TOKEN":
+                                            document.querySelector("[name=_token]").value,
+                                    },
+                                })
+                                    .then((response) => response.json())
+                                    .then((response) => {
+                                        if (response.success) {
+                                            Swal.fire({
+                                                position: "center",
+                                                icon: "success",
+                                                title: response.success,
+                                                showConfirmButton: false,
+                                                timer: 1500,
+                                            });
+                                            setTimeout(() => {
+                                                cargarSubmercados();
+                                            }, 1500);
+                                        } else {
+                                            Swal.fire({
+                                                position: "center",
+                                                icon: "error",
+                                                title: response.error,
+                                                showConfirmButton: false,
+                                                timer: 1500,
+                                            });
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        Swal.fire({
+                                            position: "center",
+                                            icon: "error",
+                                            title: "¡Ha ocurrido un error!",
+                                            showConfirmButton: false,
+                                            timer: 1500,
+                                        });
+                                    });
+                            }
+                        });
+                    });
                     },
                 },
             ],

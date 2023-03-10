@@ -24,7 +24,7 @@ document.getElementById("editar").addEventListener("click", function (event) {
 
     event.preventDefault();
 
-    isLoadingSpinner(true);
+    isLoadingSpinner("editar", true);
 
     fetch("/admin/quienes-somos/" + document.getElementById("qus_id").value, {
         headers: {
@@ -39,7 +39,7 @@ document.getElementById("editar").addEventListener("click", function (event) {
         })
         .then(function (response) {
             if ($.isEmptyObject(response.errors)) {
-                isLoadingSpinner(true);
+                isLoadingSpinner("editar", true);
                 setTimeout(() => {
                     if (response.success) {
                         Swal.fire({
@@ -49,13 +49,14 @@ document.getElementById("editar").addEventListener("click", function (event) {
                             showConfirmButton: false,
                             timer: 1500,
                         });
-                        isLoadingSpinner("done");
+                        isLoadingSpinner("editar", "done");
                         resetValidationMessages();
                         setTimeout(() => {
-                            document.location.href = "/admin/quienes-somos";
+                            refreshImg();
+                            isLoadingSpinner("editar", false);
                         }, 2000);
                     } else if (response.error) {
-                        isLoadingSpinner(false);
+                        isLoadingSpinner("editar", false);
                         resetValidationMessages();
                         Swal.fire({
                             position: "center",
@@ -67,9 +68,9 @@ document.getElementById("editar").addEventListener("click", function (event) {
                     }
                 }, 1000);
             } else {
-                isLoadingSpinner(true);
+                isLoadingSpinner("editar", true);
                 setTimeout(() => {
-                    isLoadingSpinner(false);
+                    isLoadingSpinner("editar", false);
                     resetValidationMessages();
                     setValidationMessages(response);
                     Swal.fire({
@@ -90,33 +91,9 @@ document.getElementById("editar").addEventListener("click", function (event) {
                 showConfirmButton: false,
                 timer: 1500,
             });
-            isLoadingSpinner(false);
+            isLoadingSpinner("editar", false);
         });
 });
-
-function isLoadingSpinner(isLoading) {
-    if (isLoading == true) {
-        document.getElementById("default").classList.remove("d-block");
-        document.getElementById("default").classList.add("d-none");
-        document.getElementById("loading").classList.remove("d-none");
-        document.getElementById("loading").classList.add("d-block");
-        document.getElementById("editar").setAttribute("disabled", true);
-    }
-    if (isLoading == false) {
-        document.getElementById("loading").classList.remove("d-block");
-        document.getElementById("loading").classList.add("d-none");
-        document.getElementById("default").classList.remove("d-none");
-        document.getElementById("default").classList.add("d-block");
-        document.getElementById("editar").removeAttribute("disabled");
-    }
-    if (isLoading == "done") {
-        document.getElementById("loading").classList.remove("d-block");
-        document.getElementById("loading").classList.add("d-none");
-        document.getElementById("default").classList.remove("d-none");
-        document.getElementById("default").classList.add("d-block");
-        document.getElementById("editar").setAttribute("disabled", true);
-    }
-}
 
 const inputFieldsIds = ['titulo', 'texto', 'imagen'];
 
@@ -158,3 +135,14 @@ Array.from(inputFiles).forEach(function (inputFile) {
         spanArchivoSeleccionado.innerHTML = inputFile.files[0].name;
     });
 });
+
+function refreshImg(){
+const quienesSomosImg = document.getElementById('quienes-somos-img');
+fetch('/admin/quienes-somos/get/single')
+  .then(response => response.json())
+  .then(data => {
+    const newSrc = data.urlImagen;
+    quienesSomosImg.src = newSrc;
+  })
+  .catch(error => console.error(error));
+}

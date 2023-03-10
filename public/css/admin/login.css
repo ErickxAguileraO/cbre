@@ -74,7 +74,7 @@ input[type="date"], input[type="time"], input[type="number"], input[type="text"]
 	/*padding: 0 14px;*/
 	background-color: #fff;
 	border: 1px solid #E4E4E4;
-	
+
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-ms-border-radius: 5px;
@@ -214,3 +214,65 @@ h2.swal2-title {
 #mensaje-cambio-password {
 	font-size: small !important;
 }
+
+.btn-success{
+    color: #fff;
+    background-color: #005157!important;
+    border-color: #005157!important;
+  }
+  .btn-success:hover {
+    color: #fff;
+    background-color: #00353A!important;
+    border-color: #00353A!important;
+  }
+  .btn-success:focus,
+  .btn-success.focus {
+    color: #fff;
+    background-color: #00353A!important;
+    border-color: #00353A!important;
+    outline: 0 !important;
+    box-shadow:
+      0 0 0 .2rem rgba(0, 53, 58, 0.5) !important; /* faux focus ring color */
+  }
+  .btn-success:active,
+  .btn-success.active,
+  .open > .btn-success.dropdown-toggle {
+    color: #fff;
+    background-color: #00353A!important;
+    border-color: #00353A!important;
+    background-image: none;
+  }
+  .btn-success:active:hover,
+  .btn-success:active:focus,
+  .btn-success:active.focus,
+  .btn-success.active:hover,
+  .btn-success.active:focus,
+  .btn-success.active.focus,
+  .open > .btn-success.dropdown-toggle:hover,
+  .open > .btn-success.dropdown-toggle:focus,
+  .open > .btn-success.dropdown-toggle.focus {
+    color: #fff;
+    background-color: #00353A!important;
+    border-color: #00353A!important;
+  }
+  .btn-success.disabled:focus,
+  .btn-success.disabled.focus,
+  .btn-success:disabled:focus,
+  .btn-success:disabled.focus {
+    background-color: #006771!important;
+    border-color: #006771!important;
+    outline: 0 !important;
+    box-shadow:
+    0 0 0 .2rem rgba(0, 103, 113, 0.5) !important; /* faux focus ring color */
+  }
+  .btn-success.disabled:hover,
+  .btn-success:disabled:hover {
+    background-color: #006771!important;
+    border-color: #006771!important;
+  }
+  .btn-success.disabled,
+.btn-success:disabled {
+  opacity: 0.65; /* Reduce the opacity of the button to indicate that it's disabled */
+  pointer-events: none; /* Disable pointer events on the button */
+}
+

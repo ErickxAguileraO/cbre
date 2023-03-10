@@ -87,7 +87,7 @@
                      </div>
                      <div class="modal-footer_imagen" style="text-align:left;margin-top: 15px;">
                         <button type="button" class="btn btn-outline-dark cancel-croppie">Cancelar</button>
-                        <button type="button" class="btn btn-outline-primary add-image-croppie">Agregar</button>
+                        <button type="button" class="btn btn-outline-success add-image-croppie">Agregar</button>
                      </div>
                      <br>
                      <div class="mt-4 container-gallery">
@@ -207,15 +207,23 @@
             </div>
          </fieldset>
       </div>
-      <br>
-      <br>
-      <fieldset class="row">
-         <div class="col-sm-4">
+      <fieldset class="row mt-5">
+        <div class="col-sm-8">
             <div class="form-group">
-               <input id="guardarButton" type="submit" class="btn boton-submit-formulario btn-lg" value="Guardar" />
+                <button id="guardar" type="submit" class="btn btn-success btn-lg" value="Guardar"
+                    class="btn btn-success btn-lg" type="button">
+                    <div id="default" class="d-block">
+                        <span class="">Guardar</span>
+                    </div>
+                    <div id="loading" class="d-none">
+                        <span class="mr-2">Guardando</span>
+                        <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
+                    </div>
+                </button>
+
             </div>
-         </div>
-      </fieldset>
+        </div>
+    </fieldset>
    </form>
 @endsection
 

@@ -44,7 +44,16 @@
                   <small id="errorPasswordConfirmation" class="field-message-alert invisible absolute"></small>
                </div>
                <div class="text-center">
-                  <button type="submit" id="actualizarButton" class="btn boton-submit-formulario">Actualizar</button>
+                <button id="actualizarButton" type="submit" class="btn btn-success btn-lg"
+                class="btn btn-success btn-lg" type="button">
+                <div id="default" class="d-block">
+                    <span class="">Ingresar</span>
+                </div>
+                <div id="loading" class="d-none">
+                    <span class="mr-2">Ingresar</span>
+                    <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
+                </div>
+            </button>
                   <br />
                   <br />
                   <a href="{{ route('login') }}" class="btn btn-link" id="">Volver al login</a>

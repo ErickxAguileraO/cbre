@@ -39,7 +39,7 @@
          <div class="col-sm-4">
             <div class="form-group">
                <label for="posicion">Posición</label>
-               <input type="text" id="posicion" name="posicion" value="{{ $certificacion->cer_posicion }}" 
+               <input type="text" id="posicion" name="posicion" value="{{ $certificacion->cer_posicion }}"
                rows="6" class="form-control solo-numeros" id="posicion" tabindex="3"
                data-maximo-caracteres="3"></input>
                <small id="errorPosicion" class="field-message-alert invisible"></small>
@@ -54,15 +54,23 @@
             </div>
          </div>
       </fieldset>
-      <br>
-      <br>
-      <fieldset class="row">
-         <div class="col-sm-4">
+      <fieldset class="row mt-5">
+        <div class="col-sm-8">
             <div class="form-group">
-               <input id="guardarButton" type="submit" class="btn btn-success btn-lg" value="Guardar" />
+                <button id="editar" type="submit" class="btn btn-success btn-lg" value="Editar"
+                    class="btn btn-success btn-lg" type="button">
+                    <div id="default" class="d-block">
+                        <span class="">Editar</span>
+                    </div>
+                    <div id="loading" class="d-none">
+                        <span class="mr-2">Editando</span>
+                        <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
+                    </div>
+                </button>
+
             </div>
-         </div>
-      </fieldset>
+        </div>
+    </fieldset>
       <input type="hidden" id="idCertificacion" name="idCertificacion" data-id-certificacion="{{ $certificacion->cer_id }}" value="{{ $certificacion->cer_id }}">
    </form>
 @endsection

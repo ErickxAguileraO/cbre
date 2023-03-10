@@ -25,7 +25,7 @@ class SubMercadoController extends Controller
     }
 
     public function list(){
-        return SubMercado::with('comuna.region')->get();
+        return SubMercado::with('comuna.region')->orderByDesc('created_at')->get();
     }
 
     public function get(Request $request){
@@ -117,13 +117,19 @@ class SubMercadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($subMercado)
+    public function destroy($subMercadoId)
     {
         DB::beginTransaction();
         try {
-            SubMercado::findOrFail($subMercado)->delete();
-            DB::commit();
-            return response()->json(['success' => '¡Submercado se ha eliminado correctamente!'], 200);
+            $subMercado = SubMercado::findOrFail($subMercadoId);
+            if (!$subMercado->edificios()->exists()) {
+                $subMercado->delete();
+                DB::commit();
+                return response()->json(['success' => '¡Submercado se ha eliminado correctamente!'], 200);
+            }else{
+                return response()->json(['error' => '¡No puedes eliminar un submercado que ya está siendo utilizado!'], 200);
+                DB::rollback();
+            }
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json(['error' => $th->getMessage()], 401);

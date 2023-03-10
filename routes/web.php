@@ -29,7 +29,7 @@ use App\Http\Controllers\Web\EdificioController as  WebEdificioController;
 |
 */
 Route::middleware(['guest'])->group(function () {
-    Route::get('/logout', function () { 
+    Route::get('/logout', function () {
         abort(404);
     });
 });
@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
             // Quiénes somos
             Route::controller(QuienesSomosController::class)->group(function () {
                 Route::resource('quienes-somos', QuienesSomosController::class);
+                Route::get('quienes-somos/get/single', 'get')->name('quienes-somos.single');
             });
 
             // SubMercados
@@ -75,7 +76,7 @@ Route::middleware(['auth'])->group(function () {
             // Datos Empresa/Generales
             Route::controller(DatosGeneralesController::class)->group(function () {
                 Route::resource('datos-generales', DatosGeneralesController::class);
-                Route::get('datos-generales/get/single/{datosGenerales}', 'get')->name('datos-generales.single');
+                Route::get('datos-generales/get/single', 'get')->name('datos-generales.single');
             });
 
             // Indicadores
