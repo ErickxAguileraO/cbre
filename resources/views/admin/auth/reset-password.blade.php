@@ -47,11 +47,12 @@
                 <button id="actualizarButton" type="submit" class="btn btn-success btn-lg"
                 class="btn btn-success btn-lg" type="button">
                 <div id="default" class="d-block">
-                    <span class="">Ingresar</span>
+                    <span>Actualizar</span>
+                    <i class="fas fa-pencil fa-fw ml-1 mr-1"></i>
                 </div>
                 <div id="loading" class="d-none">
-                    <span class="mr-2">Ingresar</span>
-                    <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
+                    <span>Actualizar</span>
+                    <span class="spinner-border spinner-border-md ml-2" role="status" aria-hidden="true"></span>
                 </div>
             </button>
                   <br />

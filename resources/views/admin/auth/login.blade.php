@@ -13,6 +13,7 @@
    <link href="{{ asset('public/js/admin/jquery/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
    <link href="{{ asset('public/css/admin/login.css') }}" rel="stylesheet" type="text/css">
    <link href="{{ asset('public/js/admin/jquery/sweetalert2/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+   <link href="{{ asset('public/css/admin/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
    <!-- favicon -->
    <link href="{{ asset('public/images/admin/logo-white.svg') }}" rel="shortcut icon" />
@@ -41,11 +42,12 @@
                 <button id="ingresarButton" type="submit" class="btn btn-success btn-lg"
                 class="btn btn-success btn-lg" type="button">
                 <div id="default" class="d-block">
-                    <span class="">Ingresar</span>
+                    <span>Ingresar</span>
+                    <i class="fas fa-sign-in-alt ml-2 mr-2"></i>
                 </div>
                 <div id="loading" class="d-none">
-                    <span class="mr-2">Ingresar</span>
-                    <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
+                    <span>Ingresar</span>
+                    <span class="spinner-border spinner-border-md ml-2" role="status" aria-hidden="true"></span>
                 </div>
             </button>
                   <br />

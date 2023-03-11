@@ -49,23 +49,7 @@
             </div>
          </div>
       </fieldset>
-      <fieldset class="row mt-5">
-        <div class="col-sm-8">
-            <div class="form-group">
-                <button id="guardar" type="submit" class="btn btn-success btn-lg" value="Guardar"
-                    class="btn btn-success btn-lg" type="button">
-                    <div id="default" class="d-block">
-                        <span class="">Guardar</span>
-                    </div>
-                    <div id="loading" class="d-none">
-                        <span class="mr-2">Guardando</span>
-                        <span class="spinner-border spinner-border-md" role="status" aria-hidden="true"></span>
-                    </div>
-                </button>
-
-            </div>
-        </div>
-    </fieldset>
+      @include('admin.components.guardar_btn')
    </form>
 @endsection
 
