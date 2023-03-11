@@ -37,6 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
                 },
                 {
+                    dataField: "edificio.edi_nombre",
+                    caption: "Edificio",
+                    filterOperations: ["contains"],
+                    hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
+                },
+                {
                     dataField: 'deleted_at',
                     caption: 'Estado',
                     filterOperations: ["contains"],
@@ -65,8 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                     text: "¡No podrás revertir esto!",
                                     icon: 'warning',
                                     showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
+                                    confirmButtonColor: '#005157',
+                                    cancelButtonColor: '#343a40',
                                     confirmButtonText: 'Sí, eliminar',
                                     cancelButtonText: 'Cancelar',
                                 }).then((result) => {

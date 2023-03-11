@@ -87,8 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                 text: "¡No podrás revertir esto!",
                                 icon: "warning",
                                 showCancelButton: true,
-                                confirmButtonColor: "#3085d6",
-                                cancelButtonColor: "#d33",
+                                confirmButtonColor: "#005157",
+                                cancelButtonColor: "#343a40",
                                 confirmButtonText: "¡Sí, Eliminalo!",
                             }).then((result) => {
                                 if (result.isConfirmed) {
