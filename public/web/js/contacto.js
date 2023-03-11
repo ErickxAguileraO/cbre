@@ -1,7 +1,7 @@
 //$("#guardar").on("click", function (event) {
-    document.getElementById("btn-contacto").addEventListener("click", function (event) {
+    document.getElementById("enviar-btn").addEventListener("click", function (event) {
         event.preventDefault();
-        isLoadingSpinner(true);
+        isLoadingSpinner("enviar-btn", true);
         fetch("/contacto/store", {
             method: "POST",
             headers: {
@@ -15,7 +15,7 @@
             })
             .then(function (response) {
                 if ($.isEmptyObject(response.errors)) {
-                    isLoadingSpinner(true);
+                    isLoadingSpinner("enviar-btn", true);
                     setTimeout(() => {
                         if (response.success) {
                             Swal.fire({
@@ -25,13 +25,13 @@
                                 showConfirmButton: false,
                                 timer: 3500,
                             });
-                            isLoadingSpinner('done');
+                            isLoadingSpinner("enviar-btn", 'done');
                             resetValidationMessages();
                             setTimeout(() => {
                                 document.location.href = "/";
                             }, 4000);
                         } else if (response.error) {
-                            isLoadingSpinner(false);
+                            isLoadingSpinner("enviar-btn", false);
                             resetValidationMessages();
                             Swal.fire({
                                 position: "center",
@@ -43,9 +43,9 @@
                         }
                     }, 1000);
                 } else {
-                    isLoadingSpinner(true);
+                    isLoadingSpinner("enviar-btn", true);
                     setTimeout(() => {
-                        isLoadingSpinner(false);
+                        isLoadingSpinner("enviar-btn", false);
                         resetValidationMessages();
                         setValidationMessages(response);
                         Swal.fire({
@@ -66,22 +66,31 @@
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                isLoadingSpinner(false);
+                isLoadingSpinner("enviar-btn", false);
             });
     });
 
-    function isLoadingSpinner(isLoading) {
+    function isLoadingSpinner(btnId, isLoading) {
         if (isLoading == true) {
-            document.getElementById("btn-contacto").disabled = true;
-            document.getElementById("btn-spinner").style.display = "block";
+            document.getElementById(btnId).disabled = true;
+            document.getElementById(btnId).classList.remove("btn-contacto");
+            document.getElementById(btnId).classList.add("btn-contacto-disabled");
+            document.getElementById("default").style.display = "none";
+            document.getElementById("loading").style.display = "block";
         }
         if (isLoading == false) {
-            document.getElementById("btn-contacto").disabled = false;
-            document.getElementById("btn-spinner").style.display = "none";
+            document.getElementById(btnId).disabled = false;
+            document.getElementById(btnId).classList.remove("btn-contacto-disabled");
+            document.getElementById(btnId).classList.add("btn-contacto");
+            document.getElementById("default").style.display = "block";
+            document.getElementById("loading").style.display = "none";
         }
         if (isLoading == 'done') {
-            document.getElementById("btn-contacto").disabled = true;
-            document.getElementById("btn-spinner").style.display = "none";
+            document.getElementById(btnId).disabled = true;
+            document.getElementById(btnId).classList.remove("btn-contacto-disabled");
+            document.getElementById(btnId).classList.add("btn-contacto");
+            document.getElementById("default").style.display = "block";
+            document.getElementById("loading").style.display = "none";
         }
     }
 
