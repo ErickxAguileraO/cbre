@@ -26,7 +26,7 @@
                     <p>></p>
                     <a href="/noticias"> <p>Noticias</p></a>
                     <p>></p>
-                    <a>Detalle noticia</a>
+                    <a href="{{route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo , "-")])}}">{{ $noticia->not_titulo }}</a>
                 </div>
 
                 <div>
