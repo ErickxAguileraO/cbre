@@ -46,7 +46,7 @@
                 </div>
             </div>
         </fieldset>
-        @include('admin.components.editar_btn')
+        @include('components.editar_btn')
     </form>
 @endsection
 

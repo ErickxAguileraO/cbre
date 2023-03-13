@@ -122,7 +122,7 @@
          @endif
       @endrole
 
-      @include('admin.components.editar_btn')
+      @include('components.editar_btn')
       <input type="hidden" id="idNoticia" name="idNoticia" data-id-noticia="{{ $noticia->not_id }}" value="{{ $noticia->not_id }}">
    </form>
 @endsection

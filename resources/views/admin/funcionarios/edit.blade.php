@@ -113,7 +113,7 @@
             @endif
         @endrole
 
-        @include('admin.components.editar_btn')
+        @include('components.editar_btn')
         <input type="hidden" id="idFuncionario" name="idFuncionario" data-id-funcionario="{{ $funcionario->fun_id }}" value="{{ $funcionario->fun_id }}">
     </form>
 @endsection

@@ -33,6 +33,6 @@ class ContactoEncargado extends Mailable
     {
         $request = $this->request;
         $datos_generales = $this->datos_generales;
-        return $this->view('web.mails.contacto_encargado', compact('request', 'datos_generales'));
+        return $this->view('emails.contacto_encargado', compact('request', 'datos_generales'));
     }
 }
