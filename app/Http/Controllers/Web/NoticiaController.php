@@ -26,7 +26,7 @@ class NoticiaController extends Controller
 
     public function detalle(Noticia $noticia, $slug){
         try {
-            if(Str::slug($noticia->not_titulo , "-") != $slug){
+            if(Str::slug($noticia->not_titulo , "-") != $slug || $noticia->not_fecha > Carbon::now('America/Santiago')){
                 abort(404);
             }else{
                 $shareComponent = ShareFacade::page(
@@ -38,7 +38,7 @@ class NoticiaController extends Controller
                 return view('web.noticias.detalle',compact('noticia', 'shareComponent'));
             }
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['error' => $th->getMessage()]);
+            return redirect()->back()->with(['error' => $th->getMessage()], 401);
         }
     }
 }
