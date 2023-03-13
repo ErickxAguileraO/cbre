@@ -13,6 +13,7 @@
    <link href="{{ asset('public/js/admin/jquery/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
    <link href="{{ asset('public/css/admin/login.css') }}" rel="stylesheet" type="text/css">
    <link href="{{ asset('public/js/admin/jquery/sweetalert2/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+   <link href="{{ asset('public/css/admin/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
    <!-- favicon -->
    <link href="{{ asset('public/images/admin/logo-white.svg') }}" rel="shortcut icon" />
@@ -75,6 +76,7 @@
    <script src="{{ asset('public/js/admin/jquery/bootstrap/bootstrap.min.js') }}"></script>
    <script src="{{ asset('public/js/admin/jquery/sweetalert2/js/sweetalert2.min.js') }}"></script>
    <script src="{{ asset('public/js/admin/sistema/auth/form_reset_password.js') }}"></script>
+   <script src="{{ asset('public\js\admin\sistema\spinner.js') }}"></script>
 </body>
 
 </html>
