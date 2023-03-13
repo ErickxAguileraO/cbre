@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Administrador;
 
+use App\Models\Administrador;
 use Illuminate\Validation\Rule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;

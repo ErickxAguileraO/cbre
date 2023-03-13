@@ -11,14 +11,17 @@ class NotificacionRegistro extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $subject = "Bienvenido";
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($request, $datos_generales)
     {
-        //
+        $this->request = $request;
+        $this->datos_generales = $datos_generales;
     }
 
     /**
@@ -28,6 +31,8 @@ class NotificacionRegistro extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $request = $this->request;
+        $datos_generales = $this->datos_generales;
+        return $this->view('emails.notificacion_registro', compact('request', 'datos_generales'));
     }
 }
