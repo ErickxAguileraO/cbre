@@ -62,11 +62,19 @@
                         </div>
 
                         <div class="btn-contacto-div">
-                            <button class="btn-contacto" id="btn-contacto">
-                                <span>Enviar mensaje</span>
-                                <span id="btn-spinner" style="display: none" class="loader-btn"></span>
-                        </button>
+                            <button class="btn-contacto" id="enviar-btn">
+                                <div id="default" style="display: block">
+                                    <span>Enviar mensaje</span>
+                                    <i style="margin-left: 5px" id="btn-spinner" class="fas fa-paper-plane"></i>
+                                </div>
+                                <div id="loading" style="display: none">
+                                    <span>Enviar mensaje</span>
+                                    <span id="spinner" class="loader-btn"></span>
+                                </div>
+                            </button>
                         </div>
+
+
                     </form>
                     <div class="operaciones-contenido" style="text-align: left;">
                         <h2>Gerente Property Managment</h2>

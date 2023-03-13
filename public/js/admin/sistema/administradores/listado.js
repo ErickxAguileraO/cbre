@@ -64,8 +64,8 @@
                                     text: "¡Un usuario deshabilitado no podrá acceder al sistema!",
                                     icon: "warning",
                                     showCancelButton: true,
-                                    confirmButtonColor: "#3085d6",
-                                    cancelButtonColor: "#d33",
+                                    confirmButtonColor: "#005157",
+                                    cancelButtonColor: "#343a40",
                                     confirmButtonText: "¡Sí, deshabilítalo!",
                                 }).then((result) => {
                                     if (result.isConfirmed) {

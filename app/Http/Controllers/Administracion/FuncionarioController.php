@@ -39,7 +39,7 @@ class FuncionarioController extends Controller
         if ( $usuarioSesion->hasRole('funcionario') && $usuarioSesion->funcionario != null ) {
             return $usuarioSesion->funcionario;
         } else {
-            return Funcionario::orderByDesc('created_at')->get();
+            return Funcionario::orderByDesc('created_at')->with(['edificio'])->get();
         }
     }
     /**
@@ -64,7 +64,7 @@ class FuncionarioController extends Controller
 
         try {
             $pathFoto = ImagenService::subirImagen($request->file('foto'), 'funcionarios');
-            
+
             if ( !$pathFoto ) {
                 return response()->error('No se pudo subir la imagen.', null);
             }
@@ -180,7 +180,7 @@ class FuncionarioController extends Controller
             Storage::delete($funcionario->fun_foto);
             $funcionario->delete();
             $funcionario->user->delete();
-            
+
             DB::commit();
 
             return response()->success($funcionario, 200);

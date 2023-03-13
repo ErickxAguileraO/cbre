@@ -23,6 +23,7 @@
     <link href="{{ asset('public/web/js/select2-4.0.7/dist/css/select2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('public/web/js/sweetalert2/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('public/web/css/fancybox.css') }}">
+    <link href="{{ asset('public/css/admin/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     @stack('extra-css')
 </head>
