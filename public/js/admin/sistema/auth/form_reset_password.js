@@ -62,6 +62,7 @@ document.getElementById('actualizarButton').addEventListener('click', function (
                 Swal.fire({
                     icon: 'error',
                     title: 'Un momento...',
+                    confirmButtonColor: '#005157',
                     text: response.body.message
                 })
 
@@ -87,6 +88,7 @@ document.getElementById('actualizarButton').addEventListener('click', function (
         Swal.fire({
             icon: 'error',
             title: 'Un momento...',
+            confirmButtonColor: '#005157',
             text: error.message
         });
     });

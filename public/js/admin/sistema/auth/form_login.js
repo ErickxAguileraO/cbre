@@ -56,6 +56,7 @@ document.getElementById('ingresarButton').addEventListener('click', function (ev
             Swal.fire({
                 icon: 'error',
                 title: 'Un momento...',
+                confirmButtonColor: '#005157',
                 text: response.message
             })
 
@@ -67,6 +68,7 @@ document.getElementById('ingresarButton').addEventListener('click', function (ev
             Swal.fire({
                 icon: 'error',
                 title: 'Un momento...',
+                confirmButtonColor: '#005157',
                 text: response.message
             })
 
@@ -94,6 +96,7 @@ document.getElementById('ingresarButton').addEventListener('click', function (ev
         Swal.fire({
             icon: 'error',
             title: 'Un momento...',
+            confirmButtonColor: '#005157',
             text: error.message
         });
     });
@@ -107,6 +110,7 @@ document.getElementById('passwordResetButton').addEventListener('click', functio
             title: 'Ingresa tu email',
             input: 'email',
             text: 'Te enviaremos un mensaje con las instrucciones para cambiar tu contraseña.',
+            confirmButtonColor: '#005157',
             inputPlaceholder: 'ejemplo@email.com',
             inputValidator: (valorInput) => {
                 if ( valorInput == '' ) {
@@ -136,6 +140,7 @@ document.getElementById('passwordResetButton').addEventListener('click', functio
                     Swal.fire({
                         icon: 'error',
                         title: 'Un momento...',
+                        confirmButtonColor: '#005157',
                         text: response.body.errors.email[0]
                     });
 
@@ -146,6 +151,7 @@ document.getElementById('passwordResetButton').addEventListener('click', functio
                     Swal.fire({
                         icon: 'error',
                         title: 'Un momento...',
+                        confirmButtonColor: '#005157',
                         text: response.body.message
                     });
 
@@ -155,6 +161,7 @@ document.getElementById('passwordResetButton').addEventListener('click', functio
                 Swal.fire({
                     icon: 'success',
                     title: 'Mensaje enviado',
+                    confirmButtonColor: '#005157',
                     text: response.body.message
                 });
             })
@@ -162,6 +169,7 @@ document.getElementById('passwordResetButton').addEventListener('click', functio
                 Swal.fire({
                     icon: 'error',
                     title: 'Un momento...',
+                    confirmButtonColor: '#005157',
                     text: error.message
                 });
             });
