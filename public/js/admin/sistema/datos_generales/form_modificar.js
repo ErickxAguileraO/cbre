@@ -1,4 +1,5 @@
 
+document.addEventListener('DOMContentLoaded', function () {
 var datosGenerales = obtenerDatosGenerales();
 var regionName = datosGenerales.comuna.region.reg_nombre; //variable inicializadora con el nombre inicial de la primera región
 var check = true; //permite establecer si el select de región cambió, para así no mostrar la comuna inicial y limpiar completamente el select de comunas
@@ -218,4 +219,4 @@ function refreshImg(){
     datosGeneralesImg.src = newSrc;
 }
 
-
+});
