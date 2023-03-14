@@ -1,4 +1,4 @@
-//$("#guardar").on("click", function (event) {
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("enviar-btn").addEventListener("click", function (event) {
         event.preventDefault();
         isLoadingSpinner("enviar-btn", true);
@@ -124,3 +124,4 @@
             document.getElementById(`${field}_error`).innerText = '';
         });
     });
+});

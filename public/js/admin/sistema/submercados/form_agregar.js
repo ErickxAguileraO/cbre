@@ -1,4 +1,4 @@
-
+document.addEventListener('DOMContentLoaded', function () {
 var regionName = 'Arica y Parinacota'; //variable inicializadora con el nombre inicial de la primera región
 
 cargarRegiones();
@@ -168,3 +168,4 @@ function obtenerListaRegiones(){
     });
     return regiones.filter((v,i,a)=>a.findIndex(v2=>(v2.reg_id===v.reg_id))===i) //remove duplicates
 }
+});

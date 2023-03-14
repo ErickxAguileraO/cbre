@@ -1,4 +1,4 @@
-//$("#guardar").on("click", function (event) {
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("guardar").addEventListener("click", function (event) {
         event.preventDefault();
         isLoadingSpinner("guardar", true);
@@ -120,4 +120,4 @@
           });
         });
       }); */
-
+});

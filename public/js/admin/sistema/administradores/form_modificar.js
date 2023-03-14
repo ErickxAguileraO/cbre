@@ -1,4 +1,4 @@
-//$("#editar").on("click", function (event) {
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("editar").addEventListener("click", function (event) {
         let form = document.querySelector("#form-administrador");
         let formData = new FormData(form);
@@ -104,3 +104,4 @@
             document.getElementById(`${field}_error`).classList.add('invisible');
         });
     });
+});

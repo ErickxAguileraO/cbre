@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function () {
 let ckEditor;
 ClassicEditor.create(document.querySelector('#texto'), {
     removePlugins: ['MediaEmbed'],
@@ -146,3 +147,4 @@ fetch('/admin/quienes-somos/get/single')
   })
   .catch(error => console.error(error));
 }
+});

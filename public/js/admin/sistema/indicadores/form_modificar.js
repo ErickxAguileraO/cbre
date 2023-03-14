@@ -1,4 +1,4 @@
-
+document.addEventListener('DOMContentLoaded', function () {
 document.getElementById("editar").addEventListener("click", function (event) {
     let form = document.querySelector("#form-indicadores");
     let formData = new FormData(form);
@@ -104,4 +104,4 @@ function setValidationMessages(response) {
         document.getElementById(`${field}_error`).classList.add('invisible');
     });
 });
-
+});

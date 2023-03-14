@@ -40,7 +40,7 @@ class FuncionarioController extends Controller
         $usuarioSesion = Auth::user();
 
         if ( $usuarioSesion->hasRole('funcionario') && $usuarioSesion->funcionario != null ) {
-            return $usuarioSesion->funcionario;
+            return $usuarioSesion->funcionario()->with(['edificio'])->get();
         } else {
             return Funcionario::orderByDesc('created_at')->with(['edificio'])->get();
         }
