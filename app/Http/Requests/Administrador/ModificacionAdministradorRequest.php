@@ -35,6 +35,7 @@ class ModificacionAdministradorRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
+                Rule::unique('users', 'email')->ignore(Administrador::withTrashed()->findOrFail($this->adm_id)->userTrashed)
             ],
         ];
     }
