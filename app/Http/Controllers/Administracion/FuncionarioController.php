@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\Administracion;
 
 use App\Models\User;
+use App\Models\DatoGeneral;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Funcionario\RegistroFuncionarioRequest;
-use App\Http\Requests\Funcionario\ModificacionFuncionarioRequest;
-use Illuminate\Support\Facades\Hash;
 use App\Services\ImagenService;
 use App\Services\EdificioService;
+use App\Mail\NotificacionRegistro;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Funcionario\RegistroFuncionarioRequest;
+use App\Http\Requests\Funcionario\ModificacionFuncionarioRequest;
 
 class FuncionarioController extends Controller
 {
@@ -85,6 +88,8 @@ class FuncionarioController extends Controller
             ]);
 
             $user->assignRole('funcionario');
+
+            Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first()));
 
             DB::commit();
 

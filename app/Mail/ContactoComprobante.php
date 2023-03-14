@@ -32,6 +32,6 @@ class ContactoComprobante extends Mailable
     {
         $request = $this->request;
         $datos_generales = $this->datos_generales;
-        return $this->view('web.mails.contacto_comprobante', compact('request', 'datos_generales'));
+        return $this->view('emails.contacto_comprobante', compact('request', 'datos_generales'));
     }
 }

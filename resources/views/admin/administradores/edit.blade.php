@@ -7,7 +7,7 @@
 
     <form action="#" method="POST" id="form-administrador" class="formulario">
         @csrf
-        <input type="hidden" id="adm_id" value="{{ $administrador->adm_id }}">
+        <input type="hidden" id="adm_id" name="adm_id" value="{{ $administrador->adm_id }}">
         <fieldset class="row">
             <div class="col-sm-4">
                 <div class="form-group">
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </fieldset>
-        @include('admin.components.editar_btn')
+        @include('components.editar_btn')
     </form>
 @endsection
 

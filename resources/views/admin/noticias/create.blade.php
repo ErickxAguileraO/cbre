@@ -106,7 +106,7 @@
          @endif
       @endrole
 
-      @include('admin.components.guardar_btn')
+      @include('components.guardar_btn')
    </form>
 @endsection
 

@@ -30,7 +30,7 @@
                         <p>Edificios y oficinas</p>
                     </a>
                     <p>></p>
-                    <a href="/edificios-oficinas-detalle">Nombre edificio</a>
+                    <a href="{{route('web.edificios.detalle', [$edificio->edi_id, Str::slug($edificio->edi_nombre , "-")])}}">{{ $edificio->edi_nombre }}</a>
                 </div>
                 <p class="txt-1">{{ $edificio->edi_descripcion }}</p>
             </div>

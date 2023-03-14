@@ -7,11 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactoEncargado extends Mailable
+class NotificacionRegistro extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = "Nuevo mensaje de contacto";
+    public $subject = "Bienvenido";
 
     /**
      * Create a new message instance.
@@ -33,6 +33,6 @@ class ContactoEncargado extends Mailable
     {
         $request = $this->request;
         $datos_generales = $this->datos_generales;
-        return $this->view('emails.contacto_encargado', compact('request', 'datos_generales'));
+        return $this->view('emails.notificacion_registro', compact('request', 'datos_generales'));
     }
 }

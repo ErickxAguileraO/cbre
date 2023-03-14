@@ -24,7 +24,7 @@
         <div class="col-sm-4">
             <div class="form-group">
                 <label for="titulo">Fecha publicación</label>
-                <input type="datetime-local" class="form-control" min="{{ date('Y-m-d\TH:i:s', strtotime($noticia->not_fecha)) }}" id="fecha"
+                <input type="datetime-local" class="form-control" min="{{ \Carbon\Carbon::now('America/Santiago')->format('Y-m-d\TH:i') }}" id="fecha"
                     name="fecha" placeholder="DD/MM/AAAA" value="{{ date('Y-m-d\TH:i:s', strtotime($noticia->not_fecha)) }}">
                 <small id="errorFecha" class="field-message-alert invisible absolute"></small>
             </div>
@@ -122,7 +122,7 @@
          @endif
       @endrole
 
-      @include('admin.components.editar_btn')
+      @include('components.editar_btn')
       <input type="hidden" id="idNoticia" name="idNoticia" data-id-noticia="{{ $noticia->not_id }}" value="{{ $noticia->not_id }}">
    </form>
 @endsection

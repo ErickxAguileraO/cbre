@@ -72,7 +72,7 @@
             </div>
          </div>
       </fieldset>
-      @include('admin.components.editar_btn')
+      @include('components.editar_btn')
       <input type="hidden" id="idComercio" name="idComercio" data-id-comercio="{{ $comercio->loc_id }}" value="{{ $comercio->loc_id }}">
    </form>
 @endsection

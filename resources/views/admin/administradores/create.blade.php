@@ -27,7 +27,7 @@
                         tabindex="3" />
                         <small id="email_error" class="field-message-alert absolute"></small>
                 </div>
-                <div class="form-group">
+{{--                 <div class="form-group">
                     <label for="password">Contraseña</label>
                     <div class="password-input-container">
                         <input name="password" type="password" value="{{ old('password') }}"
@@ -44,10 +44,10 @@
                         <i class="fas fa-eye password-toggle-icon"></i>
                     </div>
                     <small id="password_confirmation_error" class="field-message-alert absolute"></small>
-                </div>
+                </div> --}}
             </div>
         </fieldset>
-        @include('admin.components.guardar_btn')
+        @include('components.guardar_btn')
     </form>
 @endsection
 
