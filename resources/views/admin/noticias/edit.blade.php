@@ -83,6 +83,7 @@
            </div>
         </div>
      </fieldset>
+     @role('super-admin')
       <fieldset class="row mb-5">
         <div class="col-sm-4">
             <div class="form-check">
@@ -91,7 +92,7 @@
             </div>
         </div>
     </fieldset>
-
+    @endrole
       @role('super-admin')
          <fieldset class="row">
             <div class="col-sm-4">
@@ -122,7 +123,7 @@
          @endif
       @endrole
 
-      @include('admin.components.editar_btn')
+      @include('components.editar_btn')
       <input type="hidden" id="idNoticia" name="idNoticia" data-id-noticia="{{ $noticia->not_id }}" value="{{ $noticia->not_id }}">
    </form>
 @endsection

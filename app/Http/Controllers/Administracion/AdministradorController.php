@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Administracion;;
 
 use App\Models\User;
+use App\Models\DatoGeneral;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Administrador;
+use App\Mail\NotificacionRegistro;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\Administrador\RegistroAdministradorRequest;
 use App\Http\Requests\Administrador\ModificacionAdministradorRequest;
 
@@ -71,6 +74,8 @@ class AdministradorController extends Controller
             ]);
 
             $user->assignRole('super-admin');
+
+            Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first()));
 
             DB::commit();
 

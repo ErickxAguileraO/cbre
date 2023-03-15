@@ -34,9 +34,9 @@ class RegistroAdministradorRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
-                Rule::unique('users', 'email'),
+                Rule::unique('users', 'email')->whereNull('deleted_at'),
             ],
-            'password' => [
+/*             'password' => [
                 'required',
                 Rule::when(function ($input) {
                     return $input->password_confirmation != null;
@@ -46,7 +46,7 @@ class RegistroAdministradorRequest extends FormRequest
             ],
             'password_confirmation' => [
                 'required'
-            ],
+            ], */
         ];
     }
 

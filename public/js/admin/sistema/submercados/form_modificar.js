@@ -1,4 +1,4 @@
-
+document.addEventListener('DOMContentLoaded', function () {
 var subMercado = obtenerSubmercado();
 var regionName = subMercado.comuna.region.reg_nombre; //variable inicializadora con el nombre inicial de la primera región
 var check = true; //permite establecer si el select de región cambió, para así no mostrar la comuna inicial y limpiar completamente el select de comunas
@@ -199,5 +199,5 @@ function obtenerListaRegiones(){
     });
     return regiones.filter((v,i,a)=>a.findIndex(v2=>(v2.reg_id===v.reg_id))===i) //remove duplicates
 }
-
+});
 

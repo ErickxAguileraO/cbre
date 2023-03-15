@@ -1,4 +1,4 @@
-//$("#guardar").on("click", function (event) {
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("guardar").addEventListener("click", function (event) {
         event.preventDefault();
         isLoadingSpinner("guardar", true);
@@ -70,7 +70,7 @@
             });
     });
 
-    const inputFieldsIds = ['nombre', 'apellido', 'email', 'password', 'password_confirmation'];
+    const inputFieldsIds = ['nombre', 'apellido', 'email']; //'password', 'password_confirmation'
 
     function setValidationMessages(response) {
         const errors = response.errors;
@@ -103,7 +103,7 @@
     });
 
 //permite mostrar y ocultar el contenido de los input del tipo password, utilizando un icono como botón
-    document.addEventListener('DOMContentLoaded', function() {
+/*     document.addEventListener('DOMContentLoaded', function() {
         var passwordToggleIcons = document.querySelectorAll('.password-toggle-icon');
         passwordToggleIcons.forEach(function(icon) {
           icon.addEventListener('click', function() {
@@ -119,5 +119,5 @@
             }
           });
         });
-      });
-
+      }); */
+});

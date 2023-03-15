@@ -239,7 +239,7 @@
             </div>
          </fieldset>
       </div>
-      @include('admin.components.editar_btn')
+      @include('components.editar_btn')
       <input type="hidden" id="idEdificio" name="idEdificio" data-id-edificio="{{ $edificio->edi_id }}" value="{{ $edificio->edi_id }}">
    </form>
 @endsection

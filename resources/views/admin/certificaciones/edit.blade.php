@@ -54,7 +54,7 @@
             </div>
          </div>
       </fieldset>
-      @include('admin.components.editar_btn')
+      @include('components.editar_btn')
       <input type="hidden" id="idCertificacion" name="idCertificacion" data-id-certificacion="{{ $certificacion->cer_id }}" value="{{ $certificacion->cer_id }}">
    </form>
 @endsection

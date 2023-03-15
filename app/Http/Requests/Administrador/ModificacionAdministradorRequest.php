@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Administrador;
 
+use App\Models\Administrador;
 use Illuminate\Validation\Rule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -34,6 +35,7 @@ class ModificacionAdministradorRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
+                Rule::unique('users', 'email')->ignore(Administrador::withTrashed()->findOrFail($this->adm_id)->userTrashed)
             ],
         ];
     }

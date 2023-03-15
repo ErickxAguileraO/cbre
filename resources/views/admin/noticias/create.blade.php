@@ -73,6 +73,7 @@
            </div>
         </div>
      </fieldset>
+     @role('super-admin')
       <fieldset class="row mb-5">
         <div class="col-sm-4">
             <div class="form-check">
@@ -80,7 +81,7 @@
               </div>
         </div>
      </fieldset>
-
+     @endrole
       @role('super-admin')
          <fieldset class="row">
             <div class="col-sm-4">
@@ -106,7 +107,7 @@
          @endif
       @endrole
 
-      @include('admin.components.guardar_btn')
+      @include('components.guardar_btn')
    </form>
 @endsection
 
