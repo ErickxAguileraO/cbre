@@ -92,6 +92,7 @@
         </div>
     </section>
 
+    @if (count($edificio->noticias) >= 1)
     <section class="flex-noticias-edificio">
         <div class="noticias-home">
             <h2 class="h2-internas">Noticias destacadas</h2>
@@ -153,7 +154,9 @@
             <a href="/noticias" class="style-link">Ver todas las noticias</a>
         </div>
     </section>
+    @endif
 
+    @if (count($edificio->comercios) >= 1)
     <section class="flex-certificaciones-edificio">
         <div class="certificaciones-home">
             <h2 class="h2-internas">Locales comerciales</h2>
@@ -178,7 +181,9 @@
 
         </div>
     </section>
+    @endif
 
+    @if (count($edificio->certificaciones) >= 1)
     <section class="flex-certificaciones-edificio">
         <div class="certificaciones-home">
             <h1 class="h2-internas">Nuestras certificaciones</h1>
@@ -202,6 +207,7 @@
             <p class="p-txt-seccion">Te presentamos las certificaciones que hemos obtenido</p>
         </div>
     </section>
+    @endif
 
     <section class="flex-ubicacion-edificio">
         <div class="ubicacion-edificio">

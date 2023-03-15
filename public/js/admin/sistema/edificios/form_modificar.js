@@ -8,14 +8,14 @@ ClassicEditor.create(document.querySelector('#descripcionTextarea'), configuraci
     } );
 }); */
 
-let ckEditorUbicacion;
+/* let ckEditorUbicacion;
 ClassicEditor.create(document.querySelector('#ubicacionDescripcionTextarea'), configuracionCkeditor)
 .then(editor => {
     ckEditorUbicacion = editor;
     ckEditorUbicacion.model.document.on( 'change:data', () => {
         document.getElementById('errorUbicacionDescripcion').classList.add('invisible');
     } );
-});
+}); */
 
 /**
  * Quitar mensaje de validación de los campos
@@ -168,7 +168,7 @@ document.getElementById('editar').addEventListener('click', function (event) {
     const idEdificio = document.querySelector("input[name='idEdificio']").getAttribute('data-id-edificio');
     const formData = new FormData(document.forms.namedItem('formEdificio'));
     //formData.append('descripcion', ckEditorDescripcion.getData());
-    formData.append('ubicacionDescripcion', ckEditorUbicacion.getData());
+    //formData.append('ubicacionDescripcion', ckEditorUbicacion.getData());
     formData.append('latitud', map.center.lat());
     formData.append('longitud', map.center.lng());
     formData.append('direccion', direccion);
