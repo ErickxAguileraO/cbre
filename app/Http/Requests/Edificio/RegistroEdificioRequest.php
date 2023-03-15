@@ -64,9 +64,6 @@ class RegistroEdificioRequest extends FormRequest
                 'max:1000',
                 'min:30'
             ],
-            'certificaciones' => [
-                'required'
-            ],
             'certificaciones.*' => [
                 'numeric'
             ],
