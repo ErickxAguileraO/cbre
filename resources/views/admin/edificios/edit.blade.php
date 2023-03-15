@@ -28,7 +28,7 @@
                <label for="descripcionTextarea">Descripción</label>
                <div class="">
                     <div>
-                        <textarea name="descripcionTextarea" id="descripcionTextarea" class="form-control texto text-tarea-seccion ckeditor" rows="5" tabindex="2">{{ $edificio->edi_descripcion }}</textarea>
+                        <textarea name="descripcionTextarea" id="descripcionTextarea" class="form-control texto text-tarea-seccion ckeditor" rows="3" tabindex="2">{{ $edificio->edi_descripcion }}</textarea>
                     </div>
                 </div>
                <small id="errorDescripcion" class="field-message-alert invisible absolute"></small>
@@ -164,10 +164,7 @@
                <label for="ubicacionDescripcionTextarea">Descripción de la ubicación</label>
                <div class="">
                   <div>
-                     <textarea name="ubicacionDescripcionTextarea" id="ubicacionDescripcionTextarea"
-                           class="form-control texto text-tarea-seccion ckeditor" rows="5" tabindex="9">
-                           {{ $edificio->ubi_descripcion }}
-                     </textarea>
+                     <textarea name="ubicacionDescripcionTextarea" id="ubicacionDescripcionTextarea" class="form-control texto text-tarea-seccion ckeditor" rows="3" tabindex="9">{{ $edificio->ubi_descripcion }}</textarea>
                   </div>
                </div>
                <small id="errorUbicacionDescripcion" class="field-message-alert invisible absolute"></small>

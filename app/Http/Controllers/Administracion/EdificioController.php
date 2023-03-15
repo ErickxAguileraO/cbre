@@ -73,7 +73,7 @@ class EdificioController extends Controller
                 'edi_imagen_listado' => $pathImagenListado,
                 'edi_submercado_id' => $request->submercado,
                 'ubi_titulo' => $request->ubicacionTitulo,
-                'ubi_descripcion' => $request->ubicacionDescripcion,
+                'ubi_descripcion' => $request->ubicacionDescripcionTextarea,
                 'edi_latitud' => $request->latitud,
                 'edi_longitud' => $request->longitud,
                 'edi_video' => $request->video,
@@ -166,7 +166,7 @@ class EdificioController extends Controller
             $edificio->edi_direccion = $request->direccion;
             $edificio->edi_submercado_id = $request->submercado;
             $edificio->ubi_titulo = $request->ubicacionTitulo;
-            $edificio->ubi_descripcion = $request->ubicacionDescripcion;
+            $edificio->ubi_descripcion = $request->ubicacionDescripcionTextarea;
             $edificio->edi_latitud = $request->latitud;
             $edificio->edi_longitud = $request->longitud;
             $edificio->edi_video = $request->video;

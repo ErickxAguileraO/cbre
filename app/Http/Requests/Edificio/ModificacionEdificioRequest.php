@@ -59,7 +59,7 @@ class ModificacionEdificioRequest extends FormRequest
                 'required',
                 'max:255'
             ],
-            'ubicacionDescripcion' => [
+            'ubicacionDescripcionTextarea' => [
                 'required',
                 'max:1000',
                 'min:30'
