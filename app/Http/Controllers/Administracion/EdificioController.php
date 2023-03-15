@@ -83,8 +83,10 @@ class EdificioController extends Controller
             $imagenesStorage = ImagenService::subirGaleriaCroppie('edificios', $request->imagenesGaleria);
             $edificio->imagenes()->createMany($imagenesStorage);
 
-            foreach ($request->certificaciones as $certificacion) {
-                $edificio->certificaciones()->attach($certificacion);
+            if($request->certificaciones){
+                foreach ($request->certificaciones as $certificacion) {
+                    $edificio->certificaciones()->attach($certificacion);
+                }
             }
 
             foreach ($request->caracteristicas as $caracteristica) {
@@ -183,8 +185,10 @@ class EdificioController extends Controller
             $edificio->certificaciones()->detach();
             $edificio->caracteristicas()->detach();
 
-            foreach ($request->certificaciones as $certificacion) {
-                $edificio->certificaciones()->attach($certificacion);
+            if($request->certificaciones){
+                foreach ($request->certificaciones as $certificacion) {
+                    $edificio->certificaciones()->attach($certificacion);
+                }
             }
 
             foreach ($request->caracteristicas as $caracteristica) {
