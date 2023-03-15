@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administracion;
 
 use App\Models\User;
 use App\Models\Funcionario;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -72,7 +73,7 @@ class FuncionarioController extends Controller
             $user = User::create([
                 'name' => $request->nombre,
                 'email' => $request->email,
-                'password' => Hash::make('12345678')
+                'password' => Hash::make(Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2))),
             ]);
 
             $funcionario = $user->funcionario()->create([
@@ -148,7 +149,11 @@ class FuncionarioController extends Controller
             $funcionario->fun_edificio_id = EdificioService::obtenerEdificioRoleFuncionario() ?: $request->edificio;
             $funcionario->save();
 
-            $funcionario->user->email = $request->email;
+            if($funcionario->user->email !== $request->email){
+                $funcionario->user->email = $request->email;
+                Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first()));
+            }
+
             $funcionario->user->save();
 
             DB::commit();
