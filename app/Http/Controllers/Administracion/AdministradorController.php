@@ -61,7 +61,7 @@ class AdministradorController extends Controller
             $user = User::create([
                 'name' => Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2)),
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make(Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2))),
             ]);
 
             Administrador::create([
@@ -115,23 +115,34 @@ class AdministradorController extends Controller
     public function update(ModificacionAdministradorRequest $request, $administrador)
     {
         DB::beginTransaction();
+
         try {
             $administrador = Administrador::withTrashed()->findOrFail($administrador);
             $administrador->adm_nombre = $request->nombre;
             $administrador->adm_apellido = $request->apellido;
+
             if($request->estado == 0){
                 $this->destroy($administrador->adm_id);
             }elseif($request->estado == 1){
                 $this->restore($administrador->adm_id);
             }
-            $administrador->userTrashed->email = $request->email;
-            $administrador->userTrashed->name = Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2));
+
             $administrador->save();
+
+            if ($administrador->userTrashed->email !== $request->email) {
+                $administrador->userTrashed->email = $request->email;
+                $administrador->userTrashed->name = Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2));
+                Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first()));
+            }
+
             $administrador->userTrashed->save();
+
             DB::commit();
+
             return response()->json(['success' => '¡Administrador actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
@@ -145,13 +156,17 @@ class AdministradorController extends Controller
     public function restore($administrador)
     {
         DB::beginTransaction();
+
         try {
             Administrador::withTrashed()->findOrFail($administrador)->restore();
             User::withTrashed()->findOrFail(Administrador::withTrashed()->findOrFail($administrador)->adm_user_id)->restore();
+
             DB::commit();
+
             return response()->json(['success' => '¡Administrador habilitado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
@@ -165,15 +180,19 @@ class AdministradorController extends Controller
     public function destroy($administrador)
     {
         DB::beginTransaction();
+
         try {
             if(Administrador::withTrashed()->findOrFail($administrador)->deleted_at == null){
                 Administrador::findOrFail($administrador)->delete();
                 User::findOrFail(Administrador::withTrashed()->findOrFail($administrador)->adm_user_id)->delete();
             }
+
             DB::commit();
+
             return response()->json(['success' => '¡Administrador deshabilitado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
