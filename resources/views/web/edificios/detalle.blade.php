@@ -34,7 +34,7 @@
                 </div>
                 <p class="txt-1">{{ $edificio->edi_descripcion }}</p>
             </div>
-            <div class="caracteristicas">
+            {{-- <div class="caracteristicas">
                 <h2>Amenities del edificio</h2>
                 @if (count($edificio->caracteristicas) >= 5)
                 <div class="carruselCaracteristicas">
@@ -54,7 +54,7 @@
                         </div>
                     @endforeach
                 </div>
-                @endif
+                @endif --}}
             </div>
 
 
