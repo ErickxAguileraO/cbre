@@ -137,7 +137,7 @@
             @can('index contactos')
             <li>
                 <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                  <a href="{{route('contactos.index')}}" class="nav-link {{ request()->routeIs('contactos.index', 'contactos.create', 'contactos.edit') ? ' active' : '' }}">Contactos</a>
+                  <a href="{{route('contactos.index')}}" class="nav-link {{ request()->routeIs('contactos.index', 'contactos.create', 'contactos.edit', 'contactos.show') ? ' active' : '' }}">Contactos</a>
                 </span>
             </li>
             @endcan

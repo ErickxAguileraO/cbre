@@ -3,7 +3,7 @@
 
     {{-- Cabecera con logo de la empresa --}}
     <div style="background-color: #012A2D; padding: 20px;">
-        <img src="{{ env('MAIL_IMG_LOGO') }}" alt="">
+        <img src="http://cbre.aeurus.cl/public/web/imagenes/logo-white.png" alt="">
     </div>
 
     {{-- Cuerpo del mensaje --}}
@@ -43,19 +43,19 @@
         <p>+56 {{ PrintPhone($datos_generales->dag_telefono_dos)}}</p>
         <div>
             <a href="{{$datos_generales->dag_facebook}}" target="_blank" style="text-decoration: none; margin-right: 5px">
-                <img src="{{ env('MAIL_IMG_FACEBOOK') }}" alt="">
+                <img src="http://cbre.aeurus.cl/public/web/imagenes/i-fb.png" alt="">
             </a>
             <a href="{{$datos_generales->dag_linkedin}}" target="_blank" style="text-decoration: none; margin-right: 5px">
-                <img src="{{ env('MAIL_IMG_LINKEDIN') }}" alt="">
+                <img src="http://cbre.aeurus.cl/public/web/imagenes/i-link.png" alt="">
             </a>
             <a href="{{$datos_generales->dag_instagram}}" target="_blank" style="text-decoration: none; margin-right: 5px">
-                <img src="{{ env('MAIL_IMG_INSTAGRAM') }}" alt="">
+                <img src="http://cbre.aeurus.cl/public/web/imagenes/i-ig.png" alt="">
             </a>
             <a href="{{$datos_generales->dag_twitter}}" target="_blank" style="text-decoration: none; margin-right: 5px">
-                <img src="{{ env('MAIL_IMG_TWITTER') }}" alt="">
+                <img src="http://cbre.aeurus.cl/public/web/imagenes/i-twt.png" alt="">
             </a>
             <a href="{{$datos_generales->dag_youtube}}" target="_blank" style="text-decoration: none; margin-right: 5px">
-                <img src="{{ env('MAIL_IMG_YOUTUBE') }}" alt="">
+                <img src="http://cbre.aeurus.cl/public/web/imagenes/i-yt.png" alt="">
             </a>
         </div>
     </div>
