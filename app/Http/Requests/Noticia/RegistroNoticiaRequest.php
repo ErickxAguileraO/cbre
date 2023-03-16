@@ -31,7 +31,7 @@ class RegistroNoticiaRequest extends FormRequest
             'fecha' => [
                 'required',
             ],
-            'imagenesGaleria' => [
+            'imagenListado' => [
                 'required',
             ],
             'cuerpo' => [
