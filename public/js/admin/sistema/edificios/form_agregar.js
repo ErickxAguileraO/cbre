@@ -8,14 +8,14 @@ ClassicEditor.create(document.querySelector('#descripcionTextarea'), configuraci
     } );
 }); */
 
-let ckEditorUbicacion;
+/* let ckEditorUbicacion;
 ClassicEditor.create(document.querySelector('#ubicacionDescripcionTextarea'), configuracionCkeditor)
 .then(editor => {
     ckEditorUbicacion = editor;
     ckEditorUbicacion.model.document.on( 'change:data', () => {
         document.getElementById('errorUbicacionDescripcion').classList.add('invisible');
     } );
-});
+}); */
 
 /**
  * Quitar mensaje de validación de los campos
@@ -32,7 +32,11 @@ document.getElementById('imagenPrincipal').addEventListener('input', function ()
     document.getElementById('errorImagenPrincipal').classList.add('invisible');
 })
 
-document.getElementById('imagenListado').addEventListener('input', function () {
+/* document.getElementById('imagenListado').addEventListener('input', function () {
+    document.getElementById('errorImagenListado').classList.add('invisible');
+}) */
+
+document.getElementById('inputFileListado').addEventListener('input', function () {
     document.getElementById('errorImagenListado').classList.add('invisible');
 })
 
@@ -85,6 +89,11 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorImagenPrincipal').classList.remove('invisible');
     }
 
+/*     if ( typeof errores.imagenListado !== 'undefined' ) {
+        document.getElementById('errorImagenListado').innerHTML = errores.imagenListado[0];
+        document.getElementById('errorImagenListado').classList.remove('invisible');
+    } */
+
     if ( typeof errores.imagenListado !== 'undefined' ) {
         document.getElementById('errorImagenListado').innerHTML = errores.imagenListado[0];
         document.getElementById('errorImagenListado').classList.remove('invisible');
@@ -110,8 +119,8 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorUbicacionTitulo').classList.remove('invisible');
     }
 
-    if ( typeof errores.ubicacionDescripcion !== 'undefined' ) {
-        document.getElementById('errorUbicacionDescripcion').innerHTML = errores.ubicacionDescripcion[0];
+    if ( typeof errores.ubicacionDescripcionTextarea !== 'undefined' ) {
+        document.getElementById('errorUbicacionDescripcion').innerHTML = errores.ubicacionDescripcionTextarea[0];
         document.getElementById('errorUbicacionDescripcion').classList.remove('invisible');
     }
 
@@ -168,7 +177,7 @@ document.getElementById('guardar').addEventListener('click', function (event) {
     const token = document.querySelector("input[name='_token']").value;
     const formData = new FormData(document.forms.namedItem('formEdificio'));
     //formData.append('descripcion', ckEditorDescripcion.getData());
-    formData.append('ubicacionDescripcion', ckEditorUbicacion.getData());
+    //formData.append('ubicacionDescripcion', ckEditorUbicacion.getData());
     formData.append('latitud', map.center.lat());
     formData.append('longitud', map.center.lng());
     formData.append('direccion', direccion);

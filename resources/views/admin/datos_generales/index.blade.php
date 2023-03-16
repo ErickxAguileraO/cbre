@@ -54,13 +54,10 @@
                 </div>
             </div>
         </fieldset>
-        <div class="row mb-4">
-            <div class="col-sm-4">
-                <hr>
-            </div>
-        </div>
+
         <fieldset class="row">
             <div class="col-sm-4">
+                <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Información del encargado</span></div>
                 <div class="form-group">
                     <label for="nombre">Nombre encargado</label>
                     <input id="nombre" name="nombre" value="{{ $datos_generales->dag_nombre_encargado }}" data-maximo-caracteres="50" class="form-control"
@@ -104,7 +101,7 @@
                 <div class="form-group">
                     <label for="imagen">Imagen</label>
                     <div class="py-2">
-                        <img id="datos-generales-img" src="{{$datos_generales->urlImagen}}" width="360" height="260" alt="">
+                        <img id="datos-generales-img" src="{{$datos_generales->urlImagen}}" width="360" alt="">
                     </div>
                     <div class="d-flex align-items-end">
                         <div class="file-select">
@@ -119,13 +116,10 @@
                 </div>
             </div>
         </fieldset>
-        <div class="row mb-4">
-            <div class="col-sm-4">
-                <hr>
-            </div>
-        </div>
+
         <fieldset class="row">
             <div class="col-sm-4">
+                <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Redes sociales</span></div>
                 <div class="form-group">
                     <label for="facebook">Facebook</label>
                     <input id="facebook" name="facebook" value="{{ $datos_generales->dag_facebook }}" class="form-control"

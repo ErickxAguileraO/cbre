@@ -7,9 +7,16 @@ function iniciarCroppie() {
     }
 
     croppies.forEach((image, index) => {
-        const defaul_image = image.closest('.croppie-container').querySelector('.default-image-croppie');
+
         const min_width = image.getAttribute('data-min-width');
         const min_height = image.getAttribute('data-min-height');
+
+        const container = image.closest('.croppie-container');
+        const defaul_image = container.querySelector('.default-image-croppie');
+        //permite establecer más de 1 croppie en el html, en donde se distingue por su data-croppie-container
+        //de esta forma se pueden diferenciar y guardar las imagenes en un array por separado
+        const containerIndex = container.getAttribute('data-croppie-container');
+        const inputName = containerIndex === '1' ? 'imagenesGaleria[]' : 'imagenListado[]';
 
         let crop;
         let razon = 1;
@@ -92,7 +99,7 @@ function iniciarCroppie() {
             if ( image.classList.contains('d-none') ) {
                 return;
             }
-            
+
             const boton = e.currentTarget;
             const isSingleImage = image.classList.contains('single-image');
 
@@ -112,7 +119,7 @@ function iniciarCroppie() {
                 new_image.src = base64;
                 new_image.classList.add('w-100');
 
-                input.name = "imagenesGaleria[]";
+                input.name = inputName;
                 input.type = "hidden";
                 input.value = base64;
 

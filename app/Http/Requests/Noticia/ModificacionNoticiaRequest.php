@@ -31,7 +31,7 @@ class ModificacionNoticiaRequest extends FormRequest
             'fecha' => [
                 'required',
             ],
-            'imagenesGaleria' => [
+            'imagenListado' => [
                 'nullable',
             ],
             'cuerpo' => [
