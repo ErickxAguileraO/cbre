@@ -55,10 +55,7 @@
                     @endforeach
                 </div>
                 @endif --}}
-            </div>
-
-
-            @if($edificio->edi_video)
+                @if($edificio->edi_video)
                 <div class="caracteristicas">
                     <h2>Amenities del edificio</h2>
                     @if (count($edificio->caracteristicas) >= 5)
@@ -81,30 +78,31 @@
                     </div>
                     @endif
                 </div>
-            @else
-                <div class="caracteristicas2">
-                    <h2>Amenities del edificio</h2>
-                    @if (count($edificio->caracteristicas) >= 5)
-                    <div class="carruselCaracteristicas">
-                        @foreach ($edificio->caracteristicas as $caracteristica)
-                            <div class="caracteristica-n">
-                                <img class="imagen-icon-caracteristicas" src="{{ $caracteristica->urlImagen }}" alt="">
-                                <p>{{ $caracteristica->car_nombre }}</p>
-                            </div>
-                        @endforeach
+                @else
+                    <div class="caracteristicas2">
+                        <h2>Amenities del edificio</h2>
+                        @if (count($edificio->caracteristicas) >= 5)
+                        <div class="carruselCaracteristicas">
+                            @foreach ($edificio->caracteristicas as $caracteristica)
+                                <div class="caracteristica-n">
+                                    <img class="imagen-icon-caracteristicas" src="{{ $caracteristica->urlImagen }}" alt="">
+                                    <p>{{ $caracteristica->car_nombre }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                        @else
+                        <div class="flex-carrusel">
+                            @foreach ($edificio->caracteristicas as $caracteristica)
+                                <div class="caracteristica-n">
+                                    <img class="imagen-icon-caracteristicas" src="{{ $caracteristica->urlImagen }}" alt="">
+                                    <p>{{ $caracteristica->car_nombre }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                        @endif
                     </div>
-                    @else
-                    <div class="flex-carrusel">
-                        @foreach ($edificio->caracteristicas as $caracteristica)
-                            <div class="caracteristica-n">
-                                <img class="imagen-icon-caracteristicas" src="{{ $caracteristica->urlImagen }}" alt="">
-                                <p>{{ $caracteristica->car_nombre }}</p>
-                            </div>
-                        @endforeach
-                    </div>
-                    @endif
-                </div>
-            @endif
+                @endif
+            </div>
         </div>
         @if ($edificio->edi_video)
             <section class="video-edificio">
