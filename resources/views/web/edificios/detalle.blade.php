@@ -34,7 +34,9 @@
                 </div>
                 <p class="txt-1">{{ $edificio->edi_descripcion }}</p>
             </div>
-            {{-- <div class="caracteristicas">
+            
+            @if($edificio->edi_video)
+            <div class="caracteristicas">
                 <h2>Amenities del edificio</h2>
                 @if (count($edificio->caracteristicas) >= 5)
                 <div class="carruselCaracteristicas">
@@ -54,9 +56,10 @@
                         </div>
                     @endforeach
                 </div>
-                @endif --}}
-                @if($edificio->edi_video)
-                <div class="caracteristicas">
+                @endif
+            </div>
+            @else
+                <div class="caracteristicas2">
                     <h2>Amenities del edificio</h2>
                     @if (count($edificio->caracteristicas) >= 5)
                     <div class="carruselCaracteristicas">
@@ -78,31 +81,7 @@
                     </div>
                     @endif
                 </div>
-                @else
-                    <div class="caracteristicas2">
-                        <h2>Amenities del edificio</h2>
-                        @if (count($edificio->caracteristicas) >= 5)
-                        <div class="carruselCaracteristicas">
-                            @foreach ($edificio->caracteristicas as $caracteristica)
-                                <div class="caracteristica-n">
-                                    <img class="imagen-icon-caracteristicas" src="{{ $caracteristica->urlImagen }}" alt="">
-                                    <p>{{ $caracteristica->car_nombre }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                        @else
-                        <div class="flex-carrusel">
-                            @foreach ($edificio->caracteristicas as $caracteristica)
-                                <div class="caracteristica-n">
-                                    <img class="imagen-icon-caracteristicas" src="{{ $caracteristica->urlImagen }}" alt="">
-                                    <p>{{ $caracteristica->car_nombre }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                        @endif
-                    </div>
-                @endif
-            </div>
+            @endif
         </div>
         @if ($edificio->edi_video)
             <section class="video-edificio">
@@ -134,197 +113,196 @@
                                 <img src="{{ $imagen->urlImagen }}">
                             </a>
                         @endforeach
-                    </div>
-                @endif
-            </div>
-        </section>
+                </div>
+            @endif
+        </div>
+    </section>
 
-        @if (count($edificio->noticias) >= 1)
-        <section class="flex-noticias-edificio">
-            <div class="noticias-home">
-                <h2 class="h2-internas">Noticias destacadas</h2>
-                <p class="p-txt-seccion">Conoce las últimas novedades o acontecimientos de nuestro Edificio</p>
-                @if (count($edificio->noticias) >= 3)
-                    <div class="carruselNoticias">
-                        @foreach ($edificio->noticias as $noticia)
-                            <div class="noticia-home-n">
-                                <a
-                                    href="{{ route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo, '-')]) }}">
-                                    <div class="">
-                                        <img src="{{ $noticia->urlImagen }}" class="imagen-noticias" alt="">
+    @if (count($edificio->noticias) >= 1)
+    <section class="flex-noticias-edificio">
+        <div class="noticias-home">
+            <h2 class="h2-internas">Noticias destacadas</h2>
+            <p class="p-txt-seccion">Conoce las últimas novedades o acontecimientos de nuestro Edificio</p>
+            @if (count($edificio->noticias) >= 3)
+                <div class="carruselNoticias">
+                    @foreach ($edificio->noticias as $noticia)
+                        <div class="noticia-home-n">
+                            <a
+                                href="{{ route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo, '-')]) }}">
+                                <div class="">
+                                    <img src="{{ $noticia->urlImagen }}" class="imagen-noticias" alt="">
+                                </div>
+                                <div class="contenido-noticia-n">
+                                    <div class="date-noticia">
+                                        <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
+                                        <p>Publicado el {{ $noticia->fechaChile }} {{ $noticia->hora }}</p>
                                     </div>
-                                    <div class="contenido-noticia-n">
-                                        <div class="date-noticia">
-                                            <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                            <p>Publicado el {{ $noticia->fechaChile }} {{ $noticia->hora }}</p>
-                                        </div>
-                                        <h2>{{ $noticia->not_titulo }}</h2>
-                                        <a href="{{ route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo, '-')]) }}"
-                                            class="ver-mas">
-                                            <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                            <p>Ver noticia</p>
-                                        </a>
+                                    <h2>{{ $noticia->not_titulo }}</h2>
+                                    <a href="{{ route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo, '-')]) }}"
+                                        class="ver-mas">
+                                        <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
+                                        <p>Ver noticia</p>
+                                    </a>
+                                </div>
+
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="flex-carrusel">
+                    @foreach ($edificio->noticias as $noticia)
+                        <div class="noticia-home-n">
+                            <a
+                                href="{{ route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo, '-')]) }}">
+                                <div class="">
+                                    <img src="{{ $noticia->urlImagen }}" class="imagen-noticias" alt="">
+                                </div>
+                                <div class="contenido-noticia-n">
+                                    <div class="date-noticia">
+                                        <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
+                                        <p>Publicado el {{ $noticia->fechaChile }} {{ $noticia->hora }}</p>
                                     </div>
+                                    <h2>{{ $noticia->not_titulo }}</h2>
+                                    <a href="{{ route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo, '-')]) }}"
+                                        class="ver-mas">
+                                        <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
+                                        <p>Ver noticia</p>
+                                    </a>
+                                </div>
 
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-                @else
-                    <div class="flex-carrusel">
-                        @foreach ($edificio->noticias as $noticia)
-                            <div class="noticia-home-n">
-                                <a
-                                    href="{{ route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo, '-')]) }}">
-                                    <div class="">
-                                        <img src="{{ $noticia->urlImagen }}" class="imagen-noticias" alt="">
-                                    </div>
-                                    <div class="contenido-noticia-n">
-                                        <div class="date-noticia">
-                                            <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                            <p>Publicado el {{ $noticia->fechaChile }} {{ $noticia->hora }}</p>
-                                        </div>
-                                        <h2>{{ $noticia->not_titulo }}</h2>
-                                        <a href="{{ route('web.noticias.detalle', [$noticia->not_id, Str::slug($noticia->not_titulo, '-')]) }}"
-                                            class="ver-mas">
-                                            <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                            <p>Ver noticia</p>
-                                        </a>
-                                    </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
 
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
+            <a href="/noticias" class="style-link">Ver todas las noticias</a>
+        </div>
+    </section>
+    @endif
 
-                <a href="/noticias" class="style-link">Ver todas las noticias</a>
-            </div>
-        </section>
-        @endif
-
-        @if (count($edificio->comercios) >= 1)
-        <section class="flex-certificaciones-edificio">
-            <div class="certificaciones-home">
-                <h2 class="h2-internas">Locales comerciales</h2>
-                <p>En el edificio podrás encontrar diferentes locales comerciales, visítalos:</p>
-                @if (count($edificio->comercios) >= 5)
-                    <div class="carruselCertificaciones">
-                        @foreach ($edificio->comercios as $comercio)
-                            <div class="certificacion-home-n">
-                                <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
-                            </div>
-                        @endforeach
-                    </div>
-                @else
-                    <div class="flex-carrusel">
-                        @foreach ($edificio->comercios as $comercio)
-                            <div class="certificacion-home-n">
-                                <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
-
-            </div>
-        </section>
-        @endif
-
-        @if (count($edificio->certificaciones) >= 1)
-        <section class="flex-certificaciones-edificio">
-            <div class="certificaciones-home">
-                <h1 class="h2-internas">Nuestras certificaciones</h1>
-                @if (count($edificio->certificaciones) >= 5)
+    @if (count($edificio->comercios) >= 1)
+    <section class="flex-certificaciones-edificio">
+        <div class="certificaciones-home">
+            <h2 class="h2-internas">Locales comerciales</h2>
+            <p>En el edificio podrás encontrar diferentes locales comerciales, visítalos:</p>
+            @if (count($edificio->comercios) >= 5)
                 <div class="carruselCertificaciones">
+                    @foreach ($edificio->comercios as $comercio)
+                        <div class="certificacion-home-n">
+                            <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="flex-carrusel">
+                    @foreach ($edificio->comercios as $comercio)
+                        <div class="certificacion-home-n">
+                            <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+        </div>
+    </section>
+    @endif
+
+    @if (count($edificio->certificaciones) >= 1)
+    <section class="flex-certificaciones-edificio">
+        <div class="certificaciones-home">
+            <h1 class="h2-internas">Nuestras certificaciones</h1>
+            @if (count($edificio->certificaciones) >= 5)
+            <div class="carruselCertificaciones">
+                @foreach ($edificio->certificaciones as $certificacion)
+                    <div class="certificacion-home-n">
+                        <img src="{{ $certificacion->urlImagen }}" alt="">
+                    </div>
+                @endforeach
+            </div>
+                @else
+                <div class="flex-carrusel">
                     @foreach ($edificio->certificaciones as $certificacion)
                         <div class="certificacion-home-n">
                             <img src="{{ $certificacion->urlImagen }}" alt="">
                         </div>
                     @endforeach
                 </div>
-                    @else
-                    <div class="flex-carrusel">
-                        @foreach ($edificio->certificaciones as $certificacion)
-                            <div class="certificacion-home-n">
-                                <img src="{{ $certificacion->urlImagen }}" alt="">
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
-                <p class="p-txt-seccion">Te presentamos las certificaciones que hemos obtenido</p>
-            </div>
-        </section>
-        @endif
+            @endif
+            <p class="p-txt-seccion">Te presentamos las certificaciones que hemos obtenido</p>
+        </div>
+    </section>
+    @endif
 
-        <section class="flex-ubicacion-edificio">
-            <div class="ubicacion-edificio">
-                <div>
-                    <div class="ubicacion-edificio-left-content">
-                        <h2>{{ $edificio->ubi_titulo }}</h2>
-                        <p id="direccionRegistrada" data-direccion-registrada="{{ $edificio->edi_direccion }}"><span
-                                class="edificio-detalle-direccion">Dirección:</span> {{ $edificio->edi_direccion }}</p>
-                        <p>@php echo htmlspecialchars_decode($edificio->ubi_descripcion) @endphp</p>
-                    </div>
-                </div>
-                <div>
-                    <div id="map" data-latitud="{{ $edificio->edi_latitud }}"
-                        data-longitud="{{ $edificio->edi_longitud }}"></div>
+    <section class="flex-ubicacion-edificio">
+        <div class="ubicacion-edificio">
+            <div>
+                <div class="ubicacion-edificio-left-content">
+                    <h2>{{ $edificio->ubi_titulo }}</h2>
+                    <p id="direccionRegistrada" data-direccion-registrada="{{ $edificio->edi_direccion }}"><span
+                            class="edificio-detalle-direccion">Dirección:</span> {{ $edificio->edi_direccion }}</p>
+                    <p>@php echo htmlspecialchars_decode($edificio->ubi_descripcion) @endphp</p>
                 </div>
             </div>
-        </section>
-
-        <section class="flex-operaciones">
-            <div class="operaciones">
-
-                @foreach ($edificio->funcionarios->filter(function ($funcionario) {
-            return $funcionario->fun_cargo == 'Jefe de operaciones';
-        }) as $funcionario)
-                    <div class="operaciones-contenido">
-                        <h2>Jefe de operaciones del edificio</h2>
-                        <div class="operacion-n">
-                            <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
-                            <div class="txt-operacion">
-                                <h4>{{ $funcionario->fun_nombre }} {{ $funcionario->fun_apellido }}</h4>
-                                <p class="cursive">{{ $funcionario->fun_cargo }}</p>
-                                <div class="telefono-correo-operacion">
-                                    <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
-                                    <p>+56 {{ PrintPhone($funcionario->fun_telefono) }}</p>
-                                </div>
-                                <a href="mailto:{{ $funcionario->user->email }}" class="telefono-correo-operacion">
-                                    <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
-                                    <p>Enviar un correo</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-                @foreach ($edificio->funcionarios->filter(function ($funcionario) {
-            return $funcionario->fun_cargo == 'Asistente de operaciones';
-        }) as $funcionario)
-                    <div class="operaciones-contenido">
-                        <h2>Asistente de operaciones</h2>
-                        <div class="operacion-n">
-                            <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
-                            <div class="txt-operacion">
-                                <h4>{{ $funcionario->fun_nombre }} {{ $funcionario->fun_apellido }}</h4>
-                                <p class="cursive">{{ $funcionario->fun_cargo }}</p>
-                                <div class="telefono-correo-operacion">
-                                    <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
-                                    <p>+56 {{ PrintPhone($funcionario->fun_telefono) }}</p>
-                                </div>
-                                <a href="mailto:{{ $funcionario->user->email }}" class="telefono-correo-operacion">
-                                    <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
-                                    <p>Enviar un correo</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+            <div>
+                <div id="map" data-latitud="{{ $edificio->edi_latitud }}"
+                    data-longitud="{{ $edificio->edi_longitud }}"></div>
             </div>
+        </div>
+    </section>
 
-        </section>
-    </div>
-    </div>
+    <section class="flex-operaciones">
+        <div class="operaciones">
+
+            @foreach ($edificio->funcionarios->filter(function ($funcionario) {
+        return $funcionario->fun_cargo == 'Jefe de operaciones';
+    }) as $funcionario)
+                <div class="operaciones-contenido">
+                    <h2>Jefe de operaciones del edificio</h2>
+                    <div class="operacion-n">
+                        <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
+                        <div class="txt-operacion">
+                            <h4>{{ $funcionario->fun_nombre }} {{ $funcionario->fun_apellido }}</h4>
+                            <p class="cursive">{{ $funcionario->fun_cargo }}</p>
+                            <div class="telefono-correo-operacion">
+                                <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
+                                <p>+56 {{ PrintPhone($funcionario->fun_telefono) }}</p>
+                            </div>
+                            <a href="mailto:{{ $funcionario->user->email }}" class="telefono-correo-operacion">
+                                <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
+                                <p>Enviar un correo</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            @foreach ($edificio->funcionarios->filter(function ($funcionario) {
+        return $funcionario->fun_cargo == 'Asistente de operaciones';
+    }) as $funcionario)
+                <div class="operaciones-contenido">
+                    <h2>Asistente de operaciones</h2>
+                    <div class="operacion-n">
+                        <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
+                        <div class="txt-operacion">
+                            <h4>{{ $funcionario->fun_nombre }} {{ $funcionario->fun_apellido }}</h4>
+                            <p class="cursive">{{ $funcionario->fun_cargo }}</p>
+                            <div class="telefono-correo-operacion">
+                                <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
+                                <p>+56 {{ PrintPhone($funcionario->fun_telefono) }}</p>
+                            </div>
+                            <a href="mailto:{{ $funcionario->user->email }}" class="telefono-correo-operacion">
+                                <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
+                                <p>Enviar un correo</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+    </section>
+</div>
 
 @push('extra-js')
     <script>
@@ -339,3 +317,6 @@
 @endpush
 
 @endsection
+
+
+
