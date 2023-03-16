@@ -58,7 +58,7 @@
             </div>
 
 
-            {{-- @if (count($edificio->edi_video) >= 1)
+            @if($edificio->edi_video)
                 <div class="caracteristicas">
                     <h2>Amenities del edificio</h2>
                     @if (count($edificio->caracteristicas) >= 5)
@@ -104,7 +104,7 @@
                     </div>
                     @endif
                 </div>
-            @endif --}}
+            @endif
         </div>
         @if ($edificio->edi_video)
             <section class="video-edificio">
