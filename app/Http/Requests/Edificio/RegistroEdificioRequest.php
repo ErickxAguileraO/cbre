@@ -38,11 +38,14 @@ class RegistroEdificioRequest extends FormRequest
                 'mimes:jpg,jpeg,png',
                 'max:5120'
             ],
-            'imagenListado' => [
+/*             'imagenListado' => [
                 'required',
                 'dimensions:width=435,height=285',
                 'mimes:jpg,jpeg,png',
                 'max:5120'
+            ], */
+            'imagenListado' => [
+                'required'
             ],
             'imagenesGaleria' => [
                 'required'
@@ -59,7 +62,7 @@ class RegistroEdificioRequest extends FormRequest
                 'required',
                 'max:255'
             ],
-            'ubicacionDescripcion' => [
+            'ubicacionDescripcionTextarea' => [
                 'required',
                 'max:1000',
                 'min:30'

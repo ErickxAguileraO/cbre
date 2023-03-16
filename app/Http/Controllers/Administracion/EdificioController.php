@@ -59,7 +59,7 @@ class EdificioController extends Controller
                 return response()->error('No se pudo subir la imagen.', null);
             }
 
-            $pathImagenListado = ImagenService::subirImagen($request->file('imagenListado'), 'edificios');
+            $pathImagenListado = ImagenService::subirGaleriaCroppie('edificios', $request->imagenListado)[0]['ima_url'];
 
             if ( !$pathImagenListado ) {
                 return response()->error('No se pudo subir la imagen.', null);
@@ -152,9 +152,9 @@ class EdificioController extends Controller
                 $edificio->edi_imagen = $pathImagenPrincipal;
             }
 
-            if ( $request->file('imagenListado') !== null ) {
+            if ( $request->imagenListado !== null ) {
                 Storage::delete($edificio->edi_imagen_listado);
-                $pathImagenListado = ImagenService::subirImagen($request->file('imagenListado'), 'edificios');
+                $pathImagenListado = ImagenService::subirGaleriaCroppie('edificios', $request->imagenListado)[0]['ima_url'];
 
                 if ( !$pathImagenListado ) {
                     return response()->error('No se pudo subir la imagen.', null);

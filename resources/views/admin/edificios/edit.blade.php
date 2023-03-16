@@ -23,6 +23,16 @@
       </fieldset>
 
       <fieldset class="row">
+        <div class="col-sm-4">
+           <div class="form-group">
+              <label for="subdominio">Subdominio</label>
+              <input id="subdominio" name="subdominio" value="{{ $edificio->edi_subdominio }}" class="form-control solo-letras" type="text" tabindex="15" data-maximo-caracteres="255"/>
+              <small id="errorSubdominio" class="field-message-alert invisible absolute"></small>
+           </div>
+        </div>
+     </fieldset>
+
+      <fieldset class="row">
          <div class="col-sm-6">
             <div class="form-group">
                <label for="descripcionTextarea">Descripción</label>
@@ -37,7 +47,18 @@
       </fieldset>
 
       <fieldset class="row">
+        <div class="col-sm-4">
+           <div class="form-group">
+              <label for="video">Video</label>
+              <input id="video" name="video" value="{{ $edificio->edi_video }}" class="form-control" type="text" tabindex="6" data-maximo-caracteres="255"/>
+              <small id="errorVideo" class="field-message-alert invisible absolute"></small>
+           </div>
+        </div>
+     </fieldset>
+
+      <fieldset class="row">
          <div class="col-sm-4">
+            <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Imágenes</span></div>
             <div class="form-group">
                <label for="">Imagen principal</label>
                <div class="py-2">
@@ -57,31 +78,49 @@
       </fieldset>
 
       <fieldset class="row">
-         <div class="col-sm-4">
-            <div class="form-group">
-               <label for="">Imagen del listado</label>
-               <div class="py-2">
-                  <img src="{{ $edificio->urlImagenListado }}" alt="" width="360" height="260">
-               </div>
-               <div class="d-flex align-items-end">
-                  <div class="file-select">
-                     <input id="imagenListado" name="imagenListado" type="file" class="input-file" lang="es" accept=".jpg,.jpeg,.png" tabindex="4">
-                  </div>
-                  <div class="archivo-seleccionado px-2">
-                     <span class="align-text-bottom">Ningún archivo seleccionado</span>
-                  </div>
-               </div>
-               <small id="errorImagenListado" class="field-message-alert invisible"></small>
-            </div>
-         </div>
-      </fieldset>
+        <div class="col-sm-4">
+           <div class="form-group">
+              <div class="contenedor croppie-container" data-croppie-container="2">
+                 <div class="imagen1"><span>Imagen listado (tamaño mínimo 435px X 285px)</span>
+                    <div class="container-content my-5">
+                          <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" />
+                          <div class="d-none my-4 croppie-image single-image" data-min-width="435" data-min-height="285"></div>
+                    </div>
+                    <div class="position-relative">
+                       <div class="custom-file">
+                          <input type="file" id="inputFileListado" class="custom-file-input imagen-input" lang="es" accept=".jpg,.jpeg,.png">
+                          <label class="custom-file-label" for="imagen-input">Buscar un archivo</label>
+                       </div>
+                    </div>
+                    <div class="modal-footer_imagen" style="text-align:left;margin-top: 15px;">
+                       <button type="button" class="btn btn-outline-dark cancel-croppie">Cancelar</button>
+                       <button type="button" class="btn btn-outline-success add-image-croppie">Agregar</button>
+                    </div>
+                    <br>
+                    <div class="mt-4 container-gallery">
+                        <label class="mb-4">Imagen cargada</label>
+                       <div class="row images-gallery">
+                        <div class="col-sm-6 col-md-4 pb-5">
+                            <img src="{{ $edificio->urlImagenListado }}" alt="" class="w-100">
+                            <button class="btn btn-danger position-absolute delete-image-croppie" type="button" style="right:20px">
+                                <i class="fas fa-trash-alt text-white pointer-none"></i>
+                             </button>
+                         </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <small id="errorImagenListado" class="field-message-alert invisible"></small>
+           </div>
+        </div>
+     </fieldset>
 
       <fieldset class="row">
          <div class="col-sm-4">
+            <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Imágenes galeria</span></div>
             <div class="form-group">
-               <div class="contenedor croppie-container">
-                  <label for="" class="pb-4">Imágenes de la galería</label>
-                  <div class="imagen1"><span>Galeria (tamaño mínimo 520px X 385px)</span>
+               <div class="contenedor croppie-container" data-croppie-container="1">
+                  <div class="imagen1"><span>Imágenes de la galería (tamaño mínimo 520px X 385px)</span>
                      <div class="container-content my-5">
                            <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" />
                            <div class="d-none my-4 croppie-image" data-min-width="520" data-min-height="385"></div>
@@ -98,7 +137,7 @@
                      </div>
                      <br>
                      <div class="mt-4 container-gallery">
-                        <label class="mb-4">Imagenes cargadas</label>
+                        <label class="mb-4">Imágenes cargadas</label>
                         <div class="row images-gallery">
                            @foreach ($edificio->imagenes as $imagen)
                            <div class="col-sm-6 col-md-4 pb-5">
@@ -120,16 +159,7 @@
 
       <fieldset class="row">
          <div class="col-sm-4">
-            <div class="form-group">
-               <label for="video">Video</label>
-               <input id="video" name="video" value="{{ $edificio->edi_video }}" class="form-control" type="text" tabindex="6" data-maximo-caracteres="255"/>
-               <small id="errorVideo" class="field-message-alert invisible absolute"></small>
-            </div>
-         </div>
-      </fieldset>
-
-      <fieldset class="row">
-         <div class="col-sm-4">
+            <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Ubicación</span></div>
             <div class="form-group">
                <label for="submercado">Submercado</label>
                <select id="submercado" name="submercado" class="form-control busqueda-select2" tabindex="7">
@@ -185,9 +215,10 @@
          </div>
       </fieldset>
 
-      <div class="border-top py-4">
+      <div class="py-4">
          <fieldset class="row">
             <div class="col-sm-4">
+                <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Atributos</span></div>
                <div class="form-group">
                   <label for="certificaciones">Certificaciones</label>
                   <select id="certificaciones" name="certificaciones[]" class="form-control" multiple="multiple" tabindex="19">
@@ -226,15 +257,6 @@
             </div>
          </fieldset>
 
-         <fieldset class="row">
-            <div class="col-sm-4">
-               <div class="form-group">
-                  <label for="subdominio">Subdominio</label>
-                  <input id="subdominio" name="subdominio" value="{{ $edificio->edi_subdominio }}" class="form-control solo-letras" type="text" tabindex="15" data-maximo-caracteres="255"/>
-                  <small id="errorSubdominio" class="field-message-alert invisible absolute"></small>
-               </div>
-            </div>
-         </fieldset>
       </div>
       @include('components.editar_btn')
       <input type="hidden" id="idEdificio" name="idEdificio" data-id-edificio="{{ $edificio->edi_id }}" value="{{ $edificio->edi_id }}">

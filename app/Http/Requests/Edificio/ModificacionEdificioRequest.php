@@ -38,11 +38,14 @@ class ModificacionEdificioRequest extends FormRequest
                 'mimes:jpg,jpeg,png',
                 'max:5120'
             ],
-            'imagenListado' => [
+/*             'imagenListado' => [
                 'nullable',
                 'dimensions:width=435,height=285',
                 'mimes:jpg,jpeg,png',
                 'max:5120'
+            ], */
+            'imagenListado' => [
+                'nullable',
             ],
             'imagenesGaleria' => [
                 'required_without:idImagenes'
