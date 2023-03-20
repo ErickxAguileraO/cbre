@@ -73,6 +73,7 @@ class IndicadorController extends Controller
     public function update(ModificacionIndicadoresRequest $request, $indicador)
     {
         DB::beginTransaction();
+
         try {
             Indicador::findOrFail($indicador)->update([
                 'ind_administrados' => $request->input('edificios_administrados'),
@@ -80,10 +81,13 @@ class IndicadorController extends Controller
                 'ind_en_todo_chile' => $request->input('en_todo_chile'),
                 'ind_en_todo_chile2' => $request->input('en_todo_chile2'),
             ]);
+
             DB::commit();
+
             return response()->json(['success' => '¡Los indicadores se han actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }

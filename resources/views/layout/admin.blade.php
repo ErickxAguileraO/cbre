@@ -30,7 +30,9 @@
   <nav class="navbar navbar-dark fixed-top flex-md-nowrap shadow py-4 header">
     <div class="navbar-brand">
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-        <img class="ml-sm-0 pl-sm-0 ml-5 pl-4" src="{{ asset('public/images/admin/logo-white.svg') }}">
+        <a href="/">
+            <img class="ml-sm-0 pl-sm-0 ml-5 pl-4" src="{{ asset('public/images/admin/logo-white.svg') }}">
+        </a>
     </div>
     <div class="dropdown">
       @auth

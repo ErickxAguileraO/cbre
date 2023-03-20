@@ -17,6 +17,7 @@ document.getElementById("guardar").addEventListener("click", function (event) {
         headers: {
             "X-CSRF-TOKEN": document.querySelector("input[name='_token']")
                 .value,
+            "Accept": "application/json"
         },
         body: new FormData(document.forms.namedItem("form-submercados")),
     })

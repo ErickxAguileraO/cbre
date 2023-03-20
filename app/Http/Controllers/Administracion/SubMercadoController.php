@@ -50,16 +50,20 @@ class SubMercadoController extends Controller
     public function store(RegistroSubMercadoRequest $request)
     {
         DB::beginTransaction();
+
         try {
             SubMercado::create([
                 'sub_nombre' => $request->nombre,
                 'sub_estado' => $request->estado,
                 'sub_comuna_id' => $request->comuna,
             ]);
+
             DB::commit();
+
             return response()->json(['success' => '¡El submercado se ha registrado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
@@ -97,16 +101,20 @@ class SubMercadoController extends Controller
     public function update(ModificacionSubMercadoRequest $request, $subMercado)
     {
         DB::beginTransaction();
+
         try {
             SubMercado::findOrFail($subMercado)->update([
                 'sub_nombre' => $request->nombre,
                 'sub_estado' => $request->estado,
                 'sub_comuna_id' => $request->comuna,
             ]);
+
             DB::commit();
+
             return response()->json(['success' => '¡El Submercado se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
@@ -120,18 +128,23 @@ class SubMercadoController extends Controller
     public function destroy($subMercadoId)
     {
         DB::beginTransaction();
+
         try {
             $subMercado = SubMercado::findOrFail($subMercadoId);
             if (!$subMercado->edificios()->exists()) {
                 $subMercado->delete();
+
                 DB::commit();
+
                 return response()->json(['success' => '¡Submercado se ha eliminado correctamente!'], 200);
             }else{
-                return response()->json(['error' => '¡No puedes eliminar un submercado que ya está siendo utilizado!'], 200);
                 DB::rollback();
+
+                return response()->json(['error' => '¡No puedes eliminar un submercado que ya está siendo utilizado!'], 401);
             }
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }

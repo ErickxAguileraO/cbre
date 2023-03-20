@@ -95,12 +95,16 @@ class ContactoController extends Controller
     public function destroy($contacto)
     {
         DB::beginTransaction();
+
         try {
             Contacto::findOrFail($contacto)->delete();
+
             DB::commit();
+
             return response()->json(['success' => '¡Formulario de contacto eliminado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }

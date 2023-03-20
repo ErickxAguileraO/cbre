@@ -84,6 +84,7 @@ class DatosGeneralesController extends Controller
     public function update(ModificacionDatoGeneralRequest $request, $datosGenerales)
     {
         DB::beginTransaction();
+
         try {
             $datoGeneral = DatoGeneral::findOrFail($datosGenerales);
             $datoGeneral->update([
@@ -101,16 +102,20 @@ class DatosGeneralesController extends Controller
                 'dag_telefono_encargado' => $request->input('telefono'),
                 'dag_cargo_encargado' => $request->input('cargo'),
             ]);
+
             if ($request->hasFile('imagen')) {
                 Storage::delete($datoGeneral->dag_imagen_encargado);
                 $datoGeneral->update([
                     'dag_imagen_encargado' => ImagenService::subirImagen($request->file('imagen'), 'datos_generales'),
                 ]);
             }
+
             DB::commit();
+
             return response()->json(['success' => '¡Los datos generales se han actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }

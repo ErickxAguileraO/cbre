@@ -11,10 +11,16 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 async function getInitialNoticias() {
-    const response = await fetch(`noticias/get/list?skip=${0}&take=${take}`);
-    const data = await response.json();
-    noticias = data.noticias;
-    printNoticias();
+    document.getElementById("total-noticias").innerText = 'Buscando...';
+    isLoadingSpinner(true);
+    setTimeout(async () => {
+        const response = await fetch(`noticias/get/list?skip=${0}&take=${take}`);
+        const data = await response.json();
+        noticias = data.noticias;
+        isLoadingSpinner(false);
+        document.getElementById("total-noticias").innerText = '';
+        printNoticias();
+      }, Math.floor(Math.random() * (1100 - 300 + 1) + 300))
 }
 
 async function getNextNoticias() {
@@ -37,10 +43,14 @@ async function getNextNoticias() {
     }
   }
 
-function printNoticias() {
+function removeContainerElements(){
     while (noticiasContainer.firstChild) {
         noticiasContainer.removeChild(noticiasContainer.firstChild);
     }
+}
+
+function printNoticias() {
+    removeContainerElements();
     noticias.forEach(function (noticia, i) {
     const noticiaHTML =  `
     <div  class="noticia-home-n">
