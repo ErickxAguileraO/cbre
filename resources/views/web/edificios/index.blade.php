@@ -22,7 +22,6 @@
                     <option>Buscar edificio...</option>
                     @foreach ($edificios as $edificio)
                     <option value="{{$edificio->edi_id}}" data-href="{{route('web.edificios.detalle', [$edificio->edi_id, Str::slug($edificio->edi_nombre , "-")])}}">{{$edificio->edi_nombre}}</option>
-                   {{--  <option value="{{$edificio->edi_id}}">{{$edificio->edi_nombre}}</option> --}}
                     @endforeach
                 </select>
             </div>
@@ -31,7 +30,6 @@
                     <option value="null">Filtrar por submercado...</option>
                     @foreach ($submercados as $submercado)
                     <option value="{{$submercado->sub_id}}">{{$submercado->sub_nombre}}</option>
-                   {{--  <option value="{{$edificio->edi_id}}">{{$edificio->edi_nombre}}</option> --}}
                     @endforeach
                 </select>
             </div>
@@ -45,7 +43,7 @@
         <p class="txt-busqueda" id="total-edificios"></p>
 
         <div class="edificios-busqueda" id="edificios-busqueda">
-
+            {{-- Edificios listado --}}
         </div>
         <div style="margin-top: 50px">
             <span id="spinner" class="loader" style="display: none"></span>
