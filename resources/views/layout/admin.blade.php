@@ -51,7 +51,7 @@
             @can('index noticias')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{ route('noticias.index') }}" class="nav-link">Noticias</a>
+                <a href="{{ route('noticias.index') }}" class="nav-link {{ request()->routeIs('noticias.index', 'noticias.create', 'noticias.edit') ? ' active' : '' }}">Noticias</a>
               </span>
             </li>
             @endcan
@@ -59,7 +59,7 @@
             @can('index edificios')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{ route('edificios.index') }}" class="nav-link">Edificios</a>
+                <a href="{{ route('edificios.index') }}" class="nav-link {{ request()->routeIs('edificios.index', 'edificios.create', 'edificios.edit') ? ' active' : '' }}">Edificios</a>
               </span>
             </li>
             @endcan
@@ -67,7 +67,7 @@
             @can('index certificaciones')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{ route('certificaciones.index') }}" class="nav-link">Certificaciones</a>
+                <a href="{{ route('certificaciones.index') }}" class="nav-link {{ request()->routeIs('certificaciones.index', 'certificaciones.create', 'certificaciones.edit') ? ' active' : '' }}">Certificaciones</a>
               </span>
             </li>
             @endcan
@@ -75,7 +75,7 @@
             @can('index caracteristicas')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{route('caracteristicas.index')}}" class="nav-link">Características</a>
+                <a href="{{route('caracteristicas.index')}}" class="nav-link {{ request()->routeIs('caracteristicas.index', 'caracteristicas.create', 'caracteristicas.edit') ? ' active' : '' }}">Características</a>
               </span>
             </li>
             @endcan
@@ -83,7 +83,7 @@
             @can('index submercados')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{route('submercados.index')}}" class="nav-link">Submercados</a>
+                <a href="{{route('submercados.index')}}" class="nav-link {{ request()->routeIs('submercados.index', 'submercados.create', 'submercados.edit') ? ' active' : '' }}">Submercados</a>
               </span>
             </li>
             @endcan
@@ -91,7 +91,7 @@
             @can('index comercios')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{ route('comercios.index') }}" class="nav-link">Locales comerciales</a>
+                <a href="{{ route('comercios.index') }}" class="nav-link {{ request()->routeIs('comercios.index', 'comercios.create', 'comercios.edit') ? ' active' : '' }}">Locales comerciales</a>
               </span>
             </li>
             @endcan
@@ -99,7 +99,7 @@
             @can('index indicadores')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{route('indicadores.index')}}" class="nav-link">Indicadores</a>
+                <a href="{{route('indicadores.index')}}" class="nav-link {{ request()->routeIs('indicadores.index', 'indicadores.create', 'indicadores.edit') ? ' active' : '' }}">Indicadores</a>
               </span>
             </li>
             @endcan
@@ -107,7 +107,7 @@
             @can('index quienes somos')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{route('quienes-somos.index')}}" class="nav-link">Quiénes somos</a>
+                <a href="{{route('quienes-somos.index')}}" class="nav-link {{ request()->routeIs('quienes-somos.index', 'quienes-somos.create', 'quienes-somos.edit') ? ' active' : '' }}">Quiénes somos</a>
               </span>
             </li>
             @endcan
@@ -115,7 +115,7 @@
             @can('index datos generales')
             <li>
                 <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                  <a href="{{route('datos-generales.index')}}" class="nav-link">Datos generales</a>
+                  <a href="{{route('datos-generales.index')}}" class="nav-link {{ request()->routeIs('datos-generales.index', 'datos-generales.create', 'datos-generales.edit') ? ' active' : '' }}">Datos generales</a>
                 </span>
             </li>
             @endcan
@@ -123,7 +123,7 @@
             @can('index administradores')
             <li>
                 <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                  <a href="{{route('administradores.index')}}" class="nav-link">Administradores</a>
+                  <a href="{{route('administradores.index')}}" class="nav-link {{ request()->routeIs('administradores.index', 'administradores.create', 'administradores.edit') ? ' active' : '' }}">Administradores</a>
                 </span>
             </li>
             @endcan
@@ -131,7 +131,7 @@
             @can('index funcionarios')
             <li>
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{route('funcionarios.index')}}" class="nav-link">Funcionarios</a>
+                <a href="{{route('funcionarios.index')}}" class="nav-link {{ request()->routeIs('funcionarios.index', 'funcionarios.create', 'funcionarios.edit') ? ' active' : '' }}">Funcionarios</a>
               </span>
             </li>
             @endcan
@@ -139,7 +139,7 @@
             @can('index contactos')
             <li>
                 <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                  <a href="{{route('contactos.index')}}" class="nav-link">Contactos</a>
+                  <a href="{{route('contactos.index')}}" class="nav-link {{ request()->routeIs('contactos.index', 'contactos.create', 'contactos.edit', 'contactos.show') ? ' active' : '' }}">Contactos</a>
                 </span>
             </li>
             @endcan

@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <label for="imagen">Imagen</label>
                     <div class="py-2">
-                        <img id="quienes-somos-img" src="{{$quienes_somos->url_imagen}}" width="360" height="260" alt="">
+                        <img id="quienes-somos-img" src="{{$quienes_somos->url_imagen}}" width="360" alt="">
                     </div>
                     <div class="d-flex align-items-end">
                         <div class="file-select">

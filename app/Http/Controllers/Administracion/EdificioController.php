@@ -59,7 +59,7 @@ class EdificioController extends Controller
                 return response()->error('No se pudo subir la imagen.', null);
             }
 
-            $pathImagenListado = ImagenService::subirImagen($request->file('imagenListado'), 'edificios');
+            $pathImagenListado = ImagenService::subirGaleriaCroppie('edificios', $request->imagenListado)[0]['ima_url'];
 
             if ( !$pathImagenListado ) {
                 return response()->error('No se pudo subir la imagen.', null);
@@ -73,7 +73,7 @@ class EdificioController extends Controller
                 'edi_imagen_listado' => $pathImagenListado,
                 'edi_submercado_id' => $request->submercado,
                 'ubi_titulo' => $request->ubicacionTitulo,
-                'ubi_descripcion' => $request->ubicacionDescripcion,
+                'ubi_descripcion' => $request->ubicacionDescripcionTextarea,
                 'edi_latitud' => $request->latitud,
                 'edi_longitud' => $request->longitud,
                 'edi_video' => $request->video,
@@ -83,8 +83,10 @@ class EdificioController extends Controller
             $imagenesStorage = ImagenService::subirGaleriaCroppie('edificios', $request->imagenesGaleria);
             $edificio->imagenes()->createMany($imagenesStorage);
 
-            foreach ($request->certificaciones as $certificacion) {
-                $edificio->certificaciones()->attach($certificacion);
+            if($request->certificaciones){
+                foreach ($request->certificaciones as $certificacion) {
+                    $edificio->certificaciones()->attach($certificacion);
+                }
             }
 
             foreach ($request->caracteristicas as $caracteristica) {
@@ -150,9 +152,9 @@ class EdificioController extends Controller
                 $edificio->edi_imagen = $pathImagenPrincipal;
             }
 
-            if ( $request->file('imagenListado') !== null ) {
+            if ( $request->imagenListado !== null ) {
                 Storage::delete($edificio->edi_imagen_listado);
-                $pathImagenListado = ImagenService::subirImagen($request->file('imagenListado'), 'edificios');
+                $pathImagenListado = ImagenService::subirGaleriaCroppie('edificios', $request->imagenListado)[0]['ima_url'];
 
                 if ( !$pathImagenListado ) {
                     return response()->error('No se pudo subir la imagen.', null);
@@ -166,7 +168,7 @@ class EdificioController extends Controller
             $edificio->edi_direccion = $request->direccion;
             $edificio->edi_submercado_id = $request->submercado;
             $edificio->ubi_titulo = $request->ubicacionTitulo;
-            $edificio->ubi_descripcion = $request->ubicacionDescripcion;
+            $edificio->ubi_descripcion = $request->ubicacionDescripcionTextarea;
             $edificio->edi_latitud = $request->latitud;
             $edificio->edi_longitud = $request->longitud;
             $edificio->edi_video = $request->video;
@@ -183,8 +185,10 @@ class EdificioController extends Controller
             $edificio->certificaciones()->detach();
             $edificio->caracteristicas()->detach();
 
-            foreach ($request->certificaciones as $certificacion) {
-                $edificio->certificaciones()->attach($certificacion);
+            if($request->certificaciones){
+                foreach ($request->certificaciones as $certificacion) {
+                    $edificio->certificaciones()->attach($certificacion);
+                }
             }
 
             foreach ($request->caracteristicas as $caracteristica) {

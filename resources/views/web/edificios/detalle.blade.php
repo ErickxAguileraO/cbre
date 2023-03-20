@@ -34,6 +34,8 @@
                 </div>
                 <p class="txt-1">{{ $edificio->edi_descripcion }}</p>
             </div>
+            
+            @if($edificio->edi_video)
             <div class="caracteristicas">
                 <h2>Amenities del edificio</h2>
                 @if (count($edificio->caracteristicas) >= 5)
@@ -56,6 +58,30 @@
                 </div>
                 @endif
             </div>
+            @else
+                <div class="caracteristicas2">
+                    <h2>Amenities del edificio</h2>
+                    @if (count($edificio->caracteristicas) >= 5)
+                    <div class="carruselCaracteristicas">
+                        @foreach ($edificio->caracteristicas as $caracteristica)
+                            <div class="caracteristica-n">
+                                <img class="imagen-icon-caracteristicas" src="{{ $caracteristica->urlImagen }}" alt="">
+                                <p>{{ $caracteristica->car_nombre }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                    @else
+                    <div class="flex-carrusel">
+                        @foreach ($edificio->caracteristicas as $caracteristica)
+                            <div class="caracteristica-n">
+                                <img class="imagen-icon-caracteristicas" src="{{ $caracteristica->urlImagen }}" alt="">
+                                <p>{{ $caracteristica->car_nombre }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                    @endif
+                </div>
+            @endif
         </div>
         @if ($edificio->edi_video)
             <section class="video-edificio">
@@ -92,6 +118,7 @@
         </div>
     </section>
 
+    @if (count($edificio->noticias) >= 1)
     <section class="flex-noticias-edificio">
         <div class="noticias-home">
             <h2 class="h2-internas">Noticias destacadas</h2>
@@ -153,7 +180,9 @@
             <a href="/noticias" class="style-link">Ver todas las noticias</a>
         </div>
     </section>
+    @endif
 
+    @if (count($edificio->comercios) >= 1)
     <section class="flex-certificaciones-edificio">
         <div class="certificaciones-home">
             <h2 class="h2-internas">Locales comerciales</h2>
@@ -178,7 +207,9 @@
 
         </div>
     </section>
+    @endif
 
+    @if (count($edificio->certificaciones) >= 1)
     <section class="flex-certificaciones-edificio">
         <div class="certificaciones-home">
             <h1 class="h2-internas">Nuestras certificaciones</h1>
@@ -202,6 +233,7 @@
             <p class="p-txt-seccion">Te presentamos las certificaciones que hemos obtenido</p>
         </div>
     </section>
+    @endif
 
     <section class="flex-ubicacion-edificio">
         <div class="ubicacion-edificio">
@@ -285,3 +317,6 @@
 @endpush
 
 @endsection
+
+
+

@@ -22,12 +22,22 @@
       </fieldset>
 
       <fieldset class="row">
+        <div class="col-sm-4">
+           <div class="form-group">
+              <label for="subdominio">Subdominio</label>
+              <input id="subdominio" name="subdominio" value="" class="form-control solo-letras" type="text" tabindex="16" data-maximo-caracteres="255"/>
+              <small id="errorSubdominio" class="field-message-alert invisible absolute"></small>
+           </div>
+        </div>
+     </fieldset>
+
+      <fieldset class="row">
          <div class="col-sm-6">
             <div class="form-group">
                <label for="descripcionTextarea">Descripción</label>
                <div class="">
                     <div>
-                        <textarea name="descripcionTextarea" id="descripcionTextarea"class="form-control texto text-tarea-seccion" rows="" tabindex="2"></textarea>
+                        <textarea name="descripcionTextarea" id="descripcionTextarea"class="form-control texto text-tarea-seccion" rows="3" tabindex="2"></textarea>
                     </div>
                 </div>
                <small id="errorDescripcion" class="field-message-alert invisible absolute"></small>
@@ -36,7 +46,18 @@
       </fieldset>
 
       <fieldset class="row">
+        <div class="col-sm-4">
+           <div class="form-group">
+              <label for="video">Video</label>
+              <input id="video" name="video" value="" class="form-control" type="text" tabindex="9" data-maximo-caracteres="255"/>
+              <small id="errorVideo" class="field-message-alert invisible absolute"></small>
+           </div>
+        </div>
+     </fieldset>
+
+      <fieldset class="row">
          <div class="col-sm-4">
+            <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Imágenes</span></div>
             <div class="form-group">
                <label for="">Imagen principal</label>
                <div class="d-flex align-items-end">
@@ -52,28 +73,43 @@
          </div>
       </fieldset>
 
-      <fieldset class="row">
-         <div class="col-sm-4">
-            <div class="form-group">
-               <label for="">Imagen del listado</label>
-               <div class="d-flex align-items-end">
-                  <div class="file-select">
-                     <input id="imagenListado" name="imagenListado" type="file" class="input-file" lang="es" accept=".jpg,.jpeg,.png" tabindex="8">
-                  </div>
-                  <div class="archivo-seleccionado px-2">
-                     <span class="align-text-bottom">Ningún archivo seleccionado</span>
-                  </div>
-               </div>
-               <small id="errorImagenListado" class="field-message-alert invisible"></small>
-            </div>
-         </div>
-      </fieldset>
+     <fieldset class="row">
+        <div class="col-sm-4">
+           <div class="form-group">
+              <div class="contenedor croppie-container" data-croppie-container="2">
+                 <div class="imagen1"><span>Imagen listado (tamaño mínimo 435px X 285px)</span>
+                    <div class="container-content my-5">
+                          <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" />
+                          <div class="d-none my-4 croppie-image single-image" data-min-width="435" data-min-height="285"></div>
+                    </div>
+                    <div class="position-relative">
+                       <div class="custom-file">
+                          <input type="file" id="inputFileListado" class="custom-file-input imagen-input" lang="es" accept=".jpg,.jpeg,.png">
+                          <label class="custom-file-label" for="imagen-input">Buscar un archivo</label>
+                       </div>
+                    </div>
+                    <div class="modal-footer_imagen" style="text-align:left;margin-top: 15px;">
+                       <button type="button" class="btn btn-outline-dark cancel-croppie">Cancelar</button>
+                       <button type="button" class="btn btn-outline-success add-image-croppie">Agregar</button>
+                    </div>
+                    <br>
+                    <div class="mt-4 container-gallery">
+                       <label class="mb-4">Imagen cargada</label>
+                       <div class="row images-gallery"></div>
+                    </div>
+                 </div>
+              </div>
+              <small id="errorImagenListado" class="field-message-alert invisible"></small>
+           </div>
+        </div>
+     </fieldset>
 
       <fieldset class="row">
          <div class="col-sm-4">
+            <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Imágenes galeria</span></div>
             <div class="form-group">
-               <div class="contenedor croppie-container">
-                  <label for="" class="pb-4">Imágenes de la galería</label>
+               <div class="contenedor croppie-container" data-croppie-container="1">
+                <div class="imagen1"><span>Imágenes de la galería (tamaño mínimo 520px X 385px)</span>
                   <div class="imagen1">
                      <div class="container-content my-5">
                            <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" title="Agrega una imagen para recortarla."/>
@@ -91,7 +127,7 @@
                      </div>
                      <br>
                      <div class="mt-4 container-gallery">
-                        <label class="mb-4">Imagenes cargadas</label>
+                        <label class="mb-4">Imágenes cargadas</label>
                         <div class="row images-gallery"></div>
                      </div>
                   </div>
@@ -103,16 +139,7 @@
 
       <fieldset class="row">
          <div class="col-sm-4">
-            <div class="form-group">
-               <label for="video">Video</label>
-               <input id="video" name="video" value="" class="form-control" type="text" tabindex="9" data-maximo-caracteres="255"/>
-               <small id="errorVideo" class="field-message-alert invisible absolute"></small>
-            </div>
-         </div>
-      </fieldset>
-
-      <fieldset class="row">
-         <div class="col-sm-4">
+            <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Ubicación</span></div>
             <div class="form-group">
                <label for="submercado">Submercado</label>
                <select id="submercado" name="submercado" class="form-control busqueda-select2" tabindex="10">
@@ -144,9 +171,7 @@
                <label for="ubicacionDescripcionTextarea">Descripción de la ubicación</label>
                <div class="">
                   <div>
-                     <textarea name="ubicacionDescripcionTextarea" id="ubicacionDescripcionTextarea"
-                           class="form-control texto text-tarea-seccion" rows="5" tabindex="12">
-                     </textarea>
+                     <textarea name="ubicacionDescripcionTextarea" id="ubicacionDescripcionTextarea" class="form-control texto text-tarea-seccion" rows="3" tabindex="12"></textarea>
                   </div>
                </div>
                <small id="errorUbicacionDescripcion" class="field-message-alert invisible absolute"></small>
@@ -164,9 +189,10 @@
          </div>
       </fieldset>
 
-      <div class="border-top py-4">
+      <div class="py-4">
          <fieldset class="row">
             <div class="col-sm-4">
+                <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Atributos</span></div>
                <div class="form-group">
                   <label for="certificaciones">Certificaciones</label>
                   <select id="certificaciones" name="certificaciones[]" class="form-control" multiple="multiple" tabindex="14">
@@ -197,15 +223,6 @@
             </div>
          </fieldset>
 
-         <fieldset class="row">
-            <div class="col-sm-4">
-               <div class="form-group">
-                  <label for="subdominio">Subdominio</label>
-                  <input id="subdominio" name="subdominio" value="" class="form-control solo-letras" type="text" tabindex="16" data-maximo-caracteres="255"/>
-                  <small id="errorSubdominio" class="field-message-alert invisible absolute"></small>
-               </div>
-            </div>
-         </fieldset>
       </div>
       @include('components.guardar_btn')
    </form>

@@ -46,7 +46,7 @@
       <fieldset class="row">
         <div class="col-sm-4">
            <div class="form-group">
-              <div class="contenedor croppie-container">
+              <div class="contenedor croppie-container" data-croppie-container="2">
                  <div class="imagen1"><span>Imagen (tamaño mínimo 890px X 300px)</span>
                     <div class="container-content my-5">
                           <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" />
@@ -54,7 +54,7 @@
                     </div>
                     <div class="position-relative">
                        <div class="custom-file">
-                          <input type="file" id="inputFileGaleria" class="custom-file-input imagen-input" lang="es" accept=".jpg,.jpeg,.png">
+                          <input type="file" id="inputFileListado" class="custom-file-input imagen-input" lang="es" accept=".jpg,.jpeg,.png">
                           <label class="custom-file-label" for="imagen-input">Buscar un archivo</label>
                        </div>
                     </div>
@@ -69,7 +69,7 @@
                     </div>
                  </div>
               </div>
-              <small id="errorImagenesGaleria" class="field-message-alert invisible"></small>
+              <small id="errorImagenListado" class="field-message-alert invisible"></small>
            </div>
         </div>
      </fieldset>
