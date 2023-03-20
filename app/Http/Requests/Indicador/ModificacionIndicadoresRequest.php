@@ -32,19 +32,4 @@ class ModificacionIndicadoresRequest extends FormRequest
             'en_todo_chile2' => 'required|numeric|min:1|max:999999999', //metros cuadrados
         ];
     }
-
-                /**
-     * Handle a failed validation attempt.
-     *
-     * @param  \Illuminate\Contracts\Validation\Validator  $validator
-     * @return void
-     *
-     * @throws \Illuminate\Http\Exceptions\HttpResponseException
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'errors' => $validator->errors(),
-        ], 422));
-    }
 }
