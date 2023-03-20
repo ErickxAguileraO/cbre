@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 "X-CSRF-TOKEN": document.querySelector("input[name='_token']")
                     .value,
+                "Accept": "application/json"
             },
             method: "POST",
             body: formData,

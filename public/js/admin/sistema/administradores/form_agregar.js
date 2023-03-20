@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 "X-CSRF-TOKEN": document.querySelector("input[name='_token']")
                     .value,
+                "Accept": "application/json"
             },
             body: new FormData(document.forms.namedItem("form-administrador")),
         })

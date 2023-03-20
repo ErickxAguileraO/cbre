@@ -32,9 +32,12 @@
             <a href="/noticias">Noticias</a>
         </div>
         <section class="flex-noticias-home">
+
+            <p class="txt-busqueda" id="total-noticias"></p>
+
             <div class="noticias-home">
                 <div class="lista-noticias" id="lista-noticias">
-
+                    {{-- Noticias listado --}}
                 </div>
                 <div style="margin-top: 50px">
                     <span id="spinner" class="loader" style="display: none"></span>

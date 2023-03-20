@@ -12,10 +12,15 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 async function getInitialEdificios() {
-    const response = await fetch(`edificios-oficinas/get/list?skip=${0}&take=${take}&submercado=${submercado}`);
-    const data = await response.json();
-    edificios = data.edificios;
-    printEdificios();
+    document.getElementById("total-edificios").innerText = 'Buscando...';
+    isLoadingSpinner(true);
+    setTimeout(async () => {
+        const response = await fetch(`edificios-oficinas/get/list?skip=${0}&take=${take}&submercado=${submercado}`);
+        const data = await response.json();
+        edificios = data.edificios;
+        isLoadingSpinner(false);
+        printEdificios();
+      }, Math.floor(Math.random() * (1100 - 300 + 1) + 300))
 }
 
 async function getNextEdificios() {
@@ -38,13 +43,16 @@ async function getNextEdificios() {
     }
   }
 
-function printEdificios() {
-    document.getElementById("total-edificios").innerText = edificios.length+ ' ' +'edificio(s) encontrados';
+function removeContainerElements(){
     while (edificiosContainer.firstChild) {
         edificiosContainer.removeChild(edificiosContainer.firstChild);
     }
-    edificios.forEach(function (edificio, i) {
+}
 
+function printEdificios() {
+    document.getElementById("total-edificios").innerText = edificios.length+ ' ' +'edificio(s) encontrados';
+    removeContainerElements();
+    edificios.forEach(function (edificio, i) {
     const edificioHTML = `
     <div class="edificios-n">
         <a href="edificios-oficinas/${edificio.edi_id}-${edificio.edi_nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w ]+/g,'').replace(/ +/g,'-')
@@ -86,8 +94,9 @@ function isLoadingSpinner(status){
 
 $('#submercado').change(async function() {
     submercado = document.getElementById("submercado").value;
-    await getInitialEdificios();
-    stop = false;
-    isLoading = false;
+    removeContainerElements();
     start = 6;
+    stop = false;
+    await getInitialEdificios();
+    //isLoading = false;
 });

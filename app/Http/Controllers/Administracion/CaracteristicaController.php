@@ -57,6 +57,7 @@ class CaracteristicaController extends Controller
     public function store(RegistroCaracteristicaRequest $request)
     {
         DB::beginTransaction();
+
         try {
             Caracteristica::create([
                 'car_nombre' => $request->nombre,
@@ -64,10 +65,13 @@ class CaracteristicaController extends Controller
                 'car_estado' => $request->estado,
                 'car_imagen' => ImagenService::subirImagen($request->file('imagen'), 'caracteristicas'),
             ]);
+
             DB::commit();
+
             return response()->json(['success' => '¡La característica se ha registrado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
@@ -104,22 +108,27 @@ class CaracteristicaController extends Controller
     public function update(ModificacionCaracteristicaRequest $request, Caracteristica $caracteristica)
     {
         DB::beginTransaction();
+
         try {
             $caracteristica->update([
                 'car_nombre' => $request->input('nombre'),
                 'car_posicion' => $request->input('posicion'),
                 'car_estado' => $request->input('estado'),
             ]);
+
             if ($request->hasFile('imagen')) {
                 Storage::delete($caracteristica->car_imagen);
                 $caracteristica->update([
                     'car_imagen' => ImagenService::subirImagen($request->file('imagen'), 'caracteristicas'),
                 ]);
             }
+
             DB::commit();
+
             return response()->json(['success' => '¡La característica se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
@@ -133,14 +142,18 @@ class CaracteristicaController extends Controller
     public function destroy(Caracteristica $caracteristica)
     {
         DB::beginTransaction();
+
         try {
             $caracteristica->edificios()->detach();
             Storage::delete($caracteristica->car_imagen);
             $caracteristica->delete();
+
             DB::commit();
+
             return response()->json(['success' => '¡La característica se ha eliminado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }

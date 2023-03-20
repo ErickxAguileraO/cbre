@@ -14,12 +14,27 @@ audio, canvas, progress, video {
 	display: inline-block;
 	vertical-align: baseline
 }
-a { color:#33882a; outline:none; text-decoration: none; }
-a:visited{color:#33882a;}
-a:hover{text-decoration: underline;}
+a {
+    color:#33882a; outline:none; text-decoration: none;
+}
+a:visited{
+    color:#33882a;
+}
+a:hover{
+    color: #33882a;
+    text-decoration: underline;
+}
 a:focus{
+    color: #33882a;
 	outline:0px;
 }
+a:active{
+    color:#33882a;
+}
+a.active{
+    color:#33882a;
+}
+
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -83,11 +98,12 @@ body{
 }
 
 .nav-link.active,
-.nav-link:focus {
-    font-weight: bold;
+.nav-link:focus,
+.nav-link:visited {
+    color: #33882a!important;
+    font-weight: bold!important;
 	cursor: default;
 }
-
 
 /*Textos*/
 h1,h2, h3, h4,h6,.text-h2{
@@ -352,3 +368,4 @@ nav.header * {
     line-height: 0px;
     margin: 0px 8px;
 }
+
