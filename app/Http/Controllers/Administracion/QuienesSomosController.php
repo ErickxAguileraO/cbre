@@ -84,22 +84,27 @@ class QuienesSomosController extends Controller
     public function update(ModificacionQuienesSomosRequest $request, $quienesSomos)
     {
         DB::beginTransaction();
+
         try {
             $quienesSomos = QuienesSomos::findOrFail($quienesSomos);
             $quienesSomos->update([
                 'qus_titulo' => $request->input('titulo'),
                 'qus_texto' => $request->input('texto'),
             ]);
+
             if ($request->hasFile('imagen')) {
                 Storage::delete($quienesSomos->qus_imagen);
                 $quienesSomos->update([
                     'qus_imagen' => ImagenService::subirImagen($request->file('imagen'), 'quienes-somos'),
                 ]);
             }
+
             DB::commit();
+
             return response()->json(['success' => '¡Quienes somos se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
+
             return response()->json(['error' => $th->getMessage()], 401);
         }
     }
