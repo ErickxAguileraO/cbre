@@ -19,6 +19,7 @@ async function getInitialEdificios() {
         const data = await response.json();
         edificios = data.edificios;
         isLoadingSpinner(false);
+        document.getElementById("total-edificios").innerText = data.total + ' ' + 'edificio(s) encontrados';
         printEdificios();
       }, Math.floor(Math.random() * (1100 - 300 + 1) + 300))
 }
@@ -50,7 +51,6 @@ function removeContainerElements(){
 }
 
 function printEdificios() {
-    document.getElementById("total-edificios").innerText = edificios.length+ ' ' +'edificio(s) encontrados';
     removeContainerElements();
     edificios.forEach(function (edificio, i) {
     const edificioHTML = `
@@ -98,5 +98,4 @@ $('#submercado').change(async function() {
     start = 6;
     stop = false;
     await getInitialEdificios();
-    //isLoading = false;
 });
