@@ -27,7 +27,7 @@
             </div>
             <div class="input-buscar">
                 <select name="submercado" id="submercado" style="width: 100%;">
-                    <option value="null">Filtrar por submercado...</option>
+                    <option value="null">Buscar por submercado...</option>
                     @foreach ($submercados as $submercado)
                     <option value="{{$submercado->sub_id}}">{{$submercado->sub_nombre}}</option>
                     @endforeach
