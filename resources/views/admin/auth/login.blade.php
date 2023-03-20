@@ -53,7 +53,7 @@
                   <br />
                   <br />
                   <p id="mensaje-cambio-password" class="mt-5 text-center">Si olvidaste tu contraseña o es tu primer inicio de sesión, puedes hacer clic en el siguiente enlace:</p>
-                  <button type="button" class="btn btn-link" id="passwordResetButton">Cambiar contraseña</button>
+                  <button type="button" class="btn btn-link text-success" id="passwordResetButton">Cambiar contraseña</button>
                </div>
             </fieldset>
          </form>

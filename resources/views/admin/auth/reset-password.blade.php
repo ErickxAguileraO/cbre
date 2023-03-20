@@ -58,7 +58,7 @@
             </button>
                   <br />
                   <br />
-                  <a href="{{ route('login') }}" class="btn btn-link" id="">Volver al login</a>
+                  <a href="{{ route('login') }}" class="btn btn-link text-success" id="">Volver al login</a>
                </div>
             </fieldset>
          </form>
