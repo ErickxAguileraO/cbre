@@ -24,6 +24,8 @@ class EdificioController extends Controller
                     ->skip(request('skip'))
                     ->take(request('take'))
                     ->get(),
+                    'total' => Edificio::with(['submercado.comuna.region'])->orderBy('edi_nombre')
+                    ->count()
                 ]);
             }else{
                 return response()->json([
@@ -31,6 +33,8 @@ class EdificioController extends Controller
                     ->skip(request('skip'))
                     ->take(request('take'))
                     ->get(),
+                    'total' => Edificio::where('edi_submercado_id', request('submercado'))->with(['submercado.comuna.region'])->orderBy('edi_nombre')
+                    ->count()
                 ]);
             }
         } catch (\Throwable $th) {
