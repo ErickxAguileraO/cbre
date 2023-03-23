@@ -1,9 +1,9 @@
 @extends('layout.admin')
-@section('title', 'Datos Generales')
+@section('title', 'Datos generales')
 
 @section('content')
 
-    <h1>Editar Datos Generales</h1>
+    <h1>Editar datos generales</h1>
 
     <form action="#" method="POST" id="form-datos-generales" class="formulario">
         @csrf
