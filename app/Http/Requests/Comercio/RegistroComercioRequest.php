@@ -34,7 +34,7 @@ class RegistroComercioRequest extends FormRequest
                 'mimes:jpg,jpeg,png',
                 'max:5120'
             ],
-            'descripcion' => [
+            'descripcionTextarea' => [
                 'required',
                 'max:1000',
                 'min:30'

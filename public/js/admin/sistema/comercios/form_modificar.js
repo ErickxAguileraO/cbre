@@ -1,16 +1,3 @@
-let ckEditor;
-ClassicEditor.create(document.querySelector('#descripcionTextarea'), {
-    removePlugins: ['MediaEmbed'],
-    ckfinder: {
-        uploadUrl: '/image-upload?_token='+$("input[name='_token']").val(),
-    }
-})
-.then(editor => {
-    ckEditor = editor;
-    ckEditor.model.document.on( 'change:data', () => {
-        document.getElementById('errorDescripcion').classList.add('invisible');
-    } );
-});
 
 document.getElementById('nombre').addEventListener('input', function () {
     document.getElementById('errorNombre').classList.add('invisible');
@@ -34,8 +21,8 @@ function mostrarErroresValidacion(errores) {
         document.getElementById('errorNombre').classList.remove('invisible');
     }
 
-    if ( typeof errores.descripcion !== 'undefined' ) {
-        document.getElementById('errorDescripcion').innerHTML = errores.descripcion[0];
+    if ( typeof errores.descripcionTextarea !== 'undefined' ) {
+        document.getElementById('errorDescripcion').innerHTML = errores.descripcionTextarea[0];
         document.getElementById('errorDescripcion').classList.remove('invisible');
     }
 
@@ -65,7 +52,6 @@ document.getElementById('editar').addEventListener('click', function (event) {
     const token = document.querySelector("input[name='_token']").value;
     const idComercio = document.querySelector("input[name='idComercio']").getAttribute('data-id-comercio');
     const formData = new FormData(document.forms.namedItem('formComercio'));
-    formData.append('descripcion', ckEditor.getData());
     const url = `/admin/comercios/${idComercio}`;
 
     isLoadingSpinner("editar", true);

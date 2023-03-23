@@ -53,7 +53,7 @@ class ComercioController extends Controller
             $comercio = Comercio::create([
                 'loc_nombre' => $request->nombre,
                 'loc_imagen' => $pathImagen,
-                'loc_descripcion' => $request->descripcion,
+                'loc_descripcion' => $request->descripcionTextarea,
                 'loc_edificio_id' => $request->edificio
             ]);
 
@@ -117,7 +117,7 @@ class ComercioController extends Controller
             }
 
             $comercio->loc_nombre = $request->nombre;
-            $comercio->loc_descripcion = $request->descripcion;
+            $comercio->loc_descripcion = $request->descripcionTextarea;
             $comercio->loc_edificio_id = $request->edificio;
             $comercio->save();
 
