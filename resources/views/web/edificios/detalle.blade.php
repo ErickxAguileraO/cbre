@@ -34,7 +34,7 @@
                 </div>
                 <p class="txt-1">{{ $edificio->edi_descripcion }}</p>
             </div>
-            
+
             @if($edificio->edi_video)
             <div class="caracteristicas">
                 <h2>Amenities del edificio</h2>
@@ -191,7 +191,9 @@
                 <div class="carruselCertificaciones">
                     @foreach ($edificio->comercios as $comercio)
                         <div class="certificacion-home-n">
-                            <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
+                            <a data-src="{{ $comercio->urlImagen }}" data-fancybox="comercio" data-caption="{{ $comercio->loc_descripcion }}">
+                                <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
+                            </a>
                         </div>
                     @endforeach
                 </div>
@@ -199,7 +201,9 @@
                 <div class="flex-carrusel">
                     @foreach ($edificio->comercios as $comercio)
                         <div class="certificacion-home-n">
-                            <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
+                            <a data-src="{{ $comercio->urlImagen }}" data-fancybox="comercio" data-caption="{{ $comercio->loc_descripcion }}">
+                                <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
+                            </a>
                         </div>
                     @endforeach
                 </div>
@@ -307,6 +311,9 @@
 @push('extra-js')
     <script>
         Fancybox.bind('[data-fancybox="gallery"]', {
+            // Your custom options
+        });
+        Fancybox.bind('[data-fancybox="comercio"]', {
             // Your custom options
         });
     </script>
