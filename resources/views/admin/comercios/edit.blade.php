@@ -22,10 +22,7 @@
                <label for="descripcion">Descripción</label>
                <div class="">
                     <div>
-                        <textarea name="descripcionTextarea" id="descripcionTextarea"
-                            class="form-control texto text-tarea-seccion ckeditor" rows="5" tabindex="2">
-                            {{ $comercio->loc_descripcion }}
-                        </textarea>
+                        <textarea name="descripcionTextarea" id="descripcionTextarea" class="form-control texto text-tarea-seccion ckeditor" rows="5" tabindex="2">{{ $comercio->loc_descripcion }}</textarea>
                     </div>
                 </div>
                <small id="errorDescripcion" class="field-message-alert invisible absolute"></small>

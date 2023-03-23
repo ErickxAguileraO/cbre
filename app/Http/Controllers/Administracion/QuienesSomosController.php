@@ -101,7 +101,7 @@ class QuienesSomosController extends Controller
 
             DB::commit();
 
-            return response()->json(['success' => '¡Quienes somos se ha actualizado correctamente!'], 200);
+            return response()->json(['success' => '¡Quiénes somos se ha actualizado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
 

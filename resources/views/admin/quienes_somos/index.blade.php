@@ -1,9 +1,9 @@
 @extends('layout.admin')
-@section('title', 'Quienes Somos')
+@section('title', 'Quienes somos')
 
 @section('content')
 
-    <h1>Editar Quienes Somos</h1>
+    <h1>Editar quiénes somos</h1>
 
     <form action="#" method="POST" id="form-quienes_somos" class="formulario">
         @csrf

@@ -1666,6 +1666,7 @@ div#social-links ul li a:hover {
     height: 250px!important;
     object-fit: cover!important;
     overflow: hidden!important;
+    cursor: pointer;
 }
 
 .ubicacion-edificio-left-content{
