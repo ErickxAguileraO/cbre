@@ -191,7 +191,7 @@
                 <div class="carruselCertificaciones">
                     @foreach ($edificio->comercios as $comercio)
                         <div class="certificacion-home-n">
-                            <a data-src="{{ $comercio->urlImagen }}" data-fancybox="comercio" data-caption="{{ $comercio->loc_descripcion }}">
+                            <a data-src="{{ $comercio->urlImagen }}" data-fancybox="comercio" data-caption="<h2 style='text-align: center'>{{ $comercio->loc_nombre }}</h2><p style='text-align: center'>{{ $comercio->loc_descripcion }}</p>">
                                 <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
                             </a>
                         </div>
@@ -201,7 +201,7 @@
                 <div class="flex-carrusel">
                     @foreach ($edificio->comercios as $comercio)
                         <div class="certificacion-home-n">
-                            <a data-src="{{ $comercio->urlImagen }}" data-fancybox="comercio" data-caption="{{ $comercio->loc_descripcion }}">
+                            <a data-src="{{ $comercio->urlImagen }}" data-fancybox="comercio" data-caption="<h2 style='text-align: center'>{{ $comercio->loc_nombre }}</h2><p style='text-align: center'>{{ $comercio->loc_descripcion }}</p>">
                                 <img class="imagen-comercio" src="{{ $comercio->urlImagen }}" alt="">
                             </a>
                         </div>
