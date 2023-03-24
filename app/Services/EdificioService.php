@@ -24,13 +24,20 @@ class EdificioService
         return true;
     }
 
-    public function descartarImagenes(Edificio $edificio, $idsImagenesDescartadas)
+    public static function descartarImagenes(Edificio $edificio, $idsImagenesDescartadas)
     {
-        $imagenesDescartadas = $edificio->imagenes->whereNotIn('ima_id', $idsImagenesDescartadas)->pluck('ima_url');
-        $edificio->imagenes()->whereNotIn('ima_id', $idsImagenesDescartadas)->delete();
-        Storage::delete($imagenesDescartadas);
+        if($idsImagenesDescartadas === null){
+            $imagenesDescartadas = $edificio->imagenes()->delete();
+            Storage::delete($imagenesDescartadas);
 
-        return true;
+            return true;
+        }else{
+            $imagenesDescartadas = $edificio->imagenes->whereNotIn('ima_id', $idsImagenesDescartadas)->pluck('ima_url');
+            $edificio->imagenes()->whereNotIn('ima_id', $idsImagenesDescartadas)->delete();
+            Storage::delete($imagenesDescartadas);
+
+            return true;
+        }
     }
 
     public static function obtenerEdificioRoleFuncionario()
