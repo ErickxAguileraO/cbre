@@ -823,7 +823,7 @@ footer .rrss{
 .ubicacion-edificio p{
     font-weight: 400;
     font-size: 16px;
-    line-height: 34px;
+    line-height: 24px;
     color: #FFFFFF;
 }
 .ubicacion-edificio iframe{
@@ -840,7 +840,7 @@ footer .rrss{
 }
 .operaciones{
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     place-items: center;
     width: 60%;
     height: auto;
@@ -858,6 +858,7 @@ footer .rrss{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 .operaciones-contenido h2{
     font-weight: 400;
@@ -1078,12 +1079,7 @@ footer .rrss{
     }
     /* Operaciones */
     .operaciones{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        place-items: center;
         width: 70%;
-        height: auto;
-        gap: 20px;
     }
 
     .operacion-n{
@@ -1124,7 +1120,7 @@ footer .rrss{
         display: grid;
         grid-template-columns: 1fr 1fr;
         place-items: center;
-        width: 80%;
+        width: 90%;
         height: auto;
         gap: 40px;
     }
@@ -1540,6 +1536,12 @@ footer .rrss{
         border: none;
         outline: none;
         cursor: pointer;
+    }
+    .operaciones-contenido{
+        width: 90%;
+    }
+    .imagen-funcionarios {
+        height: 450px;
     }
 }
 
