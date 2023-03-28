@@ -1541,7 +1541,7 @@ footer .rrss{
         width: 90%;
     }
     .imagen-funcionarios {
-        height: 450px;
+        height: 450px !important;
     }
 }
 
