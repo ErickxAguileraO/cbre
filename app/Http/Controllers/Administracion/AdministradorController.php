@@ -202,4 +202,30 @@ class AdministradorController extends Controller
         }
     }
 
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function forceDestroy($administrador)
+    {
+        DB::beginTransaction();
+
+        try {
+            $admin = Administrador::withTrashed()->findOrFail($administrador);
+            $user = User::withTrashed()->findOrFail($admin->adm_user_id);
+            $admin->forceDelete();
+            $user->forceDelete();
+
+            DB::commit();
+
+            return response()->json(['success' => '¡Administrador eliminado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json(['error' => $th->getMessage()], 401);
+        }
+    }
+
 }
