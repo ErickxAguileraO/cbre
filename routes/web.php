@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::resource('administradores', AdministradorController::class);
                 Route::get('administradores/get/list', 'list')->name('administradores.list');
                 Route::post('administradores/restore/{administrador}', 'restore')->name('administradores.restore');
+                Route::delete('administradores/force-destroy/{administrador}', 'forceDestroy')->name('administradores.force.destroy');
             });
 
             // Contactos
@@ -124,11 +125,12 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-
+// Home
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'home')->name('web.home');
 });
 
+// Web Contactos
 Route::controller(WebContactoController::class)->group(function () {
     Route::get('/contacto', function () {
         return view('web.contacto.index');
@@ -136,12 +138,14 @@ Route::controller(WebContactoController::class)->group(function () {
     Route::post('contacto/store', 'store')->name('contacto.store');
 });
 
+// Web Edificios
 Route::controller(WebEdificioController::class)->group(function () {
     Route::get('edificios-oficinas', 'index')->name('web.edificios.index');
     Route::get('edificios-oficinas/{edificio}-{slug}', 'detalle')->name('web.edificios.detalle');
     Route::get('edificios-oficinas/get/list', 'list')->name('web.edificios.list');
 });
 
+// Web Noticias
 Route::controller(WebNoticiaController::class)->group(function () {
     Route::get('/noticias', function () {
         return view('web.noticias.index');
