@@ -129,7 +129,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::controller(HomeController::class)->group(function () {
-    Route::group(['domain' => '{subdomain}.cbre.aeurus.cl'], function () {
+    Route::group(['domain' => '{subdomain}.'.request()->getHost().''], function () {
         Route::get('/', function ($subdomain) {
             if(empty($subdomain)){
                 return redirect()->route('web.home');
