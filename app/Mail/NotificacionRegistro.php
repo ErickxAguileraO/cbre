@@ -18,10 +18,11 @@ class NotificacionRegistro extends Mailable
      *
      * @return void
      */
-    public function __construct($request, $datos_generales)
+    public function __construct($request, $datos_generales, $user)
     {
         $this->request = $request;
         $this->datos_generales = $datos_generales;
+        $this->user = $user;
     }
 
     /**
@@ -33,6 +34,7 @@ class NotificacionRegistro extends Mailable
     {
         $request = $this->request;
         $datos_generales = $this->datos_generales;
-        return $this->view('emails.notificacion_registro', compact('request', 'datos_generales'));
+        $user = $this->user;
+        return $this->view('emails.notificacion_registro', compact('request', 'datos_generales', 'user'));
     }
 }

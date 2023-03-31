@@ -75,7 +75,7 @@ class AdministradorController extends Controller
 
             $user->assignRole('super-admin');
 
-            Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first()));
+            Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first(), $user));
 
             DB::commit();
 
