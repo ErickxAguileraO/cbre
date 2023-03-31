@@ -127,15 +127,20 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-// Home
+
 Route::controller(HomeController::class)->group(function () {
     Route::group(['domain' => '{subdomain}.cbre.aeurus.cl'], function () {
         Route::get('/', function ($subdomain) {
+            if(empty($subdomain)){
+                return redirect()->route('web.home');
+            }
             $edificio = Edificio::where('edi_subdominio', $subdomain)->firstOrFail();
             return redirect()->route('web.edificios.detalle', [$edificio->edi_id, Str::slug($edificio->edi_nombre , "-")]);
         });
     });
+    Route::get('/', 'home')->name('web.home');
 });
+
 
 // Web Contactos
 Route::controller(WebContactoController::class)->group(function () {
