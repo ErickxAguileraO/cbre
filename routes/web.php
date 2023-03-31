@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Edificio;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Administracion\ComunaController;
@@ -130,14 +131,11 @@ Route::middleware(['auth'])->group(function () {
 Route::controller(HomeController::class)->group(function () {
     Route::group(['domain' => '{subdomain}.cbre.aeurus.cl'], function () {
         Route::get('/', function ($subdomain) {
-
             $edificio = Edificio::where('edi_subdominio', $subdomain)->firstOrFail();
-
-            return redirect()->route('web.edificios.detalle', ['edificio' => $edificio, 'slug' => $edificio->slug]);
+            return redirect()->route('web.edificios.detalle', [$edificio->edi_id, Str::slug($edificio->edi_nombre , "-")]);
         });
     });
 });
-
 
 // Web Contactos
 Route::controller(WebContactoController::class)->group(function () {
