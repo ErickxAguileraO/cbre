@@ -78,7 +78,8 @@ class RegistroEdificioRequest extends FormRequest
             ],
             'subdominio' => [
                 'required',
-                'max:255'
+                'max:255',
+                'unique:edificios,edi_subdominio'
             ]
         ];
     }

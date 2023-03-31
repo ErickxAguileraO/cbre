@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Edificio;
 
+use App\Models\Edificio;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ModificacionEdificioRequest extends FormRequest
@@ -78,7 +80,8 @@ class ModificacionEdificioRequest extends FormRequest
             ],
             'subdominio' => [
                 'required',
-                'max:255'
+                'max:255',
+                Rule::unique('edificios', 'edi_subdominio')->ignore(Edificio::findOrFail($this->idEdificio))
             ]
         ];
     }

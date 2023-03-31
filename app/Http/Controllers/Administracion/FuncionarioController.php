@@ -90,7 +90,7 @@ class FuncionarioController extends Controller
 
             $user->assignRole('funcionario');
 
-            Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first()));
+            Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first(), $user));
 
             DB::commit();
 
