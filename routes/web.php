@@ -1,22 +1,23 @@
 <?php
 
+use App\Models\Edificio;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Administracion\CaracteristicaController;
-use App\Http\Controllers\Administracion\NoticiaController;
-use App\Http\Controllers\Administracion\CertificacionController;
-use App\Http\Controllers\Administracion\QuienesSomosController;
-use App\Http\Controllers\Administracion\SubMercadoController;
-use App\Http\Controllers\Administracion\ComunaController;
-use App\Http\Controllers\Administracion\DatosGeneralesController;
-use App\Http\Controllers\Administracion\IndicadorController;
-use App\Http\Controllers\Administracion\ComercioController;
-use App\Http\Controllers\Administracion\AdministradorController;
-use App\Http\Controllers\Administracion\FuncionarioController;
-use App\Http\Controllers\Administracion\EdificioController;
-use App\Http\Controllers\Administracion\ContactoController;
-use App\Http\Controllers\Web\ContactoController as WebContactoController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Administracion\ComunaController;
+use App\Http\Controllers\Administracion\NoticiaController;
+use App\Http\Controllers\Administracion\ComercioController;
+use App\Http\Controllers\Administracion\ContactoController;
+use App\Http\Controllers\Administracion\EdificioController;
+use App\Http\Controllers\Administracion\IndicadorController;
+use App\Http\Controllers\Administracion\SubMercadoController;
+use App\Http\Controllers\Administracion\FuncionarioController;
+use App\Http\Controllers\Administracion\QuienesSomosController;
+use App\Http\Controllers\Administracion\AdministradorController;
+use App\Http\Controllers\Administracion\CertificacionController;
+use App\Http\Controllers\Administracion\CaracteristicaController;
+use App\Http\Controllers\Administracion\DatosGeneralesController;
 use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
+use App\Http\Controllers\Web\ContactoController as WebContactoController;
 use App\Http\Controllers\Web\EdificioController as  WebEdificioController;
 /*
 |--------------------------------------------------------------------------
@@ -127,8 +128,16 @@ Route::middleware(['auth'])->group(function () {
 
 // Home
 Route::controller(HomeController::class)->group(function () {
-    Route::get('/', 'home')->name('web.home');
+    Route::group(['domain' => '{subdomain}.cbre.aeurus.cl'], function () {
+        Route::get('/', function ($subdomain) {
+
+            $edificio = Edificio::where('edi_subdominio', $subdomain)->firstOrFail();
+
+            return redirect()->route('web.edificios.detalle', ['edificio' => $edificio, 'slug' => $edificio->slug]);
+        });
+    });
 });
+
 
 // Web Contactos
 Route::controller(WebContactoController::class)->group(function () {
