@@ -35,8 +35,12 @@ class ViewServiceProvider extends ServiceProvider
             'admin.comercios.edit',
             'admin.funcionarios.create',
             'admin.funcionarios.edit',
-            'web.edificios.index'
         ], EdificioComposer::class);
+
+        View::composer([
+            'web.edificios.index',
+            'web.home',
+        ], EdificioComposer::class . '@orderByName');
 
         View::composer([
             'admin.edificios.create',
