@@ -246,7 +246,7 @@
                     <h2>{{ $edificio->ubi_titulo }}</h2>
                     <p id="direccionRegistrada" data-direccion-registrada="{{ $edificio->edi_direccion }}"><span
                             class="edificio-detalle-direccion">Dirección:</span> {{ $edificio->edi_direccion }}</p>
-                    <p>@php echo htmlspecialchars_decode($edificio->ubi_descripcion) @endphp</p>
+                    <p class="edificio-detalle-descripcion">@php echo htmlspecialchars_decode($edificio->ubi_descripcion) @endphp</p>
                 </div>
             </div>
             <div>

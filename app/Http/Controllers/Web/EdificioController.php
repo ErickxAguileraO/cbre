@@ -12,8 +12,7 @@ class EdificioController extends Controller
 {
 
     public function index(){
-        $submercados = SubMercado::all();
-        return view('web.edificios.index', compact('submercados'));
+        return view('web.edificios.index', ['submercados' => SubMercado::all()]);
     }
 
     public function list(){
@@ -47,7 +46,7 @@ class EdificioController extends Controller
             if(Str::slug($edificio->edi_nombre , "-") != $slug){
                 abort(404);
             }else{
-                return view('web.edificios.detalle',compact('edificio'));
+                return view('web.edificios.detalle', compact('edificio'));
             }
         } catch (\Throwable $th) {
             return redirect()->back()->with(['error' => $th->getMessage()]);

@@ -44,7 +44,7 @@
             <a href="https://amenity.cl/" target="_blank">Multifamily</a>
         </div>
         <div class="op2-barra-movil">
-            <a href="/">PROPERTY MANAGMENT</a>
+            <a href="/">PROPERTY MANAGEMENT</a>
             <a href="/edificios-oficinas">EDIFICIOS Y OFICINAS</a>
             <a href="/noticias">NOTICIAS</a>
             <a href="/contacto">CONTÁCTANOS</a>
@@ -63,7 +63,7 @@
     </header>
     {{-- Menu escritorio --}}
     <nav class="menu mostrar-escritorio">
-        <a href="/">PROPERTY MANAGMENT</a>
+        <a href="/">PROPERTY MANAGEMENT</a>
         <a href="/edificios-oficinas">EDIFICIOS Y OFICINAS</a>
         <a href="/noticias">NOTICIAS</a>
         <a href="/contacto">CONTÁCTANOS</a>

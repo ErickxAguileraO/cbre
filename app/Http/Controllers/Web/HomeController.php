@@ -21,7 +21,6 @@ class HomeController extends Controller
             'noticias' => Noticia::where('not_destacada', 1)->where('not_fecha', '<', Carbon::now('America/Santiago'))->orderBy('not_fecha', 'desc')->take(6)
                         ->get(),
             'certificaciones' => Certificacion::orderBy('cer_posicion', 'desc')->get(),
-            'edificios' => Edificio::all(),
         ]);
     }
 }
