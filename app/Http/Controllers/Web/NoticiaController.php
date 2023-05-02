@@ -31,7 +31,7 @@ class NoticiaController extends Controller
             }else{
                 $protocol = request()->secure() ? 'https://' : 'http://';
                 $shareComponent = ShareFacade::page(
-                    $protocol.request()->getHost().'/'.$noticia->not_id.'-'.Str::slug($noticia->not_titulo , "-").'', $noticia->not_titulo
+                    $protocol.request()->getHost().'/'.'noticias'.'/'.$noticia->not_id.'-'.Str::slug($noticia->not_titulo , "-").'', $noticia->not_titulo
                 )
                 ->facebook()
                 ->twitter()
