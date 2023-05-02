@@ -29,8 +29,9 @@ class NoticiaController extends Controller
             if(Str::slug($noticia->not_titulo , "-") != $slug || $noticia->not_fecha > Carbon::now('America/Santiago')){
                 abort(404);
             }else{
+                $protocol = request()->secure() ? 'https://' : 'http://';
                 $shareComponent = ShareFacade::page(
-                    request()->secure() ? 'https://' : 'http://'.request()->getHost().'/'.$noticia->not_id.'-'.Str::slug($noticia->not_titulo , "-").'',Str::slug($noticia->not_titulo , "-")
+                    $protocol.request()->getHost().'/'.$noticia->not_id.'-'.Str::slug($noticia->not_titulo , "-").'', $noticia->not_titulo
                 )
                 ->facebook()
                 ->twitter()
