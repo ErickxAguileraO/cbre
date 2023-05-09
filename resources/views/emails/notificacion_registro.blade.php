@@ -15,9 +15,16 @@
         <p>Para ingresar al sistema, es necesario que establezca una nueva contraseña. Por favor, siga los siguientes pasos:</p>
         <ol>
             @if ($user->administrador)
-            <li>Diríjase a la siguiente dirección web: <a href="{{request()->secure() ? 'https://' : 'http://'.request()->getHost().'/login'}}">{{request()->secure() ? 'https://' : 'http://'.request()->getHost().'/login'}}</a></li>
+            <li>Diríjase a la siguiente dirección web:
+            <a href="{{request()->secure() ? 'https://'.request()->getHost().'/login' : 'http://'.request()->getHost().'/login'}}">
+                {{request()->secure() ? 'https://'.request()->getHost().'/login' : 'http://'.request()->getHost().'/login'}}
+            </a>
+            </li>
                 @else
-            <li>Diríjase a la siguiente dirección web: <a href="{{request()->secure() ? 'https://' : 'http://'. $user->funcionario->edificio->edi_subdominio . '.' . request()->getHost().'/login'}}">{{request()->secure() ? 'https://' : 'http://'. $user->funcionario->edificio->edi_subdominio . '.' . request()->getHost().'/login'}}</a></li>
+            <li>Diríjase a la siguiente dirección web: <a href="{{request()->secure() ? 'https://' . $user->funcionario->edificio->edi_subdominio . '.' . request()->getHost().'/login' : 'http://'. $user->funcionario->edificio->edi_subdominio . '.' . request()->getHost().'/login'}}">
+                {{request()->secure() ? 'https://'. $user->funcionario->edificio->edi_subdominio . '.' . request()->getHost().'/login' : 'http://'. $user->funcionario->edificio->edi_subdominio . '.' . request()->getHost().'/login'}}
+            </a>
+            </li>
             @endif
             <li>Haga clic en el botón "Cambiar contraseña" y escriba su dirección de correo electrónico.</li>
             <li>Revise su correo electrónico para encontrar el mensaje de notificación de restablecimiento de contraseña enviado por nuestro sistema. El mensaje incluirá un enlace para acceder al mantenedor de contraseñas.</li>
