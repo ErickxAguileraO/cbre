@@ -1,0 +1,68 @@
+.tab{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.tab__lista-botones{
+    display: flex;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    width: fit-content;
+    border-radius: 8px;
+}
+
+.tab__boton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    height: 44px;
+    padding: 0px 13px;
+    cursor: pointer;
+    background: rgba(1, 42, 45, 0.10);
+}
+.tab__nombre{
+    color: #012A2D;
+    margin: 0px;
+}
+.tab__boton--active{
+    font-weight: 700;
+    color: white;
+    background: #012A2D;
+}
+.tab__boton--active .tab__nombre{
+    font-weight: 700;
+    color: var(--M500);
+    margin: 0px;
+}
+.tab__botonImg{
+    width: 1rem;
+}
+
+.tab__contenido{
+    display: none;
+    width: 100%;
+    height: auto;
+    padding-top: 30px;
+}
+.tab__botonAcordeon{
+    display: none;
+}
+
+/* Medias */
+/* @media(max-width: 1200px){
+    .tab--start{
+        align-items: flex-start;
+    }
+    .tab--end{
+        align-items: flex-end;
+    }
+}
+
+@media (max-width: 576px) {  
+    .tab__botonAcordeon, .tab__lista-botones{
+        width: 100%;
+    }
+} */

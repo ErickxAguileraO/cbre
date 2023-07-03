@@ -2,15 +2,15 @@
 @section('title', 'Área técnica')
 
 @section('content')
-   <a class="btn btn-success float-right text-white" href="{{ route('caracteristicas.create') }}">Crear formulario</a>
+   <a class="btn btn-success float-right text-white" href="/crear-formulario">Crear formulario</a>
    <h1>Área técnica</h1>
    
    <form action="" class="grid-filtros-admin">
       <div class="form-group">
          <label for="">Edificio</label>
          <select id="" name="" class="form-control" tabindex="4" style="width:100%;">
-             <option value="1">value 1</option>
-             <option value="0">value 2</option>
+            <option value="1">value 1</option>
+            <option value="0">value 2</option>
          </select>
          <small id="" class="field-message-alert absolute"></small>
      </div>
