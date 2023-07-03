@@ -562,7 +562,8 @@ nav.header * {
   padding: 27px 33px 0px 33px;
   margin-bottom: 30px;
 }
-.grid-filtros-admin-4{
+
+.grid-filtros-admin-4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 95px;
   gap: 18px;
@@ -571,7 +572,8 @@ nav.header * {
   padding: 27px 33px 0px 33px;
   margin-bottom: 30px;
 }
-.grid-filtros-admin-3{
+
+.grid-filtros-admin-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 95px;
   gap: 18px;
@@ -580,6 +582,7 @@ nav.header * {
   padding: 27px 33px 0px 33px;
   margin-bottom: 30px;
 }
+
 .btn-filtro {
   padding: 5.4px 10px;
   border-radius: 10px;
@@ -598,12 +601,179 @@ nav.header * {
   align-items: center;
 }
 
-.menos-top{
+.menos-top {
   margin-top: -7px;
 }
-.menu-area-tecnica{
+
+.menu-area-tecnica {
   cursor: pointer;
 }
-.menu-area-tecnica span a{
+
+.menu-area-tecnica span a {
   color: #33882a;
+}
+
+.form-group textarea {
+  resize: none;
+  width: 100%;
+  height: 120px;
+}
+
+.div-formulario-n {
+  border-radius: 8px;
+  border: 1px solid #E6E6E6;
+  background: #FFF;
+  padding: 28px;
+  margin-bottom: 20px;
+}
+.row-input-form{
+  align-items: center;
+  margin-bottom: 16px;
+  margin-left: 2px;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.row-global{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+#btn-agregar p{
+  margin-top: -3px;
+}
+.datos-formulario{
+  justify-content: flex-end;
+  gap: 10px;
+  padding-right: 20px;
+}
+.estado-formulario{
+  display: flex;
+  padding: 0px 41px;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: rgba(1, 42, 45, 0.10);
+  color: #012A2D;
+  font-size: 16px;
+  font-weight: 600;
+}
+.grid-header-2{
+  display: grid;
+  grid-template-columns: 55% 45%;
+}
+.margin-top-5{
+  margin-top: 5px;
+}
+.select-manual{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-weight: 500;
+  background-color: #fff;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  padding: 0px 30px;
+  height: 34px;
+  cursor: pointer;
+  position: relative;
+}
+.option-select-manual{
+  position: absolute;
+  display: inline-flex;
+  width: 200px;
+  height: auto;
+  padding: 15px 19px;
+  right: 0px;
+  top: 42px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  border-radius: 8px;
+  border: 1px solid #E0DDDD;
+  background: #FFF;
+  z-index: 10;
+
+}
+.row-option {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  color: #000 !important;
+  text-decoration: none !important;
+  z-index: 10;
+}
+
+.nuevo-formulario .div-formulario-n input[type=checkbox], .nuevo-formulario .div-formulario-n input[type=radio] {
+  transform: scale(1.5);
+}
+.opciones-pregunta{
+  margin-top: 20px;
+  padding: 20px 0px 0px 0px;
+  border-top: 1px solid #D7D7D7;
+}
+@media(max-width: 1200px) {
+  .row-responsive{
+    flex-wrap: nowrap !important;
+  }
+}
+@media(max-width: 1100px) {
+  .grid-filtros-admin {
+    grid-template-columns: 1fr 1fr 1fr 95px;
+    gap: 5px;
+  }
+  .grid-filtros-admin .form-group, .grid-filtros-admin-4 .form-group, .grid-filtros-admin-3 .form-group{
+    margin: 0px;
+  }
+  .grid-filtros-admin-4 {
+    gap: 10px;
+  }
+
+  .grid-filtros-admin-3 {
+    gap: 10px;
+  }
+}
+
+@media(max-width: 768px) {
+  .grid-filtros-admin {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+  .grid-filtros-admin .form-group, .grid-filtros-admin-4 .form-group, .grid-filtros-admin-3 .form-group{
+    margin: 0px;
+  }
+  .grid-filtros-admin-4 {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .grid-filtros-admin-3 {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .row-responsive{
+    flex-wrap: wrap !important;
+    margin-bottom: 20px;
+  }
+  .grid-header-2{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .datos-formulario{
+    justify-content: flex-start;
+    padding-right: 0px;
+    padding-left: 30px;
+    margin-bottom: 20px;
+  }
+}
+@media(max-width: 578px){
+  .row-input-form{
+    flex-wrap: nowrap !important;
+  }
+  .option-select-manual{
+    left: 0px;
+  }
 }
