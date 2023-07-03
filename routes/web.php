@@ -173,3 +173,11 @@ Route::get('/area-tecnica', function () {
 Route::get('/soporte-tecnico', function () {
     return view('admin.soporte_tecnico.index');
 });
+
+Route::get('/formularios', function () {
+    return view('admin.formularios.index');
+});
+
+Route::get('/mantenciones', function () {
+    return view('admin.mantenciones.index');
+});

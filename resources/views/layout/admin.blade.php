@@ -144,7 +144,19 @@
             </li>
             @endcan
 
-            {{-- Prueba --}}
+            {{-- Nuevas vistas --}}
+            <li>
+              <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
+                <a href="/formularios" class="nav-link">Formularios</a>
+              </span>
+            </li>
+
+            <li>
+              <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
+                <a href="/mantenciones" class="nav-link">Mantenciones</a>
+              </span>
+            </li>
+
             <li class="menu-area-tecnica">
               <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a class="nav-link">Área técnica</a>
