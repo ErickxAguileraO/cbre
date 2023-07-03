@@ -144,6 +144,20 @@
             </li>
             @endcan
 
+            {{-- Prueba --}}
+            <li class="menu-area-tecnica">
+              <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
+                <a class="nav-link">Área técnica</a>
+                <i class="fas fa-sort-down color-texto-cbre menos-top"></i>
+              </span>
+            </li>
+
+            <li class="sub-menu-area-tecnica">
+              <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
+                <a href="/area-tecnica" class="nav-link">Área técnica</a>
+                <a href="/soporte-tecnico" class="nav-link">Soporte técnico</a>
+              </span>
+            </li>
           </ul>
         </div>
       </nav>
@@ -168,6 +182,13 @@
 <script src="{{ asset('public/js/admin/sistema/configuracion_componentes.js') }}"></script>
 <script src="{{ asset('public/js/admin/sistema/header/logout.js') }}"></script>
 <script src="{{ asset('public\js\admin\sistema\spinner.js') }}"></script>
+
+<script>
+  $(".sub-menu-area-tecnica").hide();
+  $(".menu-area-tecnica").click(function() {
+    $(".sub-menu-area-tecnica").toggle();
+  })
+</script>
 @stack('scripts')
 </body>
 </html>
