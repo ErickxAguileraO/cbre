@@ -571,6 +571,15 @@ nav.header * {
   padding: 27px 33px 0px 33px;
   margin-bottom: 30px;
 }
+.grid-filtros-admin-3{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 95px;
+  gap: 18px;
+  border-radius: 8px;
+  border: 1px solid #E6E6E6;
+  padding: 27px 33px 0px 33px;
+  margin-bottom: 30px;
+}
 .btn-filtro {
   padding: 5.4px 10px;
   border-radius: 10px;
