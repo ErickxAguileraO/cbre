@@ -166,3 +166,10 @@ Route::controller(WebNoticiaController::class)->group(function () {
     Route::get('noticias/get/list', 'list')->name('web.noticias.list');
 });
 
+Route::get('/area-tecnica', function () {
+    return view('admin.area_tecnica.index');
+});
+
+Route::get('/soporte-tecnico', function () {
+    return view('admin.soporte_tecnico.index');
+});
