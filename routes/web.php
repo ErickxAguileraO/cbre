@@ -166,22 +166,27 @@ Route::controller(WebNoticiaController::class)->group(function () {
     Route::get('noticias/get/list', 'list')->name('web.noticias.list');
 });
 
-Route::get('/area-tecnica', function () {
-    return view('admin.area_tecnica.index');
+// Fomurlaio area tecnica
+Route::get('/formulario-area-tecnica', function () {
+    return view('admin.formulario_area_tecnica.index');
 });
 Route::get('/crear-formulario', function () {
-    return view('admin.area_tecnica.create');
+    return view('admin.formulario_area_tecnica.create');
+});
+Route::get('/preview-formulario', function () {
+    return view('admin.formulario_area_tecnica.preview');
 });
 
-
-Route::get('/soporte-tecnico', function () {
-    return view('admin.soporte_tecnico.index');
+// Mantencion area tecnica
+Route::get('/mantencion-soporte-tecnico', function () {
+    return view('admin.mantencion_soporte_tecnico.index');
 });
 
-Route::get('/formularios', function () {
-    return view('admin.formularios.index');
+// JOP
+Route::get('/formularios-jop', function () {
+    return view('admin.formularios_jop.index');
 });
 
-Route::get('/mantenciones', function () {
-    return view('admin.mantenciones.index');
+Route::get('/mantenciones-jop', function () {
+    return view('admin.mantenciones_jop.index');
 });

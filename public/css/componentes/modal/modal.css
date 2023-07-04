@@ -1,0 +1,60 @@
+@import url(/public/css/variables.css);
+body{
+    padding: 20px;
+}
+.contenedor__modalFile{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.312);
+}
+
+.modalFile{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: auto;
+    background: #FFF;
+    gap: 1.5rem;
+    border-radius: 8px;
+}
+.modalFile__header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #E1E1E1;
+    padding: 1.5rem 2.25rem 0px 2.25rem;
+}
+
+.modalFile__cerrarBtn{
+    cursor: pointer;
+}
+.modalFile__contenedorContenido{
+    padding: 0rem 50px;
+}
+.modalFile__contenido{
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.modalFile__botones{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 0px 0px 2.25rem;
+    border-top: 1px solid #E1E1E1;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {  
+    .modalFile{
+        width: 90%;
+    }
+}
+
