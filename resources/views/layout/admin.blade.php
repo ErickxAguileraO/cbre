@@ -147,13 +147,13 @@
             {{-- Nuevas vistas --}}
             <li>
               <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="/formularios" class="nav-link">Formularios</a>
+                <a href="/formularios-jop" class="nav-link">Formularios JOP</a>
               </span>
             </li>
 
             <li>
               <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="/mantenciones" class="nav-link">Mantenciones</a>
+                <a href="/mantenciones-jop" class="nav-link">Mantenciones JOP</a>
               </span>
             </li>
 
@@ -166,8 +166,8 @@
 
             <li class="sub-menu-area-tecnica">
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="/area-tecnica" class="nav-link">Área técnica</a>
-                <a href="/soporte-tecnico" class="nav-link">Soporte técnico</a>
+                <a href="/formulario-area-tecnica" class="nav-link">Formulario Área técnica</a>
+                <a href="/mantencion-soporte-tecnico" class="nav-link">Mantención Soporte técnico</a>
               </span>
             </li>
           </ul>
