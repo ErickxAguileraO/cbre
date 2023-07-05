@@ -84,9 +84,11 @@
 
 
         <div class="botones-formulario">
-            <button class="modalFile__btnN modalFile__botonPrimario">Enviar encuesta</button>
+            <button class="modalFile__btnN modalFile__botonPrimario modalPublicar__abrirBtn">Enviar encuesta</button>
         </div>
 
+        {{-- Modal Publicar --}}
+        @include('components.modalPublicar')
     </form>
 
 </div>

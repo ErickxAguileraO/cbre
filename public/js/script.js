@@ -71,7 +71,7 @@ $(document).ready(function () {
   });
 
 
-  // Agregar input al presionar el botón
+  // Agregar PREGUNTA al presionar el botón
   $(document).on("click", ".btn-agregar-nueva-pregunta", function () {
     var newInput =
       '<div class="div-formulario-n">' +
@@ -155,6 +155,18 @@ $(".modalFile__abrirBtn").on('click', function () {
 $(".modalFile__cerrarBtn").on('click', function () {
   $(".contenedor__modalFile").css("display", "none");
 });
+
+
+
+// Modal publicar
+$(".modalPublicar__abrirBtn").on('click', function () {
+  $(".contenedor__modalPublicar").css("display", "flex");
+});
+
+$(".modalPublicar__cerrarBtn").on('click', function () {
+  $(".contenedor__modalPublicar").css("display", "none");
+});
+
 
 
 
