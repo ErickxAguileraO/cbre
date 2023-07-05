@@ -549,8 +549,36 @@ nav.header * {
 
 
 /* Nuevas ventanas */
+.contador-archivos{
+  display: flex;
+  width: 33px;
+  height: 23px;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: rgba(1, 42, 45, 0.10);
+}
+.contador-archivos p{
+  color: #012A2D;
+  font-size: 16px;
+}
+
+
+.padding-left-15{
+  padding-left: 15px;
+}
+.margin-bottom-5{
+  margin-bottom: 5px !important; 
+}
+.gap-37{
+  gap: 37px;
+}
 .bottom-30{
   margin-bottom: 30px;
+}
+.bottom-20{
+  margin-bottom: 20px;
 }
 .preguntas-preview{
   padding-left: 20px;
@@ -580,7 +608,18 @@ nav.header * {
   background-position-x: 98%;
   padding-right: 20px;
 }
+.input-file-txt-nuevo {
+  background-image: url(/public/images/admin/sistema/cloud.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-x: 98%;
+  padding-right: 20px;
+}
 
+.color-rojo{
+  color: red !important;
+}
 .color-texto-cbre {
   color: #005157 !important;
 }
@@ -658,6 +697,12 @@ nav.header * {
   width: 100%;
   height: 120px;
 }
+.div-formulario-n textarea {
+  resize: none;
+  width: 100%;
+  height: 120px !important;
+}
+
 
 .div-formulario-n {
   border-radius: 8px;

@@ -75,7 +75,6 @@
                 <h3 class="bottom-30">3. ¿Cuando fue la ultima vez que se realizó mantención al ascensor principal?</h3>
                 <div class="form-group">
                     <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
-
                 </div>
                 <div class="linea-separadora"></div>
                 <p>Obligatoria</p>

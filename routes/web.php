@@ -181,12 +181,27 @@ Route::get('/preview-formulario', function () {
 Route::get('/mantencion-soporte-tecnico', function () {
     return view('admin.mantencion_soporte_tecnico.index');
 });
+Route::get('/ver-mantencion-admin', function () {
+    return view('admin.mantencion_soporte_tecnico.view');
+});
 
 // JOP
 Route::get('/formularios-jop', function () {
     return view('admin.formularios_jop.index');
 });
+Route::get('/responder-formulario', function () {
+    return view('admin.formularios_jop.responder');
+});
+
+
+
 
 Route::get('/mantenciones-jop', function () {
     return view('admin.mantenciones_jop.index');
+});
+Route::get('/crear-mantencion', function () {
+    return view('admin.mantenciones_jop.create');
+});
+Route::get('/ver-mantencion', function () {
+    return view('admin.mantenciones_jop.view');
 });
