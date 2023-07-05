@@ -167,8 +167,38 @@ $(".modalPublicar__cerrarBtn").on('click', function () {
   $(".contenedor__modalPublicar").css("display", "none");
 });
 
+// Modal enviar
+$(".modalEnviar__abrirBtn").on('click', function () {
+  $(".contenedor__modalEnviar").css("display", "flex");
+});
+
+$(".modalEnviar__cerrarBtn").on('click', function () {
+  $(".contenedor__modalEnviar").css("display", "none");
+});
+
+// Modal Mantencion
+$(".modalMantencion__abrirBtn").on('click', function () {
+  $(".contenedor__modalMantencion").css("display", "flex");
+});
+
+$(".modalMantencion__cerrarBtn").on('click', function () {
+  $(".contenedor__modalMantencion").css("display", "none");
+});
 
 
+// Agregar comentario
+$(document).ready(function () {
+  // Agregar input al presionar el botón
+  $(".agregar-comentario").click(function () {
+    var commentContainer = $(this).closest(".opciones-pregunta").prev();
 
-
-
+    if (!commentContainer.find(".form-group").length) {
+      var newComment =
+        '<div class="form-group">' +
+        '<p class="margin-bottom-5">Comentario</p>' +
+        '<textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>' +
+        '</div>';
+      commentContainer.append(newComment);
+    }
+  });
+});
