@@ -1,8 +1,8 @@
 @extends('layout.admin')
-@section('title', 'Soporte técnico')
+@section('title', 'Matenciones Soporte técnico')
 
 @section('content')
-   <h1>Soporte técnico</h1>
+   <h1>Mantenciones Soporte técnico</h1>
    
    <form action="" class="grid-filtros-admin-4">
       <div class="form-group">

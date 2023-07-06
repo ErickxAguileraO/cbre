@@ -40,7 +40,16 @@ Route::middleware(['guest'])->group(function () {
  */
 
 Route::middleware(['auth'])->group(function () {
-    Route::view('admin', 'admin.noticias.index');
+
+        Route::get('admin', function () {
+            if (auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('funcionario')) {
+                return view('admin.noticias.index');
+            } elseif (auth()->user()->hasRole('prevencionista') || auth()->user()->hasRole('tecnico')) {
+                return view('admin.formulario_area_tecnica.index');
+            } else {
+                // Handle other roles or unauthorized access
+            }
+        });
 
     Route::prefix('admin')->group(function () {
         Route::group(['middleware' => ['role:super-admin']], function () {
@@ -166,22 +175,42 @@ Route::controller(WebNoticiaController::class)->group(function () {
     Route::get('noticias/get/list', 'list')->name('web.noticias.list');
 });
 
-Route::get('/area-tecnica', function () {
-    return view('admin.area_tecnica.index');
+// Fomurlaio area tecnica
+Route::get('/formulario-area-tecnica', function () {
+    return view('admin.formulario_area_tecnica.index');
 });
 Route::get('/crear-formulario', function () {
-    return view('admin.area_tecnica.create');
+    return view('admin.formulario_area_tecnica.create');
+});
+Route::get('/preview-formulario', function () {
+    return view('admin.formulario_area_tecnica.preview');
+});
+
+// Mantencion area tecnica
+Route::get('/mantencion-soporte-tecnico', function () {
+    return view('admin.mantencion_soporte_tecnico.index');
+});
+Route::get('/ver-mantencion-admin', function () {
+    return view('admin.mantencion_soporte_tecnico.view');
+});
+
+// JOP
+Route::get('/formularios-jop', function () {
+    return view('admin.formularios_jop.index');
+});
+Route::get('/responder-formulario', function () {
+    return view('admin.formularios_jop.responder');
 });
 
 
-Route::get('/soporte-tecnico', function () {
-    return view('admin.soporte_tecnico.index');
-});
 
-Route::get('/formularios', function () {
-    return view('admin.formularios.index');
-});
 
-Route::get('/mantenciones', function () {
-    return view('admin.mantenciones.index');
+Route::get('/mantenciones-jop', function () {
+    return view('admin.mantenciones_jop.index');
+});
+Route::get('/crear-mantencion', function () {
+    return view('admin.mantenciones_jop.create');
+});
+Route::get('/ver-mantencion', function () {
+    return view('admin.mantenciones_jop.view');
 });

@@ -1,9 +1,9 @@
 @extends('layout.admin')
-@section('title', 'Área técnica')
+@section('title', 'Formulario Área técnica')
 
 @section('content')
    <a class="btn btn-success float-right text-white" href="/crear-formulario">Crear formulario</a>
-   <h1>Área técnica</h1>
+   <h1>Formulario Área técnica</h1>
    
    <form action="" class="grid-filtros-admin">
       <div class="form-group">

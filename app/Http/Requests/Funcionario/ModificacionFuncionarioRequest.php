@@ -26,13 +26,13 @@ class ModificacionFuncionarioRequest extends FormRequest
     {
         return [
             'nombre' => [
-                'required', 
-                'string', 
+                'required',
+                'string',
                 'max:50'
             ],
             'apellidos' => [
-                'required', 
-                'string', 
+                'required',
+                'string',
                 'max:50'
             ],
             'telefono' => [
@@ -56,9 +56,8 @@ class ModificacionFuncionarioRequest extends FormRequest
                 'required'
             ],
             'edificio' => [
-                'required',
-                'numeric'
-            ]
+                'required_if:cargo,Jefe de operaciones,Asistente de operaciones',
+            ],
         ];
     }
 

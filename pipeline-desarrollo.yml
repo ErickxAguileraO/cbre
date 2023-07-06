@@ -1,0 +1,19 @@
+trigger:
+- AMBIENTE
+
+variables:
+- group: credenciales
+
+steps:
+- script: |
+    rsync -auv -e 'sshpass -p "$(password_desarrollo)" ssh -o StrictHostKeyChecking=no' --chown=cbre2aeurus:cbre2aeurus  --exclude='.htaccess' --exclude='*.md' --exclude='*.yml' --exclude='.git' --exclude='.env'  --exclude='.env.example' --exclude='composer.lock' --exclude='BD' . root@209.126.108.6:/home/cbre2aeurus/public_html/
+  displayName: 'Rsync a servidor de desarrollo'
+
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'desarrollo'
+    runOptions: 'commands'
+    commands: |
+      cd /home/cbre2aeurus/public_html/ && php artisan migrate --force
+    readyTimeout: '20000'
