@@ -144,19 +144,23 @@
             </li>
             @endcan
 
+            @can('index formulario')
             {{-- Nuevas vistas --}}
             <li>
               <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="/formularios-jop" class="nav-link">Formularios JOP</a>
               </span>
             </li>
-
+            @endcan
+            @can('index matencion')
             <li>
               <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="/mantenciones-jop" class="nav-link">Mantenciones JOP</a>
               </span>
             </li>
+            @endcan
 
+            @can('index area tecnica')
             <li class="menu-area-tecnica">
               <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a class="nav-link">Área técnica</a>
@@ -167,9 +171,12 @@
             <li class="sub-menu-area-tecnica">
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{ route('formulario-area-tecnica.index') }}" class="nav-link">Formulario Área técnica</a>
+                @can('index mantencion')
                 <a href="/mantencion-soporte-tecnico" class="nav-link">Mantención Soporte técnico</a>
+                @endcan
               </span>
             </li>
+            @endcan
           </ul>
         </div>
       </nav>

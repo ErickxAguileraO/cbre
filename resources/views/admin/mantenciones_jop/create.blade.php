@@ -1,65 +1,63 @@
 @extends('layout.admin')
-@section('title', 'Caracteristicas')
+@section('title', 'Crear Mantención')
 
 @section('content')
 
-    <h1>Crear característica</h1>
+    @push('stylesheets')
+        <link rel="stylesheet" href="{{ asset('/public/css/componentes/modal/modal.css') }}">
+    @endpush
+    <a href="/mantenciones-jop" class="row row-responsive link-atras">
+        <i class="far fa-arrow-left"></i>
+        Volver al listado
+    </a>
+    <h1>Nueva Mantención</h1>
 
     <form action="#" method="POST" id="form-caracteristica" class="formulario">
-        @csrf
-        <fieldset class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" data-maximo-caracteres="50" type="text"
-                        tabindex="1" />
-                        <small id="nombre_error" class="field-message-alert absolute"></small>
-                </div>
+        <div class="form-group bottom-20">
+            <label for="">Especialidad</label>
+            <select name="" id="" class="col-sm-4"></select>
+        </div>
+
+        <div class="form-group bottom-20">
+            <label for="">Detallar mantención</label>
+            <textarea name="" id="" class="form-control" cols="30" rows="10"
+            placeholder="Escriba su respuesta aquí"></textarea>
+        </div>
+
+        <div class="form-group bottom-20">
+            <label for="">Documentación</label>
+            <div>
+                <input class="form-control input-file-nuevo col-sm-4" id="" name="" type="file" tabindex="1">
+                <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un solo
+                archivo</p>
             </div>
-        </fieldset>
-        <fieldset class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="imagen">Imagen</label>
-                    <div class="d-flex align-items-end">
-                        <div class="file-select">
-                            <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
-                            lang="es" accept=".jpg,.jpeg,.png,.svg">
-                        </div>
-                        <div class="archivo-seleccionado px-2">
-                           <span class="align-text-bottom">Ningún archivo seleccionado</span>
-                        </div>
-                     </div>
-                     <small id="imagen_error" class="field-message-alert absolute"></small>
+        </div>
+
+        <div class="botones-formulario" style="justify-content: flex-start;">
+            <button class="modalFile__btnN modalFile__botonSecundario">Cancelar</button>
+            <div class="modalMantencion__abrirBtn modalFile__btnN modalFile__botonPrimario">Enviar mantención</div>
+        </div>
+
+        {{-- Modal enviar --}}
+        <div class="contenedor__modalMantencion">
+            <div class="modalFile">
+                <div class="modalFile__header">
+                    <h3>Enviar mantención</h3>
                 </div>
-            </div>
-        </fieldset>
-        <fieldset class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="posicion">Posición</label>
-                    <input name="posicion" type="text" value="{{ old('posicion') }}" class="form-control solo-numeros" data-maximo-caracteres="3" id="posicion"
-                        tabindex="2" />
-                        <small id="posicion_error" class="field-message-alert absolute"></small>
+                <div class="modalFile__contenedorContenido">
+                    <h3 style="text-align: center;">¿Estas seguro de enviar la mantención?</h3>
                 </div>
-            </div>
-        </fieldset>
-        <fieldset class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="estado">Estado</label>
-                    <select id="estado" name="estado" class="form-control" tabindex="4" style="width:100%;">
-                        <option value="1">Activo</option>
-                        <option value="0">Inactivo</option>
-                    </select>
-                    <small id="estado_error" class="field-message-alert absolute"></small>
+                
+                <div class="modalFile__botones">
+                    <div class="modalMantencion__cerrarBtn modalFile__btnN modalFile__botonSecundario">No, revisaré</div>
+                    <button class="modalFile__btnN modalFile__botonPrimario">Si, enviar</button>
                 </div>
+                
             </div>
-        </fieldset>
-        @include('components.guardar_btn')
+        </div>
     </form>
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\sistema\caracteristicas\form_agregar.js') }}"></script>
+    <script src="{{ asset('/public/js/script.js') }}"></script>
 @endpush

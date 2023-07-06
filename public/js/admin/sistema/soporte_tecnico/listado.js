@@ -49,11 +49,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     minWidth: '100',
                     cellTemplate(container, options) {
                         const idCaracteristica = options.data.car_id;
-                        let urlModificar = ``;
-                        let urlEliminar = ``;
+                        let urlView = `/ver-mantencion-admin`;
 
-                        let templateView = `<a href="${urlModificar}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
-                        let templateDown = `<a href="" title="" data-id="${idCaracteristica}"><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
+                        let templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
+                        let templateDown = `<a href="" title="" data-id=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
 
                         const enlaceView = $('<a />').append(templateView).appendTo(container);
                         const enlaceDown = $('<a />').append(templateDown).appendTo(container);
