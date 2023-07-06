@@ -17,6 +17,7 @@ use App\Http\Controllers\Administracion\AdministradorController;
 use App\Http\Controllers\Administracion\CertificacionController;
 use App\Http\Controllers\Administracion\CaracteristicaController;
 use App\Http\Controllers\Administracion\DatosGeneralesController;
+use App\Http\Controllers\Administracion\FormularioAreaTecnicaController;
 use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
 use App\Http\Controllers\Web\ContactoController as WebContactoController;
 use App\Http\Controllers\Web\EdificioController as  WebEdificioController;
@@ -63,6 +64,12 @@ Route::middleware(['auth'])->group(function () {
             Route::controller(CaracteristicaController::class)->group(function () {
                 Route::resource('caracteristicas', CaracteristicaController::class);
                 Route::get('caracteristicas/get/list', 'list')->name('caracteristicas.list');
+            });
+
+            // Formulario Area Tecnica
+            Route::controller(FormularioAreaTecnicaController::class)->group(function () {
+                Route::resource('formulario-area-tecnica', FormularioAreaTecnicaController::class);
+                Route::get('formulario-area-tecnica/get/list', 'list')->name('formulario-area-tecnica.list');
             });
 
             // Quiénes somos
@@ -176,12 +183,12 @@ Route::controller(WebNoticiaController::class)->group(function () {
 });
 
 // Fomurlaio area tecnica
-Route::get('/formulario-area-tecnica', function () {
-    return view('admin.formulario_area_tecnica.index');
-});
-Route::get('/crear-formulario', function () {
-    return view('admin.formulario_area_tecnica.create');
-});
+// Route::get('/formulario-area-tecnica', function () {
+//     return view('admin.formulario_area_tecnica.index');
+// });
+// Route::get('/crear-formulario', function () {
+//     return view('admin.formulario_area_tecnica.create');
+// });
 Route::get('/preview-formulario', function () {
     return view('admin.formulario_area_tecnica.preview');
 });

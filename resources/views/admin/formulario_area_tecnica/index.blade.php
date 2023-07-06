@@ -2,49 +2,58 @@
 @section('title', 'Formulario Área técnica')
 
 @section('content')
-   <a class="btn btn-success float-right text-white" href="/crear-formulario">Crear formulario</a>
+   <a class="btn btn-success float-right text-white" href="{{ route('formulario-area-tecnica.create') }}">Crear formulario</a>
    <h1>Formulario Área técnica</h1>
-   
-   <form action="" class="grid-filtros-admin">
+
+    <form class="grid-filtros-admin" method="GET">
+        @csrf
       <div class="form-group">
          <label for="">Edificio</label>
-         <select id="" name="" class="form-control" tabindex="4" style="width:100%;">
-            <option value="1">value 1</option>
-            <option value="0">value 2</option>
+         <select id="edificio" name="edificio" class="form-control" tabindex="4" style="width:100%;">
+            @foreach ($edificios as $edificio)
+                @php
+                    $selected = old('edificio') == $edificio->edi_nombre ? 'selected' : '';
+                @endphp
+                <option value="{{ $edificio->edi_nombre }}" {{ $selected }}>{{ $edificio->edi_nombre  }}</option>
+            @endforeach
          </select>
          <small id="" class="field-message-alert absolute"></small>
      </div>
 
       <div class="form-group">
          <label for="titulo">Periodo</label>
-         <input type="date" class="form-control" min="" id="" name="" placeholder="DD/MM/AAAA">
+         <input type="date" class="form-control" min="" id="fechaInicio" name="fechaInicio" placeholder="DD/MM/AAAA">
          <small id="" class="field-message-alert invisible absolute"></small>
       </div>
-      
+
       <div class="form-group">
          {{-- <label for="titulo"></label> --}}
          <div class="sin-label"></div>
-         <input type="date" class="form-control" min="" id="" name="" placeholder="DD/MM/AAAA">
+         <input type="date" class="form-control" min="" id="fechaTermino" name="fechaTermino" placeholder="DD/MM/AAAA">
          <small id="" class="field-message-alert invisible absolute"></small>
       </div>
 
       <div class="form-group">
          <label for="">Estado</label>
-         <select id="" name="" class="form-control" tabindex="4" style="width:100%;">
-             <option value="1">value 1</option>
-             <option value="0">value 2</option>
+         <select id="estado" name="estado" class="form-control" tabindex="4" style="width:100%;">
+            <option value="0">Borrador</option>
+            <option value="1">Publicado</option>
+            <option value="2">Respondido</option>
+            <option value="3">Cerrado</option>
          </select>
          <small id="" class="field-message-alert absolute"></small>
      </div>
+      @if (auth()->user()->hasRole('super-admin'))
+         <div class="form-group">
+            <label for="">Creado por</label>
+            <select id="" name="" class="form-control" tabindex="4" style="width:100%;">
+               <option value="1">value 1</option>
+               <option value="0">value 2</option>
+            </select>
+            <small id="" class="field-message-alert absolute"></small>
+         </div>
+      @endif
 
-      <div class="form-group">
-         <label for="">Creado por</label>
-         <select id="" name="" class="form-control" tabindex="4" style="width:100%;">
-            <option value="1">value 1</option>
-            <option value="0">value 2</option>
-         </select>
-         <small id="" class="field-message-alert absolute"></small>
-      </div>
       <div>
          <div class="sin-label"></div>
          <button class="btn-filtro" style="height: 34px">Buscar</button>
