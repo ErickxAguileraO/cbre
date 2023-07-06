@@ -215,12 +215,9 @@ Route::get('/responder-formulario', function () {
 Route::get('/mantenciones-jop', function () {
     return view('admin.mantenciones_jop.index');
 });
-<<<<<<< HEAD
-=======
 Route::get('/crear-mantencion', function () {
     return view('admin.mantenciones_jop.create');
 });
 Route::get('/ver-mantencion', function () {
     return view('admin.mantenciones_jop.view');
 });
->>>>>>> 4b606458e6bc645094c0c03af4d5415d3416d42d
