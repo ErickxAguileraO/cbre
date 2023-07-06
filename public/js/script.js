@@ -1,55 +1,7 @@
-// Seleccion individual
-$(document).ready(function () {
-  // Agregar input al presionar el botón
-  $(".btn-agregar").click(function () {
-    var newInput =
-      '<fieldset class="row row-input-form">' +
-      '<input type="radio">' +
-      '<div class="col-sm-4">' +
-      '<div class="form-group">' +
-      '<input id="" name="" class="form-control" data-maximo-caracteres="" type="text" tabindex="1" placeholder="Pregunta" />' +
-      '</div>' +
-      '</div>' +
-      '<img src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">' +
-      '</fieldset>';
-    $(this).prev().append(newInput);
-  });
-
-  // Eliminar input al presionar el botón
-  $(document).on("click", ".btn-remove", function () {
-    $(this).closest(".row-input-form").remove();
-  });
-});
-
-// Seleccion multiple
-$(document).ready(function () {
-  // Agregar input al presionar el botón
-  $(".btn-agregar-2").click(function () {
-    var newInput =
-      '<fieldset class="row row-input-form">' +
-      '<input type="checkbox">' +
-      '<div class="col-sm-4">' +
-      '<div class="form-group">' +
-      '<input id="" name="" class="form-control" data-maximo-caracteres="" type="text" tabindex="1" placeholder="Pregunta" />' +
-      '</div>' +
-      '</div>' +
-      '<img src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">' +
-      '</fieldset>';
-    $(this).prev().append(newInput);
-  });
-
-  // Eliminar input al presionar el botón
-  $(document).on("click", ".btn-remove", function () {
-    $(this).closest(".row-input-form").remove();
-  });
-});
-
-
-
-
-
 // Agregar y eliminar pregunta completa
 $(document).ready(function () {
+
+  // Seleccion individual
   // Agregar input al presionar el botón
   $(document).on("click", ".btn-agregar", function () {
     var newInput =
@@ -64,7 +16,27 @@ $(document).ready(function () {
       '</fieldset>';
     $(this).prev().append(newInput);
   });
+  // Eliminar input al presionar el botón
+  $(document).on("click", ".btn-remove", function () {
+    $(this).closest(".row-input-form").remove();
+  });
 
+
+  // Seleccion multiple
+  // Agregar input al presionar el botón
+  $(".btn-agregar-2").click(function () {
+    var newInput =
+      '<fieldset class="row row-input-form">' +
+      '<input type="checkbox">' +
+      '<div class="col-sm-4">' +
+      '<div class="form-group">' +
+      '<input id="" name="" class="form-control" data-maximo-caracteres="" type="text" tabindex="1" placeholder="Pregunta" />' +
+      '</div>' +
+      '</div>' +
+      '<img src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">' +
+      '</fieldset>';
+    $(this).prev().append(newInput);
+  });
   // Eliminar input al presionar el botón
   $(document).on("click", ".btn-remove", function () {
     $(this).closest(".row-input-form").remove();
