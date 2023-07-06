@@ -1,29 +1,29 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-    cargarCaracteristicas();
+    cargarFormulario();
 
-    function cargarCaracteristicas() {
+    function cargarFormulario() {
         DevExpress.localization.locale(navigator.language);
 
         // Función para el origen de datos.
-        const caracteristicas = new DevExpress.data.CustomStore({
+        const formulario = new DevExpress.data.CustomStore({
             load: function () {
-                return sendRequest("");
+                return sendRequest("/admin/formulario-area-tecnica/get/list");
             },
         });
 
         $("#dataGridAreaTecnica").dxDataGrid({
-            dataSource: caracteristicas,
+            dataSource: formulario,
             columns: [
                 {
-                    dataField: "car_area",
+                    dataField: "form_nombre",
                     caption: "Área",
                     filterOperations: ["contains"],
                     alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
                 },
                 {
-                    dataField: "car_nombreFormulario",
+                    dataField: "form_nombre",
                     caption: "Nombre formulario",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "car_fechaEnvio",
+                    dataField: "fecha",
                     caption: "Fecha de envío",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "car_edificio",
+                    dataField: "form_nombre",
                     caption: "Edificio",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "car_archivos",
+                    dataField: "form_nombre",
                     caption: "Archivos",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "car_estado",
+                    dataField: "form_estado",
                     caption: "Estado",
                     allowEditing: false,
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
@@ -73,11 +73,19 @@ document.addEventListener("DOMContentLoaded", function () {
                                 data: [
                                     {
                                         id: 0,
-                                        name: "Inactivo",
+                                        name: "Borrador",
                                     },
                                     {
                                         id: 1,
-                                        name: "Activo",
+                                        name: "Publicado",
+                                    },
+                                    {
+                                        id: 2,
+                                        name: "Respondido",
+                                    },
+                                    {
+                                        id: 3,
+                                        name: "Cerrado",
                                     },
                                 ],
                                 key: "id",
@@ -95,12 +103,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     width: '100',
                     minWidth: '100',
                     cellTemplate(container, options) {
-                        const idCaracteristica = options.data.car_id;
+                        const idFomulario = options.data.car_id;
                         let urlModificar = ``;
                         let urlEliminar = ``;
 
                         let templateView = `<a href="${urlModificar}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
-                        let templateDown = `<a href="" title="" data-id="${idCaracteristica}"><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
+                        let templateDown = `<a href="" title="" data-id="${idFomulario}"><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
 
                         const enlaceView = $('<a />').append(templateView).appendTo(container);
                         const enlaceDown = $('<a />').append(templateDown).appendTo(container);
@@ -114,10 +122,40 @@ document.addEventListener("DOMContentLoaded", function () {
                 showNavigationButtons: true,
                 visible: true,
                 showPageSizeSelector: true,
-                allowedPageSizes: [5, 10, 15, 20],
+                allowedPageSizes: [10, 15, 20],
             },
         });
+
+
+        $(".btn-filtro").click(function () {
+            // Obtener valores de los campos de búsqueda
+            // const edificio = $("#edificio").val();
+            const fechaInicio = $("#fechaInicio").val();
+            const fechaTermino = $("#fechaTermino").val();
+            const estado = $("#estado").val();
+            // const creadoPor = $("#creadoPor").val();
+
+            // Construir parámetros de búsqueda
+            const params = {
+                // edificio: edificio,
+                fechaInicio: fechaInicio,
+                fechaTermino: fechaTermino,
+                estado: estado,
+                // creadoPor: creadoPor,
+            };
+
+            // Llamar a la función sendRequest() con los parámetros de búsqueda
+            sendRequest("{{ route('formulario-area-tecnica.list') }}", "GET", params)
+                .then(function (result) {
+                    // Actualizar la tabla DevExtreme con los datos filtrados
+                    $("#dataGridAreaTecnica").dxDataGrid("instance").option("dataSource", result);
+                })
+                .catch(function (error) {
+                    console.error("Error al obtener los datos filtrados:", error);
+                });
+        });
     }
+
 
     function sendRequest(url, method, data) {
         let d = $.Deferred();
