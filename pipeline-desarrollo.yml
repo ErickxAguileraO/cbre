@@ -1,5 +1,5 @@
 trigger:
-- AMBIENTE
+- Develop
 
 variables:
 - group: credenciales
