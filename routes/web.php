@@ -40,7 +40,16 @@ Route::middleware(['guest'])->group(function () {
  */
 
 Route::middleware(['auth'])->group(function () {
-    Route::view('admin', 'admin.noticias.index');
+
+        Route::get('admin', function () {
+            if (auth()->user()->hasRole('super-admin') || auth()->user()->hasRole('funcionario')) {
+                return view('admin.noticias.index');
+            } elseif (auth()->user()->hasRole('prevencionista') || auth()->user()->hasRole('tecnico')) {
+                return view('admin.formulario_area_tecnica.index');
+            } else {
+                // Handle other roles or unauthorized access
+            }
+        });
 
     Route::prefix('admin')->group(function () {
         Route::group(['middleware' => ['role:super-admin']], function () {

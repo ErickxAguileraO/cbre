@@ -75,13 +75,15 @@
                         <option value="">Selecciona...</option>
                         <option value="Jefe de operaciones">Jefe de operaciones</option>
                         <option value="Asistente de operaciones">Asistente de operaciones</option>
+                        <option value="Prevencionista">Prevencionista</option>
+                        <option value="Area tecnica">Area ténica</option>
                     </select>
                     <small id="errorCargo" class="field-message-alert invisible"></small>
                 </div>
             </div>
         </fieldset>
 
-        <fieldset class="row">
+        <fieldset class="row" id="edificios">
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="edificio">Edificio</label>
@@ -103,5 +105,22 @@
 @endsection
 
 @push('scripts')
+<script>
+$(document).ready(function() {
+  $("#cargo").on("change", function() {
+    var selectedOption = $(this).val();
+    var edificiosFieldset = $("#edificios");
+    var edificioSelect = $("#edificio");
+
+    if (selectedOption === "Prevencionista" || selectedOption === "Area tecnica") {
+      edificiosFieldset.hide();
+      edificioSelect.val("").trigger("change.select2");
+    } else {
+      edificiosFieldset.show();
+    }
+  });
+});
+</script>
+
 <script src="{{ asset('public/js/admin/sistema/funcionarios/form_agregar.js') }}"></script>
 @endpush

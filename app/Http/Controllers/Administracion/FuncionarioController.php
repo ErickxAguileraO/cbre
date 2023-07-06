@@ -88,7 +88,13 @@ class FuncionarioController extends Controller
                 'fun_edificio_id' => EdificioService::obtenerEdificioRoleFuncionario() ?: $request->edificio
             ]);
 
-            $user->assignRole('funcionario');
+            if($request->cargo == 'Jefe de operaciones' || $request->cargo == 'Asistente de operaciones'){
+                $user->assignRole('funcionario');
+            }elseif($request->cargo == 'Prevencionista'){
+                $user->assignRole('prevencionista');
+            }elseif($request->cargo == 'Area tecnica'){
+                $user->assignRole('tecnico');
+            }
 
             Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first(), $user));
 
@@ -156,8 +162,23 @@ class FuncionarioController extends Controller
 
             if($funcionario->user->email !== $request->email){
                 $funcionario->user->email = $request->email;
-                Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first()));
+                Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first(), $funcionario->user));
             }
+
+            if ($request->cargo == 'Jefe de operaciones' || $request->cargo == 'Asistente de operaciones') {
+                $funcionario->user->removeRole('prevencionista');
+                $funcionario->user->removeRole('tecnico');
+                $funcionario->user->assignRole('funcionario');
+            } elseif ($request->cargo == 'Prevencionista') {
+                $funcionario->user->removeRole('funcionario');
+                $funcionario->user->removeRole('tecnico');
+                $funcionario->user->assignRole('prevencionista');
+            } elseif ($request->cargo == 'Area tecnica') {
+                $funcionario->user->removeRole('funcionario');
+                $funcionario->user->removeRole('prevencionista');
+                $funcionario->user->assignRole('tecnico');
+            }
+
 
             $funcionario->user->save();
 

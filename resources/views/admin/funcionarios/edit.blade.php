@@ -79,6 +79,8 @@
                         <option value="">Selecciona...</option>
                         <option value="Jefe de operaciones" {{ $funcionario->fun_cargo == 'Jefe de operaciones' ? 'selected' : '' }}>Jefe de operaciones</option>
                         <option value="Asistente de operaciones"{{ $funcionario->fun_cargo == 'Asistente de operaciones' ? 'selected' : '' }}>Asistente de operaciones</option>
+                        <option value="Prevencionista" {{ $funcionario->fun_cargo == 'Prevencionista' ? 'selected' : '' }}>Prevencionista</option>
+                        <option value="Area tecnica"{{ $funcionario->fun_cargo == 'Area tecnica' ? 'selected' : '' }}>Area técnica</option>
                     </select>
                     <small id="errorCargo" class="field-message-alert invisible"></small>
                 </div>
@@ -86,7 +88,7 @@
         </fieldset>
 
         @role('super-admin')
-            <fieldset class="row">
+        <fieldset class="row" id="edificios">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="edificio">Edificio</label>
@@ -119,5 +121,28 @@
 @endsection
 
 @push('scripts')
+<script>
+$(document).ready(function() {
+  var cargoSelect = $("#cargo");
+  var edificiosFieldset = $("#edificios");
+  var edificioSelect = $("#edificio");
+
+  if (cargoSelect.val() === "Prevencionista" || cargoSelect.val() === "Area tecnica") {
+    edificiosFieldset.hide();
+    edificioSelect.val("").trigger("change.select2");
+  }
+
+  cargoSelect.on("change", function() {
+    var selectedOption = $(this).val();
+
+    if (selectedOption === "Prevencionista" || selectedOption === "Area tecnica") {
+      edificiosFieldset.hide();
+      edificioSelect.val("").trigger("change.select2");
+    } else {
+      edificiosFieldset.show();
+    }
+  });
+});
+</script>
 <script src="{{ asset('public/js/admin/sistema/funcionarios/form_modificar.js') }}"></script>
 @endpush
