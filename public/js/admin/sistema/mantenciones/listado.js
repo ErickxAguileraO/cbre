@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     minWidth: '100',
                     cellTemplate(container, options) {
                         const idCaracteristica = options.data.car_id;
-                        let urlView = ``;
+                        let urlView = `/ver-mantencion`;
 
                         let templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
 

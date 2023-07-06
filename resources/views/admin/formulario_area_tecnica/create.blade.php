@@ -48,7 +48,7 @@
 
                                 <div class="option-select-manual">
                                     <a href="/preview-formulario" class="row-option"><i class="fas fa-eye"></i> Visualizar</a>
-                                    <div class="row-option"><i class="fas fa-eye"></i> Publicar y enviar</div>
+                                    <div class="row-option modalPublicar__abrirBtn"><i class ="fas fa-eye"></i> Publicar y enviar</div>
                                     <div class="row-option"><i class="fas fa-copy"></i> Duplicar</div>
                                     <div class="row-option"><i class="fas fa-trash-alt"></i> Eliminar</div>
                                 </div>
@@ -139,6 +139,55 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- Parrafo --}}
+                    <div class="div-formulario-n">
+                        {{-- Encabezado de pregunta --}}
+                        <fieldset class="row row-responsive">
+                            <div class="col-xl">
+                                <div class="form-group">
+                                    <input id="" name="" class="form-control" type="text" tabindex="1" placeholder="Pregunta"/>
+                                    <small id="" class="field-message-alert absolute"></small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <select id="" name="" class="form-control" tabindex="4" style="width:100%;">
+                                       <option value="1">Parrafo</option>
+                                    </select>
+                                    <small id="" class="field-message-alert absolute"></small>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="form-group">
+                            <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
+                            <small id="" class="field-message-alert absolute"></small>
+                        </div>
+    
+                        {{-- Opciones de la pregunta --}}
+                        <div class="opciones-pregunta grid-header-2">
+                            <div class="modalFile__abrirBtn">
+                                <i class="far fa-paperclip"></i>
+                                Adjuntar archivos
+                            </div>
+                            <div class="row opciones-extras-formulario">
+                                <div class="row-global align-center">
+                                    <p>Obligatorio</p>
+                                    
+                                    <label class="switch">
+                                        <input type="checkbox" codigo="">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <div class="btn-remove-pregunta">
+                                    <p>Eliminar pregunta</p>
+                                    <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     {{-- Seleccion multiple --}}
                     <div class="div-formulario-n">
@@ -333,81 +382,13 @@
 
                                
                 {{-- Modal archivos --}}
-                <div class="contenedor__modalFile">
-                    <div class="modalFile">
-                        <div class="modalFile__header">
-                            <h3>Adjuntar archivos</h3>
-                        </div>
-                        <div class="modalFile__contenedorContenido">
-                            <h3 style="text-align: center;">¿Cuando fue la ultima vez que se realizó mantención al ascensor principal?</h3>
-                            <div class="div-input-file">
-                                <input class="hide" type="file" name="archivoUpload" id="archivoUpload" value="">
-                                <label class="label-input-100" for="archivoUpload">
-                                    <img src="/public/images/admin/sistema/cloud.svg"alt="">
-                                    <p>click aquí para seleccionar</p>
-                                </label>
-                            </div>
-                            <div class="modalFile__contenido">
-                                <div class="tabla-archivos-subidos">
-                                    <div class="archivo-subido-n">
-                                        <p>Nombre archivo</p>
-                                        <p>PDF</p>
-                                        <img src="/public/images/admin/sistema/delete.svg" class="btn-remove-archivo" alt="">
-                                    </div>
-
-                                    <div class="archivo-subido-n">
-                                        <p>Nombre archivo</p>
-                                        <p>PDF</p>
-                                        <img src="/public/images/admin/sistema/delete.svg" class="btn-remove-archivo" alt="">
-                                    </div>
-
-                                    <div class="archivo-subido-n">
-                                        <p>Nombre archivo</p>
-                                        <p>PDF</p>
-                                        <img src="/public/images/admin/sistema/delete.svg" class="btn-remove-archivo" alt="">
-                                    </div>
-
-                                    <div class="archivo-subido-n">
-                                        <p>Nombre archivo</p>
-                                        <p>PDF</p>
-                                        <img src="/public/images/admin/sistema/delete.svg" class="btn-remove-archivo" alt="">
-                                    </div>
-
-                                    <div class="archivo-subido-n">
-                                        <p>Nombre archivo</p>
-                                        <p>PDF</p>
-                                        <img src="/public/images/admin/sistema/delete.svg" class="btn-remove-archivo" alt="">
-                                    </div>
-
-                                    <div class="archivo-subido-n">
-                                        <p>Nombre archivo</p>
-                                        <p>PDF</p>
-                                        <img src="/public/images/admin/sistema/delete.svg" class="btn-remove-archivo" alt="">
-                                    </div>
+                @include('components.modalFile')
 
 
-                                    <div class="archivo-subido-n">
-                                        <p>Nombre archivo</p>
-                                        <p>PDF</p>
-                                        <img src="/public/images/admin/sistema/delete.svg" class="btn-remove-archivo" alt="">
-                                    </div>
 
-                                    <div class="archivo-subido-n">
-                                        <p>Nombre archivo</p>
-                                        <p>PDF</p>
-                                        <img src="/public/images/admin/sistema/delete.svg" class="btn-remove-archivo" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="modalFile__botones">
-                            <div class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario">Cerrar</div>
-                            <div class="modalFile__btnN modalFile__botonPrimario">Guardar</div>
-                        </div>
-                        
-                    </div>
-                </div>
+                {{-- Modal Publicar --}}
+                @include('components.modalPublicar')
+
             </form>
         
             <div id="tab2" class="tab__contenido">

@@ -75,7 +75,6 @@
                 <h3 class="bottom-30">3. ¿Cuando fue la ultima vez que se realizó mantención al ascensor principal?</h3>
                 <div class="form-group">
                     <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
-
                 </div>
                 <div class="linea-separadora"></div>
                 <p>Obligatoria</p>
@@ -84,9 +83,11 @@
 
 
         <div class="botones-formulario">
-            <button class="modalFile__btnN modalFile__botonPrimario">Enviar encuesta</button>
+            <button class="modalFile__btnN modalFile__botonPrimario modalPublicar__abrirBtn">Enviar encuesta</button>
         </div>
 
+        {{-- Modal Publicar --}}
+        @include('components.modalPublicar')
     </form>
 
 </div>
