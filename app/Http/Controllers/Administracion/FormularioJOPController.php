@@ -5,19 +5,12 @@ namespace App\Http\Controllers\Administracion;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Formulario;
-use App\Models\Edificio;
 
-class FormularioAreaTecnicaController extends Controller
+class FormularioJOPController extends Controller
 {
     public function index()
     {
-        $edificios = Edificio::all();
-        return view('admin.formulario_area_tecnica.index', compact('edificios'));
-    }
-
-    public function create()
-    {
-        return view('admin.formulario_area_tecnica.create');
+        return view('admin.formularios_jop.index');
     }
 
     public function list(Request $request)
@@ -29,5 +22,4 @@ class FormularioAreaTecnicaController extends Controller
             return response()->json(['error' => $th->getMessage()]);
         }
     }
-
 }

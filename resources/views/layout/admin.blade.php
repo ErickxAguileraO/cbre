@@ -148,11 +148,11 @@
             {{-- Nuevas vistas --}}
             <li>
               <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="/formularios-jop" class="nav-link">Formularios JOP</a>
+                <a href="{{ route('formulario-jop.index') }}" class="nav-link">Formularios JOP</a>
               </span>
             </li>
             @endcan
-            @can('index matencion')
+            @can('index mantencion')
             <li>
               <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="/mantenciones-jop" class="nav-link">Mantenciones JOP</a>

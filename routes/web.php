@@ -18,6 +18,7 @@ use App\Http\Controllers\Administracion\CertificacionController;
 use App\Http\Controllers\Administracion\CaracteristicaController;
 use App\Http\Controllers\Administracion\DatosGeneralesController;
 use App\Http\Controllers\Administracion\FormularioAreaTecnicaController;
+use App\Http\Controllers\Administracion\FormularioJOPController;
 use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
 use App\Http\Controllers\Web\ContactoController as WebContactoController;
 use App\Http\Controllers\Web\EdificioController as  WebEdificioController;
@@ -70,6 +71,12 @@ Route::middleware(['auth'])->group(function () {
             Route::controller(FormularioAreaTecnicaController::class)->group(function () {
                 Route::resource('formulario-area-tecnica', FormularioAreaTecnicaController::class);
                 Route::get('formulario-area-tecnica/get/list', 'list')->name('formulario-area-tecnica.list');
+            });
+
+            // Formulario JOP
+            Route::controller(FormularioJOPController::class)->group(function () {
+                Route::resource('formulario-jop', FormularioJOPController::class);
+                Route::get('formulario-jop/get/list', 'list')->name('formulario-jop.list');
             });
 
             // Quiénes somos

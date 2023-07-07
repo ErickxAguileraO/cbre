@@ -7,13 +7,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Función para el origen de datos.
         const formulario = new DevExpress.data.CustomStore({
-            load: function () {
-                return sendRequest("/admin/formulario-area-tecnica/get/list");
+            load: function (loadOptions) {
+                const params = {
+                    fechaInicio: document.querySelector('#fechaInicio').value,
+                    fechaTermino: document.querySelector('#fechaTermino').value,
+                    estado: document.querySelector('#estado').value,
+                };
+
+                return sendRequest("/admin/formulario-area-tecnica/get/list", "GET", params);
             },
         });
 
-        $("#dataGridAreaTecnica").dxDataGrid({
+
+
+        const dataGrid = $("#dataGridAreaTecnica").dxDataGrid({
             dataSource: formulario,
+            // Resto del código del data grid...
             columns: [
                 {
                     dataField: "form_nombre",
@@ -123,36 +132,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 showPageSizeSelector: true,
                 allowedPageSizes: [10, 15, 20],
             },
+        }).dxDataGrid("instance");
+
+        $('.btn-filtro').on('click', function(e) {
+            e.preventDefault();
+            dataGrid.refresh();
         });
 
-
-        $(".btn-filtro").click(function () {
-            // Obtener valores de los campos de búsqueda
-            // const edificio = $("#edificio").val();
-            const fechaInicio = $("#fechaInicio").val();
-            const fechaTermino = $("#fechaTermino").val();
-            const estado = $("#estado").val();
-            // const creadoPor = $("#creadoPor").val();
-
-            // Construir parámetros de búsqueda
-            const params = {
-                // edificio: edificio,
-                fechaInicio: fechaInicio,
-                fechaTermino: fechaTermino,
-                estado: estado,
-                // creadoPor: creadoPor,
-            };
-
-            // Llamar a la función sendRequest() con los parámetros de búsqueda
-            sendRequest("{{ route('formulario-area-tecnica.list') }}", "GET", params)
-                .then(function (result) {
-                    // Actualizar la tabla DevExtreme con los datos filtrados
-                    $("#dataGridAreaTecnica").dxDataGrid("instance").option("dataSource", result);
-                })
-                .catch(function (error) {
-                    console.error("Error al obtener los datos filtrados:", error);
-                });
-        });
+        //  $('#fechaInicio, #fechaTermino, #estado').on('change', function(e) {
+        //     dataGrid.refresh();
+        //  });
     }
 
 
@@ -161,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
         method = method || "GET";
         $.ajax(url, {
             method: method || "GET",
-            data: data,
+            data: data, // Pasar los datos directamente sin serializarlos
             cache: false,
             xhrFields: {
                 withCredentials: true,

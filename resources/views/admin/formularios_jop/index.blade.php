@@ -3,25 +3,29 @@
 
 @section('content')
    <h1>Formularios JOP</h1>
-   
-   <form action="" class="grid-filtros-admin-3">
-      <div class="form-group">
-         <label for="titulo">Periodo</label>
-         <input type="date" class="form-control" min="" id="" name="" placeholder="DD/MM/AAAA">
-         <small id="" class="field-message-alert invisible absolute"></small>
-      </div>
-      
-      <div class="form-group">
-         <div class="sin-label"></div>
-         <input type="date" class="form-control" min="" id="" name="" placeholder="DD/MM/AAAA">
-         <small id="" class="field-message-alert invisible absolute"></small>
-      </div>
+
+   <form action="" class="grid-filtros-admin-3" method="GET">
+    @csrf
+    <div class="form-group">
+        <label for="titulo">Periodo</label>
+        <input type="date" class="form-control" min="" id="fechaInicio" name="fechaInicio" placeholder="DD/MM/AAAA">
+        <small id="" class="field-message-alert invisible absolute"></small>
+     </div>
+
+     <div class="form-group">
+        <div class="sin-label"></div>
+        <input type="date" class="form-control" min="" id="fechaTermino" name="fechaTermino" placeholder="DD/MM/AAAA">
+        <small id="" class="field-message-alert invisible absolute"></small>
+     </div>
 
       <div class="form-group">
          <label for="">Estado</label>
-         <select id="" name="" class="form-control" tabindex="4" style="width:100%;">
-             <option value="1">value 1</option>
-             <option value="0">value 2</option>
+         <select id="estado" name="estado" class="form-control" tabindex="4" style="width:100%;">
+            <option value="">Todos</option>
+            <option value="0">Borrador</option>
+            <option value="1">Publicado</option>
+            <option value="2">Respondido</option>
+            <option value="3">Cerrado</option>
          </select>
          <small id="" class="field-message-alert absolute"></small>
      </div>

@@ -6,24 +6,31 @@ document.addEventListener("DOMContentLoaded", function () {
         DevExpress.localization.locale(navigator.language);
 
         // Función para el origen de datos.
-        const caracteristicas = new DevExpress.data.CustomStore({
-            load: function () {
-                return sendRequest("");
+        const formulario = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                const params = {
+                    fechaInicio: document.querySelector('#fechaInicio').value,
+                    fechaTermino: document.querySelector('#fechaTermino').value,
+                    estado: document.querySelector('#estado').value,
+                };
+
+                return sendRequest("/admin/formulario-jop/get/list", "GET", params);
             },
         });
 
-        $("#dataGridFormularios").dxDataGrid({
-            dataSource: caracteristicas,
+        const dataGrid = $("#dataGridFormularios").dxDataGrid({
+            dataSource: formulario,
+            // Resto del código del data grid...
             columns: [
                 {
-                    dataField: "car_nombreFormulario",
+                    dataField: "form_nombre",
                     caption: "Nombre formulario",
                     filterOperations: ["contains"],
                     alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
                 },
                 {
-                    dataField: "car_enviado",
+                    dataField: "form_nombre",
                     caption: "Enviado por",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -32,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "car_fechaRecepcion",
+                    dataField: "fecha",
                     caption: "Fecha recepción",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -41,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "car_estado",
+                    dataField: "form_estado",
                     caption: "Estado",
                     allowEditing: false,
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
@@ -55,11 +62,19 @@ document.addEventListener("DOMContentLoaded", function () {
                                 data: [
                                     {
                                         id: 0,
-                                        name: "Pendiente",
+                                        name: "Borrador",
                                     },
                                     {
                                         id: 1,
-                                        name: "Enviada",
+                                        name: "Publicado",
+                                    },
+                                    {
+                                        id: 2,
+                                        name: "Respondido",
+                                    },
+                                    {
+                                        id: 3,
+                                        name: "Cerrado",
                                     },
                                 ],
                                 key: "id",
@@ -95,7 +110,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 showPageSizeSelector: true,
                 allowedPageSizes: [5, 10, 15, 20],
             },
+        }).dxDataGrid("instance");
+
+        $('.btn-filtro').on('click', function(e) {
+            e.preventDefault();
+            dataGrid.refresh();
         });
+
+        //  $('#fechaInicio, #fechaTermino, #estado').on('change', function(e) {
+        //     dataGrid.refresh();
+        //  });
     }
 
     function sendRequest(url, method, data) {
