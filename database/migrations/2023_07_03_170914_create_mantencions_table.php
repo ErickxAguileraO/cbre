@@ -15,6 +15,10 @@ class CreateMantencionsTable extends Migration
     {
         Schema::create('mantencions', function (Blueprint $table) {
             $table->id('man_id');
+
+            $table->unsignedBigInteger('man_listado_mantencions_id');
+            $table->foreign('man_listado_mantencions_id')->references('lism_id')->on('listado_mantencions');
+
             $table->text('man_descripcion');
             $table->timestamps();
         });

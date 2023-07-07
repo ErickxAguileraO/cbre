@@ -19,6 +19,9 @@ class CreatePreguntasTable extends Migration
             $table->unsignedBigInteger('pre_formulario_id');
             $table->foreign('pre_formulario_id')->references('form_id')->on('formularios');
 
+            $table->unsignedBigInteger('pre_tipo_pregunta_id');
+            $table->foreign('pre_tipo_pregunta_id')->references('tipp_id')->on('tipo_preguntas');
+
             $table->string('pre_pregunta');
             $table->boolean('pre_obligatorio')->default(true);
             $table->softDeletes();
