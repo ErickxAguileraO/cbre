@@ -43,7 +43,7 @@
    @include('components.modalFormulario')
 
    <div class="modalObservacion__abrirBtn">abrir</div>   
-   @include('components.modalObservacion')
+
 
    <div class="contador-archivos modalFormulario__abrirBtn cursor-pointer"><p>5</p></div>
 
