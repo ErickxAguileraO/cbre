@@ -42,15 +42,11 @@
    {{-- Modal Formulario --}}
    @include('components.modalFormulario')
 
-   <div class="modalObservacion__abrirBtn">abrir</div>   
-
-
-   <div class="contador-archivos modalFormulario__abrirBtn cursor-pointer"><p>5</p></div>
-
    @csrf
    @endsection
    @push('scripts')
    <script src="{{ asset('public/js/admin/sistema/formulario_exportar/listado.js') }}"></script>
    <script src="{{ asset('/public/css/componentes/modal/modal.js') }}"></script>
    <script src="{{ asset('/public/js/script.js') }}"></script>
+
    @endpush
