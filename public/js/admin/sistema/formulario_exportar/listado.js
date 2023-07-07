@@ -1,5 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
+
     cargarCaracteristicas();
 
     function cargarCaracteristicas() {
@@ -49,11 +50,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     // width: '110',
                     // minWidth: '110',
                     cellTemplate(container, options) {
-                        let urlExp = ``;
-
-                        let templateExp = `<div class="contador-archivos modalFormulario__abrirBtn cursor-pointer"><p>5</p></div>`;
-                        const enlaceExp = $('<div />').append(templateExp).appendTo(container);
+                        $("<div>")
+                            .text("5").addClass("contador-archivos cursor-pointer").on("click", function () {
+                                $(".contenedor__modalFormulario").css("display", "flex");
+                            })
+                            .appendTo(container);
                     },
+
+                    
                 },
                 {
                     dataField: "",
