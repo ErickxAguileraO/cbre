@@ -15,6 +15,10 @@ class CreateFormulariosTable extends Migration
     {
         Schema::create('formularios', function (Blueprint $table) {
             $table->id('form_id');
+
+            $table->unsignedBigInteger('form_funcionario_id');
+            $table->foreign('form_funcionario_id')->references('fun_id')->on('funcionarios');
+
             $table->string('form_nombre');
             $table->text('form_descripcion');
             $table->softDeletes();
