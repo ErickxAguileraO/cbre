@@ -2,7 +2,8 @@
 body{
     padding: 20px;
 }
-.contenedor__modalFile, .contenedor__modalPublicar, .contenedor__modalEnviar, .contenedor__modalMantencion{
+.contenedor__modalFile, .contenedor__modalPublicar, .contenedor__modalEnviar, 
+.contenedor__modalMantencion, .contenedor__modalFormulario, .contenedor__modalObservacion{
     display: none;
     align-items: center;
     justify-content: center;
