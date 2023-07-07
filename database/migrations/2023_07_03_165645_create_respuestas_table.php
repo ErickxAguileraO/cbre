@@ -15,6 +15,10 @@ class CreateRespuestasTable extends Migration
     {
         Schema::create('respuestas', function (Blueprint $table) {
             $table->id('res_id');
+
+            $table->unsignedBigInteger('res_formulario_edificio_id');
+            $table->foreign('res_formulario_edificio_id')->references('foredi_id')->on('formulario_edificio');
+
             $table->text('res_respuesta');
             $table->text('res_comentario');
             $table->timestamps();

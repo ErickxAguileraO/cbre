@@ -15,6 +15,10 @@ class CreateArchivoMantencionsTable extends Migration
     {
         Schema::create('archivo_mantencions', function (Blueprint $table) {
             $table->id('arcm_id');
+
+            $table->unsignedBigInteger('arcm_mantencion_id');
+            $table->foreign('arcm_mantencion_id')->references('man_id')->on('mantencions');
+
             $table->string('arcm_url');
             $table->timestamps();
         });
