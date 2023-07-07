@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Función para el origen de datos.
         const formulario = new DevExpress.data.CustomStore({
             load: function () {
-                return sendRequest("/admin/formulario-area-tecnica/get/list");
+                return sendRequest("");
             },
         });
 

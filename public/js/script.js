@@ -158,6 +158,24 @@ $(".modalMantencion__cerrarBtn").on('click', function () {
 });
 
 
+// Modal Formulario
+$(".modalFormulario__abrirBtn").on('click', function () {
+  $(".contenedor__modalFormulario").css("display", "flex");
+});
+
+$(".modalFormulario__cerrarBtn").on('click', function () {
+  $(".contenedor__modalFormulario").css("display", "none");
+});
+
+// Modal observacion
+$(".modalObservacion__abrirBtn").on('click', function () {
+  $(".contenedor__modalObservacion").css("display", "flex");
+});
+
+$(".modalObservacion__cerrarBtn").on('click', function () {
+  $(".contenedor__modalObservacion").css("display", "none");
+});
+
 // Agregar comentario
 $(document).ready(function () {
   // Agregar input al presionar el botón
