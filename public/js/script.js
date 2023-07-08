@@ -3,7 +3,7 @@ $(document).ready(function () {
 
   // Seleccion individual
   // Agregar input al presionar el botón
-  $(document).on("click", ".btn-agregar", function () {
+/*   $(document).on("click", ".btn-agregar", function () {
     var newInput =
       '<fieldset class="row row-input-form">' +
       '<input type="radio">' +
@@ -20,11 +20,11 @@ $(document).ready(function () {
   $(document).on("click", ".btn-remove", function () {
     $(this).closest(".row-input-form").remove();
   });
-
+ */
 
   // Seleccion multiple
   // Agregar input al presionar el botón
-  $(".btn-agregar-2").click(function () {
+/*   $(".btn-agregar-2").click(function () {
     var newInput =
       '<fieldset class="row row-input-form">' +
       '<input type="checkbox">' +
@@ -40,10 +40,10 @@ $(document).ready(function () {
   // Eliminar input al presionar el botón
   $(document).on("click", ".btn-remove", function () {
     $(this).closest(".row-input-form").remove();
-  });
+  }); */
 
 
-  // Agregar PREGUNTA al presionar el botón
+/*   // Agregar PREGUNTA al presionar el botón
   $(document).on("click", ".btn-agregar-nueva-pregunta", function () {
     var newInput =
       '<div class="div-formulario-n">' +
@@ -98,17 +98,17 @@ $(document).ready(function () {
       '</div>' +
       '</div>';
     $(".contenedor-form-preguntas").append(newInput);
-  });
+  }); */
 
   // Eliminar input al presionar el botón
-  $(document).on("click", ".btn-remove-pregunta", function () {
+/*   $(document).on("click", ".btn-remove-pregunta", function () {
     $(this).closest(".div-formulario-n").remove();
   });
 
   $(document).on("click", ".modalFile__abrirBtn", function () {
     $(".contenedor__modalFile").css("display", "flex");
   });
-});
+}); */
 
 
 
@@ -120,18 +120,18 @@ $(".select-manual").click(function () {
 
 
 // Modal Adjuntar archivos
-$(".modalFile__abrirBtn").on('click', function () {
+/* $(".modalFile__abrirBtn").on('click', function () {
   $(".contenedor__modalFile").css("display", "flex");
 });
 
 $(".modalFile__cerrarBtn").on('click', function () {
   $(".contenedor__modalFile").css("display", "none");
 });
-
+ */
 
 
 // Modal publicar
-$(".modalPublicar__abrirBtn").on('click', function () {
+/* $(".modalPublicar__abrirBtn").on('click', function () {
   $(".contenedor__modalPublicar").css("display", "flex");
 });
 
@@ -155,7 +155,7 @@ $(".modalMantencion__abrirBtn").on('click', function () {
 
 $(".modalMantencion__cerrarBtn").on('click', function () {
   $(".contenedor__modalMantencion").css("display", "none");
-});
+}); */
 
 
 // Agregar comentario
@@ -173,4 +173,5 @@ $(document).ready(function () {
       commentContainer.append(newComment);
     }
   });
+});
 });

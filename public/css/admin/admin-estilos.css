@@ -569,7 +569,7 @@ nav.header * {
   padding-left: 15px;
 }
 .margin-bottom-5{
-  margin-bottom: 5px !important; 
+  margin-bottom: 5px !important;
 }
 .gap-37{
   gap: 37px;
@@ -1151,4 +1151,8 @@ input:checked+.slider:before {
   .option-select-manual {
     left: 0px;
   }
+}
+
+.toggle-pregunta{
+    cursor: pointer;
 }
