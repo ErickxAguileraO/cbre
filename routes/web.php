@@ -221,3 +221,11 @@ Route::get('/crear-mantencion', function () {
 Route::get('/ver-mantencion', function () {
     return view('admin.mantenciones_jop.view');
 });
+
+
+
+Route::get('/formulario-exportar', function () {
+    return view('admin.exportar.index');
+});
+
+

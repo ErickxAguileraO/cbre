@@ -51,6 +51,8 @@
                                     <div class="row-option modalPublicar__abrirBtn"><i class ="fas fa-eye"></i> Publicar y enviar</div>
                                     <div class="row-option"><i class="fas fa-copy"></i> Duplicar</div>
                                     <div class="row-option"><i class="fas fa-trash-alt"></i> Eliminar</div>
+                                    <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
+
                                 </div>
                             </div>
                         </div>
@@ -104,6 +106,9 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal observacion --}}
+    @include('components.modalObservacion')
 @endsection
 
 @push('scripts')
