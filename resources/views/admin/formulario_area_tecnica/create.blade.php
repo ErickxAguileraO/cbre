@@ -32,7 +32,6 @@
                 <li class="tab__boton" onclick="mostrarTab(event, 'tab2')" style="border-radius: 0px 8px 8px 0px;">
                     <p class="tab__nombre">Historial</p>
                 </li>
-
             </ul>
 
             <form action="#" method="POST" id="tab1" class="tab__contenido">
@@ -62,6 +61,7 @@
                 <div class="contenedor-form-preguntas">
                     <livewire:create-form :formId="$formulario->form_id"/>
                 </div>
+
             </form>
 
             <div id="tab2" class="tab__contenido">
@@ -108,7 +108,7 @@
     </div>
 
     {{-- Modal observacion --}}
-    @include('components.modalObservacion')
+{{--     @include('components.modalObservacion') --}}
 @endsection
 
 @push('scripts')

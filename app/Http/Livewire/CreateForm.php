@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Opcion;
 use Livewire\Component;
 use App\Models\Pregunta;
 use App\Models\Formulario;
-use App\Models\Opcion;
+use Livewire\WithFileUploads;
 
 class CreateForm extends Component
 {
@@ -21,6 +22,10 @@ class CreateForm extends Component
         return view('livewire.create-form',[
             'formulario' => Formulario::findOrFail($this->formId),
         ]);
+    }
+
+    public function uploadFileModal($preguntaId){
+        $this->emit('uploadFileModal', $preguntaId);
     }
 
     public function updateFormInfo(){
@@ -44,9 +49,9 @@ class CreateForm extends Component
         $opcion->save();
     }
 
-    public function changePreguntaType($preguntaId, $value){
+    public function changePreguntaType($preguntaId, $preguntaTypeId){
         $pregunta = Pregunta::findOrfail($preguntaId);
-        $pregunta->pre_tipo_pregunta_id = $value;
+        $pregunta->pre_tipo_pregunta_id = $preguntaTypeId;
         $pregunta->update();
     }
 
@@ -64,7 +69,6 @@ class CreateForm extends Component
 
     public function switchPreguntaRequired($preguntaId){
         $pregunta = Pregunta::findOrfail($preguntaId);
-
         if($pregunta->pre_obligatorio == 1){
             $pregunta->pre_obligatorio = 0;
         }else{

@@ -1153,6 +1153,6 @@ input:checked+.slider:before {
   }
 }
 
-.toggle-pregunta{
+.pointer{
     cursor: pointer;
 }

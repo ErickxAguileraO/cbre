@@ -1,4 +1,7 @@
 <div>
+
+    <livewire:upload-file-modal/>
+
     <div class="div-formulario-n">
         <h3>Información del formulario</h3>
         <fieldset class="row">
@@ -26,10 +29,11 @@
         @foreach ($formulario->preguntas as $index => $pregunta)
         @if ($pregunta->tipoPregunta->tipp_id == 1)
 
+            {{-- Seleccion individual --}}
             <div class="div-formulario-n">
                 {{-- Encabezado de pregunta --}}
                 <fieldset class="row row-responsive">
-                    <div class="col-xl" wire:key="{{ $pregunta->pre_id }}">
+                    <div class="col-xl">
                         <div class="form-group">
                             <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
@@ -58,7 +62,7 @@
                 <div class="contenedor-dinamico">
                     @foreach ($pregunta->opciones as $index => $opcion)
                     <fieldset class="row row-input-form">
-                        <input type="radio">
+                        <input type="radio" disabled>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" type="text" tabindex="1"
@@ -79,7 +83,7 @@
 
                 {{-- Opciones de la pregunta --}}
                 <div class="opciones-pregunta grid-header-2">
-                    <div class="modalFile__abrirBtn">
+                    <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
                         <i class="far fa-paperclip"></i>
                         Adjuntar archivos
                     </div>
@@ -88,17 +92,17 @@
                             <p>Obligatorio</p>
 
                             @if ($pregunta->pre_obligatorio == 1)
-                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="toggle-pregunta">
+                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
                                 <i class="fas fa-toggle-on color-texto-cbre fa-2x"></i>
                             </p>
                             @else
-                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="toggle-pregunta">
+                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
                                 <i class="fas fa-toggle-off text-danger fa-2x"></i>
                             </p>
                             @endif
 
                         </div>
-                        <div wire:key="{{ $pregunta->pre_id }}" wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
                         </div>
@@ -114,8 +118,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" class="form-control" type="text" tabindex="1"
-                                placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -138,27 +141,34 @@
                         </div>
                     </div>
                 </fieldset>
+
                 {{-- Input dinamico --}}
                 <div class="contenedor-dinamico">
+                    @foreach ($pregunta->opciones as $index => $opcion)
                     <fieldset class="row row-input-form">
-                        <input type="checkbox">
+                        <input type="checkbox" disabled>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input id="" name="" class="form-control" type="text"
+                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" type="text"
                                     tabindex="1" placeholder="Pregunta" />
                             </div>
                         </div>
+                        @if ($index >= 1)
+                        <img wire:click="deleteOption({{$opcion->opc_id}})" src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        @endif
                     </fieldset>
+                    @endforeach
                 </div>
 
-                <div class="btn-agregar-2 row-global cursor-pointer color-texto-cbre">
+
+                <div wire:click="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
                     <i class="far fa-plus-circle"></i>
                     <p>Añadir otra opción</p>
                 </div>
 
                 {{-- Opciones de la pregunta --}}
                 <div class="opciones-pregunta grid-header-2">
-                    <div class="modalFile__abrirBtn">
+                    <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
                         <i class="far fa-paperclip"></i>
                         Adjuntar archivos
                     </div>
@@ -166,12 +176,18 @@
                         <div class="row-global align-center">
                             <p>Obligatorio</p>
 
-                            <label class="switch">
-                                <input type="checkbox" codigo="">
-                                <span class="slider round"></span>
-                            </label>
+                            @if ($pregunta->pre_obligatorio == 1)
+                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                                <i class="fas fa-toggle-on color-texto-cbre fa-2x"></i>
+                            </p>
+                            @else
+                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                                <i class="fas fa-toggle-off text-danger fa-2x"></i>
+                            </p>
+                            @endif
+
                         </div>
-                        <div wire:key="{{ $pregunta->pre_id }}" wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
                         </div>
@@ -187,8 +203,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" class="form-control" type="text" tabindex="1"
-                                placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -212,13 +227,13 @@
                     </div>
                 </fieldset>
                 <div class="form-group">
-                    <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
+                    <textarea name="" id="" class="form-control" disabled cols="30" rows="10" placeholder="Respuesta"></textarea>
                     <small id="" class="field-message-alert absolute"></small>
                 </div>
 
                 {{-- Opciones de la pregunta --}}
                 <div class="opciones-pregunta grid-header-2">
-                    <div class="modalFile__abrirBtn">
+                    <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
                         <i class="far fa-paperclip"></i>
                         Adjuntar archivos
                     </div>
@@ -226,12 +241,18 @@
                         <div class="row-global align-center">
                             <p>Obligatorio</p>
 
-                            <label class="switch">
-                                <input type="checkbox" codigo="">
-                                <span class="slider round"></span>
-                            </label>
+                            @if ($pregunta->pre_obligatorio == 1)
+                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                                <i class="fas fa-toggle-on color-texto-cbre fa-2x"></i>
+                            </p>
+                            @else
+                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                                <i class="fas fa-toggle-off text-danger fa-2x"></i>
+                            </p>
+                            @endif
+
                         </div>
-                        <div wire:key="{{ $pregunta->pre_id }}" wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
                         </div>
@@ -247,8 +268,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" class="form-control" type="text" tabindex="1"
-                                placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -346,6 +366,7 @@
                         </div>
                     </div>
                 </fieldset>
+
                 <fieldset class="row-global row-responsive">
                     <label class="width-250" for="">Subir documentación</label>
                     <div>
@@ -357,7 +378,7 @@
                 </fieldset>
 
                 <div class="opciones-pregunta grid-header-2">
-                    <div class="modalFile__abrirBtn">
+                    <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
                         <i class="far fa-paperclip"></i>
                         Adjuntar archivos
                     </div>
@@ -365,12 +386,18 @@
                         <div class="row-global align-center">
                             <p>Obligatorio</p>
 
-                            <label class="switch">
-                                <input type="checkbox" codigo="">
-                                <span class="slider round"></span>
-                            </label>
+                            @if ($pregunta->pre_obligatorio == 1)
+                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                                <i class="fas fa-toggle-on color-texto-cbre fa-2x"></i>
+                            </p>
+                            @else
+                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                                <i class="fas fa-toggle-off text-danger fa-2x"></i>
+                            </p>
+                            @endif
+
                         </div>
-                        <div wire:key="{{ $pregunta->pre_id }}" wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
                         </div>
@@ -386,10 +413,5 @@
         <i class="far fa-plus-circle"></i>
         <p>Agregar nueva pregunta</p>
     </div>
-
-    {{--     <div class="botones-formulario">
-        <button class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario">cancelar</button>
-        <button class="modalFile__btnN modalFile__botonPrimario">Guardar borrador</button>
-    </div> --}}
 
 </div>

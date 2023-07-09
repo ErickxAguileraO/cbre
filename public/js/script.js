@@ -120,14 +120,14 @@ $(".select-manual").click(function () {
 
 
 // Modal Adjuntar archivos
-/* $(".modalFile__abrirBtn").on('click', function () {
+/*  $(".modalFile__abrirBtn").on('click', function () {
   $(".contenedor__modalFile").css("display", "flex");
 });
 
 $(".modalFile__cerrarBtn").on('click', function () {
   $(".contenedor__modalFile").css("display", "none");
-});
- */
+}); */
+
 
 
 // Modal publicar
@@ -159,7 +159,7 @@ $(".modalMantencion__cerrarBtn").on('click', function () {
 
 
 // Modal Formulario
-$(".modalFormulario__abrirBtn").on('click', function () {
+/* $(".modalFormulario__abrirBtn").on('click', function () {
   $(".contenedor__modalFormulario").css("display", "flex");
 });
 
@@ -174,7 +174,7 @@ $(".modalObservacion__abrirBtn").on('click', function () {
 
 $(".modalObservacion__cerrarBtn").on('click', function () {
   $(".contenedor__modalObservacion").css("display", "none");
-});
+}); */
 
 // Agregar comentario
 $(document).ready(function () {
