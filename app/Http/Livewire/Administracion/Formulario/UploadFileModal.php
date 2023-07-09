@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Administracion\Formulario;
 
 use Livewire\Component;
 use App\Models\Pregunta;
@@ -17,7 +17,7 @@ class UploadFileModal extends Component
 
     public function render()
     {
-        return view('livewire.upload-file-modal',[
+        return view('admin.formulario_area_tecnica.livewire.upload-file-modal',[
             'archivos' => ArchivoFormulario::where('arcf_pregunta_id', $this->preguntaId)->get(),
         ]);
     }

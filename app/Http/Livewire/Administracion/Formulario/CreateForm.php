@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Administracion\Formulario;
 
 use App\Models\Opcion;
 use Livewire\Component;
@@ -19,7 +19,7 @@ class CreateForm extends Component
 
     public function render()
     {
-        return view('livewire.create-form',[
+        return view('admin.formulario_area_tecnica.livewire.create-form',[
             'formulario' => Formulario::findOrFail($this->formId),
         ]);
     }

@@ -1,6 +1,6 @@
 <div>
 
-    <livewire:upload-file-modal/>
+    <livewire:administracion.formulario.upload-file-modal/>
 
     <div class="div-formulario-n">
         <h3>Información del formulario</h3>
