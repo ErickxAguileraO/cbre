@@ -11,7 +11,8 @@
                 <div class="div-input-file">
                     <input class="hide" type="file" name="archivoUpload" id="archivoUpload" wire:model.defer="files" value="">
                     <label class="label-input-100 pointer" for="archivoUpload">
-                        <img src="/public/images/admin/sistema/cloud.svg" alt="">
+                        <div wire:loading wire:target="files" class="spinner-border file-spinner text-dark"></div>
+                        <img wire:loading.remove wire:target="files" src="/public/images/admin/sistema/cloud.svg" alt="">
                         <p>click aquí para seleccionar</p>
                     </label>
                 </div>
@@ -37,11 +38,9 @@
     </div>
 
     <script>
-        // Función para cerrar el modal
         function cerrarModal() {
             document.querySelector(".contenedor__modalFile").style.display = "none";
         }
-
     </script>
     <script>
         window.addEventListener('show-uploadFileModal', event =>{

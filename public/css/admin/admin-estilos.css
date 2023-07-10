@@ -1156,3 +1156,11 @@ input:checked+.slider:before {
 .pointer{
     cursor: pointer;
 }
+
+.file-spinner {
+    width: 32px!important;
+    height: 32px!important;
+    border: 4px solid rgb(1, 42, 45)!important;
+    border-bottom-color: transparent!important;
+    border-radius: 50%!important;
+}
