@@ -155,7 +155,7 @@
             @can('index mantencion')
             <li>
               <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="/mantenciones-jop" class="nav-link">Mantenciones JOP</a>
+                <a href="{{ route('mantenciones-jop.index') }}" class="nav-link">Mantenciones JOP</a>
               </span>
             </li>
             @endcan

@@ -6,13 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Formulario;
 use App\Models\Edificio;
+use App\Models\Funcionario;
 
 class FormularioAreaTecnicaController extends Controller
 {
     public function index()
     {
         $edificios = Edificio::all();
-        return view('admin.formulario_area_tecnica.index', compact('edificios'));
+        $funcionarios = Formulario::with('funcionario')->get()->pluck('funcionario');
+        // dd($funcionarios);
+        return view('admin.formulario_area_tecnica.index', compact('edificios','funcionarios'));
     }
 
     public function create()
@@ -23,8 +26,22 @@ class FormularioAreaTecnicaController extends Controller
     public function list(Request $request)
     {
         try {
-            $formularios = Formulario::withFilters()->orderByDesc('created_at')->get();
-            return response()->json($formularios);
+            $formulario = Formulario::with('funcionario.edificio')
+            ->withFilters()
+            ->orderByDesc('updated_at')
+            ->get();
+
+        // Obtener los nombres de los funcionarios y los nombres de los edificios
+        $funcionarios = $formulario->pluck('funcionario.fun_nombre');
+        $edificios = $formulario->pluck('funcionario.edificio.edi_nombre');
+
+        // Agregar los nombres de los funcionarios y los nombres de los edificios al objeto de cada formulario
+        foreach ($formulario as $key => $value) {
+            $value->creado_por = $funcionarios[$key];
+            $value->edificio = isset($edificios[$key]) ? $edificios[$key] : null;
+        }
+
+        return response()->json($formulario);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
         }

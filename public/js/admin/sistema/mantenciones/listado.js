@@ -6,24 +6,31 @@ document.addEventListener("DOMContentLoaded", function () {
         DevExpress.localization.locale(navigator.language);
 
         // Función para el origen de datos.
-        const caracteristicas = new DevExpress.data.CustomStore({
-            load: function () {
-                return sendRequest("");
+        const mantenciones = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                const params = {
+                    fechaInicio: document.querySelector('#fechaInicio').value,
+                    fechaTermino: document.querySelector('#fechaTermino').value,
+                    especialidad: document.querySelector('#especialidad').value,
+                };
+
+                return sendRequest("/admin/mantenciones-jop/get/list", "GET", params);
             },
         });
 
-        $("#dataGridMantenciones").dxDataGrid({
-            dataSource: caracteristicas,
+        const dataGrid = $("#dataGridMantenciones").dxDataGrid({
+            dataSource: mantenciones,
+            // Resto del código del data grid...
             columns: [
                 {
-                    dataField: "car_especialidad",
+                    dataField: "especialidades",
                     caption: "Especialidad",
                     filterOperations: ["contains"],
                     alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
                 },
                 {
-                    dataField: "car_fechaMantencion",
+                    dataField: "fecha",
                     caption: "Fecha mantención",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -57,6 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 showPageSizeSelector: true,
                 allowedPageSizes: [5, 10, 15, 20],
             },
+        }).dxDataGrid("instance");
+
+        $('.btn-filtro').on('click', function(e) {
+            e.preventDefault();
+            dataGrid.refresh();
         });
     }
 

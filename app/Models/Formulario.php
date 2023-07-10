@@ -16,6 +16,7 @@ class Formulario extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'form_funcionario_id',
         'form_nombre',
         'form_descripcion',
         'form_estado',
@@ -33,16 +34,20 @@ class Formulario extends Model
     public function scopeWithFilters($query)
     {
         return $query->when(request('fechaInicio'), function ($query, $inicio) {
-            $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d') >= ?", [$inicio]);
+            $query->whereDate('updated_at', '>=', $inicio);
         })->when(request('fechaTermino'), function ($query, $termino) {
-            $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d') <= ?", [$termino]);
+            $query->whereDate('updated_at', '<=', $termino);
         })->when(request('estado'), function ($query, $estado) {
             $query->where('form_estado', $estado);
+        })->when(request('creado_por'), function ($query, $creadoPor) {
+            $query->whereHas('funcionario', function ($query) use ($creadoPor) {
+                $query->where('fun_nombre', $creadoPor);
+            });
         });
     }
 
-    // public function formulariosEdificios()
-    // {
-    //     return $this->hasMany(FormularioEdificio::class, 'form_id');
-    // }
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class, 'form_funcionario_id', 'fun_id');
+    }
 }

@@ -10,6 +10,7 @@
       <div class="form-group">
          <label for="">Edificio</label>
          <select id="edificio" name="edificio" class="form-control" tabindex="4" style="width:100%;">
+            <option value="">Todos</option> <!-- Opción vacía -->
             @foreach ($edificios as $edificio)
                 @php
                     $selected = old('edificio') == $edificio->edi_nombre ? 'selected' : '';
@@ -36,7 +37,7 @@
          <label for="">Estado</label>
          <select id="estado" name="estado" class="form-control" tabindex="4" style="width:100%;">
             <option value="">Todos</option>
-            <option value="0">Borrador</option>
+            <option value="4">Borrador</option>
             <option value="1">Publicado</option>
             <option value="2">Respondido</option>
             <option value="3">Cerrado</option>
@@ -46,7 +47,14 @@
       @if (auth()->user()->hasRole('super-admin'))
          <div class="form-group">
             <label for="">Creado por</label>
-            <select id="" name="" class="form-control" tabindex="4" style="width:100%;">
+            <select id="creado_por" name="creado_por" class="form-control" tabindex="4" style="width:100%;">
+                <option value="">Todos</option> <!-- Opción vacía -->
+                @foreach ($funcionarios->unique() as $funcionario)
+                    @php
+                        $selected = old('creado_por') == $funcionario->fun_nombre ? 'selected' : '';
+                    @endphp
+                    <option value="{{ $funcionario->fun_nombre }}" {{ $selected }}>{{ $funcionario->fun_nombre  }}</option>
+                @endforeach
             </select>
             <small id="" class="field-message-alert absolute"></small>
          </div>

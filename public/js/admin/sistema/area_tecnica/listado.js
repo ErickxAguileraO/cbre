@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     fechaInicio: document.querySelector('#fechaInicio').value,
                     fechaTermino: document.querySelector('#fechaTermino').value,
                     estado: document.querySelector('#estado').value,
+                    creado_por: document.querySelector('#creado_por').value,
                 };
 
                 return sendRequest("/admin/formulario-area-tecnica/get/list", "GET", params);
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Resto del código del data grid...
             columns: [
                 {
-                    dataField: "form_nombre",
+                    dataField: "creado_por",
                     caption: "Área",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -50,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "form_nombre",
+                    dataField: "edificio",
                     caption: "Edificio",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -59,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "form_nombre",
+                    dataField: "",
                     caption: "Archivos",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -81,10 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                 type: "array",
                                 data: [
                                     {
-                                        id: 0,
-                                        name: "Borrador",
-                                    },
-                                    {
                                         id: 1,
                                         name: "Publicado",
                                     },
@@ -95,6 +92,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                     {
                                         id: 3,
                                         name: "Cerrado",
+                                    },
+                                    {
+                                        id: 4,
+                                        name: "Borrador",
                                     },
                                 ],
                                 key: "id",

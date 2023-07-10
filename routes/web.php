@@ -19,6 +19,7 @@ use App\Http\Controllers\Administracion\CaracteristicaController;
 use App\Http\Controllers\Administracion\DatosGeneralesController;
 use App\Http\Controllers\Administracion\FormularioAreaTecnicaController;
 use App\Http\Controllers\Administracion\FormularioJOPController;
+use App\Http\Controllers\Administracion\MantencionesJOPController;
 use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
 use App\Http\Controllers\Web\ContactoController as WebContactoController;
 use App\Http\Controllers\Web\EdificioController as  WebEdificioController;
@@ -77,6 +78,12 @@ Route::middleware(['auth'])->group(function () {
             Route::controller(FormularioJOPController::class)->group(function () {
                 Route::resource('formulario-jop', FormularioJOPController::class);
                 Route::get('formulario-jop/get/list', 'list')->name('formulario-jop.list');
+            });
+
+            // Mantenciones JOP
+            Route::controller(MantencionesJOPController::class)->group(function () {
+                Route::resource('mantenciones-jop', MantencionesJOPController::class);
+                Route::get('mantenciones-jop/get/list', 'list')->name('mantenciones-jop.list');
             });
 
             // Quiénes somos
@@ -208,26 +215,26 @@ Route::get('/ver-mantencion-admin', function () {
     return view('admin.mantencion_soporte_tecnico.view');
 });
 
-// JOP
-Route::get('/formularios-jop', function () {
-    return view('admin.formularios_jop.index');
-});
-Route::get('/responder-formulario', function () {
-    return view('admin.formularios_jop.responder');
-});
+// // JOP
+// Route::get('/formularios-jop', function () {
+//     return view('admin.formularios_jop.index');
+// });
+// Route::get('/responder-formulario', function () {
+//     return view('admin.formularios_jop.responder');
+// });
 
 
 
 
-Route::get('/mantenciones-jop', function () {
-    return view('admin.mantenciones_jop.index');
-});
-Route::get('/crear-mantencion', function () {
-    return view('admin.mantenciones_jop.create');
-});
-Route::get('/ver-mantencion', function () {
-    return view('admin.mantenciones_jop.view');
-});
+// Route::get('/mantenciones-jop', function () {
+//     return view('admin.mantenciones_jop.index');
+// });
+// Route::get('/crear-mantencion', function () {
+//     return view('admin.mantenciones_jop.create');
+// });
+// Route::get('/ver-mantencion', function () {
+//     return view('admin.mantenciones_jop.view');
+// });
 
 
 

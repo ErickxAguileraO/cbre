@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
                 },
                 {
-                    dataField: "form_nombre",
+                    dataField: "creado_por",
                     caption: "Enviado por",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -61,10 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                 type: "array",
                                 data: [
                                     {
-                                        id: 0,
-                                        name: "Borrador",
-                                    },
-                                    {
                                         id: 1,
                                         name: "Publicado",
                                     },
@@ -75,6 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                     {
                                         id: 3,
                                         name: "Cerrado",
+                                    },
+                                    {
+                                        id: 4,
+                                        name: "Borrador",
                                     },
                                 ],
                                 key: "id",
