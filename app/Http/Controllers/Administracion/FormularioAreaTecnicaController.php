@@ -13,10 +13,10 @@ class FormularioAreaTecnicaController extends Controller
 {
     public function index()
     {
-        $edificios = Edificio::all();
-        $funcionarios = Formulario::with('funcionario')->get()->pluck('funcionario');
+        // $edificios = Edificio::all();
+        // $funcionarios = Formulario::with('funcionario')->get()->pluck('funcionario');
         // dd($funcionarios);
-        return view('admin.formulario_area_tecnica.index', compact('edificios','funcionarios'));
+        return view('admin.formulario_area_tecnica.index');
     }
 
     public function create()
