@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Formulario;
 use App\Models\Edificio;
 use App\Models\Funcionario;
+use Illuminate\Support\Facades\Auth;
 
 class FormularioAreaTecnicaController extends Controller
 {
@@ -20,7 +21,16 @@ class FormularioAreaTecnicaController extends Controller
 
     public function create()
     {
-        return view('admin.formulario_area_tecnica.create');
+        //El formulario se crea en primera instancia, quedando como borrador
+
+        $formulario = new Formulario();
+        $formulario->form_funcionario_id = Auth::user()->funcionario->fun_id;
+        $formulario->form_nombre = '';
+        $formulario->form_descripcion = '';
+        $formulario->form_estado = 0; //Estado "borrador"
+        $formulario->save();
+
+        return view('admin.formulario_area_tecnica.create', compact('formulario'));
     }
 
     public function list(Request $request)

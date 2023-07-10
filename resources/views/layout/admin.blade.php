@@ -23,6 +23,7 @@
 
   <!-- favicon -->
   <link href="{{ asset('public/images/admin/logo-white.svg') }}" rel="shortcut icon" />
+  @livewireStyles
 </head>
 
 <body>
@@ -209,5 +210,6 @@
   })
 </script>
 @stack('scripts')
+@livewireScripts
 </body>
 </html>

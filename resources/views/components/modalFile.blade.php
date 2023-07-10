@@ -75,7 +75,7 @@
     </div>
 </div> --}}
 {{-- Modal archivos --}}
-<div class="contenedor__modalFile">
+{{-- <div class="contenedor__modalFile">
     <div class="modalFile">
         <div class="modalFile__header">
             <h3>Adjuntar archivos</h3>
@@ -171,4 +171,4 @@
             cerrarModal();
         }
     </script>
-@endpush
+@endpush --}}

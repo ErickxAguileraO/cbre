@@ -50,4 +50,10 @@ class Formulario extends Model
     {
         return $this->belongsTo(Funcionario::class, 'form_funcionario_id', 'fun_id');
     }
+
+    public function preguntas()
+    {
+        return $this->hasMany(Pregunta::class, 'pre_formulario_id', 'form_id');
+    }
+
 }
