@@ -62,6 +62,12 @@
                     <livewire:administracion.formulario.create-form :formId="$formulario->form_id"/>
                 </div>
 
+                <div class="linea-separadora"></div>
+                <div class="botones-formulario">
+                    <a href="{{ route('formulario-area-tecnica.index') }}" class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">Cancelar</a>
+                    <a href="{{ route('formulario-area-tecnica.index') }}" class="modalFile__btnN modalFile__botonPrimario text-white text-decoration-none">Guardar borrador</a>
+                </div>
+
             </form>
 
             <div id="tab2" class="tab__contenido">
