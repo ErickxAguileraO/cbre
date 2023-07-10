@@ -33,6 +33,7 @@
 
             <div class="modalFile__botones">
                 <div class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario" onclick="cerrarModal()">Cerrar</div>
+                <div class="modalFile__btnN modalFile__botonPrimario" onclick="cerrarModal()">Listo</div>
             </div>
         </div>
     </div>
