@@ -47,4 +47,10 @@ class Formulario extends Model
     //         $query->where('pag_planta_id', $id_planta);
     //     });
     // }
+
+    public function preguntas()
+    {
+        return $this->hasMany(Pregunta::class, 'pre_formulario_id', 'form_id');
+    }
+
 }

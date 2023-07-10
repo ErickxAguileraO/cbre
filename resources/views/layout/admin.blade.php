@@ -23,6 +23,7 @@
 
   <!-- favicon -->
   <link href="{{ asset('public/images/admin/logo-white.svg') }}" rel="shortcut icon" />
+  @livewireStyles
 </head>
 
 <body>
@@ -152,7 +153,7 @@
               </span>
             </li>
             @endcan
-            @can('index matencion')
+            @can('index mantencion')
             <li>
               <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="/mantenciones-jop" class="nav-link">Mantenciones JOP</a>
@@ -209,5 +210,6 @@
   })
 </script>
 @stack('scripts')
+@livewireScripts
 </body>
 </html>

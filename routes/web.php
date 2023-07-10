@@ -66,12 +66,6 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('caracteristicas/get/list', 'list')->name('caracteristicas.list');
             });
 
-            // Formulario Area Tecnica
-            Route::controller(FormularioAreaTecnicaController::class)->group(function () {
-                Route::resource('formulario-area-tecnica', FormularioAreaTecnicaController::class);
-                Route::get('formulario-area-tecnica/get/list', 'list')->name('formulario-area-tecnica.list');
-            });
-
             // Quiénes somos
             Route::controller(QuienesSomosController::class)->group(function () {
                 Route::resource('quienes-somos', QuienesSomosController::class);
@@ -139,6 +133,12 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(FuncionarioController::class)->group(function () {
             Route::resource('funcionarios', FuncionarioController::class);
             Route::get('funcionarios/get/list', 'list')->name('funcionarios.list');
+        });
+
+        // Formulario Area Tecnica
+        Route::controller(FormularioAreaTecnicaController::class)->group(function () {
+            Route::resource('formulario-area-tecnica', FormularioAreaTecnicaController::class);
+            Route::get('formulario-area-tecnica/get/list', 'list')->name('formulario-area-tecnica.list');
         });
     });
 });
