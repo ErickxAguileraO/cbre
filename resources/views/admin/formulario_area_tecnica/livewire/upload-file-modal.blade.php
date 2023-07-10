@@ -9,7 +9,7 @@
             <div class="modalFile__contenedorContenido">
                 <h3 style="text-align: center;">¿Cuando fue la ultima vez que se realizó mantención al ascensor principal?</h3>
                 <div class="div-input-file">
-                    <input class="hide" type="file" name="archivoUpload" id="archivoUpload" wire:model.defer="files" value="">
+                    <input class="hide" type="file" name="archivoUpload" id="archivoUpload" wire:model.defer="files" value="" multiple>
                     <label class="label-input-100 pointer" for="archivoUpload">
                         <div wire:loading wire:target="files" class="spinner-border file-spinner text-dark"></div>
                         <img wire:loading.remove wire:target="files" src="/public/images/admin/sistema/cloud.svg" alt="">
