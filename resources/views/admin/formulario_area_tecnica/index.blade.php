@@ -44,17 +44,20 @@
          </select>
          <small id="" class="field-message-alert absolute"></small>
      </div>
+     <input type="hidden" id="rolAdmin" name="rolAdmin" value="{{ auth()->user()->hasRole('super-admin') }}">
       @if (auth()->user()->hasRole('super-admin'))
          <div class="form-group">
             <label for="">Creado por</label>
             <select id="creado_por" name="creado_por" class="form-control" tabindex="4" style="width:100%;">
                 <option value="">Todos</option> <!-- Opción vacía -->
-                @foreach ($funcionarios->unique() as $funcionario)
-                    @php
-                        $selected = old('creado_por') == $funcionario->fun_nombre ? 'selected' : '';
-                    @endphp
-                    <option value="{{ $funcionario->fun_nombre }}" {{ $selected }}>{{ $funcionario->fun_nombre  }}</option>
-                @endforeach
+                @if(isset($funcionarios) && !$funcionarios->isEmpty())
+                    @foreach ($funcionarios->unique() as $funcionario)
+                        @php
+                            $selected = old('creado_por') == $funcionario->fun_nombre ? 'selected' : '';
+                        @endphp
+                        <option value="{{ $funcionario->fun_nombre }}" {{ $selected }}>{{ $funcionario->fun_nombre }}</option>
+                    @endforeach
+                @endif
             </select>
             <small id="" class="field-message-alert absolute"></small>
          </div>

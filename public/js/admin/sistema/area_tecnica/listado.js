@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function cargarFormulario() {
         DevExpress.localization.locale(navigator.language);
+        var rol = null;
+        if (document.querySelector('#rolAdmin').value === 'super') {
+            rol = document.querySelector('#creado_por').value
+        }
 
         // Función para el origen de datos.
         const formulario = new DevExpress.data.CustomStore({
@@ -12,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     fechaInicio: document.querySelector('#fechaInicio').value,
                     fechaTermino: document.querySelector('#fechaTermino').value,
                     estado: document.querySelector('#estado').value,
-                    creado_por: document.querySelector('#creado_por').value,
+                    creado_por: rol,
                 };
 
                 return sendRequest("/admin/formulario-area-tecnica/get/list", "GET", params);
@@ -26,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Resto del código del data grid...
             columns: [
                 {
-                    dataField: "creado_por",
+                    dataField: "",
                     caption: "Área",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -51,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "edificio",
+                    dataField: "",
                     caption: "Edificio",
                     filterOperations: ["contains"],
                     alignment: "left",
