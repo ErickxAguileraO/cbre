@@ -119,23 +119,23 @@ Route::middleware(['auth'])->group(function () {
             });
         });
 
-            // Formulario Area Tecnica
-            Route::controller(FormularioAreaTecnicaController::class)->group(function () {
-                Route::resource('formulario-area-tecnica', FormularioAreaTecnicaController::class);
-                Route::get('formulario-area-tecnica/get/list', 'list')->name('formulario-area-tecnica.list');
-            });
+        // Formulario Area Tecnica
+        Route::controller(FormularioAreaTecnicaController::class)->group(function () {
+            Route::resource('formulario-area-tecnica', FormularioAreaTecnicaController::class);
+            Route::get('formulario-area-tecnica/get/list', 'list')->name('formulario-area-tecnica.list');
+        });
 
-            // Formulario JOP
-            Route::controller(FormularioJOPController::class)->group(function () {
-                Route::resource('formulario-jop', FormularioJOPController::class);
-                Route::get('formulario-jop/get/list', 'list')->name('formulario-jop.list');
-            });
+        // Formulario JOP
+        Route::controller(FormularioJOPController::class)->group(function () {
+            Route::resource('formulario-jop', FormularioJOPController::class);
+            Route::get('formulario-jop/get/list', 'list')->name('formulario-jop.list');
+        });
 
-            // Mantenciones JOP
-            Route::controller(MantencionesJOPController::class)->group(function () {
-                Route::resource('mantenciones-jop', MantencionesJOPController::class);
-                Route::get('mantenciones-jop/get/list', 'list')->name('mantenciones-jop.list');
-            });
+         // Mantenciones JOP
+        Route::controller(MantencionesJOPController::class)->group(function () {
+            Route::resource('mantenciones-jop', MantencionesJOPController::class);
+            Route::get('mantenciones-jop/get/list', 'list')->name('mantenciones-jop.list');
+        });
 
         // Noticias
         Route::controller(NoticiaController::class)->group(function () {
@@ -153,12 +153,6 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(FuncionarioController::class)->group(function () {
             Route::resource('funcionarios', FuncionarioController::class);
             Route::get('funcionarios/get/list', 'list')->name('funcionarios.list');
-        });
-
-        // Formulario Area Tecnica
-        Route::controller(FormularioAreaTecnicaController::class)->group(function () {
-            Route::resource('formulario-area-tecnica', FormularioAreaTecnicaController::class);
-            Route::get('formulario-area-tecnica/get/list', 'list')->name('formulario-area-tecnica.list');
         });
     });
 });
