@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class Formulario extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'formularios';
     protected $primaryKey = 'form_id';

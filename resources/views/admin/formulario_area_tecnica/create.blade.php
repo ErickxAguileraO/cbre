@@ -49,7 +49,7 @@
                                     <a href="/preview-formulario" class="row-option"><i class="fas fa-eye"></i> Visualizar</a>
                                     <div class="row-option modalPublicar__abrirBtn"><i class ="fas fa-eye"></i> Publicar y enviar</div>
                                     <div class="row-option"><i class="fas fa-copy"></i> Duplicar</div>
-                                    <div class="row-option"><i class="fas fa-trash-alt"></i> Eliminar</div>
+                                    <div id="eliminar-formulario" class="row-option"><i class="fas fa-trash-alt"></i> Eliminar</div>
                                     <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
 
                                 </div>
@@ -64,8 +64,9 @@
 
                 <div class="linea-separadora"></div>
                 <div class="botones-formulario">
-                    <a href="{{ route('formulario-area-tecnica.index') }}" class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">Cancelar</a>
-                    <a href="{{ route('formulario-area-tecnica.index') }}" class="modalFile__btnN modalFile__botonPrimario text-white text-decoration-none">Guardar borrador</a>
+                    <a id="eliminar-formulario" class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">Eliminar</a>
+                    <input type="hidden" id="form_id" name="form_id" value="{{ $formulario->form_id }}">
+                    <a href="{{ route('formulario-area-tecnica.index') }}" class="modalFile__btnN modalFile__botonPrimario text-white text-decoration-none">Dejar como borrador</a>
                 </div>
 
             </form>
@@ -118,6 +119,7 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('/public\js\admin\sistema\area_tecnica\eliminar_formulario.js') }}"></script>
     <script src="{{ asset('/public/css/componentes/tab/tab.js') }}"></script>
     <script src="{{ asset('/public/css/componentes/modal/modal.js') }}"></script>
     <script src="{{ asset('/public/js/script.js') }}"></script>
