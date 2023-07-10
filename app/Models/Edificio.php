@@ -79,4 +79,9 @@ class Edificio extends Model
     {
         return '/public' . Storage::url($this->edi_imagen_listado);
     }
+
+    // public function formulariosEdificios()
+    // {
+    //     return $this->hasMany(FormularioEdificio::class, 'edi_id');
+    // }
 }

@@ -2,27 +2,32 @@
 @section('title', 'Mantenciones JOP')
 
 @section('content')
-   <a class="btn btn-success float-right text-white" href="/crear-mantencion">Nueva mantención</a>
+   <a class="btn btn-success float-right text-white" href="{{ route('mantenciones-jop.create') }}">Nueva mantención</a>
    <h1>Mantenciones JOP</h1>
-   
+
    <form action="" class="grid-filtros-admin-3">
-      <div class="form-group">
-         <label for="">Especialidad</label>
-         <select id="" name="" class="form-control" tabindex="4" style="width:100%;">
-             <option value="1">value 1</option>
-             <option value="0">value 2</option>
-         </select>
-         <small id="" class="field-message-alert absolute"></small>
-     </div>
+    <div class="form-group">
+        <label for="">Especialidad</label>
+        <select id="especialidad" name="especialidad" class="form-control" tabindex="4" style="width:100%;">
+            <option value="">Todos</option> <!-- Opción vacía -->
+            @foreach ($listadoEspecialidades as $especialidad)
+                @php
+                    $selected = old('especialidad') == $especialidad->lism_nombre ? 'selected' : '';
+                @endphp
+                <option value="{{ $especialidad->lism_nombre }}" {{ $selected }}>{{ $especialidad->lism_nombre }}</option>
+            @endforeach
+        </select>
+        <small id="" class="field-message-alert absolute"></small>
+    </div>
       <div class="form-group">
          <label for="titulo">Periodo</label>
-         <input type="date" class="form-control" min="" id="" name="" placeholder="DD/MM/AAAA">
+         <input type="date" class="form-control" min="" id="fechaInicio" name="fechaInicio" placeholder="DD/MM/AAAA">
          <small id="" class="field-message-alert invisible absolute"></small>
       </div>
-      
+
       <div class="form-group">
          <div class="sin-label"></div>
-         <input type="date" class="form-control" min="" id="" name="" placeholder="DD/MM/AAAA">
+         <input type="date" class="form-control" min="" id="fechaTermino" name="fechaTermino" placeholder="DD/MM/AAAA">
          <small id="" class="field-message-alert invisible absolute"></small>
       </div>
       <div>

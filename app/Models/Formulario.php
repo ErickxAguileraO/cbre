@@ -16,6 +16,7 @@ class Formulario extends Model
     public $timestamps = true;
 
     protected $fillable = [
+        'form_funcionario_id',
         'form_nombre',
         'form_descripcion',
         'form_estado',
@@ -30,23 +31,25 @@ class Formulario extends Model
         return Carbon::parse($this->updated_at)->format('d-m-Y');
     }
 
-    // public function scopeWithFilters($query)
-    // {
-    //     $proveedor = auth()->user()->proveedor;
-    //     $id_planta = auth()->user()->usu_planta_id;
+    public function scopeWithFilters($query)
+    {
+        return $query->when(request('fechaInicio'), function ($query, $inicio) {
+            $query->whereDate('updated_at', '>=', $inicio);
+        })->when(request('fechaTermino'), function ($query, $termino) {
+            $query->whereDate('updated_at', '<=', $termino);
+        })->when(request('estado'), function ($query, $estado) {
+            $query->where('form_estado', $estado);
+        })->when(request('creado_por'), function ($query, $creadoPor) {
+            $query->whereHas('funcionario', function ($query) use ($creadoPor) {
+                $query->where('fun_nombre', $creadoPor);
+            });
+        });
+    }
 
-    //     return $query->when(request('inicio'), function ($query, $inicio) {
-    //         $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d') >= ?", [$inicio]);
-    //     })->when(request('termino'), function ($query, $termino) {
-    //         $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d') <= ?", [$termino]);
-    //     })->when((!$proveedor && !$id_planta) && request('planta'), function ($query) {
-    //         $query->where('pag_planta_id', request('planta'));
-    //     })->when($proveedor, function ($query, $proveedor) {
-    //         $query->where('pag_identificacion', $proveedor->pro_identificacion);
-    //     })->when($id_planta, function ($query, $id_planta) {
-    //         $query->where('pag_planta_id', $id_planta);
-    //     });
-    // }
+    public function funcionario()
+    {
+        return $this->belongsTo(Funcionario::class, 'form_funcionario_id', 'fun_id');
+    }
 
     public function preguntas()
     {

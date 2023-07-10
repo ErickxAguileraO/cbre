@@ -16,11 +16,11 @@ class Funcionario extends Model
     protected $primaryKey = 'fun_id';
 
     protected $fillable = [
-        'fun_nombre', 
-        'fun_apellido', 
-        'fun_telefono', 
-        'fun_foto', 
-        'fun_cargo', 
+        'fun_nombre',
+        'fun_apellido',
+        'fun_telefono',
+        'fun_foto',
+        'fun_cargo',
         'fun_user_id',
         'fun_edificio_id',
     ];

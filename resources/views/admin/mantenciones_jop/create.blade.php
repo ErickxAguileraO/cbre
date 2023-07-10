@@ -6,7 +6,7 @@
     @push('stylesheets')
         <link rel="stylesheet" href="{{ asset('/public/css/componentes/modal/modal.css') }}">
     @endpush
-    <a href="/mantenciones-jop" class="row row-responsive link-atras">
+    <a href="{{ route('mantenciones-jop.index') }}" class="row row-responsive link-atras">
         <i class="far fa-arrow-left"></i>
         Volver al listado
     </a>
@@ -47,12 +47,12 @@
                 <div class="modalFile__contenedorContenido">
                     <h3 style="text-align: center;">¿Estas seguro de enviar la mantención?</h3>
                 </div>
-                
+
                 <div class="modalFile__botones">
                     <div class="modalMantencion__cerrarBtn modalFile__btnN modalFile__botonSecundario">No, revisaré</div>
                     <button class="modalFile__btnN modalFile__botonPrimario">Si, enviar</button>
                 </div>
-                
+
             </div>
         </div>
     </form>
