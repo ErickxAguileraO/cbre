@@ -27,7 +27,7 @@ class FormularioAreaTecnicaController extends Controller
         $formulario->form_funcionario_id = Auth::user()->funcionario->fun_id;
         $formulario->form_nombre = '';
         $formulario->form_descripcion = '';
-        $formulario->form_estado = 0; //Estado "borrador"
+        $formulario->form_estado = 4; //Estado "borrador"
         $formulario->save();
 
         return view('admin.formulario_area_tecnica.create', compact('formulario'));
