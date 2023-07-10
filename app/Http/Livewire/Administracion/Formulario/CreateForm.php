@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Pregunta;
 use App\Models\Formulario;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class CreateForm extends Component
 {
@@ -16,6 +17,8 @@ class CreateForm extends Component
 
     public $pre_pregunta = [];
     public $opc_opcion = [];
+
+    protected $listeners = ['refreshPregunta' => 'render'];
 
     public function render()
     {
@@ -58,6 +61,13 @@ class CreateForm extends Component
     public function deletePregunta($preguntaId){
         $pregunta = Pregunta::findOrfail($preguntaId);
         $pregunta->opciones()->delete();
+
+        $archivosFormulario = $pregunta->archivosFormulario;
+        foreach ($archivosFormulario as $archivo) {
+            Storage::delete($archivo->arcf_url);
+        }
+
+        $pregunta->archivosFormulario()->delete();
         $pregunta->delete();
     }
 

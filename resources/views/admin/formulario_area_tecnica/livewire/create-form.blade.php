@@ -85,7 +85,11 @@
                 <div class="opciones-pregunta grid-header-2">
                     <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
                         <i class="far fa-paperclip"></i>
+                        @if ($pregunta->archivosFormulario->count() > 0)
+                        Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
+                        @else
                         Adjuntar archivos
+                        @endif
                     </div>
                     <div class="row opciones-extras-formulario">
                         <div class="row-global align-center">
@@ -170,7 +174,11 @@
                 <div class="opciones-pregunta grid-header-2">
                     <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
                         <i class="far fa-paperclip"></i>
+                        @if ($pregunta->archivosFormulario->count() > 0)
+                        Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
+                        @else
                         Adjuntar archivos
+                        @endif
                     </div>
                     <div class="row opciones-extras-formulario">
                         <div class="row-global align-center">
@@ -235,7 +243,11 @@
                 <div class="opciones-pregunta grid-header-2">
                     <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
                         <i class="far fa-paperclip"></i>
+                        @if ($pregunta->archivosFormulario->count() > 0)
+                        Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
+                        @else
                         Adjuntar archivos
+                        @endif
                     </div>
                     <div class="row opciones-extras-formulario">
                         <div class="row-global align-center">
@@ -297,7 +309,7 @@
                         <label for="">Mes de evaluación</label>
                         <div class="form-group">
                             <select id="" name="" class="form-control" tabindex="4"
-                                style="width:100%;">
+                                style="width:100%;" disabled>
                                 <option value="1">Seleccione</option>
                             </select>
                             <small id="" class="field-message-alert absolute"></small>
@@ -308,7 +320,7 @@
                         <label for="">Año</label>
                         <div class="form-group">
                             <select id="" name="" class="form-control" tabindex="4"
-                                style="width:100%;">
+                                style="width:100%;" disabled>
                                 <option value="1">Seleccione</option>
                             </select>
                             <small id="" class="field-message-alert absolute"></small>
@@ -322,7 +334,7 @@
                     <label class="width-250" for="">Dotación</label>
                     <div class="form-group">
                         <input id="" name="" class="form-control" type="text" tabindex="1"
-                            placeholder="">
+                            placeholder="" disabled>
                     </div>
                 </fieldset>
 
@@ -330,7 +342,7 @@
                     <label class="width-250" for="">Reporte de accidentabildiad</label>
                     <div>
                         <input class="form-control input-file-nuevo" id="" name=""type="file"
-                            tabindex="1">
+                            tabindex="1" disabled>
                     </div>
                 </fieldset>
 
@@ -340,7 +352,7 @@
                     <label class="width-250" for="">Dotación sub contratos</label>
                     <div class="form-group">
                         <input id="" name="" class="form-control" type="text" tabindex="1"
-                            placeholder="">
+                            placeholder="" disabled>
                     </div>
                 </fieldset>
 
@@ -348,7 +360,7 @@
                     <label class="width-250" for="">¿Cuántos de estos son nuevos?</label>
                     <div class="form-group">
                         <input id="" name="" class="form-control" type="text" tabindex="1"
-                            placeholder="">
+                            placeholder="" disabled>
                     </div>
                 </fieldset>
 
@@ -357,11 +369,11 @@
                         día?</label>
                     <div class="form-group row-global">
                         <div class="row-global align-center">
-                            <input type="radio" name="" id="">
+                            <input type="radio" name="" id="" disabled>
                             <p>Si</p>
                         </div>
                         <div class="row-global align-center">
-                            <input type="radio" name="" id="">
+                            <input type="radio" name="" id="" disabled>
                             <p>No</p>
                         </div>
                     </div>
@@ -371,7 +383,7 @@
                     <label class="width-250" for="">Subir documentación</label>
                     <div>
                         <input class="form-control input-file-nuevo" id="" name=""type="file"
-                            tabindex="1">
+                            tabindex="1" disabled>
                         <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un solo
                             archivo</p>
                     </div>
@@ -380,7 +392,11 @@
                 <div class="opciones-pregunta grid-header-2">
                     <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
                         <i class="far fa-paperclip"></i>
+                        @if ($pregunta->archivosFormulario->count() > 0)
+                        Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
+                        @else
                         Adjuntar archivos
+                        @endif
                     </div>
                     <div class="row opciones-extras-formulario">
                         <div class="row-global align-center">

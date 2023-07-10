@@ -39,14 +39,16 @@ class UploadFileModal extends Component
             $archivo->arcf_url = $storedFile;
             $archivo->arcf_nombre_original = $file->getClientOriginalName();
             $archivo->save();
-            $this->files = [];
         }
+        $this->files = [];
+        $this->emit('refreshPregunta');
     }
 
     public function deleteFile($archivoId){
         $archivo = ArchivoFormulario::findOrFail($archivoId);
         Storage::delete($archivo->arcf_url);
         $archivo->delete();
+        $this->emit('refreshPregunta');
     }
 
 }

@@ -33,4 +33,9 @@ class Pregunta extends Model
         return $this->hasMany(Opcion::class, 'opc_pregunta_id', 'pre_id');
     }
 
+    public function archivosFormulario()
+    {
+        return $this->hasMany(ArchivoFormulario::class, 'arcf_pregunta_id', 'pre_id');
+    }
+
 }

@@ -16,14 +16,17 @@
                     </label>
                 </div>
                 <div class="modalFile__contenido">
-                    <div class="" id="listaArchivos">
+                    @if ($archivos->count() > 0)
+                    <div class="tabla-archivos-subidos" id="listaArchivos">
                         @foreach ($archivos as $archivo)
-                            <div class="ml-5 text-center">
-                                <span>{{$archivo->arcf_nombre_original}}</span>
-                                <img wire:click="deleteFile({{$archivo->arcf_id}})" class="pointer" src="/public/images/admin/sistema/delete.svg" alt="">
-                            </div>
+                        <div class="archivo-subido-n">
+                            <p>{{$archivo->arcf_nombre_original}}</p>
+                            <p>{{ pathinfo($archivo->arcf_nombre_original, PATHINFO_EXTENSION) }}</p>
+                            <img wire:click="deleteFile({{$archivo->arcf_id}})" class="pointer" src="/public/images/admin/sistema/delete.svg" alt="">
+                        </div>
                         @endforeach
                     </div>
+                    @endif
                 </div>
             </div>
 
