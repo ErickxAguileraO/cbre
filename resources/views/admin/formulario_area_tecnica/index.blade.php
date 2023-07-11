@@ -50,14 +50,16 @@
             <label for="">Creado por</label>
             <select id="creado_por" name="creado_por" class="form-control" tabindex="4" style="width:100%;">
                 <option value="">Todos</option> <!-- Opción vacía -->
-                @if(isset($funcionarios) && !$funcionarios->isEmpty())
+                <option value="prevencionista" {{ old('creado_por') === 'prevencionista' ? 'selected' : '' }}>Prevencionista</option>
+                <option value="tecnico" {{ old('creado_por') === 'tecnico' ? 'selected' : '' }}>Técnico</option>
+                {{-- @if(isset($funcionarios) && !$funcionarios->isEmpty())
                     @foreach ($funcionarios->unique() as $funcionario)
                         @php
                             $selected = old('creado_por') == $funcionario->fun_nombre ? 'selected' : '';
                         @endphp
                         <option value="{{ $funcionario->fun_nombre }}" {{ $selected }}>{{ $funcionario->fun_nombre }}</option>
                     @endforeach
-                @endif
+                @endif --}}
             </select>
             <small id="" class="field-message-alert absolute"></small>
          </div>

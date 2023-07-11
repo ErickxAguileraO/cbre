@@ -17,4 +17,9 @@ class ArchivoFormulario extends Model
         'arcf_respuesta_id', 'arcf_pregunta_id', 'arcf_url', 'arcf_nombre_original'
     ];
 
+    public function preguntas()
+    {
+        return $this->belongsTo(Pregunta::class, 'arcf_pregunta_id', 'pre_id');
+    }
+
 }

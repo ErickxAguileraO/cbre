@@ -15,6 +15,7 @@ class Mantencion extends Model
 
     protected $fillable = [
         'man_listado_mantencions_id',
+        'man_edificio_id',
         'man_descripcion',
     ];
 
@@ -32,10 +33,14 @@ class Mantencion extends Model
         return $query->when(request('fechaInicio'), function ($query, $inicio) {
             $query->whereRaw("DATE_FORMAT(updated_at, '%Y-%m-%d') >= ?", [$inicio]);
         })->when(request('fechaTermino'), function ($query, $termino) {
-            $query->whereRaw("DATE_FORMAT(updated, '%Y-%m-%d') <= ?", [$termino]);
+            $query->whereRaw("DATE_FORMAT(updated_at, '%Y-%m-%d') <= ?", [$termino]);
         })->when(request('especialidad'), function ($query, $especialidad) {
             $query->whereHas('listadoMantencion', function ($query) use ($especialidad) {
                 $query->where('lism_nombre', $especialidad);
+            });
+        })->when(request('edificio'), function ($query, $edificio) {
+            $query->whereHas('edificios', function ($query) use ($edificio) {
+                $query->where('edi_nombre', $edificio);
             });
         });
     }
@@ -43,5 +48,10 @@ class Mantencion extends Model
     public function listadoMantencion()
     {
         return $this->belongsTo(ListadoMantencion::class, 'man_listado_mantencions_id', 'lism_id');
+    }
+
+    public function edificios()
+    {
+        return $this->belongsTo(Edificio::class, 'man_edificio_id', 'edi_id');
     }
 }
