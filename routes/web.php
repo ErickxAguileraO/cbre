@@ -124,6 +124,7 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(FormularioAreaTecnicaController::class)->group(function () {
             Route::resource('formulario-area-tecnica', FormularioAreaTecnicaController::class);
             Route::get('formulario-area-tecnica/get/list', 'list')->name('formulario-area-tecnica.list');
+            Route::post('formulario-area-tecnica/post/formulario', 'postFormulario')->name('formulario-area-tecnica.post');
         });
 
         // Formulario JOP
