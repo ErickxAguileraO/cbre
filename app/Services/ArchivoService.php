@@ -49,6 +49,16 @@ class ArchivoService
         return "Failed to generate the ZIP file.";
     }
 
+    public static function subirArchivos($archivo, $carpeta, $subCarpeta){
+        if($carpeta == 'mantencion'){
+            // Archivos Mantención
+            return $archivo->store('public/archivos/'.$carpeta.'/'.$subCarpeta);
+        }else{
+            // Archivos formularios
+            return $archivo->store('public/archivos/'.$carpeta.'/preguntas/'.$subCarpeta);
+        }
+    }
+
 
 
 

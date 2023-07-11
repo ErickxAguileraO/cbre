@@ -20,7 +20,6 @@
                     </select>
                 </div>
 
-
                 <div class="modalFile__contenido">
                     @if ($formulario->edificios->count() > 0)
                     <div class="tabla-archivos-subidos">
@@ -34,11 +33,16 @@
                     </div>
                     @endif
                 </div>
+
             </div>
 
             <div class="modalFile__botones">
                 <div class="modalPublicar__cerrarBtn modalFile__btnN modalFile__botonSecundario" wire:click="detachAll">Cancelar</div>
-                <div class="modalFile__btnN modalFile__botonPrimario" id="postear-formulario">Publicar y enviar</div>
+                @if ($formulario->edificios->count() > 0)
+                        <button class="modalFile__btnN modalFile__botonPrimario" id="postear-formulario">Publicar y enviar</button>
+                    @else
+                        <button class="modalFile__btnN modalFile__botonPrimario bg-secondary" disabled id="postear-formulario">Publicar y enviar</button>
+                @endif
             </div>
         </div>
     </div>
