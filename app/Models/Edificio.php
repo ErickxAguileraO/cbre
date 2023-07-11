@@ -50,6 +50,11 @@ class Edificio extends Model
         return $this->belongsToMany(Certificacion::class, 'edificio_certificacion', 'edce_edificio_id', 'edce_certificacion_id')->withTimestamps();
     }
 
+    public function formularios()
+    {
+        return $this->belongsToMany(Formulario::class, 'formulario_edificio', 'foredi_formulario_id', 'foredi_edificio_id')->withTimestamps();
+    }
+
     public function imagenes()
     {
         return $this->hasMany(Imagen::class, 'ima_edificio_id', 'edi_id');

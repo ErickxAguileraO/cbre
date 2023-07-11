@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class Formulario extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'formularios';
     protected $primaryKey = 'form_id';
@@ -56,4 +56,7 @@ class Formulario extends Model
         return $this->hasMany(Pregunta::class, 'pre_formulario_id', 'form_id');
     }
 
+    public function edificios(){
+        return $this->belongsToMany(Edificio::class, 'formulario_edificio', 'foredi_formulario_id', 'foredi_edificio_id')->withTimestamps();
+    }
 }
