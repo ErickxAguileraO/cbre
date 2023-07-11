@@ -150,7 +150,25 @@ class FormularioAreaTecnicaController extends Controller
 
             return response()->json(['error' => $th->getMessage()], 500);
         }
+    }
 
+    public function PostFormulario(Request $request){
+
+        DB::beginTransaction();
+        try {
+
+            $formulario = Formulario::findOrFail($request->input('formValue'));
+            $formulario->form_estado = 1;
+            $formulario->update();
+
+            DB::commit();
+
+        return response()->json(['success' => '¡El formulario se ha publicado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json(['error' => $th->getMessage()], 500);
+        }
 
     }
 
