@@ -110,15 +110,6 @@ $(document).ready(function () {
   });
 }); */
 
-
-
-$(".option-select-manual").hide();
-$(".select-manual").click(function () {
-  $(".option-select-manual").toggle();
-})
-
-
-
 // Modal Adjuntar archivos
 /*  $(".modalFile__abrirBtn").on('click', function () {
   $(".contenedor__modalFile").css("display", "flex");
