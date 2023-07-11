@@ -40,8 +40,15 @@ class Formulario extends Model
         })->when(request('estado'), function ($query, $estado) {
             $query->where('form_estado', $estado);
         })->when(request('creado_por'), function ($query, $creadoPor) {
-            $query->whereHas('funcionario', function ($query) use ($creadoPor) {
-                $query->where('fun_nombre', $creadoPor);
+            $prevencionistas = User::role('prevencionista')->pluck('name')->toArray();
+            $tecnicos = User::role('tecnico')->pluck('name')->toArray();
+
+            $query->whereHas('funcionario', function ($query) use ($creadoPor, $prevencionistas, $tecnicos) {
+                $query->where('fun_nombre', $creadoPor)
+                    ->where(function ($query) use ($prevencionistas, $tecnicos) {
+                        $query->whereIn('fun_nombre', $prevencionistas)
+                            ->orWhereIn('fun_nombre', $tecnicos);
+                    });
             });
         });
     }

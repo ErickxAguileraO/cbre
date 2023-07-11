@@ -20,6 +20,7 @@ use App\Http\Controllers\Administracion\DatosGeneralesController;
 use App\Http\Controllers\Administracion\FormularioAreaTecnicaController;
 use App\Http\Controllers\Administracion\FormularioJOPController;
 use App\Http\Controllers\Administracion\MantencionesJOPController;
+use App\Http\Controllers\Administracion\MantencionSoporteTecnicoController;
 use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
 use App\Http\Controllers\Web\ContactoController as WebContactoController;
 use App\Http\Controllers\Web\EdificioController as  WebEdificioController;
@@ -137,6 +138,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('mantenciones-jop/get/list', 'list')->name('mantenciones-jop.list');
         });
 
+        // Mantenciones Soporte Tecnico
+        Route::controller(MantencionSoporteTecnicoController::class)->group(function () {
+            Route::resource('mantenciones-soporte-tecnico', MantencionSoporteTecnicoController::class);
+            Route::get('mantenciones-soporte-tecnico/get/list', 'list')->name('mantenciones-soporte-tecnico.list');
+        });
+
         // Noticias
         Route::controller(NoticiaController::class)->group(function () {
             Route::resource('noticias', NoticiaController::class);
@@ -203,17 +210,17 @@ Route::controller(WebNoticiaController::class)->group(function () {
 // Route::get('/crear-formulario', function () {
 //     return view('admin.formulario_area_tecnica.create');
 // });
-Route::get('/preview-formulario', function () {
-    return view('admin.formulario_area_tecnica.preview');
-});
+// Route::get('/preview-formulario', function () {
+//     return view('admin.formulario_area_tecnica.preview');
+// });
 
-// Mantencion area tecnica
-Route::get('/mantencion-soporte-tecnico', function () {
-    return view('admin.mantencion_soporte_tecnico.index');
-});
-Route::get('/ver-mantencion-admin', function () {
-    return view('admin.mantencion_soporte_tecnico.view');
-});
+// // Mantencion area tecnica
+// Route::get('/mantencion-soporte-tecnico', function () {
+//     return view('admin.mantencion_soporte_tecnico.index');
+// });
+// Route::get('/ver-mantencion-admin', function () {
+//     return view('admin.mantencion_soporte_tecnico.view');
+// });
 
 // // JOP
 // Route::get('/formularios-jop', function () {

@@ -173,7 +173,7 @@
               <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                 <a href="{{ route('formulario-area-tecnica.index') }}" class="nav-link">Formulario Área técnica</a>
                 @can('index mantencion')
-                <a href="/mantencion-soporte-tecnico" class="nav-link">Mantención Soporte técnico</a>
+                <a href="{{ route('mantenciones-soporte-tecnico.index') }}" class="nav-link">Mantención Soporte técnico</a>
                 @endcan
               </span>
             </li>

@@ -6,24 +6,32 @@ document.addEventListener("DOMContentLoaded", function () {
         DevExpress.localization.locale(navigator.language);
 
         // Función para el origen de datos.
-        const caracteristicas = new DevExpress.data.CustomStore({
-            load: function () {
-                return sendRequest("");
+        const mantenciones = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                const params = {
+                    fechaInicio: document.querySelector('#fechaInicio').value,
+                    fechaTermino: document.querySelector('#fechaTermino').value,
+                    especialidad: document.querySelector('#especialidad').value,
+                    edificio: document.querySelector('#edificio').value,
+                };
+
+                return sendRequest("/admin/mantenciones-soporte-tecnico/get/list", "GET", params);
             },
         });
 
-        $("#dataGridSoporteTecnico").dxDataGrid({
-            dataSource: caracteristicas,
+        const dataGrid = $("#dataGridSoporteTecnico").dxDataGrid({
+            dataSource: mantenciones,
+            // Resto del código del data grid...
             columns: [
                 {
-                    dataField: "car_edificio",
+                    dataField: "edi_nombre",
                     caption: "Edificio",
                     filterOperations: ["contains"],
                     alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
                 },
                 {
-                    dataField: "car_especialidad",
+                    dataField: "especialidades",
                     caption: "Especialidad",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -32,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "car_fechaCreacion",
+                    dataField: "fecha",
                     caption: "Fecha creación",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -48,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     width: '100',
                     minWidth: '100',
                     cellTemplate(container, options) {
-                        const idCaracteristica = options.data.car_id;
-                        let urlView = `/ver-mantencion-admin`;
+                        const idSoporteTec = options.data.man_id;
+                        let urlView = `/mantenciones-soporte-tecnico/${idSoporteTec}/edit`;
 
                         let templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
                         let templateDown = `<a href="" title="" data-id=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
@@ -68,6 +76,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 showPageSizeSelector: true,
                 allowedPageSizes: [5, 10, 15, 20],
             },
+
+        }).dxDataGrid("instance");
+
+        $('.btn-filtro').on('click', function(e) {
+            e.preventDefault();
+            dataGrid.refresh();
         });
     }
 
