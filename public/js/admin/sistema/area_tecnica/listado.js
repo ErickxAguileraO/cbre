@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function cargarFormulario() {
         DevExpress.localization.locale(navigator.language);
         var rol = null;
-        if (document.querySelector('#rolAdmin').value === 'super') {
-            rol = document.querySelector('#creado_por').value
+        if (document.querySelector('#rolAdmin').value === 'super-admin') {
+            rol = document.querySelector('#creado_por').value;
         }
 
         // Función para el origen de datos.
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Resto del código del data grid...
             columns: [
                 {
-                    dataField: "",
+                    dataField: "rol_funcionario",
                     caption: "Área",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "",
+                    dataField: "nombre_edificio",
                     caption: "Edificio",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "",
+                    dataField: "cantidad_archivos",
                     caption: "Archivos",
                     filterOperations: ["contains"],
                     alignment: "left",

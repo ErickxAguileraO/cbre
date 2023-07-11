@@ -85,8 +85,8 @@ class Edificio extends Model
         return '/public' . Storage::url($this->edi_imagen_listado);
     }
 
-    // public function formulariosEdificios()
-    // {
-    //     return $this->hasMany(FormularioEdificio::class, 'edi_id');
-    // }
+    public function mantenciones()
+    {
+        return $this->hasMany(Mantencion::class, 'man_edificio_id');
+    }
 }

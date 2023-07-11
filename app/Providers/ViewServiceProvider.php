@@ -36,6 +36,7 @@ class ViewServiceProvider extends ServiceProvider
             'admin.funcionarios.create',
             'admin.funcionarios.edit',
             'admin.formulario_area_tecnica.index',
+            'admin.mantencion_soporte_tecnico.index',
         ], EdificioComposer::class);
 
         View::composer([
