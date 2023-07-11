@@ -33,7 +33,11 @@
 
             <div class="modalFile__botones">
                 <div class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario" onclick="cerrarModal()">Cerrar</div>
-                <div class="modalFile__btnN modalFile__botonPrimario" onclick="cerrarModal()">Listo</div>
+                @if ($archivos->count() > 0)
+                    <div class="modalFile__btnN modalFile__botonPrimario" onclick="cerrarModal()">Listo</div>
+                    @else
+                    <div class="modalFile__btnN modalFile__botonPrimario bg-secondary" disabled>Listo</div>
+                @endif
             </div>
         </div>
     </div>
