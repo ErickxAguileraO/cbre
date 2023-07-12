@@ -8,12 +8,16 @@ use RecursiveDirectoryIterator;
 
 class ArchivoService
 {
-
-    public static function generateZip($formId)
+    // preguntaId puede ir como null, para así obtener la carpeta completa (form) y no solo la carpeta de la respectiva pregunta
+    public static function generateZip($formId, $preguntaId)
     {
-        $folderPath = public_path('/storage/archivos/'.$formId);
-
-        $zipFilePath = public_path('/storage/'.$formId.'.zip');
+        if($preguntaId){
+            $folderPath = public_path('/storage/archivos/'.$formId.'/preguntas/'.$preguntaId);
+            $zipFilePath = public_path('/storage/archivos/'.$formId.'/preguntas/'.$preguntaId.'.zip');
+        }else{
+            $folderPath = public_path('/storage/archivos/'.$formId);
+            $zipFilePath = public_path('/storage/archivos/'.$formId.'.zip');
+        }
 
         $zip = new ZipArchive();
 
@@ -38,7 +42,7 @@ class ArchivoService
 
             // Set the appropriate headers for the download
             header('Content-Type: application/zip');
-            header('Content-Disposition: attachment; filename="archivos.zip"');
+            header("Content-Disposition: attachment; filename=\"archivos_" . date('Y-m-d_H-i-s') . ".zip\"");
             header('Content-Length: ' . filesize($zipFilePath));
             readfile($zipFilePath);
             unlink($zipFilePath); // Remove the ZIP file after sending it

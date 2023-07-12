@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Pregunta;
 use Livewire\WithFileUploads;
 use App\Models\ArchivoFormulario;
+use App\Services\ArchivoService;
 use Illuminate\Support\Facades\Storage;
 
 class UploadFileModal extends Component
@@ -34,7 +35,7 @@ class UploadFileModal extends Component
             $archivo = new ArchivoFormulario();
             $archivo->arcf_pregunta_id = $this->preguntaId;
 
-            $storedFile = $file->store('public/archivos/'.Pregunta::findOrFail($this->preguntaId)->formulario->form_id.'/preguntas/'.$this->preguntaId);
+            $storedFile = ArchivoService::subirArchivos($file, Pregunta::findOrFail($this->preguntaId)->formulario->form_id, $this->preguntaId);
 
             $archivo->arcf_url = $storedFile;
             $archivo->arcf_nombre_original = $file->getClientOriginalName();
