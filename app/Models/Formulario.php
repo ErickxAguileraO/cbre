@@ -50,7 +50,9 @@ class Formulario extends Model
                             ->orWhereIn('fun_nombre', $tecnicos);
                     });
             });
-        });
+        })->with(['edificios' => function ($query) {
+            $query->select('edi_nombre');
+        }]);
     }
 
     public function funcionario()

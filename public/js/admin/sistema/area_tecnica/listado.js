@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     fechaInicio: document.querySelector('#fechaInicio').value,
                     fechaTermino: document.querySelector('#fechaTermino').value,
                     estado: document.querySelector('#estado').value,
+                    edificio: document.querySelector('#edificio').value,
                     creado_por: rol,
                 };
 
@@ -55,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "nombre_edificio",
+                    dataField: "edificio",
                     caption: "Edificio",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "cantidad_archivos",
+                    dataField: "cantidad_archivos_formulario",
                     caption: "Archivos",
                     filterOperations: ["contains"],
                     alignment: "left",

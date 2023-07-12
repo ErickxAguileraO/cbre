@@ -54,6 +54,9 @@ class FormularioAreaTecnicaController extends Controller
             ->with(['preguntas' => function ($query) {
                 $query->withCount('archivosFormulario');
             }])
+            ->with(['edificios' => function ($query) {
+                $query->select('edi_nombre');
+            }])
             ->withFilters()
             ->orderByDesc('updated_at')
             ->get();
@@ -68,16 +71,23 @@ class FormularioAreaTecnicaController extends Controller
             } elseif (in_array($funcionario->fun_nombre, $tecnicos)) {
                 $value->rol_funcionario = 'Tecnico';
             }
+
             // Agregar la cantidad de archivos a cada pregunta
             foreach ($value->preguntas as $pregunta) {
-                $pregunta->cantidad_archivos = $pregunta->archivos_formularios_count;
+                $pregunta->cantidad_archivos = $pregunta->archivosFormulario->count();
             }
 
-            // Agregar una propiedad adicional para la cantidad de archivos
-            $value->cantidad_archivos = $value->preguntas->sum('cantidad_archivos');
+            // Obtener la cantidad total de archivos vinculados al formulario
+            $cantidadArchivosFormulario = 0;
+            foreach ($value->preguntas as $pregunta) {
+                $cantidadArchivosFormulario += $pregunta->cantidad_archivos;
+            }
+            $value->cantidad_archivos_formulario = $cantidadArchivosFormulario;
+
+            // Agregar los nombres de los edificios al formulario
+            $edificios = $value->edificios->pluck('edi_nombre')->toArray();
+            $value->edificio = $edificios;
         }
-
-
 
         return response()->json($formulario);
         } catch (\Throwable $th) {

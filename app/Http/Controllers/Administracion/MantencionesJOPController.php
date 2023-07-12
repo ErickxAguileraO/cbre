@@ -8,6 +8,7 @@ use App\Models\ArchivoMantencion;
 use Illuminate\Http\Request;
 use App\Models\ListadoMantencion;
 use App\Models\Mantencion;
+use App\Services\ArchivoService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -27,17 +28,19 @@ class MantencionesJOPController extends Controller
 
     public function store(CreateMantencionRequest $request)
     {
+        dd($request->all());
         DB::beginTransaction();
 
         try {
-            Mantencion::create([
+            $mantencion = Mantencion::create([
                 'man_listado_mantencions_id' => $request->especialidad,
                 'man_descripcion' => $request->detalle,
                 'man_edificio_id' => Auth::user()->funcionario->edificio->edi_id,
             ]);
-
+            $url = ArchivoService::subirArchivos($request->archivo, 'mantencion', 'mantencion');
             ArchivoMantencion::create([
-                'car_estado' => $request->archivo,
+                'arcm_mantencion_id' => $mantencion->man_id,
+                'arcm_url' => $url,
             ]);
 
             DB::commit();
