@@ -27,6 +27,21 @@ class CreateForm extends Component
         ]);
     }
 
+/*     public function mount()
+    {
+        $formulario = Formulario::with('preguntas.opciones')->find($this->formId);
+        $this->form_nombre = $formulario->form_nombre;
+        $this->form_descripcion = $formulario->form_descripcion;
+
+        foreach ($formulario->preguntas as $pregunta) {
+            $this->pre_pregunta[] = $pregunta->pre_pregunta;
+
+            foreach ($pregunta->opciones as $opcion) {
+                $this->opc_opcion[] = $opcion->opc_opcion;
+            }
+        }
+    } */
+
     public function uploadFileModal($preguntaId){
         $this->emit('uploadFileModal', $preguntaId);
     }

@@ -1,69 +1,150 @@
 @extends('layout.admin')
-@section('title', 'Caracteristicas')
-
+@section('title', 'Editar formulario')
 @section('content')
+    @push('stylesheets')
+      <link rel="stylesheet" href="{{ asset('/public/css/componentes/tab/tab.css') }}">
+      <link rel="stylesheet" href="{{ asset('/public/css/componentes/modal/modal.css') }}">
 
-    <h1>Editar característica</h1>
+        <style>
+            body{
+                background: #F2F2F2;
+            }
+            main[role=main]{
+                background: #F2F2F2;
+            }
+            .form-group{
+                margin: 0px;
+            }
+        </style>
 
-    <form action="#" method="POST" id="form-caracteristica" class="formulario">
-        @csrf
-        <input type="hidden" id="car_id" value="{{ $caracteristica->car_id }}">
-        <fieldset class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input id="nombre" name="nombre" value="{{ $caracteristica->car_nombre }}" class="form-control" data-maximo-caracteres="50"
-                        type="text" tabindex="1" />
-                        <small id="nombre_error" class="field-message-alert absolute"></small>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="imagen">Imagen</label>
-                    <div class="py-2">
-                        <img src="{{$caracteristica->url_imagen}}" style="background-color: #538184" width="360" height="260" alt="">
+    @endpush
+    <div  id="" class="formulario nuevo-formulario">
+
+        <livewire:administracion.formulario.post-form :formId="$formulario->form_id"/>
+
+        <a href="{{ route('formulario-area-tecnica.index') }}" class="row row-responsive link-atras">
+            <i class="far fa-arrow-left"></i>
+            Volver al listado
+        </a>
+        <div class="tab">
+            <ul class="tab__lista-botones">
+                <li class="tab__boton" onclick="mostrarTab(event, 'tab1')" style="border-radius: 8px 0px 0px 8px;">
+                    <p class="tab__nombre">Formulario</p>
+                </li>
+
+                <li class="tab__boton" onclick="mostrarTab(event, 'tab2')" style="border-radius: 0px 8px 8px 0px;">
+                    <p class="tab__nombre">Historial</p>
+                </li>
+            </ul>
+
+            <form action="#" method="POST" id="tab1" class="tab__contenido">
+                <div class="grid-header-2">
+                    <h1 class="col-xl">Formulario equipo de limpieza</h1>
+                    <div class="row datos-formulario">
+                        <p class="margin-top-5">Estado</p>
+                        <div class="estado-formulario">Borrador</div>
+                        <div class="form-group">
+                            <div class="select-manual" class="">
+                                <p>Opciones</p>
+                                <i class="fas fa-sort-down color-texto-cbre menos-top"></i>
+
+                                <div class="option-select-manual">
+
+                                    <div class="row-option modalPublicar__abrirBtn"><i class ="fas fa-eye"></i> Publicar y enviar</div>
+                                    <a href="{{ route('formulario-area-tecnica.show', $formulario->form_id) }}" class="row-option"><i class="fas fa-eye"></i> Visualizar</a>
+{{--                                     <div class="row-option modalPublicar__abrirBtn"><i class ="fas fa-eye"></i> Publicar y enviar</div> --}}
+                                    <div class="row-option"><i class="fas fa-copy"></i> Duplicar</div>
+                                    <div id="eliminar-formulario" class="row-option"><i class="fas fa-trash-alt"></i> Eliminar</div>
+                                    <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex align-items-end">
-                        <div class="file-select">
-                            <input type="file" class="input-file imagen-input" id="imagen" name="imagen"
-                            lang="es" accept=".jpg,.jpeg,.png,.svg">
+                </div>
+
+                <div class="contenedor-form-preguntas">
+                    <livewire:administracion.formulario.create-form :formId="$formulario->form_id"/>
+                </div>
+
+                <div class="linea-separadora"></div>
+                <div class="botones-formulario">
+                    <a id="eliminar-formulario" class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">Eliminar</a>
+                    <input type="hidden" id="form_id" name="form_id" value="{{ $formulario->form_id }}">
+                    <a href="{{ route('formulario-area-tecnica.index') }}" class="modalFile__btnN modalFile__botonPrimario text-white text-decoration-none">Dejar como borrador</a>
+                </div>
+
+            </form>
+
+            <div id="tab2" class="tab__contenido">
+                <h1 class="col-xl">Historial formulario</h1>
+                <div class="div-formulario-n">
+                    <div class="historial">
+                        <div class="historial__linea">
+                            <div class="historial__lineaCirculo"></div>
                         </div>
-                        <div class="archivo-seleccionado px-2">
-                           <span class="align-text-bottom">Ningún archivo seleccionado</span>
+                        <div class="historial__datos sin-margen">
+                            <p>21 Nov 2023</p>
+                            <h3>Creación de formulario</h3>
+                            <p>Estado: Borrador</p>
+                            <p>Creado por Benjamín Arias</p>
                         </div>
-                     </div>
-                     <small id="imagen_error" class="field-message-alert absolute"></small>
+                    </div>
+
+                    <div class="historial">
+                        <div class="historial__linea">
+                            <div class="historial__lineaCirculo"></div>
+                        </div>
+                        <div class="historial__datos sin-margen">
+                            <p>21 Nov 2023</p>
+                            <h3>Creación de formulario</h3>
+                            <p>Estado: Borrador</p>
+                            <p>Creado por Benjamín Arias</p>
+                        </div>
+                    </div>
+
+                    <div class="historial">
+                        <div class="historial__linea">
+                            <div class="historial__lineaCirculo"></div>
+                        </div>
+                        <div class="historial__datos sin-margen">
+                            <p>21 Nov 2023</p>
+                            <h3>Creación de formulario</h3>
+                            <p>Estado: Borrador</p>
+                            <p>Creado por Benjamín Arias</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </fieldset>
-        <fieldset class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="posicion">Posición</label>
-                    <input name="posicion" type="text" value="{{ $caracteristica->car_posicion }}" class="form-control solo-numeros" data-maximo-caracteres="3"
-                        id="posicion" tabindex="2" />
-                        <small id="posicion_error" class="field-message-alert absolute"></small>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset class="row">
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="estado">Estado</label>
-                    <select id="estado" name="estado" class="form-control" tabindex="4" style="width:100%;">
-                        <option value="1"{{ $caracteristica->car_estado == 1 ? 'selected' : '' }}>Activo</option>
-                        <option value="0"{{ $caracteristica->car_estado == 0 ? 'selected' : '' }}>Inactivo</option>
-                    </select>
-                    <small id="estado_error" class="field-message-alert absolute"></small>
-                </div>
-            </div>
-        </fieldset>
-        @include('components.editar_btn')
-    </form>
+        </div>
+    </div>
+
+    {{-- Modal observacion --}}
+{{--     @include('components.modalObservacion') --}}
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('public\js\admin\sistema\caracteristicas\form_modificar.js') }}"></script>
+    <script>
+        // Opciones
+        $(".option-select-manual").hide();
+        $(".select-manual").click(function () {
+            $(".option-select-manual").toggle();
+        })
+
+        // Modal publicar
+        $(".modalPublicar__abrirBtn").on('click', function () {
+            $(".contenedor__modalPublicar").css("display", "flex");
+            $('#mySelect').val('').trigger('change');
+            $('#mySelect').select2();
+        });
+
+        $(".modalPublicar__cerrarBtn").on('click', function () {
+            $(".contenedor__modalPublicar").css("display", "none");
+        });
+    </script>
+        <script src="{{ asset('/public\js\admin\sistema\area_tecnica\publicar_formulario.js') }}"></script>
+    <script src="{{ asset('/public\js\admin\sistema\area_tecnica\eliminar_formulario.js') }}"></script>
+    <script src="{{ asset('/public/css/componentes/tab/tab.js') }}"></script>
+{{--     <script src="{{ asset('/public/css/componentes/modal/modal.js') }}"></script>
+    <script src="{{ asset('/public/js/script.js') }}"></script> --}}
 @endpush
