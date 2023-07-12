@@ -40,6 +40,12 @@
 
         <div class="div-formulario-n">
             <h3 class="bottom-30">1. {{$pregunta->pre_pregunta}}</h3>
+            @if ($pregunta->archivosFormulario->count() > 0)
+            <div class="color-texto-cbre my-5 cursor-pointer small">
+                <i class="far fa-paperclip"></i>
+                <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+            </div>
+            @endif
             @foreach ($pregunta->opciones as $index => $opcion)
             <div class="row align-center preguntas-preview">
                 <input disabled type="radio">
@@ -56,6 +62,12 @@
 
         <div class="div-formulario-n">
             <h3 class="bottom-30">2. {{$pregunta->pre_pregunta}}</h3>
+            @if ($pregunta->archivosFormulario->count() > 0)
+            <div class="color-texto-cbre my-5 cursor-pointer small">
+                <i class="far fa-paperclip"></i>
+                <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+            </div>
+            @endif
             @foreach ($pregunta->opciones as $index => $opcion)
             <div class="row align-center preguntas-preview">
                 <input disabled type="checkbox">
@@ -72,6 +84,12 @@
 
         <div class="div-formulario-n">
             <h3 class="bottom-30">3. {{$pregunta->pre_pregunta}}</h3>
+            @if ($pregunta->archivosFormulario->count() > 0)
+            <div class="color-texto-cbre my-5 cursor-pointer small">
+                <i class="far fa-paperclip"></i>
+                <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+            </div>
+            @endif
             <div class="form-group">
                 <textarea name="" id="" class="form-control" cols="30" rows="10" disabled></textarea>
             </div>
@@ -89,6 +107,12 @@
                                 <div class="form-group">
                                     <h3 class="bottom-30">4. {{$pregunta->pre_pregunta}}</h3>
                                 </div>
+                                @if ($pregunta->archivosFormulario->count() > 0)
+                                <div class="color-texto-cbre my-5 cursor-pointer small">
+                                    <i class="far fa-paperclip"></i>
+                                    <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+                                </div>
+                                @endif
                             </div>
                         </fieldset>
                         <fieldset class="row row-responsive">
