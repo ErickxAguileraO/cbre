@@ -51,7 +51,7 @@
                                 <div class="option-select-manual">
 
                                     <div class="row-option modalPublicar__abrirBtn"><i class ="fas fa-eye"></i> Publicar y enviar</div>
-                                    <a href="/preview-formulario" class="row-option"><i class="fas fa-eye"></i> Visualizar</a>
+                                    <a href="{{ route('formulario-area-tecnica.show', $formulario->form_id) }}" class="row-option"><i class="fas fa-eye"></i> Visualizar</a>
 {{--                                     <div class="row-option modalPublicar__abrirBtn"><i class ="fas fa-eye"></i> Publicar y enviar</div> --}}
                                     <div class="row-option"><i class="fas fa-copy"></i> Duplicar</div>
                                     <div id="eliminar-formulario" class="row-option"><i class="fas fa-trash-alt"></i> Eliminar</div>
@@ -125,6 +125,13 @@
 
 @push('scripts')
     <script>
+        // Opciones
+        $(".option-select-manual").hide();
+        $(".select-manual").click(function () {
+            $(".option-select-manual").toggle();
+        })
+
+        // Modal publicar
         $(".modalPublicar__abrirBtn").on('click', function () {
             $(".contenedor__modalPublicar").css("display", "flex");
             $('#mySelect').val('').trigger('change');
@@ -138,6 +145,6 @@
         <script src="{{ asset('/public\js\admin\sistema\area_tecnica\publicar_formulario.js') }}"></script>
     <script src="{{ asset('/public\js\admin\sistema\area_tecnica\eliminar_formulario.js') }}"></script>
     <script src="{{ asset('/public/css/componentes/tab/tab.js') }}"></script>
-    <script src="{{ asset('/public/css/componentes/modal/modal.js') }}"></script>
-    <script src="{{ asset('/public/js/script.js') }}"></script>
+{{--     <script src="{{ asset('/public/css/componentes/modal/modal.js') }}"></script>
+    <script src="{{ asset('/public/js/script.js') }}"></script> --}}
 @endpush

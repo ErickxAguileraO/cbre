@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Services\ArchivoService;
 use Illuminate\Support\Facades\Storage;
 
 class FormularioAreaTecnicaController extends Controller
@@ -114,7 +115,7 @@ class FormularioAreaTecnicaController extends Controller
      */
     public function show($id)
     {
-
+        return view('admin.formulario_area_tecnica.show', ['formulario' => Formulario::findOrFail($id)]);
     }
 
         /**
@@ -125,7 +126,7 @@ class FormularioAreaTecnicaController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.formulario_area_tecnica.edit', ['formulario' => Formulario::findOrFail($id)]);
     }
 
     /**
@@ -195,6 +196,10 @@ class FormularioAreaTecnicaController extends Controller
             return response()->json(['error' => $th->getMessage()], 500);
         }
 
+    }
+
+    public function zipArchivos($formId, $preguntaId){
+        ArchivoService::generateZip($formId, $preguntaId);
     }
 
 }
