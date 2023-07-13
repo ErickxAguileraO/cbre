@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('title', 'Crear formulario')
+@section('title', 'Ver formulario')
 @section('content')
 @push('stylesheets')
 <link rel="stylesheet" href="{{ asset('/public/css/componentes/tab/tab.css') }}">
@@ -25,7 +25,8 @@
     <div class="grid-header-2">
         <h1 class="col-xl">{{$formulario->form_nombre}}</h1>
         <div class="row datos-formulario">
-            <a href="{{ route('formulario-area-tecnica.edit', $formulario->form_id) }}" class="estado-formulario">Salir del modo previsualizar</a>
+            <a href="#" class="estado-formulario">Salir del modo previsualizar</a>
+{{--             <a href="{{ route('formulario-area-tecnica.edit', $formulario->form_id) }}" class="estado-formulario">Salir del modo previsualizar</a> --}}
         </div>
     </div>
 
@@ -39,7 +40,7 @@
         @if ($pregunta->tipoPregunta->tipp_id == 1)
 
         <div class="div-formulario-n">
-            <h3 class="bottom-30">1. {{$pregunta->pre_pregunta}}</h3>
+            <h3 class="bottom-30">{{$pregunta->pre_pregunta}}</h3>
             @if ($pregunta->archivosFormulario->count() > 0)
             <div class="color-texto-cbre my-5 cursor-pointer small">
                 <i class="far fa-paperclip"></i>
@@ -61,7 +62,7 @@
         @elseif ($pregunta->tipoPregunta->tipp_id == 2)
 
         <div class="div-formulario-n">
-            <h3 class="bottom-30">2. {{$pregunta->pre_pregunta}}</h3>
+            <h3 class="bottom-30">{{$pregunta->pre_pregunta}}</h3>
             @if ($pregunta->archivosFormulario->count() > 0)
             <div class="color-texto-cbre my-5 cursor-pointer small">
                 <i class="far fa-paperclip"></i>
@@ -83,7 +84,7 @@
         @elseif ($pregunta->tipoPregunta->tipp_id == 3)
 
         <div class="div-formulario-n">
-            <h3 class="bottom-30">3. {{$pregunta->pre_pregunta}}</h3>
+            <h3 class="bottom-30">{{$pregunta->pre_pregunta}}</h3>
             @if ($pregunta->archivosFormulario->count() > 0)
             <div class="color-texto-cbre my-5 cursor-pointer small">
                 <i class="far fa-paperclip"></i>
@@ -105,7 +106,7 @@
                         <fieldset class="row row-responsive">
                             <div class="col-xl">
                                 <div class="form-group">
-                                    <h3 class="bottom-30">4. {{$pregunta->pre_pregunta}}</h3>
+                                    <h3 class="bottom-30">{{$pregunta->pre_pregunta}}</h3>
                                 </div>
                                 @if ($pregunta->archivosFormulario->count() > 0)
                                 <div class="color-texto-cbre my-5 cursor-pointer small">
