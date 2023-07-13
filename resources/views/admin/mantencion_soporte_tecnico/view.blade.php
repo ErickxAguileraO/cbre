@@ -11,7 +11,7 @@
         Volver al listado
     </a>
     <h1 style="margin: 0px;">Mantención</h1>
-    <p style="margin-bottom: 30px !important;">Creada el 21 Nov 2023</p>
+    <p style="margin-bottom: 30px !important;">Creada el {{ $mantencion->fecha }}</p>
 
     <div id="form-caracteristica" class="formulario">
         <div class="form-group bottom-20">
@@ -27,7 +27,8 @@
         <div class="form-group bottom-20">
             <label for="">Documentación</label>
             <div>
-                <input type="text" class="form-control input-file-txt-nuevo col-sm-4">
+                {{-- <input type="text" class="form-control input-file-txt-nuevo col-sm-4"> --}}
+                <a href="{{ route('mantenciones-jop.archivos', [$mantencion->man_id, $mantencion->man_id]) }}" download><i class="fas fa-download"></i> Descargar archivo</a>
                 {{-- <input class="form-control input-file-nuevo col-sm-4" id="" name="" type="file" tabindex="1"> --}}
                 {{-- <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un solo
                 archivo</p> --}}
