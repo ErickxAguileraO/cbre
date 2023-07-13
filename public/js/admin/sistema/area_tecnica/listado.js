@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     fechaTermino: document.querySelector('#fechaTermino').value,
                     estado: document.querySelector('#estado').value,
                     edificio: document.querySelector('#edificio').value,
-                    creado_por: document.querySelector('#creado_por').value,
+                    creado_por: rol,
                 };
 
                 return sendRequest("/admin/formulario-area-tecnica/get/list", "GET", params);
