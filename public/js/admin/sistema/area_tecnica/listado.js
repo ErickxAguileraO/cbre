@@ -16,14 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     fechaInicio: document.querySelector('#fechaInicio').value,
                     fechaTermino: document.querySelector('#fechaTermino').value,
                     estado: document.querySelector('#estado').value,
-                    creado_por: rol,
+                    edificio: document.querySelector('#edificio').value,
+                    creado_por: document.querySelector('#creado_por').value,
                 };
 
                 return sendRequest("/admin/formulario-area-tecnica/get/list", "GET", params);
             },
         });
-
-
 
         const dataGrid = $("#dataGridAreaTecnica").dxDataGrid({
             dataSource: formulario,
@@ -55,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "nombre_edificio",
+                    dataField: "edificio",
                     caption: "Edificio",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -64,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "cantidad_archivos",
+                    dataField: "cantidad_archivos_formulario",
                     caption: "Archivos",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -117,14 +116,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     width: '100',
                     minWidth: '100',
                     cellTemplate(container, options) {
-                        const idCaracteristica = options.data.car_id;
-                        let urlView = `/preview-formulario`;
+                        const idFormulario = options.data.form_id;
+                        let urlView = ``;
 
                         let templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
-                        let templateDown = `<a href="" title="" data-id="${idCaracteristica}"><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
+                        let templateModificar = `<a href="" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
+                        let templateDown = `<a href="/admin/formulario-area-tecnica/get/archivos/${idFormulario}/zip" title=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
 
                         const enlaceView = $('<a />').append(templateView).appendTo(container);
+                        const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
                         const enlaceDown = $('<a />').append(templateDown).appendTo(container);
+
                     },
                 },
             ],

@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Administracion;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MantencionJOP\CreateMantencionRequest;
+use App\Models\ArchivoMantencion;
 use Illuminate\Http\Request;
 use App\Models\ListadoMantencion;
 use App\Models\Mantencion;
+use App\Services\ArchivoService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MantencionesJOPController extends Controller
 {
@@ -17,7 +22,43 @@ class MantencionesJOPController extends Controller
 
     public function create()
     {
-        return view('admin.mantenciones_jop.create');
+        $listadoEspecialidades =  ListadoMantencion::all();
+        return view('admin.mantenciones_jop.create', compact('listadoEspecialidades'));
+    }
+
+    public function store(CreateMantencionRequest $request)
+    {
+        // dd($request->all());
+        DB::beginTransaction();
+
+        try {
+            $edificio = Auth::user()->funcionario->edificio;
+            $mantencion = Mantencion::create([
+                'man_listado_mantencions_id' => $request->especialidad,
+                'man_descripcion' => $request->detalle,
+                'man_edificio_id' => $edificio->edi_id,
+            ]);
+            $url = ArchivoService::subirArchivos($request->archivo, 'mantencion', 'mantencion');
+            ArchivoMantencion::create([
+                'arcm_mantencion_id' => $mantencion->man_id,
+                'arcm_url' => $url,
+            ]);
+
+            DB::commit();
+
+            return response()->json(['success' => '¡La mantención se ha registrado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json(['error' => $th->getMessage()], 401);
+        }
+    }
+
+    public function edit($id)
+    {
+        $mantencion = Mantencion::findOrFail($id);
+        $listadoEspecialidades =  ListadoMantencion::findOrFail($mantencion->man_listado_mantencions_id);
+        return view('admin.mantenciones_jop.view', compact('mantencion','listadoEspecialidades'));
     }
 
     public function list(Request $request)
@@ -39,6 +80,14 @@ class MantencionesJOPController extends Controller
         return response()->json($mantencion);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
+        }
+    }
+
+    public function zipArchivos($mantencionId){
+        try {
+            ArchivoService::generateZip($mantencionId, 'zip');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
         }
     }
 }

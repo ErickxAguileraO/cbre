@@ -31,25 +31,27 @@ class Formulario extends Model
         return Carbon::parse($this->updated_at)->format('d-m-Y');
     }
 
-    public function scopeWithFilters($query)
+    public function scopeWithFilters($query, $params)
     {
-        return $query->when(request('fechaInicio'), function ($query, $inicio) {
-            $query->whereDate('updated_at', '>=', $inicio);
-        })->when(request('fechaTermino'), function ($query, $termino) {
-            $query->whereDate('updated_at', '<=', $termino);
-        })->when(request('estado'), function ($query, $estado) {
-            $query->where('form_estado', $estado);
-        })->when(request('creado_por'), function ($query, $creadoPor) {
-            $prevencionistas = User::role('prevencionista')->pluck('name')->toArray();
-            $tecnicos = User::role('tecnico')->pluck('name')->toArray();
-
-            $query->whereHas('funcionario', function ($query) use ($creadoPor, $prevencionistas, $tecnicos) {
-                $query->where('fun_nombre', $creadoPor)
-                    ->where(function ($query) use ($prevencionistas, $tecnicos) {
-                        $query->whereIn('fun_nombre', $prevencionistas)
-                            ->orWhereIn('fun_nombre', $tecnicos);
-                    });
+        return $query->when(isset($params['fechaInicio']), function ($query) use ($params) {
+            $query->whereDate('updated_at', '>=', $params['fechaInicio']);
+        })->when(isset($params['fechaTermino']), function ($query) use ($params) {
+            $query->whereDate('updated_at', '<=', $params['fechaTermino']);
+        })->when(isset($params['edificio']), function ($query) use ($params) {
+            $query->whereHas('edificios', function ($query) use ($params) {
+                $query->where('edi_nombre', $params['edificio']);
             });
+        })->when(isset($params['estado']), function ($query) use ($params) {
+            $query->where('form_estado', $params['estado']);
+        })->when(isset($params['creado_por']), function ($query) use ($params) {
+            $creadoPor = $params['creado_por'];
+            if ($creadoPor === 'prevencionista' || $creadoPor === 'tecnico') {
+                $query->whereHas('funcionario', function ($query) use ($creadoPor) {
+                    $query->whereHas('roles', function ($query) use ($creadoPor) {
+                        $query->where('name', $creadoPor);
+                    });
+                });
+            }
         });
     }
 

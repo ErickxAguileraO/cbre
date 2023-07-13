@@ -54,4 +54,9 @@ class Mantencion extends Model
     {
         return $this->belongsTo(Edificio::class, 'man_edificio_id', 'edi_id');
     }
+
+    public function archivosMantencion()
+    {
+        return $this->hasMany(ArchivoFormulario::class, 'arcm_mantencion_id', 'man_id');
+    }
 }

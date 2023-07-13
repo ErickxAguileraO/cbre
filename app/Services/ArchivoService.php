@@ -11,7 +11,7 @@ class ArchivoService
     // preguntaId puede ir como null, para así obtener la carpeta completa (form) y no solo la carpeta de la respectiva pregunta
     public static function generateZip($formId, $preguntaId)
     {
-        if($preguntaId){
+        if(is_numeric($preguntaId)){
             $folderPath = public_path('/storage/archivos/'.$formId.'/preguntas/'.$preguntaId);
             $zipFilePath = public_path('/storage/archivos/'.$formId.'/preguntas/'.$preguntaId.'.zip');
         }else{

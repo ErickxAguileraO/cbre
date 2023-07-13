@@ -138,6 +138,7 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(MantencionesJOPController::class)->group(function () {
             Route::resource('mantenciones-jop', MantencionesJOPController::class);
             Route::get('mantenciones-jop/get/list', 'list')->name('mantenciones-jop.list');
+            Route::get('mantenciones-jop/get/archivos/{mantencion}/', 'zipArchivos')->name('mantenciones-jop.archivos');
         });
 
         // Mantenciones Soporte Tecnico
