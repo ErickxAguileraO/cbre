@@ -28,14 +28,15 @@ class MantencionesJOPController extends Controller
 
     public function store(CreateMantencionRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
         DB::beginTransaction();
 
         try {
+            $edificio = Auth::user()->funcionario->edificio;
             $mantencion = Mantencion::create([
                 'man_listado_mantencions_id' => $request->especialidad,
                 'man_descripcion' => $request->detalle,
-                'man_edificio_id' => Auth::user()->funcionario->edificio->edi_id,
+                'man_edificio_id' => $edificio->edi_id,
             ]);
             $url = ArchivoService::subirArchivos($request->archivo, 'mantencion', 'mantencion');
             ArchivoMantencion::create([
@@ -51,6 +52,13 @@ class MantencionesJOPController extends Controller
 
             return response()->json(['error' => $th->getMessage()], 401);
         }
+    }
+
+    public function edit($id)
+    {
+        $mantencion = Mantencion::findOrFail($id);
+        $listadoEspecialidades =  ListadoMantencion::findOrFail($mantencion->man_listado_mantencions_id);
+        return view('admin.mantenciones_jop.view', compact('mantencion','listadoEspecialidades'));
     }
 
     public function list(Request $request)
@@ -72,6 +80,14 @@ class MantencionesJOPController extends Controller
         return response()->json($mantencion);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
+        }
+    }
+
+    public function zipArchivos($mantencionId){
+        try {
+            ArchivoService::generateZip($mantencionId, 'zip');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
         }
     }
 }

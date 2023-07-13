@@ -50,6 +50,7 @@ class FormularioAreaTecnicaController extends Controller
 
     public function list(Request $request)
     {
+        $creadoPor = $request->input('creado_por');
         try {
             $formulario = Formulario::with('funcionario')
             ->with(['preguntas' => function ($query) {
@@ -58,7 +59,7 @@ class FormularioAreaTecnicaController extends Controller
             ->with(['edificios' => function ($query) {
                 $query->select('edi_nombre');
             }])
-            ->withFilters()
+            ->withFilters($request->all()) // Pasar los parámetros de la solicitud al scope
             ->orderByDesc('updated_at')
             ->get();
 
@@ -70,7 +71,7 @@ class FormularioAreaTecnicaController extends Controller
             if (in_array($funcionario->fun_nombre, $prevencionistas)) {
                 $value->rol_funcionario = 'Prevencionista';
             } elseif (in_array($funcionario->fun_nombre, $tecnicos)) {
-                $value->rol_funcionario = 'Tecnico';
+                $value->rol_funcionario = 'Técnico';
             }
 
             // Agregar la cantidad de archivos a cada pregunta
@@ -199,7 +200,11 @@ class FormularioAreaTecnicaController extends Controller
     }
 
     public function zipArchivos($formId, $preguntaId){
-        ArchivoService::generateZip($formId, $preguntaId);
+        try {
+            ArchivoService::generateZip($formId, $preguntaId);
+        } catch (\Throwable $th) {
+            return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
+        }
     }
 
 }
