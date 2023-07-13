@@ -11,6 +11,7 @@ use App\Models\Mantencion;
 use App\Services\ArchivoService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MantencionesJOPController extends Controller
 {
@@ -38,7 +39,7 @@ class MantencionesJOPController extends Controller
                 'man_descripcion' => $request->detalle,
                 'man_edificio_id' => $edificio->edi_id,
             ]);
-            $url = ArchivoService::subirArchivos($request->archivo, 'mantencion', 'mantencion');
+            $url = ArchivoService::subirArchivos($request->archivo, 'mantencion', $mantencion->man_id);
             ArchivoMantencion::create([
                 'arcm_mantencion_id' => $mantencion->man_id,
                 'arcm_url' => $url,
@@ -58,7 +59,9 @@ class MantencionesJOPController extends Controller
     {
         $mantencion = Mantencion::findOrFail($id);
         $listadoEspecialidades =  ListadoMantencion::findOrFail($mantencion->man_listado_mantencions_id);
-        return view('admin.mantenciones_jop.view', compact('mantencion','listadoEspecialidades'));
+        $rutaArchivo = Storage::url('/storage/archivos/mantencion/'.$mantencion->man_listado_mantencions_id.'/nombre');
+        $nombreArchivo = basename($rutaArchivo);
+        return view('admin.mantenciones_jop.view', compact('mantencion','listadoEspecialidades','nombreArchivo'));
     }
 
     public function list(Request $request)
@@ -83,9 +86,9 @@ class MantencionesJOPController extends Controller
         }
     }
 
-    public function zipArchivos($mantencionId){
+    public function zipArchivos($mantencionId, $idCarpeta){
         try {
-            ArchivoService::generateZip($mantencionId, 'zip');
+            ArchivoService::generateZipMantenciones($mantencionId, $idCarpeta);
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }

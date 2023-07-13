@@ -26,8 +26,8 @@
         <div class="form-group bottom-20">
             <label for="">Documentación</label>
             <div>
-                <input type="text" class="form-control input-file-txt-nuevo col-sm-4" readonly>
-                <a href="{{ route('mantenciones-jop.archivos', [$mantencion->man_id]) }}" download><i class="fas fa-download"></i> Descargar archivo</a>
+                {{-- <input type="text" class="form-control input-file-txt-nuevo col-sm-4" value="{{ $nombreArchivo }}" readonly> --}}
+                <a href="{{ route('mantenciones-jop.archivos', [$mantencion->man_id, $mantencion->man_id]) }}" download><i class="fas fa-download"></i> Descargar archivo</a>
                 {{-- <input class="form-control input-file-nuevo col-sm-4" id="" name="" type="file" tabindex="1"> --}}
                 {{-- <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un solo
                 archivo</p> --}}

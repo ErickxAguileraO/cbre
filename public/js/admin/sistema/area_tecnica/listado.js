@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     minWidth: '100',
                     cellTemplate(container, options) {
                         const idFormulario = options.data.form_id;
-                        let urlView = ``;
+                        let urlView = `/admin/formulario-area-tecnica/${idFormulario}`;
 
                         let templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
                         let templateModificar = `<a href="" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;

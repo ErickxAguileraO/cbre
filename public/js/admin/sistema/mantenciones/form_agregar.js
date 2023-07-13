@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("guardar").addEventListener("click", function (event) {
-        console.log('hola');
         event.preventDefault();
-        // isLoadingSpinner("guardar", true);
+        isLoadingSpinner("guardar", true);
         fetch("/admin/mantenciones-jop", {
             method: "POST",
             headers: {
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(function (response) {
                 if ($.isEmptyObject(response.errors)) {
-                    // isLoadingSpinner("guardar", true);
+                    isLoadingSpinner("guardar", true);
                     setTimeout(() => {
                         if (response.success) {
                             Swal.fire({
@@ -27,14 +26,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                 showConfirmButton: false,
                                 timer: 1500,
                             });
-                            // isLoadingSpinner("guardar", 'done');
-                            resetValidationMessages();
+                            isLoadingSpinner("guardar", 'done');
+                            // resetValidationMessages();
                             setTimeout(() => {
                                 document.location.href = "/admin/mantenciones-jop";
                             }, 2000);
+
                         } else if (response.error) {
-                            // isLoadingSpinner("guardar", false);
-                            resetValidationMessages();
+                            isLoadingSpinner("guardar", false);
+                            // resetValidationMessages();
                             Swal.fire({
                                 position: "center",
                                 icon: "error",
@@ -43,12 +43,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                 timer: 1500,
                             });
                         }
+                        // Cerrar el modal
+                        document.getElementById('modalMantencion').style.display = 'none';
                     }, 1000);
+
                 } else {
-                    // isLoadingSpinner("guardar", true);
+                    isLoadingSpinner("guardar", true);
                     setTimeout(() => {
-                        // isLoadingSpinner("guardar", false);
-                        resetValidationMessages();
+                         isLoadingSpinner("guardar", false);
+                        // resetValidationMessages();
                         // setValidationMessages(response);
                         Swal.fire({
                             position: "center",
@@ -57,7 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             showConfirmButton: false,
                             timer: 1500,
                         });
+                    // Cerrar el modal
+                    document.getElementById('modalMantencion').style.display = 'none';
                     }, 1000);
+
                 }
             })
             .catch((mensajeError) => {
@@ -68,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                // isLoadingSpinner("guardar", false);
+                isLoadingSpinner("guardar", false);
             });
     });
 

@@ -50,7 +50,7 @@
             <div class="modalMantencion__abrirBtn modalFile__btnN modalFile__botonPrimario">Enviar mantención</div>
         </div>
             {{-- Modal enviar --}}
-        <div class="contenedor__modalMantencion">
+        <div id="modalMantencion" class="contenedor__modalMantencion">
             <div class="modalFile">
                 <div class="modalFile__header">
                     <h3>Enviar mantención</h3>
@@ -61,7 +61,15 @@
 
                 <div class="modalFile__botones">
                     <div class="modalMantencion__cerrarBtn modalFile__btnN modalFile__botonSecundario">No, revisaré</div>
-                    <button id="guardar" type="submit" value="Guardar" class="modalFile__btnN modalFile__botonPrimario">Si, enviar</button>
+                    <button id="guardar" type="submit" value="Guardar" class="modalFile__btnN modalFile__botonPrimario">Si, enviar
+                        <div id="loading" class="d-none">
+                            <div id="default" class="d-block">
+                                <span>Guardar</span>
+                                <i class="fas fa-save ml-2 mr-2"></i>
+                            </div>
+                            <span class="spinner-border spinner-border-md ml-1" role="status" aria-hidden="true"></span>
+                        </div>
+                    </button>
                  </div>
 
              </div>
