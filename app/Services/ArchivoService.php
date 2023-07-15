@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use ZipArchive;
+use App\Models\Respuesta;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 
@@ -53,13 +54,14 @@ class ArchivoService
         return "Failed to generate the ZIP file.";
     }
 
-    public static function subirArchivos($archivo, $carpeta, $subCarpeta){
-        if($carpeta == 'mantencion'){
+    public static function subirArchivos($archivo, $carpeta, $subCarpeta, $tipo){
+        if($tipo == 'mantencion'){
             // Archivos Mantención
             return $archivo->store('public/archivos/'.$carpeta.'/'.$subCarpeta);
-        }else{
-            // Archivos formularios
+        }elseif($tipo == 'pregunta'){
             return $archivo->store('public/archivos/'.$carpeta.'/preguntas/'.$subCarpeta);
+        }elseif($tipo == 'respuesta'){
+            return $archivo->store('public/archivos/'.$carpeta.'/preguntas/'.$subCarpeta.'/respuestas/'.Respuesta::where('res_pregunta_id', $subCarpeta)->first()->res_id);
         }
     }
 
