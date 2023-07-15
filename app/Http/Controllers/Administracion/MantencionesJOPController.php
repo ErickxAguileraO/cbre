@@ -39,7 +39,7 @@ class MantencionesJOPController extends Controller
                 'man_descripcion' => $request->detalle,
                 'man_edificio_id' => $edificio->edi_id,
             ]);
-            $url = ArchivoService::subirArchivos($request->archivo, 'mantencion', $mantencion->man_id);
+            $url = ArchivoService::subirArchivos($request->archivo, 'mantencion', $mantencion->man_id, 'mantencion');
             ArchivoMantencion::create([
                 'arcm_mantencion_id' => $mantencion->man_id,
                 'arcm_url' => $url,
