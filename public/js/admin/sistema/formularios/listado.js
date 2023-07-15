@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
                 },
                 {
-                    dataField: "creado_por",
+                    dataField: "rol_funcionario",
                     caption: "Enviado por",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -62,19 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
                                 data: [
                                     {
                                         id: 1,
-                                        name: "Publicado",
+                                        name: "Pendiente",
                                     },
                                     {
                                         id: 2,
-                                        name: "Respondido",
-                                    },
-                                    {
-                                        id: 3,
-                                        name: "Cerrado",
-                                    },
-                                    {
-                                        id: 4,
-                                        name: "Borrador",
+                                        name: "Enviado",
                                     },
                                 ],
                                 key: "id",

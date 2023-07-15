@@ -15,9 +15,11 @@ class MantencionSoporteTecnicoController extends Controller
         return view('admin.mantencion_soporte_tecnico.index', compact('listadoEspecialidades'));
     }
 
-        public function edit()
+    public function edit($id)
     {
-        return view('admin.mantencion_soporte_tecnico.view');
+        $mantencion = Mantencion::findOrFail($id);
+        $listadoEspecialidades =  ListadoMantencion::findOrFail($mantencion->man_listado_mantencions_id);
+        return view('admin.mantencion_soporte_tecnico.view', compact('mantencion','listadoEspecialidades'));
     }
 
     public function list(Request $request)

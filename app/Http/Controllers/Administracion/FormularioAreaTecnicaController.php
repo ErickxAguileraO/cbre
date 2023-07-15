@@ -50,12 +50,16 @@ class FormularioAreaTecnicaController extends Controller
 
     public function list(Request $request)
     {
+        $creadoPor = $request->input('creado_por');
         try {
             $formulario = Formulario::with('funcionario')
             ->with(['preguntas' => function ($query) {
                 $query->withCount('archivosFormulario');
             }])
-            ->withFilters()
+            ->with(['edificios' => function ($query) {
+                $query->select('edi_nombre');
+            }])
+            ->withFilters($request->all()) // Pasar los parámetros de la solicitud al scope
             ->orderByDesc('updated_at')
             ->get();
 
@@ -67,18 +71,25 @@ class FormularioAreaTecnicaController extends Controller
             if (in_array($funcionario->fun_nombre, $prevencionistas)) {
                 $value->rol_funcionario = 'Prevencionista';
             } elseif (in_array($funcionario->fun_nombre, $tecnicos)) {
-                $value->rol_funcionario = 'Tecnico';
+                $value->rol_funcionario = 'Técnico';
             }
+
             // Agregar la cantidad de archivos a cada pregunta
             foreach ($value->preguntas as $pregunta) {
-                $pregunta->cantidad_archivos = $pregunta->archivos_formularios_count;
+                $pregunta->cantidad_archivos = $pregunta->archivosFormulario->count();
             }
 
-            // Agregar una propiedad adicional para la cantidad de archivos
-            $value->cantidad_archivos = $value->preguntas->sum('cantidad_archivos');
+            // Obtener la cantidad total de archivos vinculados al formulario
+            $cantidadArchivosFormulario = 0;
+            foreach ($value->preguntas as $pregunta) {
+                $cantidadArchivosFormulario += $pregunta->cantidad_archivos;
+            }
+            $value->cantidad_archivos_formulario = $cantidadArchivosFormulario;
+
+            // Agregar los nombres de los edificios al formulario
+            $edificios = $value->edificios->pluck('edi_nombre')->toArray();
+            $value->edificio = $edificios;
         }
-
-
 
         return response()->json($formulario);
         } catch (\Throwable $th) {
@@ -189,7 +200,11 @@ class FormularioAreaTecnicaController extends Controller
     }
 
     public function zipArchivos($formId, $preguntaId){
-        ArchivoService::generateZip($formId, $preguntaId);
+        try {
+            ArchivoService::generateZip($formId, $preguntaId);
+        } catch (\Throwable $th) {
+            return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
+        }
     }
 
 }

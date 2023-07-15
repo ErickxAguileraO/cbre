@@ -45,25 +45,17 @@
          <small id="" class="field-message-alert absolute"></small>
      </div>
      <input type="hidden" id="rolAdmin" name="rolAdmin" value="{{ auth()->user()->hasRole('super-admin') }}">
-      @if (auth()->user()->hasRole('super-admin'))
-         <div class="form-group">
+        @if (auth()->user()->hasRole('super-admin'))
+        <div class="form-group">
             <label for="">Creado por</label>
             <select id="creado_por" name="creado_por" class="form-control" tabindex="4" style="width:100%;">
                 <option value="">Todos</option> <!-- Opción vacía -->
-                <option value="prevencionista" {{ old('creado_por') === 'prevencionista' ? 'selected' : '' }}>Prevencionista</option>
-                <option value="tecnico" {{ old('creado_por') === 'tecnico' ? 'selected' : '' }}>Técnico</option>
-                {{-- @if(isset($funcionarios) && !$funcionarios->isEmpty())
-                    @foreach ($funcionarios->unique() as $funcionario)
-                        @php
-                            $selected = old('creado_por') == $funcionario->fun_nombre ? 'selected' : '';
-                        @endphp
-                        <option value="{{ $funcionario->fun_nombre }}" {{ $selected }}>{{ $funcionario->fun_nombre }}</option>
-                    @endforeach
-                @endif --}}
+                <option value="prevencionista" {{ request('creado_por') === 'prevencionista' ? 'selected' : '' }}>Prevencionista</option>
+                <option value="tecnico" {{ request('creado_por') === 'tecnico' ? 'selected' : '' }}>Técnico</option>
             </select>
             <small id="" class="field-message-alert absolute"></small>
-         </div>
-      @endif
+        </div>
+        @endif
 
       <div>
          <div class="sin-label"></div>

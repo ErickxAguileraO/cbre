@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     minWidth: '100',
                     cellTemplate(container, options) {
                         const idSoporteTec = options.data.man_id;
-                        let urlView = `/mantenciones-soporte-tecnico/${idSoporteTec}/edit`;
+                        let urlView = `/admin/mantenciones-soporte-tecnico/${idSoporteTec}/edit`;
 
                         let templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
                         let templateDown = `<a href="" title="" data-id=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
