@@ -92,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     width: '200',
                     minWidth: '200',
                     cellTemplate(container, options) {
-                        const idCaracteristica = options.data.car_id;
-                        let urlResponder = `/responder-formulario`;
+                        const idFormulario = options.data.form_id;
+                        let urlResponder = `/admin/formulario-jop/${idFormulario}`;
 
                         let templateResponder = `<a href="${urlResponder}" class="btn btn-success text-white">Responder</a>`;
 

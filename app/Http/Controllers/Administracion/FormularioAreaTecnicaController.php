@@ -168,7 +168,7 @@ class FormularioAreaTecnicaController extends Controller
         }
     }
 
-    public function PostFormulario(Request $request){
+    public function postFormulario(Request $request){
 
         DB::beginTransaction();
         try {
