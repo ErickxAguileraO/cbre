@@ -35,7 +35,7 @@ class UploadFileModal extends Component
             $archivo = new ArchivoFormulario();
             $archivo->arcf_pregunta_id = $this->preguntaId;
 
-            $storedFile = ArchivoService::subirArchivos($file, Pregunta::findOrFail($this->preguntaId)->formulario->form_id, $this->preguntaId);
+            $storedFile = ArchivoService::subirArchivos($file, Pregunta::findOrFail($this->preguntaId)->formulario->form_id, $this->preguntaId, 'pregunta');
 
             $archivo->arcf_url = $storedFile;
             $archivo->arcf_nombre_original = $file->getClientOriginalName();

@@ -21,7 +21,7 @@
 
 @endpush
 <div id="" class="formulario nuevo-formulario">
-    <a href="/formulario-area-tecnica" class="row row-responsive link-atras">
+    <a href="{{ route('formulario-jop.index') }}" class="row row-responsive link-atras">
         <i class="far fa-arrow-left"></i>
         Volver al listado
     </a>
@@ -60,7 +60,7 @@
 
                 {{-- Comentario --}}
                 <div class="contenedor-comentario"></div>
-                
+
                 {{-- Opciones de la pregunta --}}
                 <div class="opciones-pregunta grid-header-2">
                     <div class="row gap-37 padding-left-15">
@@ -201,7 +201,7 @@
                                 <small id="" class="field-message-alert absolute"></small>
                             </div>
                         </div>
-    
+
                         <div class="col-sm-4 row-column-global sin-margen">
                             <label for="">Año</label>
                             <div class="form-group">
@@ -212,23 +212,23 @@
                             </div>
                         </div>
                     </fieldset>
-    
+
                     <h3 class="margin-20">Reporte de accidentabildiad CBRE</h3>
-    
+
                     <fieldset class="row-global row-responsive">
                         <label class="width-250" for="">Dotación</label>
                         <div class="form-group">
                             <input id="" name="" class="form-control" type="text" tabindex="1" placeholder="">
                         </div>
                     </fieldset>
-    
+
                     <fieldset class="row-global row-responsive">
                         <label class="width-250" for="">Reporte de accidentabildiad</label>
                         <div>
                             <input class="form-control input-file-nuevo" id="" name="" type="file" tabindex="1">
                         </div>
                     </fieldset>
-    
+
                     <div class="linea-separadora"></div>
                     <h3 class="margin-20">Reporte de accidentabildiad Sub contratos</h3>
                     <fieldset class="row-global row-responsive">
@@ -237,14 +237,14 @@
                             <input id="" name="" class="form-control" type="text" tabindex="1" placeholder="">
                         </div>
                     </fieldset>
-    
+
                     <fieldset class="row-global row-responsive">
                         <label class="width-250" for="">¿Cuántos de estos son nuevos?</label>
                         <div class="form-group">
                             <input id="" name="" class="form-control" type="text" tabindex="1" placeholder="">
                         </div>
                     </fieldset>
-    
+
                     <fieldset class="row-global row-responsive">
                         <label class="width-250" for="">¿Todos tienen documentación de sub contratación al día?</label>
                         <div class="form-group row-global">
@@ -309,12 +309,12 @@
                 <div class="modalFile__contenedorContenido">
                     <h3 style="text-align: center;">¿Estas seguro de enviar el formulario?</h3>
                 </div>
-                
+
                 <div class="modalFile__botones">
                     <div class="modalEnviar__cerrarBtn modalFile__btnN modalFile__botonSecundario">Cerrar</div>
                     <button class="modalFile__btnN modalFile__botonPrimario">Guardar</button>
                 </div>
-                
+
             </div>
         </div>
 
