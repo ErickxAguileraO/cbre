@@ -73,7 +73,7 @@ class ReplyForm extends Component
 
         $respuesta->res_dotacion_sub_contratos = empty($this->res_dotacion_sub_contratos) ? null : $this->res_dotacion_sub_contratos;
         $respuesta->res_dotacion_nuevos = empty($this->res_dotacion_nuevos) ? null : $this->res_dotacion_nuevos;
-        $respuesta->res_documentacion_sub_contrato = empty($this->res_documentacion_sub_contrato) ? null : $this->res_documentacion_sub_contrato;
+        $respuesta->res_documentacion_sub_contrato = empty($this->res_documentacion_sub_contrato) ? 0 : $this->res_documentacion_sub_contrato;
 
         $respuesta->res_documentacion = empty($this->res_documentacion) ? null : ArchivoService::subirArchivos($this->res_documentacion, Pregunta::findOrFail($preguntaId)->formulario->form_id, Pregunta::findOrFail($preguntaId)->pre_id, 'respuesta');
 
