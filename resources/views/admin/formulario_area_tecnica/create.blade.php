@@ -84,34 +84,12 @@
                             <div class="historial__lineaCirculo"></div>
                         </div>
                         <div class="historial__datos sin-margen">
-                            <p>21 Nov 2023</p>
+                            <p>{{$formulario->created_at}}</p>
                             <h3>Creación de formulario</h3>
+                            @if ($formulario->form_estado == 4)
                             <p>Estado: Borrador</p>
-                            <p>Creado por Benjamín Arias</p>
-                        </div>
-                    </div>
-
-                    <div class="historial">
-                        <div class="historial__linea">
-                            <div class="historial__lineaCirculo"></div>
-                        </div>
-                        <div class="historial__datos sin-margen">
-                            <p>21 Nov 2023</p>
-                            <h3>Creación de formulario</h3>
-                            <p>Estado: Borrador</p>
-                            <p>Creado por Benjamín Arias</p>
-                        </div>
-                    </div>
-
-                    <div class="historial">
-                        <div class="historial__linea">
-                            <div class="historial__lineaCirculo"></div>
-                        </div>
-                        <div class="historial__datos sin-margen">
-                            <p>21 Nov 2023</p>
-                            <h3>Creación de formulario</h3>
-                            <p>Estado: Borrador</p>
-                            <p>Creado por Benjamín Arias</p>
+                            @endif
+                            <p>Creado por {{$formulario->funcionario->fun_nombre}}</p>
                         </div>
                     </div>
                 </div>
