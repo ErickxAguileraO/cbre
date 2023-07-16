@@ -16,6 +16,8 @@ class FormularioJOPController extends Controller
 {
     public function index()
     {
+        $this->borrarRespuestasBorrador();
+
         return view('admin.formularios_jop.index');
     }
 
@@ -106,6 +108,8 @@ class FormularioJOPController extends Controller
                     $respuesta->res_estado = 1;
                     $respuesta->update();
                 }
+                $formulario->form_estado = 2;
+                $formulario->save();
             }
 
             DB::commit();
