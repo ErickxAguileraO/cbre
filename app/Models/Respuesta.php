@@ -14,7 +14,7 @@ class Respuesta extends Model
     protected $primaryKey = 'res_id';
 
     public function opciones(){
-        return $this->belongsToMany(Opcion::class, 'respuesta_opcion', 'reop_respuesta_id', 'reop_opcion_id')->withTimestamps();
+        return $this->belongsToMany(Opcion::class, 'respuesta_opcion', 'reop_opcion_id', 'reop_respuesta_id')->withTimestamps();
     }
 
     public function formularioEdificio()

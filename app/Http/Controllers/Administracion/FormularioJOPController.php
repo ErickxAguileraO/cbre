@@ -102,14 +102,14 @@ class FormularioJOPController extends Controller
 
             $formulario = Formulario::findOrFail($request->input('formValue'));
 
-            if(Auth::user()->funcionario->edificio->edi_id == $formulario->form_id){
+            if(Auth::user()->funcionario->edificio->edi_id == FormularioEdificio::where('foredi_formulario_id', $formulario->form_id)->first()->foredi_edificio_id){
                 foreach($formulario->preguntas as $pregunta){
                     $respuesta = Respuesta::where('res_pregunta_id', $pregunta->pre_id)->first();
                     $respuesta->res_estado = 1;
                     $respuesta->update();
                 }
                 $formulario->form_estado = 2;
-                $formulario->save();
+                $formulario->update();
             }
 
             DB::commit();
