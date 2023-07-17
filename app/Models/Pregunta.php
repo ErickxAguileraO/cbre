@@ -38,4 +38,10 @@ class Pregunta extends Model
         return $this->hasMany(ArchivoFormulario::class, 'arcf_pregunta_id', 'pre_id');
     }
 
+    //// ??? Quizás deba ser has many
+    public function respuesta()
+    {
+        return $this->hasOne(Respuesta::class, 'res_pregunta_id', 'pre_id');
+    }
+
 }

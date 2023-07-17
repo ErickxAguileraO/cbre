@@ -8,6 +8,7 @@ use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\RespuestaOpcion;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Services\ArchivoService;
@@ -133,7 +134,7 @@ class FormularioAreaTecnicaController extends Controller
      */
     public function show($id)
     {
-        return view('admin.formulario_area_tecnica.show', ['formulario' => Formulario::findOrFail($id)]);
+        return view('admin.formulario_area_tecnica.show', ['formulario' => Formulario::findOrFail($id), 'respuestaOpcion' => RespuestaOpcion::all()]);
     }
 
         /**
@@ -196,7 +197,7 @@ class FormularioAreaTecnicaController extends Controller
         }
     }
 
-    public function PostFormulario(Request $request){
+    public function postFormulario(Request $request){
 
         DB::beginTransaction();
         try {

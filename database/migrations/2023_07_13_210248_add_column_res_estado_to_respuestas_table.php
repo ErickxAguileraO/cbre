@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnArcfNombreOriginalToArchivoFormulariosTable extends Migration
+class AddColumnResEstadoToRespuestasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnArcfNombreOriginalToArchivoFormulariosTable extends Migration
      */
     public function up()
     {
-        Schema::table('archivo_formularios', function (Blueprint $table) {
-            $table->string('arcf_nombre_original')->after('arcf_url');
+        Schema::table('respuestas', function (Blueprint $table) {
+            $table->integer('res_estado')->default(0)->after('res_comentario');
         });
     }
 
@@ -25,8 +25,8 @@ class AddColumnArcfNombreOriginalToArchivoFormulariosTable extends Migration
      */
     public function down()
     {
-        Schema::table('archivo_formularios', function (Blueprint $table) {
-            $table->dropColumn('arcf_nombre_original');
+        Schema::table('respuestas', function (Blueprint $table) {
+            $table->dropColumn('res_estado');
         });
     }
 }

@@ -18,7 +18,9 @@ class Opcion extends Model
         return $this->belongsTo(Pregunta::class, 'opc_pregunta_id', 'pre_id');
     }
 
-
+    public function respuestas(){
+        return $this->belongsToMany(Respuesta::class, 'respuesta_opcion', 'reop_opcion_id', 'reop_respuesta_id')->withTimestamps();
+    }
 
 
 }
