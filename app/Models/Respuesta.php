@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Respuesta extends Model
 {
@@ -30,6 +31,16 @@ class Respuesta extends Model
     public function archivosFormulario()
     {
         return $this->hasMany(ArchivoFormulario::class, 'arcf_respuesta_id', 'res_id');
+    }
+
+    public function getUrlDocumentacion()
+    {
+        return '/public' . Storage::url($this->res_documentacion);
+    }
+
+    public function getUrlDocumentoAccidentabilidad()
+    {
+        return '/public' . Storage::url($this->res_documento_accidentabilidad);
     }
 
 
