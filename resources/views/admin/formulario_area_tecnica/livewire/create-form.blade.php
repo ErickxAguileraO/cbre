@@ -26,6 +26,18 @@
     </div>
 
     <div>
+
+        <div wire:loading wire:target="updateFormInfo" id="cover-spin"></div>
+        <div wire:loading wire:target="updatePreguntaTitle" id="cover-spin"></div>
+        <div wire:loading wire:target="changePreguntaType" id="cover-spin"></div>
+        <div wire:loading wire:target="updateOptionTitle" id="cover-spin"></div>
+        <div wire:loading wire:target="switchPreguntaRequired" id="cover-spin"></div>
+        <div wire:loading wire:target="deletePregunta" id="cover-spin"></div>
+        <div wire:loading wire:target="changePreguntaType" id="cover-spin"></div>
+        <div wire:loading wire:target="createNewPregunta" id="cover-spin"></div>
+        <div wire:loading wire:target="addNewOption" id="cover-spin"></div>
+        <div wire:loading wire:target="deleteOption" id="cover-spin"></div>
+
         @foreach ($formulario->preguntas as $index => $pregunta)
         @if ($pregunta->tipoPregunta->tipp_id == 1)
 
