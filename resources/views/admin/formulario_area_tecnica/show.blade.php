@@ -229,7 +229,7 @@
                                 @if ($pregunta->respuesta->res_documento_accidentabilidad)
                                 <input class="form-control input-file-nuevo" id="" name=""type="file"
                                 tabindex="1" disabled>
-                                <a href="{{$pregunta->respuesta->res_documento_accidentabilidad}}" target="_blank" class="small">Descargar archivo adjunto</a>
+                                <a href="{{$pregunta->respuesta->getUrlDocumentoAccidentabilidad()}}" target="_blank" class="small">Descargar archivo adjunto</a>
                                     @else
                                     <input class="form-control input-file-nuevo" id="" name=""type="file"
                                     tabindex="1" disabled>
@@ -291,7 +291,7 @@
                                 tabindex="1" disabled>
                             <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un solo
                                 archivo</p>
-                                <a href="{{$pregunta->respuesta->res_documentacion}}" target="_blank" class="small">Descargar archivo adjunto</a>
+                                <a href="{{$pregunta->respuesta->getUrlDocumentacion()}}" target="_blank" class="small">Descargar archivo adjunto</a>
                                     @else
                                     <input class="form-control input-file-nuevo" id="" name=""type="file"
                                     tabindex="1" disabled>

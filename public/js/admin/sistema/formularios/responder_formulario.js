@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 showCancelButton: true,
                 confirmButtonColor: "#005157",
                 cancelButtonColor: "#343a40",
-                confirmButtonText: "¡Sí, Publicalo!",
+                confirmButtonText: "¡Sí, Envíalo!",
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch('/admin/formulario-jop/post/respuesta', {
