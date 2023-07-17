@@ -2,7 +2,7 @@
 @section('title', 'Mantenciones JOP')
 
 @section('content')
-    @if (!auth()->user()->hasRole('tecnico'))
+    @if (!auth()->user()->hasRole('tecnico') && !auth()->user()->hasRole('super-admin'))
         <a class="btn btn-success float-right text-white" href="{{ route('mantenciones-jop.create') }}">Nueva mantención</a>
    @endif
    <h1>Mantenciones JOP</h1>

@@ -114,9 +114,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     cellTemplate(container, options) {
                         const idFormulario = options.data.form_id;
                         let urlView = `/admin/formulario-area-tecnica/${idFormulario}`;
+                        let urlModificar = `/admin/formulario-area-tecnica/${idFormulario}/edit`;
 
                         let templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
-                        let templateModificar = `<a href="" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
+                        let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
                         let templateDown = `<a href="/admin/formulario-area-tecnica/get/archivos/${idFormulario}/zip" title=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
 
                         const enlaceView = $('<a />').append(templateView).appendTo(container);
