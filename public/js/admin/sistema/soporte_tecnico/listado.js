@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         let urlView = `/admin/mantenciones-soporte-tecnico/${idSoporteTec}/edit`;
 
                         let templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
-                        let templateDown = `<a href="" title="" data-id=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
+                        let templateDown = `<a href="/admin/mantenciones-jop/get/archivos/${idSoporteTec}/${idSoporteTec}" title="" data-id=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
 
                         const enlaceView = $('<a />').append(templateView).appendTo(container);
                         const enlaceDown = $('<a />').append(templateDown).appendTo(container);

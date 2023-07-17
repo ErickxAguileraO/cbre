@@ -2,7 +2,9 @@
 @section('title', 'Mantenciones JOP')
 
 @section('content')
-   <a class="btn btn-success float-right text-white" href="{{ route('mantenciones-jop.create') }}">Nueva mantención</a>
+    @if (!auth()->user()->hasRole('tecnico'))
+        <a class="btn btn-success float-right text-white" href="{{ route('mantenciones-jop.create') }}">Nueva mantención</a>
+   @endif
    <h1>Mantenciones JOP</h1>
 
    <form action="" class="grid-filtros-admin-3">

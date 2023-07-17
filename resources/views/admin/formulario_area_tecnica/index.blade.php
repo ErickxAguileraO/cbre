@@ -50,8 +50,8 @@
             <label for="">Creado por</label>
             <select id="creado_por" name="creado_por" class="form-control" tabindex="4" style="width:100%;">
                 <option value="">Todos</option> <!-- Opción vacía -->
-                <option value="prevencionista" {{ request('creado_por') === 'prevencionista' ? 'selected' : '' }}>Prevencionista</option>
-                <option value="tecnico" {{ request('creado_por') === 'tecnico' ? 'selected' : '' }}>Técnico</option>
+                <option value="Prevencionista">Prevencionista</option>
+                <option value="Técnico">Técnico</option>
             </select>
             <small id="" class="field-message-alert absolute"></small>
         </div>

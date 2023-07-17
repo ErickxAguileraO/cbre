@@ -63,16 +63,22 @@ class FormularioAreaTecnicaController extends Controller
             ->orderByDesc('updated_at')
             ->get();
 
+        $modifiedFormulario = collect();
+
         foreach ($formulario as $key => $value) {
             $funcionario = $value->funcionario;
             $prevencionistas = User::role('prevencionista')->pluck('name')->toArray();
             $tecnicos = User::role('tecnico')->pluck('name')->toArray();
 
+            $rolFuncionario = '';
+
             if (in_array($funcionario->fun_nombre, $prevencionistas)) {
-                $value->rol_funcionario = 'Prevencionista';
+                $rolFuncionario = 'Prevencionista';
             } elseif (in_array($funcionario->fun_nombre, $tecnicos)) {
-                $value->rol_funcionario = 'Técnico';
+                $rolFuncionario = 'Técnico';
             }
+
+            $value->rol_funcionario = $rolFuncionario;
 
             // Agregar la cantidad de archivos a cada pregunta
             foreach ($value->preguntas as $pregunta) {
@@ -87,11 +93,22 @@ class FormularioAreaTecnicaController extends Controller
             $value->cantidad_archivos_formulario = $cantidadArchivosFormulario;
 
             // Agregar los nombres de los edificios al formulario
-            $edificios = $value->edificios->pluck('edi_nombre')->toArray();
-            $value->edificio = $edificios;
-        }
+            $edificios = $value->edificios;
 
-        return response()->json($formulario);
+            if ($edificios->count() > 1) {
+                foreach ($edificios as $edificio) {
+                    $modifiedFormulario->push($value->replicate()->forceFill([
+                        'edificio' => $edificio->edi_nombre,
+                        'form_id' => $value->form_id // Asignar el form_id original al formulario duplicado
+                    ]));
+                }
+            } else {
+                $value->edificio = $edificios->pluck('edi_nombre')->toArray();
+                $modifiedFormulario->push($value);
+            }
+        }
+        // dd($modifiedFormulario);
+        return response()->json($modifiedFormulario);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
         }
