@@ -29,7 +29,7 @@
                 @endif
                 @foreach ($pregunta->opciones as $opcion)
                 <div class="row align-center preguntas-preview">
-                    <input type="radio" name="opcion" wire:click="selectOption('{{ $opcion->opc_id }}')">
+                    <input type="radio" name="opcion{{$pregunta->pre_id}}" wire:click="selectOption({{ $opcion->opc_id }})">
                     <p>{{$opcion->opc_opcion}}</p>
                 </div>
                 @endforeach
