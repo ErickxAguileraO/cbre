@@ -23,11 +23,20 @@
 
         <div class="grid-header-2">
             <h1 class="col-xl">{{ $formulario->form_nombre }}</h1>
-            <div class="row datos-formulario">
-                <a href="{{ route('formulario-area-tecnica.index') }}" class="estado-formulario">Salir del modo
-                    previsualizar</a>
-                {{--             <a href="{{ route('formulario-area-tecnica.edit', $formulario->form_id) }}" class="estado-formulario">Salir del modo previsualizar</a> --}}
-            </div>
+            @if (auth()->user()->hasRole('funcionario'))
+                <div class="row datos-formulario">
+                    <a href="{{ route('formulario-jop.index') }}" class="estado-formulario">Salir del modo
+                        previsualizar</a>
+                    {{--             <a href="{{ route('formulario-area-tecnica.edit', $formulario->form_id) }}" class="estado-formulario">Salir del modo previsualizar</a> --}}
+                </div>
+            @else
+                <div class="row datos-formulario">
+                    <a href="{{ route('formulario-area-tecnica.index') }}" class="estado-formulario">Salir del modo
+                        previsualizar</a>
+                    {{--             <a href="{{ route('formulario-area-tecnica.edit', $formulario->form_id) }}" class="estado-formulario">Salir del modo previsualizar</a> --}}
+                </div>
+            @endif
+
         </div>
 
 

@@ -85,11 +85,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     minWidth: '200',
                     cellTemplate(container, options) {
                         const idFormulario = options.data.form_id;
+                        const estado = options.data.form_estado;
+
                         let urlResponder = `/admin/formulario-jop/${idFormulario}`;
+                        let urlView = `/admin/formulario-area-tecnica/${idFormulario}`;
 
                         let templateResponder = `<a href="${urlResponder}" class="btn btn-success text-white">Responder</a>`;
-
-                        const enlaceView = $('<a />').append(templateResponder).appendTo(container);
+                        let templateView = ''; // Inicialmente oculto el botón adicional
+                        if (estado === 2) { // Estado "Enviado"
+                            templateResponder = ''; // Oculta el botón "Responder"
+                            templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`; // Muestra el botón adicional
+                          }
+                        const enlaceView = $('<a />').append(templateView).appendTo(container);
+                        const enlaceResponder = $('<a />').append(templateResponder).appendTo(container);
                     },
                 },
             ],
