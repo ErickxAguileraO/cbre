@@ -19,7 +19,7 @@ class Opcion extends Model
     }
 
     public function respuestas(){
-        return $this->belongsToMany(Respuesta::class, 'respuesta_opcion', 'reop_respuesta_id', 'reop_opcion_id')->withTimestamps();
+        return $this->belongsToMany(Respuesta::class, 'respuesta_opcion', 'reop_opcion_id', 'reop_respuesta_id')->withTimestamps();
     }
 
 
