@@ -41,9 +41,12 @@
 
 
         <div class="contenedor-form-preguntas">
+
+            @if ($formulario->form_descripcion != '')
             <div class="div-formulario-n">
                 <p>{{ $formulario->form_descripcion }}</p>
             </div>
+            @endif
 
             @foreach ($formulario->preguntas as $index => $pregunta)
                 @if ($pregunta->tipoPregunta->tipp_id == 1)

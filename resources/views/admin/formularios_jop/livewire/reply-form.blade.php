@@ -12,9 +12,12 @@
 
         <div class="contenedor-form-preguntas">
             <h1 class="col-xl">{{ $formulario->form_nombre }}</h1>
+
+            @if ($formulario->form_descripcion != '')
             <div class="div-formulario-n">
                 <p>{{ $formulario->form_descripcion }}</p>
             </div>
+            @endif
 
             <div wire:loading wire:target="selectOption" id="cover-spin"></div>
             <div wire:loading wire:target="selectCheckbox" id="cover-spin"></div>
@@ -317,14 +320,12 @@
 
     @push('scripts')
     <script>
-                $(document).ready(function() {
-            // Disable Select2 initialization for the specific view
+        $(document).ready(function() {
             $('#res_mes').select2('destroy');
             $('#res_ano').select2('destroy');
         });
-
     </script>
-        <script src="{{ asset('public/js/admin/sistema/formularios/responder_formulario.js') }}"></script>
+    <script src="{{ asset('public/js/admin/sistema/formularios/responder_formulario.js') }}"></script>
     @endpush
 
 
