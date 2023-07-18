@@ -87,13 +87,18 @@ class FormularioJOPController extends Controller
     public function borrarRespuestasBorrador(){
 
         $respuestas = Respuesta::where('res_estado', 0)->get();
-        $archivos = ArchivoFormulario::whereIn('arcf_respuesta_id', $respuestas->pluck('res_id'))->get();
-        $archivos->each->delete();
+/*         $archivos = ArchivoFormulario::whereIn('arcf_respuesta_id', $respuestas->pluck('res_id'))->get();
+        $archivos->each->delete(); */
 
         foreach($respuestas as $respuesta){
             $respuesta->opciones()->detach();
             Storage::delete($respuesta->res_documentacion);
             Storage::delete($respuesta->res_documento_accidentabilidad);
+
+            $respuesta->archivosFormulario->each(function ($archivo) {
+                Storage::delete($archivo->arcf_url);
+                $archivo->delete();
+            });
         }
 
         $respuestas->each->delete();
