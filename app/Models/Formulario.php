@@ -19,7 +19,6 @@ class Formulario extends Model
         'form_funcionario_id',
         'form_nombre',
         'form_descripcion',
-        'form_estado',
     ];
 
     protected $appends = [
