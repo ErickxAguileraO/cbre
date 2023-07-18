@@ -291,23 +291,19 @@
                             </div>
                         </fieldset>
 
+                        @if ($pregunta->respuesta->res_documentacion)
                         <fieldset class="row-global row-responsive">
                             <label class="width-250" for="">Subir documentación</label>
                             <div>
-                                @if ($pregunta->respuesta->res_documentacion)
                                 <input class="form-control input-file-nuevo" id="" name=""type="file"
                                 tabindex="1" disabled>
                             <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un solo
                                 archivo</p>
                                 <a href="{{$pregunta->respuesta->getUrlDocumentacion()}}" target="_blank" class="small">Descargar archivo adjunto</a>
-                                    @else
-                                    <input class="form-control input-file-nuevo" id="" name=""type="file"
-                                    tabindex="1" disabled>
-                                <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un solo
-                                    archivo</p>
-                                @endif
                             </div>
                         </fieldset>
+                        @endif
+
                         <div class="opciones-pregunta grid-header-2">
                             <div class="row gap-37 padding-left-15">
                                 <div class="modalFile__abrirBtn"
