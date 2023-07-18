@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("responder-formulario").addEventListener("click", function (event) {
-
+    window.addEventListener('fireSwal', event =>{
         var formData = new FormData();
         formData.append('formValue', document.getElementById("form_id").value);
 
