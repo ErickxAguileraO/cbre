@@ -116,13 +116,17 @@ class FormularioJOPController extends Controller
                     $respuesta->res_estado = 1;
                     $respuesta->update();
                 }
-                $formulario->form_estado = 2;
-                $formulario->update();
             }
+
+            $formEdificio = FormularioEdificio::where('foredi_formulario_id', $formulario->form_id)
+            ->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)
+            ->first();
+            $formEdificio->foredi_estado = 2;
+            $formEdificio->update();
 
             DB::commit();
 
-        return response()->json(['success' => '¡Formulario respondido correctamente!'], 200);
+            return response()->json(['success' => '¡Formulario respondido correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
 

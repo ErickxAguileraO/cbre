@@ -8,6 +8,7 @@ use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\FormularioEdificio;
 use App\Models\RespuestaOpcion;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -43,7 +44,6 @@ class FormularioAreaTecnicaController extends Controller
         $formulario->form_funcionario_id = Auth::user()->funcionario->fun_id;
         $formulario->form_nombre = '';
         $formulario->form_descripcion = '';
-        $formulario->form_estado = 4; //Estado "borrador"
         $formulario->save();
 
         return view('admin.formulario_area_tecnica.create', compact('formulario'));
@@ -143,7 +143,14 @@ class FormularioAreaTecnicaController extends Controller
      */
     public function show($id)
     {
-        return view('admin.formulario_area_tecnica.show', ['formulario' => Formulario::findOrFail($id), 'respuestaOpcion' => RespuestaOpcion::all()]);
+/*         $formEdificio = FormularioEdificio::where('foredi_formulario_id', $id)
+            ->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)
+            ->first(); */
+
+        return view('admin.formulario_area_tecnica.show', [
+            'formulario' => Formulario::findOrFail($id),
+            'respuestaOpcion' => RespuestaOpcion::all()
+        ]);
     }
 
         /**
@@ -212,8 +219,11 @@ class FormularioAreaTecnicaController extends Controller
         try {
 
             $formulario = Formulario::findOrFail($request->input('formValue'));
-            $formulario->form_estado = 1;
-            $formulario->update();
+            $formEdificios = FormularioEdificio::where('foredi_formulario_id', $formulario->form_id)->get();
+            foreach($formEdificios as $formEdificio){
+                $formEdificio->foredi_estado = 1;
+                $formEdificio->update();
+            }
 
             DB::commit();
 

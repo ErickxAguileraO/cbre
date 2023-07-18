@@ -86,9 +86,9 @@
                         <div class="historial__datos sin-margen">
                             <p>{{$formulario->created_at}}</p>
                             <h3>Creación de formulario</h3>
-                            @if ($formulario->form_estado == 4)
+{{--                             @if ($formulario->form_estado == 4)
                             <p>Estado: Borrador</p>
-                            @endif
+                            @endif --}}
                             <p>Creado por {{$formulario->funcionario->fun_nombre}}</p>
                         </div>
                     </div>
