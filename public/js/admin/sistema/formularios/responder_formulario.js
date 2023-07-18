@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("responder-formulario").addEventListener("click", function (event) {
-
+    window.addEventListener('fireSwal', event =>{
         var formData = new FormData();
         formData.append('formValue', document.getElementById("form_id").value);
 
@@ -12,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 showCancelButton: true,
                 confirmButtonColor: "#005157",
                 cancelButtonColor: "#343a40",
-                confirmButtonText: "¡Sí, Publicalo!",
+                confirmButtonText: "¡Sí, Envíalo!",
             }).then((result) => {
                 if (result.isConfirmed) {
                     fetch('/admin/formulario-jop/post/respuesta', {

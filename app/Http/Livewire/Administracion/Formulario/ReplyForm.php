@@ -9,6 +9,7 @@ use App\Models\Respuesta;
 use App\Models\Formulario;
 use Livewire\WithFileUploads;
 use App\Services\ArchivoService;
+use Illuminate\Support\Facades\Storage;
 
 class ReplyForm extends Component
 {
@@ -28,6 +29,8 @@ class ReplyForm extends Component
     public $res_dotacion_nuevos; //text
     public $res_documentacion_sub_contrato; //boolean
     public $res_documentacion; //file
+
+    public $preguntaHSEIdTemp;
 
     public function render()
     {
@@ -68,15 +71,34 @@ class ReplyForm extends Component
         $respuesta->res_mes = empty($this->res_mes) ? null : $this->res_mes;
         $respuesta->res_ano = empty($this->res_ano) ? null : $this->res_ano;
         $respuesta->res_dotacion = empty($this->res_dotacion) ? null : $this->res_dotacion;
-
-        $respuesta->res_documento_accidentabilidad = empty($this->res_documento_accidentabilidad) ? null : ArchivoService::subirArchivos($this->res_documento_accidentabilidad, Pregunta::findOrFail($preguntaId)->formulario->form_id, Pregunta::findOrFail($preguntaId)->pre_id, 'respuesta');
-
         $respuesta->res_dotacion_sub_contratos = empty($this->res_dotacion_sub_contratos) ? null : $this->res_dotacion_sub_contratos;
         $respuesta->res_dotacion_nuevos = empty($this->res_dotacion_nuevos) ? null : $this->res_dotacion_nuevos;
         $respuesta->res_documentacion_sub_contrato = empty($this->res_documentacion_sub_contrato) ? 0 : $this->res_documentacion_sub_contrato;
 
-        $respuesta->res_documentacion = empty($this->res_documentacion) ? null : ArchivoService::subirArchivos($this->res_documentacion, Pregunta::findOrFail($preguntaId)->formulario->form_id, Pregunta::findOrFail($preguntaId)->pre_id, 'respuesta');
-
         $respuesta->update();
     }
+
+    public function updateHSEfiles($preguntaId){
+
+        $this->preguntaHSEIdTemp = $preguntaId;
+        $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)->first();
+
+        if($this->res_documento_accidentabilidad || $this->res_documentacion){
+            Storage::delete($respuesta->res_documento_accidentabilidad);
+            $respuesta->res_documento_accidentabilidad = empty($this->res_documento_accidentabilidad) ? null : ArchivoService::subirArchivos($this->res_documento_accidentabilidad, Pregunta::findOrFail($preguntaId)->formulario->form_id, Pregunta::findOrFail($preguntaId)->pre_id, 'respuesta');
+
+            Storage::delete($respuesta->res_documentacion);
+            $respuesta->res_documentacion = empty($this->res_documentacion) ? null : ArchivoService::subirArchivos($this->res_documentacion, Pregunta::findOrFail($preguntaId)->formulario->form_id, Pregunta::findOrFail($preguntaId)->pre_id, 'respuesta');
+
+            $respuesta->update();
+        }
+
+    }
+
+    public function checkThemAll(){
+        $this->updateHSEfiles($this->preguntaHSEIdTemp);
+        $this->dispatchBrowserEvent('fireSwal');
+    }
+
+
 }
