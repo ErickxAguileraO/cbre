@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Models\User;
 use App\Models\Respuesta;
 use App\Models\Formulario;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use App\Models\FormularioEdificio;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class FormularioJOPController extends Controller
 {
@@ -91,6 +92,8 @@ class FormularioJOPController extends Controller
 
         foreach($respuestas as $respuesta){
             $respuesta->opciones()->detach();
+            Storage::delete($respuesta->res_documentacion);
+            Storage::delete($respuesta->res_documento_accidentabilidad);
         }
 
         $respuestas->each->delete();
