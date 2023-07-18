@@ -53,6 +53,7 @@ class FormularioAreaTecnicaController extends Controller
     {
         $creadoPor = $request->input('creado_por');
         try {
+            $rolLogeado = auth()->user()->roles->first()->name;
             $formulario = Formulario::with('funcionario')
             ->with(['preguntas' => function ($query) {
                 $query->withCount('archivosFormulario');
@@ -60,7 +61,15 @@ class FormularioAreaTecnicaController extends Controller
             ->with(['edificios' => function ($query) {
                 $query->select('edi_nombre');
             }])
-            ->withFilters($request->all()) // Pasar los parámetros de la solicitud al scope
+            ->when($rolLogeado !== 'super-admin', function ($query) use ($rolLogeado) {
+                $query->whereHas('funcionario', function ($subquery) use ($rolLogeado) {
+                    $subquery->whereHas('user', function ($userQuery) use ($rolLogeado) {
+                        $userQuery->whereHas('roles', function ($roleQuery) use ($rolLogeado) {
+                            $roleQuery->where('name', $rolLogeado);
+                        });
+                    });
+                });
+            })
             ->orderByDesc('updated_at')
             ->get();
 
@@ -108,7 +117,7 @@ class FormularioAreaTecnicaController extends Controller
                 $modifiedFormulario->push($value);
             }
         }
-        // dd($modifiedFormulario);
+
         return response()->json($modifiedFormulario);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
