@@ -83,17 +83,16 @@ class ReplyForm extends Component
         $this->preguntaHSEIdTemp = $preguntaId;
         $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)->first();
 
-        if($this->res_documento_accidentabilidad){
+        if($this->res_documento_accidentabilidad || $this->res_documentacion){
             Storage::delete($respuesta->res_documento_accidentabilidad);
             $respuesta->res_documento_accidentabilidad = empty($this->res_documento_accidentabilidad) ? null : ArchivoService::subirArchivos($this->res_documento_accidentabilidad, Pregunta::findOrFail($preguntaId)->formulario->form_id, Pregunta::findOrFail($preguntaId)->pre_id, 'respuesta');
-        }
 
-        if($this->res_documentacion){
             Storage::delete($respuesta->res_documentacion);
             $respuesta->res_documentacion = empty($this->res_documentacion) ? null : ArchivoService::subirArchivos($this->res_documentacion, Pregunta::findOrFail($preguntaId)->formulario->form_id, Pregunta::findOrFail($preguntaId)->pre_id, 'respuesta');
+
+            $respuesta->update();
         }
 
-        $respuesta->update();
     }
 
     public function checkThemAll(){
