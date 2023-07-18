@@ -12,14 +12,18 @@
 
         <div class="contenedor-form-preguntas">
             <h1 class="col-xl">{{ $formulario->form_nombre }}</h1>
+
+            @if ($formulario->form_descripcion != '')
             <div class="div-formulario-n">
                 <p>{{ $formulario->form_descripcion }}</p>
             </div>
+            @endif
 
             <div wire:loading wire:target="selectOption" id="cover-spin"></div>
             <div wire:loading wire:target="selectCheckbox" id="cover-spin"></div>
             <div wire:loading wire:target="updateParrafo" id="cover-spin"></div>
             <div wire:loading wire:target="updateHSE" id="cover-spin"></div>
+            <div wire:loading wire:target="updateHSEfiles" id="cover-spin"></div>
 
             @foreach ($formulario->preguntas as $index => $pregunta)
                 @if ($pregunta->tipoPregunta->tipp_id == 1)
@@ -215,10 +219,10 @@
                         <fieldset class="row-global row-responsive">
                             <label class="width-250" for="">Reporte de accidentabildiad</label>
                             <div>
-                                <input wire:model.defer="res_documento_accidentabilidad"
-                                    wire:change="updateHSE({{ $pregunta->pre_id }})"
+                                <input wire:model="res_documento_accidentabilidad"
+                                    wire:change="updateHSEfiles({{ $pregunta->pre_id }})"
                                     class="form-control input-file-nuevo" id=""
-                                    name=""type="file" tabindex="1">
+                                    name="" type="file" tabindex="1">
                             </div>
                         </fieldset>
 
@@ -261,18 +265,21 @@
                             </div>
                         </fieldset>
 
+                        @if ($res_documentacion_sub_contrato == 1)
                         <fieldset class="row-global row-responsive">
                             <label class="width-250" for="">Subir documentación</label>
                             <div>
-                                <input wire:model.defer="res_documentacion"
-                                    wire:change="updateHSE({{ $pregunta->pre_id }})"
+                                <input wire:model="res_documentacion"
+                                    wire:change="updateHSEfiles({{ $pregunta->pre_id }})"
                                     class="form-control input-file-nuevo" id=""
-                                    name=""type="file" tabindex="1">
+                                    name="" type="file" tabindex="1">
                                 <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un
                                     solo
                                     archivo</p>
                             </div>
                         </fieldset>
+                        @endif
+
                         <div class="opciones-pregunta grid-header-2">
                             <div class="row gap-37 padding-left-15">
                                 <div class="modalFile__abrirBtn"
@@ -310,21 +317,19 @@
             class="modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">Deshacer todos los
             cambios</a>
         <button class="modalEnviar__abrirBtn modalFile__btnN modalFile__botonPrimario"
-            id="responder-formulario">Enviar formulario</button>
+            id="responder-formulario" wire:click="checkThemAll">Enviar formulario</button>
     </div>
     <input type="hidden" id="form_id" name="form_id" value="{{ $formulario->form_id }}">
 
 
     @push('scripts')
     <script>
-                $(document).ready(function() {
-            // Disable Select2 initialization for the specific view
+        $(document).ready(function() {
             $('#res_mes').select2('destroy');
             $('#res_ano').select2('destroy');
         });
-
     </script>
-        <script src="{{ asset('public/js/admin/sistema/formularios/responder_formulario.js') }}"></script>
+    <script src="{{ asset('public/js/admin/sistema/formularios/responder_formulario.js') }}"></script>
     @endpush
 
 
