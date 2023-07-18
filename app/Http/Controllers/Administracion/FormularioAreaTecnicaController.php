@@ -59,7 +59,7 @@ class FormularioAreaTecnicaController extends Controller
                 $query->withCount('archivosFormulario');
             }])
             ->with(['edificios' => function ($query) {
-                $query->select('edi_nombre');
+                $query->select('edi_id', 'edi_nombre');
             }])
             ->when($rolLogeado !== 'super-admin', function ($query) use ($rolLogeado) {
                 $query->whereHas('funcionario', function ($subquery) use ($rolLogeado) {
@@ -108,11 +108,13 @@ class FormularioAreaTecnicaController extends Controller
             if ($edificios->count() > 1) {
                 foreach ($edificios as $edificio) {
                     $modifiedFormulario->push($value->replicate()->forceFill([
+                        'edificio_id' => $edificio->edi_id,
                         'edificio' => $edificio->edi_nombre,
                         'form_id' => $value->form_id // Asignar el form_id original al formulario duplicado
                     ]));
                 }
             } else {
+                $value->edificio_id = $edificios->pluck('edi_id')->toArray();
                 $value->edificio = $edificios->pluck('edi_nombre')->toArray();
                 $modifiedFormulario->push($value);
             }
@@ -143,12 +145,25 @@ class FormularioAreaTecnicaController extends Controller
      */
     public function show($id)
     {
+
 /*         $formEdificio = FormularioEdificio::where('foredi_formulario_id', $id)
             ->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)
             ->first(); */
 
         return view('admin.formulario_area_tecnica.show', [
             'formulario' => Formulario::findOrFail($id),
+            'respuestaOpcion' => RespuestaOpcion::all()
+        ]);
+    }
+
+    public function verRespuesta($idFormulario, $idEdificio)
+    {
+/*         $formEdificio = FormularioEdificio::where('foredi_formulario_id', $id)
+            ->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)
+            ->first(); */
+
+        return view('admin.formulario_area_tecnica.show', [
+            'formulario' => Formulario::findOrFail($idFormulario),
             'respuestaOpcion' => RespuestaOpcion::all()
         ]);
     }
