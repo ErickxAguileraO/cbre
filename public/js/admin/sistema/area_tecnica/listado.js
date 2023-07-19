@@ -114,14 +114,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     cellTemplate(container, options) {
                         const idFormulario = options.data.form_id;
                         const idEdificio = options.data.edificio_id;
-                        console.log(options.data);
+                        const descarga = options.data.cantidad_archivos_formulario;
+                        console.log(descarga);
                         let urlView = `/admin/formulario-area-tecnica/show/${idFormulario}/${idEdificio}`;
                         let urlModificar = `/admin/formulario-area-tecnica/${idFormulario}/edit`;
 
                         let templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;
                         let templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
-                        let templateDown = `<a href="/admin/formulario-area-tecnica/get/archivos/${idFormulario}/zip" title=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
-
+                        if (descarga === 0) {
+                            templateDown = '';
+                        }else{
+                            templateDown = `<a href="/admin/formulario-area-tecnica/get/archivos/${idFormulario}/zip" title=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
+                        }
                         const enlaceView = $('<a />').append(templateView).appendTo(container);
                         const enlaceModificar = $('<a />').append(templateModificar).appendTo(container);
                         const enlaceDown = $('<a />').append(templateDown).appendTo(container);

@@ -60,9 +60,7 @@ class FormularioAreaTecnicaController extends Controller
                 $query->withCount('archivosFormulario');
             }])
             ->with(['edificios' => function ($query) {
-                $query->select('edi_id', 'edi_nombre');
-            }])->with(['edificios' => function ($query) {
-                $query->select('foredi_estado');
+                $query->select('edi_id', 'edi_nombre','foredi_estado');
             }])
             ->when($rolLogeado !== 'super-admin', function ($query) use ($rolLogeado) {
                 $query->whereHas('funcionario', function ($subquery) use ($rolLogeado) {
