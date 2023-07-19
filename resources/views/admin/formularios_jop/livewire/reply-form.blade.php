@@ -1,7 +1,7 @@
 <div>
     {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
 
-    <livewire:administracion.formulario.upload-file-modal-respuesta />
+    <livewire:administracion.formulario.upload-file-modal-respuesta :formId="$formulario->form_id"/>
 
     <div id="" class="formulario nuevo-formulario">
 

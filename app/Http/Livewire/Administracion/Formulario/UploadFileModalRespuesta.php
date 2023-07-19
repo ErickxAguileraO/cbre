@@ -8,6 +8,8 @@ use App\Models\Respuesta;
 use Livewire\WithFileUploads;
 use App\Services\ArchivoService;
 use App\Models\ArchivoFormulario;
+use App\Models\FormularioEdificio;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UploadFileModalRespuesta extends Component
@@ -16,6 +18,7 @@ class UploadFileModalRespuesta extends Component
     protected $listeners = ['uploadFileModalRespuesta'];
     public $files = [];
     public $respuestaId;
+    public $formId;
 
     public function render()
     {
@@ -25,7 +28,9 @@ class UploadFileModalRespuesta extends Component
     }
 
     public function uploadFileModalRespuesta($preguntaId){
-        $this->respuestaId = Respuesta::where('res_pregunta_id', $preguntaId)->first()->res_id;
+        $this->respuestaId = Respuesta::where('res_pregunta_id', $preguntaId)
+        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+        ->first()->res_id;
         $this->files = [];
         $this->dispatchBrowserEvent('show-uploadFileModalRespuesta');
     }
