@@ -28,11 +28,16 @@ class FormularioJOPController extends Controller
             // Obtener el ID del edificio del funcionario logeado
             $edificioId = Auth::user()->funcionario->edificio->edi_id;
 
-            $formulario = Formulario::whereHas('edificios', function ($query) use ($edificioId) {
+            $formulario = Formulario::whereHas('edificios', function ($query) use ($edificioId, $request) {
+                // Filtrar por el ID del edificio del funcionario logeado
                 $query->where('foredi_edificio_id', $edificioId);
-            })
-                ->with(['edificios' => function ($query) {
-                    $query->select('foredi_estado','foredi_edificio_id');
+
+                // Filtrar por el estado seleccionado (si está presente en la solicitud)
+                if (isset($request->estado)) {
+                    $query->where('formulario_edificio.foredi_estado', $request->estado);
+                }
+            })->with(['edificios' => function ($query) {
+                $query->select('foredi_estado', 'foredi_edificio_id');
                 }])
                 ->withFilters($request->all())
                 ->orderByDesc('updated_at')

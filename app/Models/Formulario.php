@@ -33,9 +33,8 @@ class Formulario extends Model
     public function scopeWithFilters($query, $params)
     {
         return $query->when(isset($params['fechaInicio']), function ($query) use ($params) {
-            $query->whereDate('updated_at', '>=', $params['fechaInicio']);
-        })
-            ->when(isset($params['fechaTermino']), function ($query) use ($params) {
+                $query->whereDate('updated_at', '>=', $params['fechaInicio']);
+            })->when(isset($params['fechaTermino']), function ($query) use ($params) {
                 $query->whereDate('updated_at', '<=', $params['fechaTermino']);
             })
             ->when(isset($params['edificio']), function ($query) use ($params) {
@@ -45,7 +44,7 @@ class Formulario extends Model
             })
             ->when(isset($params['estado']), function ($query) use ($params) {
                 $query->whereHas('edificios', function ($query) use ($params) {
-                    $query->where('foredi_estado', $params['estado']);
+                    $query->where('formulario_edificio.foredi_estado', $params['estado']);
                 });
             })
             ->when(isset($params['creado_por']), function ($query) use ($params) {
