@@ -1,7 +1,7 @@
 <div>
     {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
 
-    <livewire:administracion.formulario.upload-file-modal-respuesta />
+    <livewire:administracion.formulario.upload-file-modal-respuesta :formId="$formulario->form_id"/>
 
     <div id="" class="formulario nuevo-formulario">
 
@@ -208,7 +208,7 @@
                             <div class="form-group">
                                 <input wire:model.defer="res_dotacion"
                                     wire:change="updateHSE({{ $pregunta->pre_id }})" id="" name=""
-                                    class="form-control" type="text" tabindex="1" placeholder="">
+                                    class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
                             </div>
                         </fieldset>
 
@@ -229,7 +229,7 @@
                             <div class="form-group">
                                 <input wire:model.defer="res_dotacion_sub_contratos"
                                     wire:change="updateHSE({{ $pregunta->pre_id }})" id="" name=""
-                                    class="form-control" type="text" tabindex="1" placeholder="">
+                                    class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
                             </div>
                         </fieldset>
 
@@ -238,7 +238,7 @@
                             <div class="form-group">
                                 <input wire:model.defer="res_dotacion_nuevos"
                                     wire:change="updateHSE({{ $pregunta->pre_id }})" id="" name=""
-                                    class="form-control" type="text" tabindex="1" placeholder="">
+                                    class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
                             </div>
                         </fieldset>
 

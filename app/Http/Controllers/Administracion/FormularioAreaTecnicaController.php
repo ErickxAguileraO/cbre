@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Models\User;
 use App\Models\Edificio;
+use App\Models\Respuesta;
 use App\Models\Formulario;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
+use App\Models\RespuestaOpcion;
+use App\Services\ArchivoService;
+use App\Models\FormularioEdificio;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\FormularioEdificio;
-use App\Models\RespuestaOpcion;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Services\ArchivoService;
 use Illuminate\Support\Facades\Storage;
 
 class FormularioAreaTecnicaController extends Controller
@@ -149,27 +150,41 @@ class FormularioAreaTecnicaController extends Controller
      */
     public function show($id)
     {
-
-/*         $formEdificio = FormularioEdificio::where('foredi_formulario_id', $id)
-            ->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)
-            ->first(); */
-
-        return view('admin.formulario_area_tecnica.show', [
+/*         return view('admin.formulario_area_tecnica.show', [
             'formulario' => Formulario::findOrFail($id),
             'respuestaOpcion' => RespuestaOpcion::all()
-        ]);
+        ]); */
     }
 
-    public function verRespuesta($idFormulario, $idEdificio)
+    public function verFormulario()
     {
-/*         $formEdificio = FormularioEdificio::where('foredi_formulario_id', $id)
-            ->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)
-            ->first(); */
+        $idFormulario = request('formulario');
+        $idEdificio = request('edificio');
 
-        return view('admin.formulario_area_tecnica.show', [
-            'formulario' => Formulario::findOrFail($idFormulario),
-            'respuestaOpcion' => RespuestaOpcion::all()
-        ]);
+        if($idFormulario && $idEdificio){
+            return view('admin.formulario_area_tecnica.show', [
+                'formulario' => Formulario::findOrFail($idFormulario),
+
+                'respuestaOpcion' => RespuestaOpcion::where('reop_respuesta_id', Respuesta::where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+                ->where('foredi_edificio_id', $idEdificio)
+                ->first()->foredi_id)->first()->res_id)->get(),
+
+                'respuestas' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+                ->where('foredi_edificio_id', $idEdificio)
+                ->first()
+                ->respuestas()
+                ->where('res_estado', 1)
+                ->get(),
+            ]);
+        }elseif($idFormulario){
+            return view('admin.formulario_area_tecnica.show', [
+                'formulario' => Formulario::findOrFail($idFormulario),
+                'respuestaOpcion' => RespuestaOpcion::all()
+            ]);
+        }else{
+            abort(404);
+        }
+
     }
 
         /**

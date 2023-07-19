@@ -8,8 +8,8 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="">Nombre formulario</label>
-                    <input id="" name="" wire:model.defer="form_nombre" wire:change="updateFormInfo()" class="form-control" type="text" tabindex="1" />
-                    <small id="" class="field-message-alert absolute"></small>
+                    <input id="form_nombre" name="form_nombre" wire:model.defer="form_nombre" wire:change="updateFormInfo()" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" />
+                    @error('form_nombre') <span class="text-danger"> {{$message}} </span> @enderror
                 </div>
             </div>
         </fieldset>
@@ -18,7 +18,7 @@
             <div class="col-xl">
                 <div class="form-group">
                     <label for="">Descripción</label>
-                    <textarea name="" id="" wire:model.defer="form_descripcion" wire:change="updateFormInfo()" class="form-control" cols="30" rows="10"></textarea>
+                    <textarea name="form_descripcion" id="form_descripcion" wire:model.defer="form_descripcion" wire:change="updateFormInfo()" class="form-control" data-maximo-caracteres="2000" cols="30" rows="10"></textarea>
                     <small id="" class="field-message-alert absolute"></small>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <input type="radio" disabled>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" type="text" tabindex="1"
+                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1"
                                     placeholder="Pregunta" />
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -165,8 +165,8 @@
                         <input type="checkbox" disabled>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" type="text"
-                                    tabindex="1" placeholder="Pregunta" />
+                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" data-maximo-caracteres="50" type="text"
+                                    tabindex="1" placeholder="Opción" />
                             </div>
                         </div>
                         @if ($index >= 1)
@@ -223,7 +223,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -247,7 +247,7 @@
                     </div>
                 </fieldset>
                 <div class="form-group">
-                    <textarea name="" id="" class="form-control" disabled cols="30" rows="10" placeholder="Respuesta"></textarea>
+                    <textarea name="" id="" class="form-control" disabled cols="30" rows="10" placeholder="Respuesta" data-maximo-caracteres="2000"></textarea>
                     <small id="" class="field-message-alert absolute"></small>
                 </div>
 
@@ -292,7 +292,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -345,7 +345,7 @@
                 <fieldset class="row-global row-responsive">
                     <label class="width-250" for="">Dotación</label>
                     <div class="form-group">
-                        <input id="" name="" class="form-control" type="text" tabindex="1"
+                        <input id="" name="" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1"
                             placeholder="" disabled>
                     </div>
                 </fieldset>
@@ -363,7 +363,7 @@
                 <fieldset class="row-global row-responsive">
                     <label class="width-250" for="">Dotación sub contratos</label>
                     <div class="form-group">
-                        <input id="" name="" class="form-control" type="text" tabindex="1"
+                        <input id="" name="" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1"
                             placeholder="" disabled>
                     </div>
                 </fieldset>
@@ -371,7 +371,7 @@
                 <fieldset class="row-global row-responsive">
                     <label class="width-250" for="">¿Cuántos de estos son nuevos?</label>
                     <div class="form-group">
-                        <input id="" name="" class="form-control" type="text" tabindex="1"
+                        <input id="" name="" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1"
                             placeholder="" disabled>
                     </div>
                 </fieldset>
