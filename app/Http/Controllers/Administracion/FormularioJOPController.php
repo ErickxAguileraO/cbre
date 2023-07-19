@@ -32,7 +32,7 @@ class FormularioJOPController extends Controller
                 $query->where('foredi_edificio_id', $edificioId);
             })
                 ->with(['edificios' => function ($query) {
-                    $query->select('foredi_estado');
+                    $query->select('foredi_estado','foredi_edificio_id');
                 }])
                 ->withFilters($request->all())
                 ->orderByDesc('updated_at')
@@ -52,9 +52,11 @@ class FormularioJOPController extends Controller
                 // Obtener el estado del edificio relacionado
                 $edificio = $value->edificios->first();
                 if ($edificio) {
-                    $value->foredi_estado = $edificio->foredi_estado;
+                    $value->edificio_id = $edificio->foredi_edificio_id;
+                    $value->estado = $edificio->foredi_estado;
                 } else {
-                    $value->foredi_estado = null;
+                    $value->edificio_id = $edificio->foredi_edificio_id;
+                    $value->estado = null;
                 }
             }
 

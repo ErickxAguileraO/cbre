@@ -96,6 +96,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                         id: 4,
                                         name: "Borrador",
                                     },
+                                    {
+                                        id: '',
+                                        name: "Borrador",
+                                    },
                                 ],
                                 key: "id",
                             },
@@ -115,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         const idFormulario = options.data.form_id;
                         const idEdificio = options.data.edificio_id;
                         const descarga = options.data.cantidad_archivos_formulario;
-                        console.log(descarga);
+                        console.log(options.data);
                         let urlView = `/admin/formulario-area-tecnica/show/${idFormulario}/${idEdificio}`;
                         let urlModificar = `/admin/formulario-area-tecnica/${idFormulario}/edit`;
 
