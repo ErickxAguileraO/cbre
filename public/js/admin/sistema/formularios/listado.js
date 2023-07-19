@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "foredi_estado",
+                    dataField: "estado",
                     caption: "Estado",
                     allowEditing: false,
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
@@ -85,10 +85,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     minWidth: '200',
                     cellTemplate(container, options) {
                         const idFormulario = options.data.form_id;
-                        const estado = options.data.foredi_estado;
+                        const estado = options.data.estado;
+                        const idEdificio = options.data.edificio_id;
                         console.log(options.data);
                         let urlResponder = `/admin/formulario-jop/${idFormulario}`;
-                        let urlView = `/admin/formulario-area-tecnica/${idFormulario}`;
+                        let urlView = `/admin/formulario-area-tecnica/show/${idFormulario}/${idEdificio}`;
 
                         let templateResponder = `<a href="${urlResponder}" class="btn btn-success text-white">Responder</a>`;
                         let templateView = ''; // Inicialmente oculto el botón adicional
