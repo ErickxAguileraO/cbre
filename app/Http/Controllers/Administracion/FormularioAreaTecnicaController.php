@@ -16,6 +16,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+use function PHPUnit\Framework\isEmpty;
+
 class FormularioAreaTecnicaController extends Controller
 {
 
@@ -159,7 +161,9 @@ class FormularioAreaTecnicaController extends Controller
         $idFormulario = request('formulario');
         $idEdificio = request('edificio');
 
-        if($idFormulario && $idEdificio){
+        if($idFormulario && $idEdificio && !isEmpty(FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+        ->where('foredi_edificio_id', $idEdificio)
+        ->first()->respuestas)){
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
 
@@ -182,7 +186,6 @@ class FormularioAreaTecnicaController extends Controller
         }else{
             abort(404);
         }
-
     }
 
         /**
