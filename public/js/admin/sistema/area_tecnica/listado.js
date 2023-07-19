@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     filterOperations: ["contains"],
                     alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
-                    // width: '110',
+                    width: '200',
                     // minWidth: '110',
                 },
                 {
@@ -64,11 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     filterOperations: ["contains"],
                     alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
-                    // width: '110',
+                    width: '100',
                     // minWidth: '110',
                 },
                 {
-                    dataField: "form_estado",
+                    dataField: "foredi_estado",
                     caption: "Estado",
                     allowEditing: false,
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
@@ -113,7 +113,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     minWidth: '100',
                     cellTemplate(container, options) {
                         const idFormulario = options.data.form_id;
-                        let urlView = `/admin/formulario-area-tecnica/${idFormulario}`;
+                        const idEdificio = options.data.edificio_id;
+
+                        let urlView = `/admin/formulario-area-tecnica/show/${idFormulario}/${idEdificio}`;
                         let urlModificar = `/admin/formulario-area-tecnica/${idFormulario}/edit`;
 
                         let templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`;

@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Models\User;
 use App\Models\Edificio;
+use App\Models\Respuesta;
 use App\Models\Formulario;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
+use App\Models\RespuestaOpcion;
+use App\Services\ArchivoService;
+use App\Models\FormularioEdificio;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\RespuestaOpcion;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Services\ArchivoService;
 use Illuminate\Support\Facades\Storage;
 
 class FormularioAreaTecnicaController extends Controller
@@ -43,7 +45,6 @@ class FormularioAreaTecnicaController extends Controller
         $formulario->form_funcionario_id = Auth::user()->funcionario->fun_id;
         $formulario->form_nombre = '';
         $formulario->form_descripcion = '';
-        $formulario->form_estado = 4; //Estado "borrador"
         $formulario->save();
 
         return view('admin.formulario_area_tecnica.create', compact('formulario'));
@@ -59,7 +60,7 @@ class FormularioAreaTecnicaController extends Controller
                 $query->withCount('archivosFormulario');
             }])
             ->with(['edificios' => function ($query) {
-                $query->select('edi_nombre');
+                $query->select('edi_id', 'edi_nombre');
             }])
             ->when($rolLogeado !== 'super-admin', function ($query) use ($rolLogeado) {
                 $query->whereHas('funcionario', function ($subquery) use ($rolLogeado) {
@@ -108,11 +109,13 @@ class FormularioAreaTecnicaController extends Controller
             if ($edificios->count() > 1) {
                 foreach ($edificios as $edificio) {
                     $modifiedFormulario->push($value->replicate()->forceFill([
+                        'edificio_id' => $edificio->edi_id,
                         'edificio' => $edificio->edi_nombre,
                         'form_id' => $value->form_id // Asignar el form_id original al formulario duplicado
                     ]));
                 }
             } else {
+                $value->edificio_id = $edificios->pluck('edi_id')->toArray();
                 $value->edificio = $edificios->pluck('edi_nombre')->toArray();
                 $modifiedFormulario->push($value);
             }
@@ -143,7 +146,41 @@ class FormularioAreaTecnicaController extends Controller
      */
     public function show($id)
     {
-        return view('admin.formulario_area_tecnica.show', ['formulario' => Formulario::findOrFail($id), 'respuestaOpcion' => RespuestaOpcion::all()]);
+/*         return view('admin.formulario_area_tecnica.show', [
+            'formulario' => Formulario::findOrFail($id),
+            'respuestaOpcion' => RespuestaOpcion::all()
+        ]); */
+    }
+
+    public function verFormulario()
+    {
+        $idFormulario = request('formulario');
+        $idEdificio = request('edificio');
+
+        if($idFormulario && $idEdificio){
+            return view('admin.formulario_area_tecnica.show', [
+                'formulario' => Formulario::findOrFail($idFormulario),
+
+                'respuestaOpcion' => RespuestaOpcion::where('reop_respuesta_id', Respuesta::where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+                ->where('foredi_edificio_id', $idEdificio)
+                ->first()->foredi_id)->first()->res_id)->get(),
+
+                'respuestas' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+                ->where('foredi_edificio_id', $idEdificio)
+                ->first()
+                ->respuestas()
+                ->where('res_estado', 1)
+                ->get(),
+            ]);
+        }elseif($idFormulario){
+            return view('admin.formulario_area_tecnica.show', [
+                'formulario' => Formulario::findOrFail($idFormulario),
+                'respuestaOpcion' => RespuestaOpcion::all()
+            ]);
+        }else{
+            abort(404);
+        }
+
     }
 
         /**
@@ -212,8 +249,11 @@ class FormularioAreaTecnicaController extends Controller
         try {
 
             $formulario = Formulario::findOrFail($request->input('formValue'));
-            $formulario->form_estado = 1;
-            $formulario->update();
+            $formEdificios = FormularioEdificio::where('foredi_formulario_id', $formulario->form_id)->get();
+            foreach($formEdificios as $formEdificio){
+                $formEdificio->foredi_estado = 1;
+                $formEdificio->update();
+            }
 
             DB::commit();
 

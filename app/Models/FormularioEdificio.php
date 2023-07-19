@@ -13,4 +13,9 @@ class FormularioEdificio extends Model
 
     protected $primaryKey = 'foredi_id';
 
+    public function respuestas()
+    {
+        return $this->hasMany(Respuesta::class, 'res_formulario_edificio_id', 'foredi_id');
+    }
+
 }

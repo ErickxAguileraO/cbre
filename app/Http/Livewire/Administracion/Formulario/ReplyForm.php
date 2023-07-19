@@ -9,6 +9,8 @@ use App\Models\Respuesta;
 use App\Models\Formulario;
 use Livewire\WithFileUploads;
 use App\Services\ArchivoService;
+use App\Models\FormularioEdificio;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ReplyForm extends Component
@@ -45,7 +47,9 @@ class ReplyForm extends Component
 
     public function selectOption($optionId){
         $opcion = Opcion::findOrFail($optionId);
-        $respuesta = Respuesta::where('res_pregunta_id', $opcion->pregunta->pre_id)->first();
+        $respuesta = Respuesta::where('res_pregunta_id', $opcion->pregunta->pre_id)
+        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+        ->first();
 
         $respuesta->opciones()->detach();
         $respuesta->opciones()->attach($opcion);
@@ -53,20 +57,26 @@ class ReplyForm extends Component
 
     public function selectCheckbox($optionId){
         $opcion = Opcion::findOrFail($optionId);
-        $respuesta = Respuesta::where('res_pregunta_id', $opcion->pregunta->pre_id)->first();
+        $respuesta = Respuesta::where('res_pregunta_id', $opcion->pregunta->pre_id)
+        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+        ->first();
 
         $respuesta->opciones()->detach();
         $respuesta->opciones()->attach($this->selectedCheckboxes);
     }
 
     public function updateParrafo($preguntaId){
-        $pregunta = Pregunta::findOrFail($preguntaId);
-        $pregunta->respuesta->res_parrafo = $this->res_parrafo;
-        $pregunta->respuesta->update();
+        $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
+        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+        ->first();
+        $respuesta->res_parrafo = $this->res_parrafo;
+        $respuesta->update();
     }
 
     public function updateHSE($preguntaId){
-        $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)->first();
+        $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
+        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+        ->first();
 
         $respuesta->res_mes = empty($this->res_mes) ? null : $this->res_mes;
         $respuesta->res_ano = empty($this->res_ano) ? null : $this->res_ano;
@@ -81,7 +91,9 @@ class ReplyForm extends Component
     public function updateHSEfiles($preguntaId){
 
         $this->preguntaHSEIdTemp = $preguntaId;
-        $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)->first();
+        $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
+        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+        ->first();
 
         if($this->res_documento_accidentabilidad || $this->res_documentacion){
             Storage::delete($respuesta->res_documento_accidentabilidad);

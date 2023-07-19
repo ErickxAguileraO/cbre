@@ -27,6 +27,12 @@ class CreateForm extends Component
         ]);
     }
 
+    public function mount(){
+        $this->validate([
+            'form_nombre' => 'required|max:50',
+        ]);
+    }
+
 /*     public function mount()
     {
         $formulario = Formulario::with('preguntas.opciones')->find($this->formId);
@@ -47,6 +53,9 @@ class CreateForm extends Component
     }
 
     public function updateFormInfo(){
+        $this->validate([
+            'form_nombre' => 'required|max:50',
+        ]);
         $formulario = Formulario::findOrFail($this->formId);
         $formulario->form_nombre = empty($this->form_nombre) ? '' : $this->form_nombre;
         $formulario->form_descripcion = empty($this->form_descripcion) ? '' : $this->form_descripcion;
