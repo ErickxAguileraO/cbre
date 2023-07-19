@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "foredi_estado",
+                    dataField: "estado",
                     caption: "Estado",
                     allowEditing: false,
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     cellTemplate(container, options) {
                         const idFormulario = options.data.form_id;
                         const idEdificio = options.data.edificio_id;
-
+                        console.log(options.data);
                         let urlView = `/admin/formulario-area-tecnica/show/${idFormulario}/${idEdificio}`;
                         let urlModificar = `/admin/formulario-area-tecnica/${idFormulario}/edit`;
 

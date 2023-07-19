@@ -61,6 +61,8 @@ class FormularioAreaTecnicaController extends Controller
             }])
             ->with(['edificios' => function ($query) {
                 $query->select('edi_id', 'edi_nombre');
+            }])->with(['edificios' => function ($query) {
+                $query->select('foredi_estado');
             }])
             ->when($rolLogeado !== 'super-admin', function ($query) use ($rolLogeado) {
                 $query->whereHas('funcionario', function ($subquery) use ($rolLogeado) {
@@ -109,18 +111,20 @@ class FormularioAreaTecnicaController extends Controller
             if ($edificios->count() > 1) {
                 foreach ($edificios as $edificio) {
                     $modifiedFormulario->push($value->replicate()->forceFill([
+                        'estado' => $edificio->foredi_estado,
                         'edificio_id' => $edificio->edi_id,
                         'edificio' => $edificio->edi_nombre,
                         'form_id' => $value->form_id // Asignar el form_id original al formulario duplicado
                     ]));
                 }
             } else {
+                $value->estado = $edificios->pluck('foredi_estado')->toArray();
                 $value->edificio_id = $edificios->pluck('edi_id')->toArray();
                 $value->edificio = $edificios->pluck('edi_nombre')->toArray();
                 $modifiedFormulario->push($value);
             }
         }
-
+        // dd();
         return response()->json($modifiedFormulario);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);
