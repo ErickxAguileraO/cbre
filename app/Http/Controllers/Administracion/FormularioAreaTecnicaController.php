@@ -152,22 +152,35 @@ class FormularioAreaTecnicaController extends Controller
         ]); */
     }
 
-    public function verRespuesta($idFormulario, $idEdificio)
+    public function verFormulario()
     {
-        return view('admin.formulario_area_tecnica.show', [
-            'formulario' => Formulario::findOrFail($idFormulario),
+        $idFormulario = request('formulario');
+        $idEdificio = request('edificio');
 
-            'respuestaOpcion' => RespuestaOpcion::where('reop_respuesta_id', Respuesta::where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $idFormulario)
-            ->where('foredi_edificio_id', $idEdificio)
-            ->first()->foredi_id)->first()->res_id)->get(),
+        if($idFormulario && $idEdificio){
+            return view('admin.formulario_area_tecnica.show', [
+                'formulario' => Formulario::findOrFail($idFormulario),
 
-            'respuestas' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
-            ->where('foredi_edificio_id', $idEdificio)
-            ->first()
-            ->respuestas()
-            ->where('res_estado', 1)
-            ->get(),
-        ]);
+                'respuestaOpcion' => RespuestaOpcion::where('reop_respuesta_id', Respuesta::where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+                ->where('foredi_edificio_id', $idEdificio)
+                ->first()->foredi_id)->first()->res_id)->get(),
+
+                'respuestas' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+                ->where('foredi_edificio_id', $idEdificio)
+                ->first()
+                ->respuestas()
+                ->where('res_estado', 1)
+                ->get(),
+            ]);
+        }elseif($idFormulario){
+            return view('admin.formulario_area_tecnica.show', [
+                'formulario' => Formulario::findOrFail($idFormulario),
+                'respuestaOpcion' => RespuestaOpcion::all()
+            ]);
+        }else{
+            abort(404);
+        }
+
     }
 
         /**
