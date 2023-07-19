@@ -85,8 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     minWidth: '200',
                     cellTemplate(container, options) {
                         const idFormulario = options.data.form_id;
-                        const estado = options.data.form_estado;
-
+                        const estado = options.data.foredi_estado;
+                        console.log(options.data);
                         let urlResponder = `/admin/formulario-jop/${idFormulario}`;
                         let urlView = `/admin/formulario-area-tecnica/${idFormulario}`;
 

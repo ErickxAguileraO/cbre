@@ -31,9 +31,13 @@ class FormularioJOPController extends Controller
             $formulario = Formulario::whereHas('edificios', function ($query) use ($edificioId) {
                 $query->where('foredi_edificio_id', $edificioId);
             })
-            ->withFilters($request->all())
-            ->orderByDesc('updated_at')
-            ->get();
+                ->with(['edificios' => function ($query) {
+                    $query->select('foredi_estado');
+                }])
+                ->withFilters($request->all())
+                ->orderByDesc('updated_at')
+                ->get();
+
             foreach ($formulario as $key => $value) {
                 $funcionario = $value->funcionario;
                 $prevencionistas = User::role('prevencionista')->pluck('name')->toArray();
@@ -43,6 +47,14 @@ class FormularioJOPController extends Controller
                     $value->rol_funcionario = 'Prevencionista';
                 } elseif (in_array($funcionario->fun_nombre, $tecnicos)) {
                     $value->rol_funcionario = 'Técnico';
+                }
+
+                // Obtener el estado del edificio relacionado
+                $edificio = $value->edificios->first();
+                if ($edificio) {
+                    $value->foredi_estado = $edificio->foredi_estado;
+                } else {
+                    $value->foredi_estado = null;
                 }
             }
 
