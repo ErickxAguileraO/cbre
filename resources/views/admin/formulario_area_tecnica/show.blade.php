@@ -62,8 +62,6 @@
                             @endif
                             @foreach ($respuesta->pregunta->opciones as $index => $opcion)
                                 <div class="row align-center preguntas-preview">
-                                    <pre>{{$respuesta->res_id}}</pre>
-                                    <pre>{{$opcion->opc_id}}</pre>
                                     @if ($respuestaOpcion->contains('reop_opcion_id', $opcion->opc_id) && $respuestaOpcion->contains('reop_respuesta_id', $respuesta->res_id))
                                         <input disabled type="radio" checked>
                                         <p>{{ $opcion->opc_opcion }}</p>
