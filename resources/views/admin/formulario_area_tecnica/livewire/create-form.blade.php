@@ -27,17 +27,6 @@
 
     <div>
 
-        <div wire:loading wire:target="updateFormInfo" id="cover-spin"></div>
-        <div wire:loading wire:target="updatePreguntaTitle" id="cover-spin"></div>
-        <div wire:loading wire:target="changePreguntaType" id="cover-spin"></div>
-        <div wire:loading wire:target="updateOptionTitle" id="cover-spin"></div>
-        <div wire:loading wire:target="switchPreguntaRequired" id="cover-spin"></div>
-        <div wire:loading wire:target="deletePregunta" id="cover-spin"></div>
-        <div wire:loading wire:target="changePreguntaType" id="cover-spin"></div>
-        <div wire:loading wire:target="createNewPregunta" id="cover-spin"></div>
-        <div wire:loading wire:target="addNewOption" id="cover-spin"></div>
-        <div wire:loading wire:target="deleteOption" id="cover-spin"></div>
-
         @foreach ($formulario->preguntas as $index => $pregunta)
         @if ($pregunta->tipoPregunta->tipp_id == 1)
 
@@ -442,4 +431,28 @@
         <p>Agregar nueva pregunta</p>
     </div>
 
+@push('scripts')
+<script>
+    window.addEventListener('fireSwalDoneRequest', event =>{
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+            Toast.fire({
+            icon: 'success',
+            title: 'Guardando...',
+            customClass: {
+                popup: 'colored-toast'
+            },
+            })
+    });
+    </script>
+@endpush
 </div>
