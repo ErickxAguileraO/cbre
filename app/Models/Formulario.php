@@ -47,9 +47,14 @@ class Formulario extends Model
                 });
             })
             ->when(isset($params['estado']), function ($query) use ($params) {
-                $query->whereHas('edificios', function ($query) use ($params) {
-                    $query->where('formulario_edificio.foredi_estado', $params['estado']);
-                });
+                // Filtrar por formularios sin edificio asociado cuando el estado es 5
+                if ($params['estado'] == 5) {
+                    $query->whereDoesntHave('edificios');
+                } else {
+                    $query->whereHas('edificios', function ($query) use ($params) {
+                        $query->where('formulario_edificio.foredi_estado', $params['estado']);
+                    });
+                }
             })
             ->when(isset($params['creado_por']), function ($query) use ($params) {
                 $query->when($params['creado_por'] !== 'Todos', function ($query) use ($params) {
