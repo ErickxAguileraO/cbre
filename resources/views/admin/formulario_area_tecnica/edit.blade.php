@@ -119,8 +119,7 @@
         </div>
     </div>
 
-    {{-- Modal observacion --}}
-    @include('components.modalObservacion')
+
 @endsection
 
 @push('scripts')
@@ -140,17 +139,6 @@
 
         $(".modalPublicar__cerrarBtn").on('click', function () {
             $(".contenedor__modalPublicar").css("display", "none");
-        });
-    </script>
-
-    <script>
-        // Modal observacion
-        $(".modalObservacion__abrirBtn").on('click', function () {
-        $(".contenedor__modalObservacion").css("display", "flex");
-        });
-
-        $(".modalObservacion__cerrarBtn").on('click', function () {
-        $(".contenedor__modalObservacion").css("display", "none");
         });
     </script>
         <script src="{{ asset('/public\js\admin\sistema\area_tecnica\publicar_formulario.js') }}"></script>
