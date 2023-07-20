@@ -9,7 +9,7 @@ use App\Models\Formulario;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
-class CreateForm extends Component
+class EditForm extends Component
 {
     public $formId;
     public $form_nombre;
@@ -22,12 +22,25 @@ class CreateForm extends Component
 
     public function render()
     {
-        return view('admin.formulario_area_tecnica.livewire.create-form',[
+        return view('admin.formulario_area_tecnica.livewire.edit-form',[
             'formulario' => Formulario::findOrFail($this->formId),
         ]);
     }
 
     public function mount(){
+
+        $formulario = Formulario::with('preguntas.opciones')->find($this->formId);
+        $this->form_nombre = $formulario->form_nombre;
+        $this->form_descripcion = $formulario->form_descripcion;
+
+        foreach ($formulario->preguntas as $pregunta) {
+            $this->pre_pregunta[$pregunta->pre_id] = $pregunta->pre_pregunta;
+
+            foreach($pregunta->opciones as $opcion){
+                $this->opc_opcion[$opcion->opc_id] = $opcion->opc_opcion;
+            }
+        }
+
         $this->validate([
             'form_nombre' => 'required|max:50',
         ]);
