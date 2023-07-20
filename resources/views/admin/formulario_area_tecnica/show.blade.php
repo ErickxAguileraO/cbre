@@ -23,20 +23,24 @@
 
         <div class="grid-header-2">
             <h1 class="col-xl">{{ $formulario->form_nombre }}</h1>
-            @if (auth()->user()->hasRole('funcionario'))
-                <div class="row datos-formulario">
-                    <a href="{{ route('formulario-jop.index') }}" class="estado-formulario">Salir del modo
-                        previsualizar</a>
-                    {{--             <a href="{{ route('formulario-area-tecnica.edit', $formulario->form_id) }}" class="estado-formulario">Salir del modo previsualizar</a> --}}
-                </div>
-            @else
-                <div class="row datos-formulario">
-                    <a href="{{ route('formulario-area-tecnica.index') }}" class="estado-formulario">Salir del modo
-                        previsualizar</a>
-                    {{--             <a href="{{ route('formulario-area-tecnica.edit', $formulario->form_id) }}" class="estado-formulario">Salir del modo previsualizar</a> --}}
-                </div>
-            @endif
+            <div class="row datos-formulario">
+                @if (auth()->user()->hasRole('funcionario'))
+                    <a href="{{ route('formulario-jop.index') }}" class="estado-formulario">Salir del modo previsualizar</a>
+                @else
+                    <a href="{{ route('formulario-area-tecnica.index') }}" class="estado-formulario">Salir del modo previsualizar</a>
+                @endif
+                <div class="form-group">
+                    <div class="select-manual">
+                        <p>Opciones</p>
+                        <i class="fas fa-sort-down color-texto-cbre menos-top"></i>
 
+                        <div class="option-select-manual">
+                            <div class="row-option"><i class="fas fa-copy"></i> Duplicar</div>
+                            <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
             @if (isset($respuestas))
@@ -588,11 +592,29 @@
 
                 </div>
             @endif
-
+        {{-- Modal observacion --}}
+        @include('components.modalObservacion')
     </div>
 @endsection
 
 @push('scripts')
+
+<script>
+    // Opciones
+    $(".option-select-manual").hide();
+    $(".select-manual").click(function () {
+        $(".option-select-manual").toggle();
+    })
+
+    // Modal observacion
+    $(".modalObservacion__abrirBtn").on('click', function () {
+    $(".contenedor__modalObservacion").css("display", "flex");
+    });
+
+    $(".modalObservacion__cerrarBtn").on('click', function () {
+    $(".contenedor__modalObservacion").css("display", "none");
+    });
+</script>
     {{-- <script src="{{ asset('public\js\admin\sistema\caracteristicas\form_agregar.js') }}"></script>
 <script src="{{ asset('/public/css/componentes/tab/tab.js') }}"></script>
 <script src="{{ asset('/public/css/componentes/modal/modal.js') }}"></script>
