@@ -57,6 +57,7 @@ class FormularioAreaTecnicaController extends Controller
 
         try {
             $rolLogeado = auth()->user()->roles->first()->name;
+
             $formulario = Formulario::with('funcionario')
             ->with(['preguntas' => function ($query) {
                 $query->withCount('archivosFormulario');
@@ -91,6 +92,7 @@ class FormularioAreaTecnicaController extends Controller
 
         foreach ($formulario as $key => $value) {
             $funcionario = $value->funcionario;
+
             $prevencionistas = User::role('prevencionista')->pluck('name')->toArray();
             $tecnicos = User::role('tecnico')->pluck('name')->toArray();
 
@@ -108,7 +110,7 @@ class FormularioAreaTecnicaController extends Controller
             foreach ($value->preguntas as $pregunta) {
                 $pregunta->cantidad_archivos = $pregunta->archivosFormulario->count();
             }
-
+            $value->updated_at_formatted = date('d-m-Y', strtotime($value->updated_at));
             // Obtener la cantidad total de archivos vinculados al formulario
             $cantidadArchivosFormulario = 0;
             foreach ($value->preguntas as $pregunta) {
@@ -129,13 +131,16 @@ class FormularioAreaTecnicaController extends Controller
                     ]));
                 }
             } else {
-                $value->estado = $edificios->pluck('foredi_estado')->toArray();
+                if ($edificios->isEmpty()) {
+                    $value->estado = [4];
+                } else {
+                    $value->estado = $edificios->pluck('foredi_estado')->toArray();
+                }
                 $value->edificio_id = $edificios->pluck('edi_id')->toArray();
                 $value->edificio = $edificios->pluck('edi_nombre')->toArray();
                 $modifiedFormulario->push($value);
             }
         }
-        // dd();
         return response()->json($modifiedFormulario);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()]);

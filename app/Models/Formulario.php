@@ -19,6 +19,8 @@ class Formulario extends Model
         'form_funcionario_id',
         'form_nombre',
         'form_descripcion',
+        'updated_at',
+        'created_at',
     ];
 
     protected $appends = [
@@ -32,10 +34,12 @@ class Formulario extends Model
 
     public function scopeWithFilters($query, $params)
     {
-        return $query->when(isset($params['fechaInicio']), function ($query) use ($params) {
-                $query->whereDate('updated_at', '>=', $params['fechaInicio']);
-            })->when(isset($params['fechaTermino']), function ($query) use ($params) {
-                $query->whereDate('updated_at', '<=', $params['fechaTermino']);
+        return $query
+            ->when(isset($params['fechaInicio']), function ($query) use ($params) {
+                $query->whereDate('updated_at', '>=', Carbon::parse($params['fechaInicio'])->toDateString());
+            })
+            ->when(isset($params['fechaTermino']), function ($query) use ($params) {
+                $query->whereDate('updated_at', '<=', Carbon::parse($params['fechaTermino'])->toDateString());
             })
             ->when(isset($params['edificio']), function ($query) use ($params) {
                 $query->whereHas('edificios', function ($query) use ($params) {
