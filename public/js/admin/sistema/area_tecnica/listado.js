@@ -97,6 +97,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                         id: 4,
                                         name: "Borrador",
                                     },
+                                    {
+                                        id: '',
+                                        name: "Borrador",
+                                    },
                                 ],
                                 key: "id",
                             },

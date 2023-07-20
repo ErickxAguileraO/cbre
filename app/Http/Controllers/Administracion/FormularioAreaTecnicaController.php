@@ -131,11 +131,8 @@ class FormularioAreaTecnicaController extends Controller
                     ]));
                 }
             } else {
-                if ($edificios->isEmpty()) {
-                    $value->estado = [4];
-                } else {
-                    $value->estado = $edificios->pluck('foredi_estado')->toArray();
-                }
+
+                $value->estado = $edificios->pluck('foredi_estado')->toArray();
                 $value->edificio_id = $edificios->pluck('edi_id')->toArray();
                 $value->edificio = $edificios->pluck('edi_nombre')->toArray();
                 $modifiedFormulario->push($value);
