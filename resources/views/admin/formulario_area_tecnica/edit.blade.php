@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="contenedor-form-preguntas">
-                    <livewire:administracion.formulario.create-form :formId="$formulario->form_id"/>
+                    <livewire:administracion.formulario.edit-form :formId="$formulario->form_id"/>
                 </div>
 
                 <div class="linea-separadora"></div>
