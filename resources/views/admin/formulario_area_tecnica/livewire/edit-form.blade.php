@@ -54,7 +54,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="" name="" class="form-control" tabindex="4"
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4"
                                 style="width:100%;">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual">Seleccion individual</option>
@@ -141,7 +141,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="" name="" class="form-control" tabindex="4"
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4"
                                 style="width:100%;">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual">Seleccion individual</option>
@@ -230,7 +230,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="" name="" class="form-control" tabindex="4"
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4"
                                 style="width:100%;">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual">Seleccion individual</option>
@@ -299,7 +299,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="" name="" class="form-control" tabindex="4"
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4"
                                 style="width:100%;">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual">Seleccion individual</option>
@@ -442,4 +442,11 @@
         <p>Agregar nueva pregunta</p>
     </div>
 
+    @push('scripts')
+    <script>
+    $(document).ready(function() {
+        $('[id="pregunta-tipo"]').select2('destroy');
+    });
+    </script>
+    @endpush+
 </div>

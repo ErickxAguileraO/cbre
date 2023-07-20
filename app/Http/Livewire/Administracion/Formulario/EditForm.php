@@ -33,6 +33,14 @@ class EditForm extends Component
         $this->form_nombre = $formulario->form_nombre;
         $this->form_descripcion = $formulario->form_descripcion;
 
+        foreach ($formulario->preguntas as $pregunta) {
+            $this->pre_pregunta[$pregunta->pre_id] = $pregunta->pre_pregunta;
+
+            foreach($pregunta->opciones as $opcion){
+                $this->opc_opcion[$opcion->opc_id] = $opcion->opc_opcion;
+            }
+        }
+
         $this->validate([
             'form_nombre' => 'required|max:50',
         ]);
@@ -115,7 +123,7 @@ class EditForm extends Component
 
     public function updateOptionTitle($optionId){
         $opcion = Opcion::findOrfail($optionId);
-        $opcion->opc_opcion = end($this->opc_opcion);
+        $opcion->opc_opcion = $this->opc_opcion[$optionId];
         $opcion->update();
     }
 
