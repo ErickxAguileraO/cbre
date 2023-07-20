@@ -473,5 +473,5 @@
         $('[id="pregunta-tipo"]').select2('destroy');
     });
     </script>
-    @endpush+
+    @endpush
 </div>

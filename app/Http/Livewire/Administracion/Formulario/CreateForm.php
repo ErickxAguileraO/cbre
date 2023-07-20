@@ -22,6 +22,7 @@ class CreateForm extends Component
 
     public function render()
     {
+        $this->dispatchBrowserEvent('fireSwalDoneRequest');
         return view('admin.formulario_area_tecnica.livewire.create-form',[
             'formulario' => Formulario::findOrFail($this->formId),
         ]);
