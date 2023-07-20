@@ -28,8 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     dataField: "rol_funcionario",
                     caption: "Área",
                     filterOperations: ["contains"],
-                    alignment: "left",
+                    alignment: "center",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
+                    width: 130,
                 },
                 {
                     dataField: "form_nombre",
@@ -41,12 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "fecha",
+                    dataField: "updated_at_formatted",
                     caption: "Fecha de envío",
                     filterOperations: ["contains"],
-                    alignment: "left",
+                    alignment: "center",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
-                    width: '200',
+                    width: 130,
                     // minWidth: '110',
                 },
                 {
@@ -62,9 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     dataField: "cantidad_archivos_formulario",
                     caption: "Archivos",
                     filterOperations: ["contains"],
-                    alignment: "left",
+                    alignment: "center",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
-                    width: '100',
+                    width: 80,
                     // minWidth: '110',
                 },
                 {
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     caption: "Estado",
                     allowEditing: false,
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
-                    // width: '100',
+                    width: 130,
                     // minWidth: '100',
                     // width:300,
                     lookup: {
@@ -94,10 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                     },
                                     {
                                         id: 4,
-                                        name: "Borrador",
-                                    },
-                                    {
-                                        id: '',
                                         name: "Borrador",
                                     },
                                 ],
