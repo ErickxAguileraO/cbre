@@ -301,7 +301,7 @@ class FormularioAreaTecnicaController extends Controller
 
             $newFormulario = new Formulario();
             $newFormulario->form_funcionario_id = $formulario->form_funcionario_id;
-            $newFormulario->form_nombre = $formulario->form_nombre . '(Copia)';
+            $newFormulario->form_nombre = $formulario->form_nombre . ' - Copia';
             $newFormulario->form_descripcion = $formulario->form_descripcion;
             $newFormulario->save();
 
@@ -321,7 +321,7 @@ class FormularioAreaTecnicaController extends Controller
                 }
             }
 
-            return redirect()->route('formulario-area-tecnica.edit', ['form_id' => $newFormulario->form_id]);
+            return redirect()->route('formulario-area-tecnica.edit', $newFormulario->form_id);
 
         } catch (\Throwable $th) {
             return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
