@@ -54,17 +54,23 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4"
-                                style="width:100%;">
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual">Seleccion individual</option>
+                                    value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
+                                    Seleccion individual
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple">Selección múltiple</option>
+                                    value="Selección múltiple" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
+                                    Seleccion múltiple
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo">
-                                    Párrafo</option>
+                                    value="Párrafo" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
+                                    Párrafo
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad">HSE - Accidentabilidad</option>
+                                    value="HSE - Accidentabilidad" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
+                                    HSE - Accidentabilidad
+                                </option>
                             </select>
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
@@ -141,18 +147,25 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4"
-                                style="width:100%;">
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual">Seleccion individual</option>
+                                    value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
+                                    Seleccion individual
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple">Selección múltiple</option>
+                                    value="Selección múltiple" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
+                                    Seleccion múltiple
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo">
-                                    Párrafo</option>
+                                    value="Párrafo" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
+                                    Párrafo
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad">HSE - Accidentabilidad</option>
+                                    value="HSE - Accidentabilidad" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
+                                    HSE - Accidentabilidad
+                                </option>
                             </select>
+
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -230,17 +243,23 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4"
-                                style="width:100%;">
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual">Seleccion individual</option>
+                                    value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
+                                    Seleccion individual
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple">Selección múltiple</option>
+                                    value="Selección múltiple" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
+                                    Seleccion múltiple
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo">
-                                    Párrafo</option>
+                                    value="Párrafo" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
+                                    Párrafo
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad">HSE - Accidentabilidad</option>
+                                    value="HSE - Accidentabilidad" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
+                                    HSE - Accidentabilidad
+                                </option>
                             </select>
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
@@ -299,17 +318,23 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4"
-                                style="width:100%;">
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual">Seleccion individual</option>
+                                    value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
+                                    Seleccion individual
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple">Selección múltiple</option>
+                                    value="Selección múltiple" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
+                                    Seleccion múltiple
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo">
-                                    Párrafo</option>
+                                    value="Párrafo" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
+                                    Párrafo
+                                </option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad">HSE - Accidentabilidad</option>
+                                    value="HSE - Accidentabilidad" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
+                                    HSE - Accidentabilidad
+                                </option>
                             </select>
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
