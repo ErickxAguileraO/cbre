@@ -94,10 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                         name: "Cerrado",
                                     },
                                     {
-                                        id: 4,
-                                        name: "Borrador",
-                                    },
-                                    {
                                         id: '',
                                         name: "Borrador",
                                     },

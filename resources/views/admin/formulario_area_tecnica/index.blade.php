@@ -39,7 +39,7 @@
          <label for="">Estado</label>
          <select id="estado" name="estado" class="form-control" tabindex="4" style="width:100%;">
             <option value="">Todos</option>
-            <option value="4">Borrador</option>
+            <option value="5">Borrador</option>
             <option value="1">Publicado</option>
             <option value="2">Respondido</option>
             <option value="3">Cerrado</option>
