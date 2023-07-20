@@ -54,15 +54,25 @@ class FormularioAreaTecnicaController extends Controller
 
     public function list(Request $request)
     {
-        $creadoPor = $request->input('creado_por');
+
         try {
             $rolLogeado = auth()->user()->roles->first()->name;
             $formulario = Formulario::with('funcionario')
             ->with(['preguntas' => function ($query) {
                 $query->withCount('archivosFormulario');
             }])
-            ->with(['edificios' => function ($query) {
-                $query->select('edi_id', 'edi_nombre','foredi_estado');
+            ->with(['edificios' => function ($query) use ($request) {
+                // Aquí cargamos la relación "edificios" con las columnas seleccionadas
+                $query->select('edi_id', 'edi_nombre', 'foredi_estado','foredi_edificio_id');
+
+                // Filtrar por el estado seleccionado (si está presente en la solicitud)
+                if (isset($request->estado)) {
+                    $query->where('foredi_estado', $request->estado);
+                }
+                // Filtrar por el estado seleccionado (si está presente en la solicitud)
+                if (isset($request->edificio)) {
+                    $query->where('edi_nombre', $request->edificio);
+                }
             }])
             ->when($rolLogeado !== 'super-admin', function ($query) use ($rolLogeado) {
                 $query->whereHas('funcionario', function ($subquery) use ($rolLogeado) {
@@ -73,6 +83,7 @@ class FormularioAreaTecnicaController extends Controller
                     });
                 });
             })
+            ->withFilters($request->all())
             ->orderByDesc('updated_at')
             ->get();
 
