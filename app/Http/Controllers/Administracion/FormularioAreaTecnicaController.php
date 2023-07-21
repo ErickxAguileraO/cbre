@@ -14,6 +14,8 @@ use App\Services\ArchivoService;
 use App\Models\FormularioEdificio;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Observacion\CreateObservacionRequest;
+use App\Models\Obersacion;
 use App\Models\Opcion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -198,6 +200,9 @@ class FormularioAreaTecnicaController extends Controller
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
                 'respuestaOpcion' => RespuestaOpcion::all(),
+                'estado' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+                ->where('foredi_edificio_id', $idEdificio)
+                ->firstOrFail(),
             ]);
 
         }elseif($idFormulario && !$idEdificio){
@@ -336,6 +341,25 @@ class FormularioAreaTecnicaController extends Controller
 
         } catch (\Throwable $th) {
             return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
+        }
+    }
+
+    public function observacion(CreateObservacionRequest $request){
+
+        DB::beginTransaction();
+
+        try {
+            Obersacion::create([
+                'car_nombre' => $request->nombre,
+            ]);
+
+
+            DB::commit();
+            return response()->json(['success' => '¡La característica se ha registrado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json(['error' => $th->getMessage()], 401);
         }
     }
 
