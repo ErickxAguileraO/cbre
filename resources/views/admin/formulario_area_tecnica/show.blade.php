@@ -57,7 +57,7 @@
                     @if ($respuesta->pregunta->tipoPregunta->tipp_id == 1)
                         <div class="div-formulario-n">
                             <h3 class="">{{ $respuesta->pregunta->pre_pregunta }}</h3>
-                            @if ($respuesta->pregunta->archivosFormulario->count() > 0)
+                            @if ($respuesta->archivosFormulario->count() > 0)
                                 <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                     <i class="far fa-paperclip"></i>
                                     <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}"
@@ -104,7 +104,7 @@
                     @elseif ($respuesta->pregunta->tipoPregunta->tipp_id == 2)
                         <div class="div-formulario-n">
                             <h3 class="">{{ $respuesta->pregunta->pre_pregunta }}</h3>
-                            @if ($respuesta->pregunta->archivosFormulario->count() > 0)
+                            @if ($respuesta->archivosFormulario->count() > 0)
                                 <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                     <i class="far fa-paperclip"></i>
                                     <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}"
@@ -151,7 +151,7 @@
                     @elseif ($respuesta->pregunta->tipoPregunta->tipp_id == 3)
                         <div class="div-formulario-n">
                             <h3 class="">{{ $respuesta->pregunta->pre_pregunta }}</h3>
-                            @if ($respuesta->pregunta->archivosFormulario->count() > 0)
+                            @if ($respuesta->archivosFormulario->count() > 0)
                                 <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                     <i class="far fa-paperclip"></i>
                                     <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}"
@@ -194,7 +194,7 @@
                                     <div class="form-group">
                                         <h3 class="">{{ $respuesta->pregunta->pre_pregunta }}</h3>
                                     </div>
-                                    @if ($respuesta->pregunta->archivosFormulario->count() > 0)
+                                    @if ($respuesta->archivosFormulario->count() > 0)
                                         <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                             <i class="far fa-paperclip"></i>
                                             <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}"
@@ -349,7 +349,7 @@
 
                 @else
 
-{{--                 Contenedor solo con la estructura del formulario --}}
+{{--                 Contenedor solo con la estructura del formulario (sin respuestas) --}}
                 <div class="contenedor-form-preguntas">
 
                     @if ($formulario->form_descripcion != '')
@@ -362,7 +362,7 @@
                         @if ($pregunta->tipoPregunta->tipp_id == 1)
                             <div class="div-formulario-n">
                                 <h3 class="">{{ $pregunta->pre_pregunta }}</h3>
-                                @if (($pregunta->respuesta ? $pregunta->respuesta->archivosFormulario->count() : 0) > 0 || $pregunta->archivosFormulario->count() > 0)
+                                @if ($pregunta->archivosFormulario->count() > 0)
                                 <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                     <i class="far fa-paperclip"></i>
                                     <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
@@ -398,7 +398,7 @@
                         @elseif ($pregunta->tipoPregunta->tipp_id == 2)
                             <div class="div-formulario-n">
                                 <h3 class="">{{ $pregunta->pre_pregunta }}</h3>
-                                @if (($pregunta->respuesta ? $pregunta->respuesta->archivosFormulario->count() : 0) > 0 || $pregunta->archivosFormulario->count() > 0)
+                                @if ($pregunta->archivosFormulario->count() > 0)
                                 <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                     <i class="far fa-paperclip"></i>
                                     <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
@@ -434,7 +434,7 @@
                         @elseif ($pregunta->tipoPregunta->tipp_id == 3)
                             <div class="div-formulario-n">
                                 <h3 class="">{{ $pregunta->pre_pregunta }}</h3>
-                                @if (($pregunta->respuesta ? $pregunta->respuesta->archivosFormulario->count() : 0) > 0 || $pregunta->archivosFormulario->count() > 0)
+                                @if ($pregunta->archivosFormulario->count() > 0)
                                 <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                     <i class="far fa-paperclip"></i>
                                     <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
@@ -471,7 +471,7 @@
                                         <div class="form-group">
                                             <h3 class="">{{ $pregunta->pre_pregunta }}</h3>
                                         </div>
-                                        @if (($pregunta->respuesta ? $pregunta->respuesta->archivosFormulario->count() : 0) > 0 || $pregunta->archivosFormulario->count() > 0)
+                                        @if ($pregunta->archivosFormulario->count() > 0)
                                         <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                             <i class="far fa-paperclip"></i>
                                             <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
