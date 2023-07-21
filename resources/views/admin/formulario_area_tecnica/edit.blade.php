@@ -37,7 +37,7 @@
                 </li>
             </ul>
 
-            <form action="#" method="POST" id="tab1" class="tab__contenido">
+            <div id="tab1" class="tab__contenido">
                 <div class="grid-header-2">
                     <h1 class="col-xl">Formulario equipo de limpieza</h1>
                     <div class="row datos-formulario">
@@ -72,7 +72,7 @@
                     <a href="{{ route('formulario-area-tecnica.index') }}" class="modalFile__btnN modalFile__botonPrimario text-white text-decoration-none">Dejar como borrador</a>
                 </div>
 
-            </form>
+            </div>
 
             <div id="tab2" class="tab__contenido">
                 <h1 class="col-xl">Historial formulario</h1>

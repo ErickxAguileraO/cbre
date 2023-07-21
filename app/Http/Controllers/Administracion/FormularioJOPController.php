@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administracion;
 
 use App\Models\User;
+use App\Models\Historial;
 use App\Models\Respuesta;
 use App\Models\Formulario;
 use Illuminate\Http\Request;
@@ -143,6 +144,13 @@ class FormularioJOPController extends Controller
             ->first();
             $formEdificio->foredi_estado = 2;
             $formEdificio->update();
+
+            Historial::create([
+                'his_formulario_edificio_id' => $formEdificio->foredi_id,
+                'his_accion' => 'Respondido',
+                'his_usuario' => Auth::user()->name,
+                'his_estado' => 'Respondido'
+            ]);
 
             DB::commit();
 
