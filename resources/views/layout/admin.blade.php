@@ -144,13 +144,23 @@
                 </span>
             </li>
             @endcan
+            {{-- @php
+                $user = Auth::user()->funcionario->edificio->edi_id;
+
+                $cantidadFormularios = App\Models\Formulario::whereHas('edificios', function ($query) use ($user) {
+                    // Filtrar por el ID del edificio del funcionario logueado
+                    $query->where('foredi_edificio_id', $user)
+                        ->where('foredi_estado', 1);
+                })->count();
+            @endphp --}}
 
             @if (!auth()->user()->hasRole('tecnico') && !auth()->user()->hasRole('super-admin'))
                 @can('index formulario')
                 {{-- Nuevas vistas --}}
                 <li>
                 <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                    <a href="{{ route('formulario-jop.index') }}" class="nav-link">Formularios JOP</a>
+                    <a href="{{ route('formulario-jop.index') }}" class="nav-link link-padding10">Formularios JOP</a>
+                    <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{ $cantidadFormularios }}</span>
                 </span>
                 </li>
                 @endcan

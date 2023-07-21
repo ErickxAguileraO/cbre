@@ -193,6 +193,9 @@ class FormularioAreaTecnicaController extends Controller
                 ->respuestas()
                 ->where('res_estado', 1)
                 ->get(),
+                'estado' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+                ->where('foredi_edificio_id', $idEdificio)
+                ->firstOrFail(),
             ]);
 
         }elseif($idFormulario && $idEdificio){
