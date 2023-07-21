@@ -15,6 +15,7 @@ use App\Models\FormularioEdificio;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Observacion\CreateObservacionRequest;
+use App\Models\Historial;
 use App\Models\Obersacion;
 use App\Models\Opcion;
 use Illuminate\Support\Facades\Auth;
@@ -193,25 +194,33 @@ class FormularioAreaTecnicaController extends Controller
                 ->respuestas()
                 ->where('res_estado', 1)
                 ->get(),
+
                 'estado' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
                 ->where('foredi_edificio_id', $idEdificio)
                 ->firstOrFail(),
+
+                'historiales' => Historial::where('his_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $idFormulario)->where('foredi_edificio_id', $idEdificio)->first()->foredi_id)->get(),
             ]);
 
         }elseif($idFormulario && $idEdificio){
 
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
+
                 'respuestaOpcion' => RespuestaOpcion::all(),
+
                 'estado' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
                 ->where('foredi_edificio_id', $idEdificio)
                 ->firstOrFail(),
+
+                'historiales' => Historial::where('his_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $idFormulario)->where('foredi_edificio_id', $idEdificio)->first()->foredi_id)->get(),
             ]);
 
         }elseif($idFormulario && !$idEdificio){
 
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
+
                 'respuestaOpcion' => RespuestaOpcion::all(),
             ]);
 
@@ -292,6 +301,13 @@ class FormularioAreaTecnicaController extends Controller
             foreach($formEdificios as $formEdificio){
                 $formEdificio->foredi_estado = 1;
                 $formEdificio->update();
+
+                Historial::create([
+                    'his_formulario_edificio_id' => $formEdificio->foredi_id,
+                    'his_accion' => 'Publicado',
+                    'his_usuario' => Auth::user()->name,
+                    'his_estado' => 'Publicado'
+                ]);
             }
 
             DB::commit();
