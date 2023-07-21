@@ -144,15 +144,23 @@
                 </span>
             </li>
             @endcan
-            {{-- @php
-                $user = Auth::user()->funcionario->edificio->edi_id;
+            @php
+                $user = Auth::user();
 
-                $cantidadFormularios = App\Models\Formulario::whereHas('edificios', function ($query) use ($user) {
-                    // Filtrar por el ID del edificio del funcionario logueado
-                    $query->where('foredi_edificio_id', $user)
-                        ->where('foredi_estado', 1);
-                })->count();
-            @endphp --}}
+                // Verificar si el usuario tiene un funcionario y un edificio asociado
+                if ($user->funcionario && $user->funcionario->edificio) {
+                    $userEdificioId = $user->funcionario->edificio->edi_id;
+
+                    $cantidadFormularios = App\Models\Formulario::whereHas('edificios', function ($query) use ($userEdificioId) {
+                        // Filtrar por el ID del edificio del funcionario logueado
+                        $query->where('foredi_edificio_id', $userEdificioId)
+                            ->where('foredi_estado', 1);
+                    })->count();
+                } else {
+                    // En caso de que el usuario no tenga un funcionario o un edificio asociado
+                    $cantidadFormularios = 0;
+                }
+            @endphp
 
             @if (!auth()->user()->hasRole('tecnico') && !auth()->user()->hasRole('super-admin'))
                 @can('index formulario')
