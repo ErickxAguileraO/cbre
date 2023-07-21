@@ -364,16 +364,22 @@ class FormularioAreaTecnicaController extends Controller
     }
 
     public function observacion(CreateObservacionRequest $request){
-
+        $idFormulario = request('formulario');
+        $idEdificio = request('edificio');
+        dd($idEdificio,'/' ,$idFormulario);
         DB::beginTransaction();
 
         try {
-            Obersacion::create([
-                'car_nombre' => $request->nombre,
-            ]);
+            // $usuario = Auth::user()->funcionario->fun_nombre;
+
+            // $observacion = Obersacion::create([
+            //     'obs_descripcion' => $request->descripcion,
+            //     'obs_formulario_edificio_id' => 1,
+            //     'obs_estado' => 1,
+            // ]);
 
 
-            DB::commit();
+            // DB::commit();
             return response()->json(['success' => '¡La característica se ha registrado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
