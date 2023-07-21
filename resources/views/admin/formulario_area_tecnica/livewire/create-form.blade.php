@@ -431,28 +431,9 @@
         <p>Agregar nueva pregunta</p>
     </div>
 
+</div>
+
 @push('scripts')
-<script>
-    window.addEventListener('fireSwalDoneRequest', event =>{
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-            })
-            Toast.fire({
-            icon: 'success',
-            title: 'Guardando...',
-            customClass: {
-                popup: 'colored-toast'
-            },
-            })
-    });
-    </script>
+
 @endpush
 </div>

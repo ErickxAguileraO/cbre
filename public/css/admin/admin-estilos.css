@@ -1199,6 +1199,13 @@ input:checked+.slider:before {
     animation: spin .8s linear infinite;
 }
 
+
+.colored-toast {
+    background-color: #012A2D !important;
+    height: 50px;
+    font-size: 13px!important;
+  }
+
 .colored-toast.swal2-icon-success {
     background-color: #012A2D !important;
     height: 50px;
@@ -1206,19 +1213,27 @@ input:checked+.slider:before {
   }
 
   .colored-toast.swal2-icon-error {
-    background-color: #f27474 !important;
+    background-color: #012A2D !important;
+    height: 50px;
+    font-size: 13px!important;
   }
 
   .colored-toast.swal2-icon-warning {
-    background-color: #f8bb86 !important;
+    background-color: #012A2D !important;
+    height: 50px;
+    font-size: 13px!important;
   }
 
   .colored-toast.swal2-icon-info {
-    background-color: #3fc3ee !important;
+    background-color: #012A2D !important;
+    height: 50px;
+    font-size: 13px!important;
   }
 
   .colored-toast.swal2-icon-question {
-    background-color: #87adbd !important;
+    background-color: #012A2D !important;
+    height: 50px;
+    font-size: 13px!important;
   }
 
   .colored-toast .swal2-title {
