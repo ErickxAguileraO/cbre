@@ -176,7 +176,8 @@ class FormularioAreaTecnicaController extends Controller
 
         if($idFormulario && $idEdificio && FormularioEdificio::where('foredi_formulario_id', $idFormulario)
         ->where('foredi_edificio_id', $idEdificio)
-        ->first()->respuestas){
+        ->first()->respuestas->count() != 0){
+
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
 
@@ -191,13 +192,25 @@ class FormularioAreaTecnicaController extends Controller
                 ->where('res_estado', 1)
                 ->get(),
             ]);
-        }elseif($idFormulario && !$idEdificio){
+
+        }elseif($idFormulario && $idEdificio){
+
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
-                'respuestaOpcion' => RespuestaOpcion::all(), // para posible optimización
+                'respuestaOpcion' => RespuestaOpcion::all(),
             ]);
+
+        }elseif($idFormulario && !$idEdificio){
+
+            return view('admin.formulario_area_tecnica.show', [
+                'formulario' => Formulario::findOrFail($idFormulario),
+                'respuestaOpcion' => RespuestaOpcion::all(),
+            ]);
+
         }else{
+
             abort(404);
+
         }
     }
 
