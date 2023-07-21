@@ -35,8 +35,7 @@
                         <i class="fas fa-sort-down color-texto-cbre menos-top"></i>
 
                         <div class="option-select-manual">
-                            <a href="{{ route('formulario-area-tecnica.duplicar.formulario', $formulario->form_id) }}" target="_blank" class="row-option"><i class="fas fa-eye"></i> Duplicar</a>
-                            <div class="row-option"><i class="fas fa-copy"></i> Duplicar</div>
+                            <a href="{{ route('formulario-area-tecnica.duplicar.formulario', $formulario->form_id) }}" target="_blank" class="row-option"><i class="fas fa-copy"></i> Duplicar</a>
                             <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
                         </div>
                     </div>

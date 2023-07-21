@@ -50,10 +50,8 @@
 
                                 <div class="option-select-manual">
 
-                                    <div class="row-option modalPublicar__abrirBtn"><i class ="fas fa-eye"></i> Publicar y enviar</div>
+                                    <div class="row-option modalPublicar__abrirBtn"><i class="fas fa-paper-plane"></i> Publicar y enviar</div>
                                     <a href="{{ route('formulario-area-tecnica.ver.formulario', $formulario->form_id) }}" target="_blank" class="row-option"><i class="fas fa-eye"></i> Visualizar</a>
-{{--                                     <div class="row-option modalPublicar__abrirBtn"><i class ="fas fa-eye"></i> Publicar y enviar</div> --}}
-                               {{--      <div class="row-option"><i class="fas fa-copy"></i> Duplicar</div> --}}
                                     <div id="eliminar-formulario" class="row-option"><i class="fas fa-trash-alt"></i> Eliminar</div>
                                     <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
 

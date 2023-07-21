@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Opcion;
 use Illuminate\Support\Facades\Auth;
-
-use function PHPUnit\Framework\isEmpty;
 use Illuminate\Support\Facades\Storage;
 
 class FormularioAreaTecnicaController extends Controller
@@ -176,9 +174,9 @@ class FormularioAreaTecnicaController extends Controller
         $idFormulario = request('formulario');
         $idEdificio = request('edificio');
 
-        if($idFormulario && $idEdificio && !isEmpty(FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+        if($idFormulario && $idEdificio && FormularioEdificio::where('foredi_formulario_id', $idFormulario)
         ->where('foredi_edificio_id', $idEdificio)
-        ->first()->respuestas)){
+        ->first()->respuestas){
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
 
@@ -193,10 +191,10 @@ class FormularioAreaTecnicaController extends Controller
                 ->where('res_estado', 1)
                 ->get(),
             ]);
-        }elseif($idFormulario){
+        }elseif($idFormulario && !$idEdificio){
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
-                'respuestaOpcion' => RespuestaOpcion::all()
+                'respuestaOpcion' => RespuestaOpcion::all(), // para posible optimización
             ]);
         }else{
             abort(404);
