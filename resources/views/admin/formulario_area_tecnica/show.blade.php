@@ -28,19 +28,19 @@
                     <a href="{{ route('formulario-jop.index') }}" class="estado-formulario">Salir del modo previsualizar</a>
                 @else
                     <a href="{{ route('formulario-area-tecnica.index') }}" class="estado-formulario">Salir del modo previsualizar</a>
-                    @if ($estado->foredi_estado == 2)
+
                         <div class="form-group">
                             <div class="select-manual">
                                 <p>Opciones</p>
                                 <i class="fas fa-sort-down color-texto-cbre menos-top"></i>
-
                                 <div class="option-select-manual">
                                     <a href="{{ route('formulario-area-tecnica.duplicar.formulario', $formulario->form_id) }}" target="_blank" class="row-option"><i class="fas fa-copy"></i> Duplicar</a>
-                                    <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
+                                        @if (isset($estado) && $estado->foredi_estado == 2)
+                                            <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
+                                        @endif
                                     <div class="row-option"><i class="fa-solid fa-right-from-bracket"></i> Cerrar </div>
                                 </div>
                             </div>
-                    @endif
                 @endif
             </div>
         </div>

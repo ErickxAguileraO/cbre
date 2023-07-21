@@ -945,6 +945,15 @@ input:checked+.slider:before {
   font-weight: 600;
 }
 
+.contador-notificaciones{
+    background-color: #33882a !important;
+    color: white !important;
+}
+
+.link-padding10{
+    padding: .5rem 10px .5rem 20px !important;
+}
+
 /* Modal */
 .modalFile__abrirBtn {
   cursor: pointer;
