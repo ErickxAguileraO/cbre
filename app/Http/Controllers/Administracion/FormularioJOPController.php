@@ -57,10 +57,10 @@ class FormularioJOPController extends Controller
                 // Obtener el estado del edificio relacionado
                 $edificio = $value->edificios->first();
                 if ($edificio) {
-                    $value->edificio_id = $edificio->foredi_edificio_id;
-                    $value->estado = $edificio->foredi_estado;
+                    $value->edificio_id = Auth::user()->funcionario->edificio->edi_id;
+                    $value->estado = FormularioEdificio::where('foredi_formulario_id', $value->form_id)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_estado;
                 } else {
-                    $value->edificio_id = $edificio->foredi_edificio_id;
+                    $value->edificio_id = Auth::user()->funcionario->edificio->edi_id;
                     $value->estado = null;
                 }
             }

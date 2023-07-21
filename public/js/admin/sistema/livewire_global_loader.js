@@ -6,7 +6,7 @@ document.addEventListener('livewire:load', () => {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 100000, // Use a high value to prevent automatic closing
+            timer: 100000,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer);
@@ -25,13 +25,13 @@ document.addEventListener('livewire:load', () => {
 
     this.livewire.hook('message.failed', (message, component) => {
         if (swalToast) {
-            swalToast.update({ icon: 'error', title: 'Error' }); // Update the Swal toast with error icon
+            swalToast.update({ icon: 'error', title: 'Error' });
         }
     });
 
     this.livewire.hook('message.processed', (message, component) => {
         if (swalToast) {
-            swalToast.close(); // Close the Swal toast when the Livewire request is done
+            swalToast.close();
         }
     });
 });

@@ -205,7 +205,7 @@
 <script src="{{ asset('public/js/admin/sistema/header/logout.js') }}"></script>
 <script src="{{ asset('public\js\admin\sistema\spinner.js') }}"></script>
 <script defer src="{{asset('https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js')}}"></script>
-<script src="{{ asset('public\js\livewire_global_loader.js') }}"></script>
+<script src="{{ asset('public\js\admin\sistema\livewire_global_loader.js') }}"></script>
 
 <script>
   $(".sub-menu-area-tecnica").hide();
