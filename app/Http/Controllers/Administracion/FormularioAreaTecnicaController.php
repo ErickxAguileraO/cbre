@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administracion;
 
 use App\Models\User;
 use App\Models\Edificio;
+use App\Models\Pregunta;
 use App\Models\Respuesta;
 use App\Models\Formulario;
 use App\Models\Funcionario;
@@ -13,10 +14,9 @@ use App\Services\ArchivoService;
 use App\Models\FormularioEdificio;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Opcion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
-use function PHPUnit\Framework\isEmpty;
 
 class FormularioAreaTecnicaController extends Controller
 {
@@ -174,9 +174,9 @@ class FormularioAreaTecnicaController extends Controller
         $idFormulario = request('formulario');
         $idEdificio = request('edificio');
 
-        if($idFormulario && $idEdificio && !isEmpty(FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+        if($idFormulario && $idEdificio && FormularioEdificio::where('foredi_formulario_id', $idFormulario)
         ->where('foredi_edificio_id', $idEdificio)
-        ->first()->respuestas)){
+        ->first()->respuestas){
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
 
@@ -191,10 +191,10 @@ class FormularioAreaTecnicaController extends Controller
                 ->where('res_estado', 1)
                 ->get(),
             ]);
-        }elseif($idFormulario){
+        }elseif($idFormulario && !$idEdificio){
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
-                'respuestaOpcion' => RespuestaOpcion::all()
+                'respuestaOpcion' => RespuestaOpcion::all(), // para posible optimización
             ]);
         }else{
             abort(404);
@@ -287,6 +287,40 @@ class FormularioAreaTecnicaController extends Controller
     public function zipArchivos($formId, $preguntaId){
         try {
             ArchivoService::generateZip($formId, $preguntaId);
+        } catch (\Throwable $th) {
+            return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
+        }
+    }
+
+    public function duplicarFormulario(){
+
+        try {
+            $formulario = Formulario::findOrFail(request('formulario'));
+
+            $newFormulario = new Formulario();
+            $newFormulario->form_funcionario_id = $formulario->form_funcionario_id;
+            $newFormulario->form_nombre = $formulario->form_nombre . ' - Copia';
+            $newFormulario->form_descripcion = $formulario->form_descripcion;
+            $newFormulario->save();
+
+            foreach($formulario->preguntas as $pregunta){
+                $newPregunta = new Pregunta();
+                $newPregunta->pre_formulario_id = $newFormulario->form_id;
+                $newPregunta->pre_tipo_pregunta_id = $pregunta->pre_tipo_pregunta_id;
+                $newPregunta->pre_pregunta = $pregunta->pre_pregunta;
+                $newPregunta->pre_obligatorio = $pregunta->pre_obligatorio;
+                $newPregunta->save();
+
+                foreach($pregunta->opciones as $opcion){
+                    $newOpcion = new Opcion();
+                    $newOpcion->opc_pregunta_id = $newPregunta->pre_id;
+                    $newOpcion->opc_opcion = $opcion->opc_opcion;
+                    $newOpcion->save();
+                }
+            }
+
+            return redirect()->route('formulario-area-tecnica.edit', $newFormulario->form_id);
+
         } catch (\Throwable $th) {
             return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
         }

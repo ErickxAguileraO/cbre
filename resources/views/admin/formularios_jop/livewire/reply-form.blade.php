@@ -19,12 +19,6 @@
             </div>
             @endif
 
-            <div wire:loading wire:target="selectOption" id="cover-spin"></div>
-            <div wire:loading wire:target="selectCheckbox" id="cover-spin"></div>
-            <div wire:loading wire:target="updateParrafo" id="cover-spin"></div>
-            <div wire:loading wire:target="updateHSE" id="cover-spin"></div>
-            <div wire:loading wire:target="updateHSEfiles" id="cover-spin"></div>
-
             @foreach ($formulario->preguntas as $index => $pregunta)
                 @if ($pregunta->tipoPregunta->tipp_id == 1)
                     <div class="div-formulario-n">
