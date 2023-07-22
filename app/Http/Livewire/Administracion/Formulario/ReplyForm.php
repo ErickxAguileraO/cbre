@@ -10,6 +10,7 @@ use App\Models\Formulario;
 use Livewire\WithFileUploads;
 use App\Services\ArchivoService;
 use App\Models\FormularioEdificio;
+use App\Models\Obersacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -38,6 +39,7 @@ class ReplyForm extends Component
     {
         return view('admin.formularios_jop.livewire.reply-form',[
             'formulario' => Formulario::findOrFail($this->formId),
+            'observacion' => Obersacion::where('obs_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)->first(),
         ]);
     }
 

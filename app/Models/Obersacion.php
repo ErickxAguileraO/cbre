@@ -14,7 +14,7 @@ class Obersacion extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'obs_descripcion_id',
+        'obs_descripcion',
         'obs_formulario_edificio_id',
         'obs_estado',
     ];
