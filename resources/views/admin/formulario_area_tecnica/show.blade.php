@@ -60,6 +60,7 @@
                                         <div class="row-option"><i class="fa-solid fa-right-from-bracket"></i> Cerrar </div>
                                     </div>
                                 </div>
+                            </div>
                         @endif
                     </div>
                 </div>

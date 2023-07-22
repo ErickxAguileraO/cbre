@@ -1,11 +1,13 @@
 {{-- Modal Publicar --}}
 
 <form action="#" method="POST" id="form-observacion" class="formulario">
+    @csrf
     <div id="modalObersacion" class="contenedor__modalObservacion">
         <div class="modalFile">
             <div class="modalFile__header">
                 <h3>Agregar Observación</h3>
-                <input name="idForm" id="idForm" type="hidden" value="{{$formulario->form_id}}">
+                <input name="idForm" id="idForm" type="hidden" value="{{$estado->foredi_id}}">
+                <input name="idEdificio" id="idEdificio" type="hidden" value="{{$estado->foredi_edificio_id}}">
             </div>
             <div class="modalFile__contenedorContenido">
 
