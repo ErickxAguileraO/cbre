@@ -8,7 +8,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="">Nombre formulario</label>
-                    <input id="form_nombre" name="form_nombre" wire:model.defer="form_nombre" wire:change="updateFormInfo()" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" />
+                    <input id="form_nombre" name="form_nombre" wire:model.debounce.700ms="form_nombre" wire:change="updateFormInfo()" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" />
                     @error('form_nombre') <span class="text-danger"> {{$message}} </span> @enderror
                 </div>
             </div>
@@ -18,7 +18,7 @@
             <div class="col-xl">
                 <div class="form-group">
                     <label for="">Descripción</label>
-                    <textarea name="form_descripcion" id="form_descripcion" wire:model.defer="form_descripcion" wire:change="updateFormInfo()" class="form-control" data-maximo-caracteres="2000" cols="30" rows="10"></textarea>
+                    <textarea name="form_descripcion" id="form_descripcion" wire:model.debounce.700ms="form_descripcion" wire:change="updateFormInfo()" class="form-control" data-maximo-caracteres="2000" cols="30" rows="10"></textarea>
                     <small id="" class="field-message-alert absolute"></small>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.debounce.700ms="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -66,20 +66,25 @@
                         <input type="radio" disabled>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1"
+                                <input id="" name="" wire:model.debounce.700ms="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1"
                                     placeholder="Opción" />
                             </div>
                         </div>
                         @if ($index >= 1)
-                            <img wire:click="deleteOption({{$opcion->opc_id}})" src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        <img wire:click="deleteOption({{$opcion->opc_id}})" wire:key="{{ $opcion->opc_id }}" wire:target="deleteOption({{$opcion->opc_id}})" wire:loading.remove src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        <div wire:loading wire:target="deleteOption({{$opcion->opc_id}})" class="spinner-border text-small text-danger ml-3"></div>
                         @endif
                     </fieldset>
                 @endforeach
                 </div>
 
-                <div wire:click="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
-                    <i class="far fa-plus-circle"></i>
-                    <p>Añadir otra opción</p>
+                <div>
+                    <a wire:click="addNewOption({{$pregunta->pre_id}})" wire:key="{{ $pregunta->pre_id }}" wire:loading.remove class="btn-agregar row-global cursor-pointer color-texto-cbre">
+                        <i class="far fa-plus-circle"></i> Añadir otra opción
+                    </a>
+                    <a wire:loading wire:target="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
+                        <div class="spinner-border text-small texto-color-cbre"></div> Añadir otra opción
+                    </a>
                 </div>
 
                 {{-- Opciones de la pregunta --}}
@@ -107,10 +112,15 @@
                             @endif
 
                         </div>
-                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
-                            <p>Eliminar pregunta</p>
-                            <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </div>
+
+                            <a wire:click="deletePregunta({{ $pregunta->pre_id }})" wire:key="{{ $pregunta->pre_id }}" wire:target="deletePregunta({{ $pregunta->pre_id }})" wire:loading.remove class="btn-remove-pregunta">
+                                <p>Eliminar pregunta</p>
+                                <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
+                            </a>
+                            <a wire:loading wire:target="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta mt-2">
+                                Eliminar pregunta <span class="spinner-border text-small text-danger"></span>
+                            </a>
+
                     </div>
                 </div>
             </div>
@@ -123,7 +133,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.debounce.700ms="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -154,21 +164,25 @@
                         <input type="checkbox" disabled>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" data-maximo-caracteres="50" type="text"
+                                <input id="" name="" wire:model.debounce.700ms="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" data-maximo-caracteres="50" type="text"
                                     tabindex="1" placeholder="Opción" />
                             </div>
                         </div>
                         @if ($index >= 1)
-                        <img wire:click="deleteOption({{$opcion->opc_id}})" src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        <img wire:click="deleteOption({{$opcion->opc_id}})" wire:key="{{ $opcion->opc_id }}" wire:target="deleteOption({{$opcion->opc_id}})" wire:loading.remove src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        <div wire:loading wire:target="deleteOption({{$opcion->opc_id}})" class="spinner-border text-small text-danger ml-3"></div>
                         @endif
                     </fieldset>
                     @endforeach
                 </div>
 
-
-                <div wire:click="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
-                    <i class="far fa-plus-circle"></i>
-                    <p>Añadir otra opción</p>
+                <div>
+                <a wire:click="addNewOption({{$pregunta->pre_id}})" wire:key="{{ $pregunta->pre_id }}" wire:target="addNewOption({{$pregunta->pre_id}})" wire:loading.remove class="btn-agregar row-global cursor-pointer color-texto-cbre">
+                    <i class="far fa-plus-circle"></i> Añadir otra opción
+                </a>
+                <a wire:loading wire:target="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
+                    <div class="spinner-border text-small texto-color-cbre"></div> Añadir otra opción
+                </a>
                 </div>
 
                 {{-- Opciones de la pregunta --}}
@@ -196,10 +210,15 @@
                             @endif
 
                         </div>
-                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+
+                        <a wire:click="deletePregunta({{ $pregunta->pre_id }})" wire:key="{{ $pregunta->pre_id }}" wire:target="deletePregunta({{ $pregunta->pre_id }})" wire:loading.remove class="btn-remove-pregunta">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </div>
+                        </a>
+                        <a wire:loading wire:target="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta mt-2">
+                            Eliminar pregunta <span class="spinner-border text-small text-danger"></span>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -212,7 +231,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.debounce.700ms="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -265,10 +284,15 @@
                             @endif
 
                         </div>
-                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+
+                        <a wire:click="deletePregunta({{ $pregunta->pre_id }})" wire:key="{{ $pregunta->pre_id }}" wire:target="deletePregunta({{ $pregunta->pre_id }})" wire:loading.remove class="btn-remove-pregunta">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </div>
+                        </a>
+                        <a wire:loading wire:target="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta mt-2">
+                            Eliminar pregunta <span class="spinner-border text-small text-danger"></span>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -281,7 +305,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.debounce.700ms="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -414,10 +438,15 @@
                             @endif
 
                         </div>
-                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+
+                        <a wire:click="deletePregunta({{ $pregunta->pre_id }})" wire:key="{{ $pregunta->pre_id }}" wire:target="deletePregunta({{ $pregunta->pre_id }})" wire:loading.remove class="btn-remove-pregunta">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </div>
+                        </a>
+                        <a wire:loading wire:target="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta mt-2">
+                            Eliminar pregunta <span class="spinner-border text-small text-danger"></span>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -426,10 +455,16 @@
     @endforeach
     </div>
 
-    <div wire:click="createNewPregunta" class="btn-agregar-nueva-pregunta">
-        <i class="far fa-plus-circle"></i>
-        <p>Agregar nueva pregunta</p>
+    <div>
+        <button wire:click="createNewPregunta" wire:loading.remove class="btn-block btn-agregar-nueva-pregunta">
+            <i class="far fa-plus-circle"></i> Agregar nueva pregunta
+        </button>
+        <button wire:loading wire:target="createNewPregunta" class="btn-block btn-agregar-nueva-pregunta">
+            <div class="spinner-border text-small texto-color-cbre mr-3"></div> Agregar nueva pregunta
+        </button>
     </div>
+
+
 
 </div>
 
