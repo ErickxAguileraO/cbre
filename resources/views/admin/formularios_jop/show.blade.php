@@ -26,6 +26,22 @@
 @endsection
 
 @push('scripts')
+<script>
+    // Opciones
+    $(".option-select-manual").hide();
+    $(".select-manual").click(function() {
+        $(".option-select-manual").toggle();
+    })
+
+    // Modal observacion
+    $(".modalObservacion__abrirBtn").on('click', function() {
+        $(".contenedor__modalObservacion").css("display", "flex");
+    });
+
+    $(".modalObservacion__cerrarBtn").on('click', function() {
+        $(".contenedor__modalObservacion").css("display", "none");
+    });
+</script>
 {{-- <script src="{{ asset('public\js\admin\sistema\caracteristicas\form_agregar.js') }}"></script>
 <script src="{{ asset('/public/css/componentes/tab/tab.js') }}"></script>
 <script src="{{ asset('/public/css/componentes/modal/modal.js') }}"></script>

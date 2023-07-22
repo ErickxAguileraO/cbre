@@ -12,7 +12,44 @@
 
         <div class="contenedor-form-preguntas">
             <h1 class="col-xl">{{ $formulario->form_nombre }}</h1>
+            @if (isset($observacion))
+                <div class="grid-header-2">
+                    <div class="row datos-formulario">
+                        <div class="form-group">
+                            <div class="select-manual">
+                                <p>
+                                    <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i>
+                                        Observación
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="modalObersacion" class="contenedor__modalObservacion">
+                    <div class="modalFile">
+                        <div class="modalFile__header">
+                            <h3>Observación</h3>
+                        </div>
+                        <div class="modalFile__contenedorContenido">
 
+                            <p>Observación</p>
+                            <div class="modalFile__contenido">
+                                <div class="form-group">
+                                    <textarea name="descripcion" id="descripcion" class="form-control" cols="30" rows="10" disabled>
+                                        {{$observacion->obs_descripcion}}
+                                    </textarea>
+                                    <small id="" class="field-message-alert absolute"></small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modalFile__botones">
+                            <div class="modalObservacion__cerrarBtn modalFile__btnN modalFile__botonSecundario">Cerrar</div>
+                        </div>
+                    </div>
+                </div>
+            @endif
             @if ($formulario->form_descripcion != '')
             <div class="div-formulario-n">
                 <p>{{ $formulario->form_descripcion }}</p>
@@ -310,6 +347,7 @@
             id="responder-formulario" wire:click="checkThemAll">Enviar formulario</button>
     </div>
     <input type="hidden" id="form_id" name="form_id" value="{{ $formulario->form_id }}">
+
 
 
     @push('scripts')

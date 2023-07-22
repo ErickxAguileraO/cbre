@@ -11,6 +11,7 @@ use App\Models\ArchivoFormulario;
 use App\Models\FormularioEdificio;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Obersacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -84,6 +85,8 @@ class FormularioJOPController extends Controller
 
         $this->borrarRespuestasBorrador();
 
+        $observacion = Obersacion::where('obs_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $id)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)->first();
+
         $formulario = Formulario::findOrFail($id);
 
         foreach($formulario->preguntas as $pregunta){
@@ -96,6 +99,7 @@ class FormularioJOPController extends Controller
 
         return view('admin.formularios_jop.show', [
             'formulario' => $formulario,
+            'observacion' => $observacion,
         ]);
     }
 

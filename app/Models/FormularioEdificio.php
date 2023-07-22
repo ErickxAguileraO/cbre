@@ -18,4 +18,9 @@ class FormularioEdificio extends Model
         return $this->hasMany(Respuesta::class, 'res_formulario_edificio_id', 'foredi_id');
     }
 
+    public function observacion()
+    {
+        return $this->hasMany(Obersacion::class, 'obs_formulario_edificio_id', 'foredi_id');
+    }
+
 }
