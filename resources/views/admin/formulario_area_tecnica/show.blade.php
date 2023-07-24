@@ -55,8 +55,18 @@
                                                 @if (isset($estado) && $estado->foredi_estado == 2)
                                                     <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i>
                                                     Observación</div>
+                                                    <form action="#" method="POST" id="form-cerrar" class="formulario">
+                                                        @csrf
+                                                        <div class="row-option">
+                                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                                            <button id="guardarCerrar" type="submit" value="Guardar" style="background: none; border: none; cursor: pointer;">Cerrar</button>
+                                                        </div>
+                                                        @if (isset($estado))
+                                                            <input name="idForm" id="idForm" type="hidden" value="{{$estado->foredi_id}}">
+                                                            <input name="idEdificio" id="idEdificio" type="hidden" value="{{$estado->foredi_edificio_id}}">
+                                                        @endif
+                                                    </form>
                                                 @endif
-                                            <div class="row-option"><i class="fa-solid fa-right-from-bracket"></i> Cerrar </div>
                                         </div>
                                     </div>
                                 </div>
@@ -694,4 +704,5 @@
         });
     </script>
     <script src="{{ asset('/public/css/componentes/tab/tab.js') }}"></script>
+    <script src="{{ asset('public/js/admin/sistema/area_tecnica/form_cerrar.js') }}"></script>
 @endpush

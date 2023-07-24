@@ -129,6 +129,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('formulario-area-tecnica/observacion', 'observacion')->name('formulario-area-tecnica.ver.observacion');
             Route::get('formulario-area-tecnica/get/archivos/{formulario}/{pregunta?}/{respuesta?}', 'zipArchivos')->name('formulario-area-tecnica.archivos');
             Route::get('formulario-area-tecnica/get/{formulario}', 'duplicarFormulario')->name('formulario-area-tecnica.duplicar.formulario');
+            Route::post('formulario-area-tecnica/cerrar', 'cerrar')->name('formulario-area-tecnica.cerrar');
         });
 
         // Formulario JOP
