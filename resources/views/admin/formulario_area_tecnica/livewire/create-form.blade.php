@@ -71,48 +71,52 @@
                             </div>
                         </div>
                         @if ($index >= 1)
-                        <img wire:click="deleteOption({{$opcion->opc_id}})" src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        <button wire:click="deleteOption({{$opcion->opc_id}})" wire:loading.attr="disabled" class="btn btn-link text-decoration-none">
+                            <img src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        </button>
                         @endif
                     </fieldset>
                 @endforeach
                 </div>
 
                 <div>
-                    <a wire:click="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
+                    <button wire:click="addNewOption({{$pregunta->pre_id}})" wire:loading.attr="disabled" class="btn-agregar row-global cursor-pointer color-texto-cbre btn btn-link text-decoration-none">
                         <i class="far fa-plus-circle"></i> Añadir otra opción
-                    </a>
+                    </button>
                 </div>
 
                 {{-- Opciones de la pregunta --}}
                 <div class="opciones-pregunta grid-header-2">
-                    <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
-                        <i class="far fa-paperclip"></i>
-                        @if ($pregunta->archivosFormulario->count() > 0)
-                        Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
-                        @else
-                        Adjuntar archivos
-                        @endif
+                    <div class="d-flex justify-content-start">
+                        <button class="btn btn-link text-decoration-none text-dark" wire:click="uploadFileModal({{$pregunta->pre_id}})" wire:loading.attr="disabled">
+                            <i class="far fa-paperclip"></i>
+                            @if ($pregunta->archivosFormulario->count() > 0)
+                            Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
+                            @else
+                            Adjuntar archivos
+                            @endif
+                        </button>
                     </div>
                     <div class="row opciones-extras-formulario">
                         <div class="row-global align-center">
                             <p>Obligatorio</p>
 
                             @if ($pregunta->pre_obligatorio == 1)
-                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                            <button wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" wire:loading.attr="disabled" class="pointer btn btn-link text-decoration-none">
                                 <i class="fas fa-toggle-on color-texto-cbre fa-2x"></i>
-                            </p>
+                            </button>
                             @else
-                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                            <button wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" wire:loading.attr="disabled" class="pointer btn btn-link text-decoration-none">
                                 <i class="fas fa-toggle-off text-danger fa-2x"></i>
-                            </p>
+                            </button>
                             @endif
 
                         </div>
 
-                            <a wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+                            <button wire:click="deletePregunta({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="text-secondary btn-remove-pregunta btn btn-link text-decoration-none">
                                 <p>Eliminar pregunta</p>
                                 <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                            </a>
+                            </button>
 
                     </div>
                 </div>
@@ -162,48 +166,52 @@
                             </div>
                         </div>
                         @if ($index >= 1)
-                        <img wire:click="deleteOption({{$opcion->opc_id}})" src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        <button wire:click="deleteOption({{$opcion->opc_id}})" wire:loading.attr="disabled" class="btn btn-link text-decoration-none">
+                            <img src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        </button>
                         @endif
                     </fieldset>
                     @endforeach
                 </div>
 
                 <div>
-                    <a wire:click="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
+                    <button wire:click="addNewOption({{$pregunta->pre_id}})" wire:loading.attr="disabled" class="btn-agregar row-global cursor-pointer color-texto-cbre btn btn-link text-decoration-none">
                         <i class="far fa-plus-circle"></i> Añadir otra opción
-                    </a>
+                    </button>
                 </div>
 
                 {{-- Opciones de la pregunta --}}
                 <div class="opciones-pregunta grid-header-2">
-                    <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
-                        <i class="far fa-paperclip"></i>
-                        @if ($pregunta->archivosFormulario->count() > 0)
-                        Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
-                        @else
-                        Adjuntar archivos
-                        @endif
+                    <div class="d-flex justify-content-start">
+                        <button class="btn btn-link text-decoration-none text-dark" wire:click="uploadFileModal({{$pregunta->pre_id}})" wire:loading.attr="disabled">
+                            <i class="far fa-paperclip"></i>
+                            @if ($pregunta->archivosFormulario->count() > 0)
+                            Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
+                            @else
+                            Adjuntar archivos
+                            @endif
+                        </button>
                     </div>
                     <div class="row opciones-extras-formulario">
                         <div class="row-global align-center">
                             <p>Obligatorio</p>
 
                             @if ($pregunta->pre_obligatorio == 1)
-                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                            <button wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" wire:loading.attr="disabled" class="pointer btn btn-link text-decoration-none">
                                 <i class="fas fa-toggle-on color-texto-cbre fa-2x"></i>
-                            </p>
+                            </button>
                             @else
-                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                            <button wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" wire:loading.attr="disabled" class="pointer btn btn-link text-decoration-none">
                                 <i class="fas fa-toggle-off text-danger fa-2x"></i>
-                            </p>
+                            </button>
                             @endif
 
                         </div>
 
-                        <a wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+                        <button wire:click="deletePregunta({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="text-secondary btn-remove-pregunta btn btn-link text-decoration-none">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </a>
+                        </button>
 
                     </div>
                 </div>
@@ -247,34 +255,36 @@
 
                 {{-- Opciones de la pregunta --}}
                 <div class="opciones-pregunta grid-header-2">
-                    <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
-                        <i class="far fa-paperclip"></i>
-                        @if ($pregunta->archivosFormulario->count() > 0)
-                        Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
-                        @else
-                        Adjuntar archivos
-                        @endif
+                    <div class="d-flex justify-content-start">
+                        <button class="btn btn-link text-decoration-none text-dark" wire:click="uploadFileModal({{$pregunta->pre_id}})" wire:loading.attr="disabled">
+                            <i class="far fa-paperclip"></i>
+                            @if ($pregunta->archivosFormulario->count() > 0)
+                            Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
+                            @else
+                            Adjuntar archivos
+                            @endif
+                        </button>
                     </div>
                     <div class="row opciones-extras-formulario">
                         <div class="row-global align-center">
                             <p>Obligatorio</p>
 
                             @if ($pregunta->pre_obligatorio == 1)
-                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                            <button wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" wire:loading.attr="disabled" class="pointer btn btn-link text-decoration-none">
                                 <i class="fas fa-toggle-on color-texto-cbre fa-2x"></i>
-                            </p>
+                            </button>
                             @else
-                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                            <button wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" wire:loading.attr="disabled" class="pointer btn btn-link text-decoration-none">
                                 <i class="fas fa-toggle-off text-danger fa-2x"></i>
-                            </p>
+                            </button>
                             @endif
 
                         </div>
 
-                        <a wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+                        <button wire:click="deletePregunta({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="text-secondary btn-remove-pregunta btn btn-link text-decoration-none">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </a>
+                        </button>
 
                     </div>
                 </div>
@@ -398,34 +408,36 @@
                 </fieldset>
 
                 <div class="opciones-pregunta grid-header-2">
-                    <div class="modalFile__abrirBtn" wire:click="uploadFileModal({{$pregunta->pre_id}})">
-                        <i class="far fa-paperclip"></i>
-                        @if ($pregunta->archivosFormulario->count() > 0)
-                        Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
-                        @else
-                        Adjuntar archivos
-                        @endif
+                    <div class="d-flex justify-content-start">
+                        <button class="btn btn-link text-decoration-none text-dark" wire:click="uploadFileModal({{$pregunta->pre_id}})" wire:loading.attr="disabled">
+                            <i class="far fa-paperclip"></i>
+                            @if ($pregunta->archivosFormulario->count() > 0)
+                            Adjuntar archivos ({{$pregunta->archivosFormulario->count()}})
+                            @else
+                            Adjuntar archivos
+                            @endif
+                        </button>
                     </div>
                     <div class="row opciones-extras-formulario">
                         <div class="row-global align-center">
                             <p>Obligatorio</p>
 
                             @if ($pregunta->pre_obligatorio == 1)
-                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                            <button wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" wire:loading.attr="disabled" class="pointer btn btn-link text-decoration-none">
                                 <i class="fas fa-toggle-on color-texto-cbre fa-2x"></i>
-                            </p>
+                            </button>
                             @else
-                            <p wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" class="pointer">
+                            <button wire:click="switchPreguntaRequired({{$pregunta->pre_id}})" wire:loading.attr="disabled" class="pointer btn btn-link text-decoration-none">
                                 <i class="fas fa-toggle-off text-danger fa-2x"></i>
-                            </p>
+                            </button>
                             @endif
 
                         </div>
 
-                        <a wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+                        <button wire:click="deletePregunta({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="text-secondary btn-remove-pregunta btn btn-link text-decoration-none">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </a>
+                        </button>
 
                     </div>
                 </div>
@@ -444,7 +456,21 @@
         </button>
     </div>
 
+    <div class="linea-separadora"></div>
 
+    <div class="botones-formulario">
+        <a id="eliminar-formulario"
+        class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">
+        Eliminar
+        </a>
+        <button class="modalEnviar__abrirBtn modalFile__btnN modalFile__botonPrimario"
+            id="responder-formulario" wire:click="saveBorrador" wire:loading.remove>Guardar como borrador <i class="fas fa-save"></i>
+        </button>
+        <button class="modalEnviar__abrirBtn modalFile__btnN modalFile__botonPrimario btn btn-secondary"
+        id="responder-formulario" wire:loading wire:loading.attr="disabled" wire:target="saveBorrador">
+        Guardar como borrador <div class="spinner-border text-small texto-color-cbre"></div>
+        </button>
+    </div>
 
 </div>
 

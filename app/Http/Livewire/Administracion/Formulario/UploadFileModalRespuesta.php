@@ -28,6 +28,7 @@ class UploadFileModalRespuesta extends Component
     }
 
     public function uploadFileModalRespuesta($preguntaId){
+        sleep(1);
         $this->respuestaId = Respuesta::where('res_pregunta_id', $preguntaId)
         ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
         ->first()->res_id;
@@ -37,6 +38,7 @@ class UploadFileModalRespuesta extends Component
 
     public function updatedFiles()
     {
+        sleep(1);
         foreach ($this->files as $file) {
             $archivo = new ArchivoFormulario();
             $archivo->arcf_respuesta_id = $this->respuestaId;
@@ -52,6 +54,7 @@ class UploadFileModalRespuesta extends Component
     }
 
     public function deleteFile($archivoId){
+        sleep(1);
         $archivo = ArchivoFormulario::findOrFail($archivoId);
         Storage::delete($archivo->arcf_url);
         $archivo->delete();

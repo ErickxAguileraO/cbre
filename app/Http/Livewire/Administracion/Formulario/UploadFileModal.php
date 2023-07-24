@@ -24,6 +24,7 @@ class UploadFileModal extends Component
     }
 
     public function uploadFileModal($preguntaId){
+        sleep(1);
         $this->preguntaId = $preguntaId;
         $this->files = [];
         $this->dispatchBrowserEvent('show-uploadFileModal');
@@ -31,6 +32,7 @@ class UploadFileModal extends Component
 
     public function updatedFiles()
     {
+        sleep(1);
         foreach ($this->files as $file) {
             $archivo = new ArchivoFormulario();
             $archivo->arcf_pregunta_id = $this->preguntaId;
@@ -46,6 +48,7 @@ class UploadFileModal extends Component
     }
 
     public function deleteFile($archivoId){
+        sleep(1);
         $archivo = ArchivoFormulario::findOrFail($archivoId);
         Storage::delete($archivo->arcf_url);
         $archivo->delete();
