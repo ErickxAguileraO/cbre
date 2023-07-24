@@ -6,8 +6,11 @@
         <div class="modalFile">
             <div class="modalFile__header">
                 <h3>Agregar Observación</h3>
-                <input name="idForm" id="idForm" type="hidden" value="{{$estado->foredi_id}}">
-                <input name="idEdificio" id="idEdificio" type="hidden" value="{{$estado->foredi_edificio_id}}">
+                @if (isset($estado))
+                    <input name="idForm" id="idForm" type="hidden" value="{{$estado->foredi_id}}">
+                    <input name="idEdificio" id="idEdificio" type="hidden" value="{{$estado->foredi_edificio_id}}">
+                @endif
+
             </div>
             <div class="modalFile__contenedorContenido">
 
