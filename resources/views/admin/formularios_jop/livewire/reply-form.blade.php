@@ -290,14 +290,17 @@
 
     <div class="botones-formulario">
         <a href="{{ route('formulario-jop.deshacer.respuesta') }}"
-            class="modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">Deshacer todos los
-            cambios</a>
+            class="modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">Deshacer todos los cambios
+        </a>
         <button class="modalEnviar__abrirBtn modalFile__btnN modalFile__botonPrimario"
-            id="responder-formulario" wire:click="checkThemAll">Enviar formulario</button>
+            id="responder-formulario" wire:click="checkThemAll" wire:loading.remove>Enviar formulario <i class="fas fa-paper-plane"></i>
+        </button>
+        <button class="modalEnviar__abrirBtn modalFile__btnN modalFile__botonPrimario btn btn-secondary"
+        id="responder-formulario" wire:loading wire:loading.attr="disabled" wire:target="checkThemAll">
+        Enviar formulario <div class="spinner-border text-small texto-color-cbre"></div>
+        </button>
     </div>
     <input type="hidden" id="form_id" name="form_id" value="{{ $formulario->form_id }}">
-
-
 
     @push('scripts')
     <script>

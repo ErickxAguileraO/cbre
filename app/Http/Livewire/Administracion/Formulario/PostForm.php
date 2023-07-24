@@ -21,6 +21,7 @@ class PostForm extends Component
     }
 
     public function attachEdificio($edificioId){
+        sleep(1);
         if($edificioId){
             $this->selectedEdificioId = $edificioId;
             $formulario = Formulario::findOrFail($this->formId);
@@ -29,11 +30,13 @@ class PostForm extends Component
     }
 
     public function detachEdificio($edificioId){
+        sleep(1);
         $formulario = Formulario::findOrFail($this->formId);
         $formulario->edificios()->detach(Edificio::findOrFail($edificioId));
     }
 
     public function detachAll(){
+        sleep(1);
         $formulario = Formulario::findOrFail($this->formId);
         $formulario->edificios()->detach();
     }

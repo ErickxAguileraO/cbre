@@ -58,26 +58,7 @@
             <livewire:administracion.formulario.create-form :formId="$formulario->form_id" />
         </div>
 
-        <div class="linea-separadora"></div>
-        <div class="botones-formulario">
-            <a id="eliminar-formulario"
-                class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">Eliminar</a>
-            <input type="hidden" id="form_id" name="form_id" value="{{ $formulario->form_id }}">
-
-                    <div class="form-group">
-                        <button id="guardar" type="submit" class="modalFile__btnN modalFile__botonPrimario text-white text-decoration-none" value="Guardar"
-                            type="button">
-                            <div id="default" class="d-block">
-                                <span>Guardar como borrador</span>
-                                <i class="fas fa-save ml-2 mr-2"></i>
-                            </div>
-                            <div id="loading" class="d-none">
-                                <span>Guardar como borrador</span>
-                                <span class="spinner-border spinner-border-md ml-1" role="status" aria-hidden="true"></span>
-                            </div>
-                        </button>
-                    </div>
-        </div>
+        <input type="hidden" id="form_id" name="form_id" value="{{ $formulario->form_id }}">
 
     </div>
 
@@ -104,7 +85,6 @@
             $(".contenedor__modalPublicar").css("display", "none");
         });
     </script>
-        <script src="{{ asset('/public\js\admin\sistema\area_tecnica\borrador_formulario.js') }}"></script>
     <script src="{{ asset('/public\js\admin\sistema\area_tecnica\publicar_formulario.js') }}"></script>
     <script src="{{ asset('/public\js\admin\sistema\area_tecnica\eliminar_formulario.js') }}"></script>
     {{--     <script src="{{ asset('/public/css/componentes/tab/tab.js') }}"></script> --}}
