@@ -1,36 +1,36 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById("guardar").addEventListener("click", function (event) {
+    document.getElementById("guardarCerrar").addEventListener("click", function (event) {
         event.preventDefault();
 
         // Mostrar alerta de confirmación con estilo de SweetAlert
         Swal.fire({
             icon: 'question',
-            title: '¿Estás seguro de guardar esta observación?',
+            title: '¿Estás seguro que quieres cerrar este formulario?',
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#005157",
             cancelButtonColor: "#343a40",
-            confirmButtonText: 'Si',
             cancelButtonText: 'No',
+            confirmButtonText: 'Si',
             reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
                 // Si el usuario selecciona "Si", enviar el formulario
-                isLoadingSpinner("guardar", true);
-                fetch("/admin/formulario-area-tecnica/observacion", {
+                isLoadingSpinner("guardarCerrar", true);
+                fetch("/admin/formulario-area-tecnica/cerrar", {
                     method: "POST",
                     headers: {
                         "X-CSRF-TOKEN": document.querySelector("input[name='_token']").value,
                         "Accept": "application/json"
                     },
-                    body: new FormData(document.forms.namedItem("form-observacion")),
+                    body: new FormData(document.forms.namedItem("form-cerrar")),
                 })
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (response) {
                     if ($.isEmptyObject(response.errors)) {
-                        isLoadingSpinner("guardar", true);
+                        isLoadingSpinner("guardarCerrar", true);
                         setTimeout(() => {
                             if (response.success) {
                                 Swal.fire({
@@ -40,14 +40,14 @@ document.addEventListener('DOMContentLoaded', function () {
                                     showConfirmButton: false,
                                     timer: 1500,
                                 });
-                                isLoadingSpinner("guardar", 'done');
+                                isLoadingSpinner("guardarCerrar", 'done');
                                 // resetValidationMessages();
                                 setTimeout(() => {
                                     document.location.href = "/admin/formulario-area-tecnica";
                                 }, 1000);
 
                             } else if (response.error) {
-                                isLoadingSpinner("guardar", false);
+                                isLoadingSpinner("guardarCerrar", false);
                                 // resetValidationMessages();
                                 Swal.fire({
                                     position: "center",
@@ -62,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         }, 1000);
 
                     } else {
-                        isLoadingSpinner("guardar", true);
+                        isLoadingSpinner("guardarCerrar", true);
                         setTimeout(() => {
-                             isLoadingSpinner("guardar", false);
+                             isLoadingSpinner("guardarCerrar", false);
                             // resetValidationMessages();
                             // setValidationMessages(response);
                             Swal.fire({
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         showConfirmButton: false,
                         timer: 1500,
                     });
-                    isLoadingSpinner("guardar", false);
+                    isLoadingSpinner("guardarCerrar", false);
                 });
             } else {
                 // Si el usuario selecciona "No" o cierra el cuadro de confirmación, no hacer nada

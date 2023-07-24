@@ -405,4 +405,23 @@ class FormularioAreaTecnicaController extends Controller
         }
     }
 
+    public function cerrar(Request $request){
+        DB::beginTransaction();
+
+        try {
+            $formEdificios = FormularioEdificio::where('foredi_id', $request->idForm)
+                            ->where('foredi_edificio_id', $request->idEdificio)
+                            ->first();
+            $formEdificios->foredi_estado = 3;
+            $formEdificios->update();
+
+            DB::commit();
+            return response()->json(['success' => '¡Formulario cerrado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json(['error' => $th->getMessage()], 401);
+        }
+    }
+
 }
