@@ -222,9 +222,6 @@ class FormularioAreaTecnicaController extends Controller
                 'formulario' => Formulario::findOrFail($idFormulario),
 
                 'respuestaOpcion' => RespuestaOpcion::all(),
-                'estado' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
-                ->where('foredi_edificio_id', $idEdificio)
-                ->firstOrFail(),
             ]);
 
         }else{
