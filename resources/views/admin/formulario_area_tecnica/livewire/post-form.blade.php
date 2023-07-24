@@ -26,8 +26,9 @@
                         @foreach ($formulario->edificios as $edificio)
                         <div class="archivo-subido-n">
                             <p>{{$edificio->edi_nombre}}</p>
-                            <img wire:click="detachEdificio({{$edificio->edi_id}})" src="/public/images/admin/sistema/delete.svg" class="btn-remove-archivo pointer"
-                                alt="">
+                                <button wire:click="detachEdificio({{$edificio->edi_id}})" wire:loading.attr="disabled" class="btn btn-link text-decoration-none">
+                                    <img src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                                </button>
                         </div>
                         @endforeach
                     </div>

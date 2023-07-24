@@ -8,7 +8,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="">Nombre formulario</label>
-                    <input id="form_nombre" name="form_nombre" wire:model.defer="form_nombre" wire:change="updateFormInfo()" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" />
+                    <input id="form_nombre" name="form_nombre" wire:model.defer="form_nombre" wire:change="updateFormInfo()" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" />
                     @error('form_nombre') <span class="text-danger"> {{$message}} </span> @enderror
                 </div>
             </div>
@@ -18,7 +18,7 @@
             <div class="col-xl">
                 <div class="form-group">
                     <label for="">Descripción</label>
-                    <textarea name="form_descripcion" id="form_descripcion" wire:model.defer="form_descripcion" wire:change="updateFormInfo()" class="form-control" data-maximo-caracteres="2000" cols="30" rows="10"></textarea>
+                    <textarea name="form_descripcion" id="form_descripcion" wire:model.defer="form_descripcion" wire:change="updateFormInfo()"  wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="2000" cols="30" rows="10"></textarea>
                     <small id="" class="field-message-alert absolute"></small>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" wire:loading.attr="disabled" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                         <input type="radio" disabled>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1"
+                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1"
                                     placeholder="Opción" />
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                         <input type="checkbox" disabled>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" class="form-control" data-maximo-caracteres="50" type="text"
+                                <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="50" type="text"
                                     tabindex="1" placeholder="Opción" />
                             </div>
                         </div>
@@ -225,7 +225,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
@@ -298,7 +298,7 @@
                 <fieldset class="row row-responsive">
                     <div class="col-xl">
                         <div class="form-group">
-                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
+                            <input id="" name="" wire:model.defer="pre_pregunta.{{$pregunta->pre_id}}" wire:change="updatePreguntaTitle({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="Pregunta" />
                             <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
