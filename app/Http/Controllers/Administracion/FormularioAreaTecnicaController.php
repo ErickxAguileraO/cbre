@@ -330,7 +330,8 @@ class FormularioAreaTecnicaController extends Controller
         try {
             ArchivoService::generateZip($formularioId, $preguntaId, $respuestaId);
         } catch (\Throwable $th) {
-            return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
+            dd($th->getMessage());
+            //return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
         }
     }
 
