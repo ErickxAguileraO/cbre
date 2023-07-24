@@ -179,14 +179,14 @@ class FormularioAreaTecnicaController extends Controller
 
         if($idFormulario && $idEdificio && FormularioEdificio::where('foredi_formulario_id', $idFormulario)
         ->where('foredi_edificio_id', $idEdificio)
-        ->first()->respuestas->count() != 0){
+        ->first()->respuestas->count() != 0){ // Condición para mostrar cuando un formulario es publicado, y ya respondido
 
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
 
-                'respuestaOpcion' => RespuestaOpcion::where('reop_respuesta_id', Respuesta::where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+                'respuestaOpcion' => RespuestaOpcion::whereIn('reop_respuesta_id', Respuesta::where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $idFormulario)
                 ->where('foredi_edificio_id', $idEdificio)
-                ->first()->foredi_id)->first()->res_id)->get(),
+                ->first()->foredi_id)->get()->pluck('res_id'))->get(),
 
                 'respuestas' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
                 ->where('foredi_edificio_id', $idEdificio)
@@ -202,12 +202,10 @@ class FormularioAreaTecnicaController extends Controller
                 'historiales' => Historial::where('his_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $idFormulario)->where('foredi_edificio_id', $idEdificio)->first()->foredi_id)->get(),
             ]);
 
-        }elseif($idFormulario && $idEdificio){
+        }elseif($idFormulario && $idEdificio){ // Condición para mostrar cuando un formulario es publicado, pero aún no respondido
 
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
-
-                'respuestaOpcion' => RespuestaOpcion::all(),
 
                 'estado' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
                 ->where('foredi_edificio_id', $idEdificio)
@@ -216,12 +214,15 @@ class FormularioAreaTecnicaController extends Controller
                 'historiales' => Historial::where('his_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $idFormulario)->where('foredi_edificio_id', $idEdificio)->first()->foredi_id)->get(),
             ]);
 
-        }elseif($idFormulario && !$idEdificio){
+        }elseif($idFormulario && !$idEdificio){ // Formulario en estado de borrador
 
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
 
                 'respuestaOpcion' => RespuestaOpcion::all(),
+/*                 'estado' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
+                ->where('foredi_edificio_id', $idEdificio)
+                ->firstOrFail(), */
             ]);
 
         }else{
@@ -321,11 +322,17 @@ class FormularioAreaTecnicaController extends Controller
 
     }
 
-    public function zipArchivos($formId, $preguntaId){
+    public function zipArchivos(){
+
+        $formularioId = request('formulario');
+        $preguntaId = request('pregunta');
+        $respuestaId = request('respuesta');
+
         try {
-            ArchivoService::generateZip($formId, $preguntaId);
+            ArchivoService::generateZip($formularioId, $preguntaId, $respuestaId);
         } catch (\Throwable $th) {
-            return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
+            dd($th->getMessage());
+            //return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
         }
     }
 

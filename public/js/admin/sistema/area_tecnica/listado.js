@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (descarga === 0) {
                             templateDown = '';
                         }else{
-                            templateDown = `<a href="/admin/formulario-area-tecnica/get/archivos/${idFormulario}/zip" title=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
+                            templateDown = `<a href="/admin/formulario-area-tecnica/get/archivos/${idFormulario}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
                         }
                         const enlaceView = $('<a />').append(templateView).appendTo(container);
                         const enlaceDown = $('<a />').append(templateDown).appendTo(container);
