@@ -20,9 +20,75 @@
 </style>
 
 @endpush
+<div id="" class="formulario nuevo-formulario">
 
-<livewire:administracion.formulario.reply-form :formId="$formulario->form_id"/>
+    <a href="{{ route('formulario-area-tecnica.index') }}" class="row row-responsive link-atras">
+        <i class="far fa-arrow-left"></i>
+        Volver al listado
+    </a>
 
+    <div class="grid-header-2">
+        <h1 class="col-xl">{{ $formulario->form_nombre }}</h1>
+        <div class="row datos-formulario">
+            <p class="margin-top-5">Estado</p>
+            <div class="estado-formulario">Borrador</div>
+            <div class="form-group">
+                <div class="select-manual" class="">
+                    <p>Opciones</p>
+                    <i class="fas fa-sort-down color-texto-cbre menos-top"></i>
+                    <div class="option-select-manual">
+                        <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedor-form-preguntas">
+        <livewire:administracion.formulario.reply-form :formId="$formulario->form_id"/>
+    </div>
+
+
+{{--     @if (isset($observacion))
+    <div class="grid-header-2">
+        <div class="row datos-formulario">
+            <div class="form-group">
+                <div class="select-manual">
+                    <p>
+                        <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i>
+                            Observación
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modalObersacion" class="contenedor__modalObservacion">
+        <div class="modalFile">
+            <div class="modalFile__header">
+                <h3>Observación</h3>
+            </div>
+            <div class="modalFile__contenedorContenido">
+
+                <p>Observación</p>
+                <div class="modalFile__contenido">
+                    <div class="form-group">
+                        <textarea name="descripcion" id="descripcion" class="form-control" cols="30" rows="10" disabled>
+                            {{$observacion->obs_descripcion}}
+                        </textarea>
+                        <small id="" class="field-message-alert absolute"></small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modalFile__botones">
+                <div class="modalObservacion__cerrarBtn modalFile__btnN modalFile__botonSecundario">Cerrar</div>
+            </div>
+        </div>
+    </div>
+@endif --}}
+
+</div>
 @endsection
 
 @push('scripts')
