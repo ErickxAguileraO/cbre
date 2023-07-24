@@ -77,7 +77,9 @@
                             </div>
                         </div>
                         @if ($index >= 1)
-                            <img wire:click="deleteOption({{$opcion->opc_id}})" src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        <button wire:click="deleteOption({{$opcion->opc_id}})" wire:loading.attr="disabled" class="btn btn-link text-decoration-none">
+                            <img src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        </button>
                         @endif
                     </fieldset>
                 @endforeach
@@ -177,7 +179,9 @@
                             </div>
                         </div>
                         @if ($index >= 1)
-                        <img wire:click="deleteOption({{$opcion->opc_id}})" src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        <button wire:click="deleteOption({{$opcion->opc_id}})" wire:loading.attr="disabled" class="btn btn-link text-decoration-none">
+                            <img src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        </button>
                         @endif
                     </fieldset>
                     @endforeach
