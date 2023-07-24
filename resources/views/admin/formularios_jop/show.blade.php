@@ -29,82 +29,71 @@
 
     <div class="grid-header-2">
         <h1 class="col-xl">{{ $formulario->form_nombre }}</h1>
-        <div class="row datos-formulario">
-            <div class="form-group">
-                <div class="select-manual" class="">
-                    <p>Opciones</p>
-                    <i class="fas fa-sort-down color-texto-cbre menos-top"></i>
-                    <div class="option-select-manual">
-                        <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
+        @if (isset($observacion))
+            <div class="row datos-formulario">
+                <div class="form-group">
+                    <div class="select-manual">
+                        <p>
+                            <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i>
+                                Observación
+                            </div>
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 
     <div class="contenedor-form-preguntas">
         <livewire:administracion.formulario.reply-form :formId="$formulario->form_id"/>
     </div>
 
+    @if (isset($observacion))
 
-{{--     @if (isset($observacion))
-    <div class="grid-header-2">
-        <div class="row datos-formulario">
-            <div class="form-group">
-                <div class="select-manual">
-                    <p>
-                        <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i>
-                            Observación
-                        </div>
-                    </p>
+        <div id="modalObersacion" class="contenedor__modalObservacion">
+            <div class="modalFile">
+                <div class="modalFile__header">
+                    <h3>Observación</h3>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div id="modalObersacion" class="contenedor__modalObservacion">
-        <div class="modalFile">
-            <div class="modalFile__header">
-                <h3>Observación</h3>
-            </div>
-            <div class="modalFile__contenedorContenido">
+                <div class="modalFile__contenedorContenido">
 
-                <p>Observación</p>
-                <div class="modalFile__contenido">
-                    <div class="form-group">
-                        <textarea name="descripcion" id="descripcion" class="form-control" cols="30" rows="10" disabled>
-                            {{$observacion->obs_descripcion}}
-                        </textarea>
-                        <small id="" class="field-message-alert absolute"></small>
+                    <p>Observación</p>
+                    <div class="modalFile__contenido">
+                        <div class="form-group">
+                            <textarea name="descripcion" id="descripcion" class="form-control" cols="30" rows="10" disabled>
+                                {{$observacion->obs_descripcion}}
+                            </textarea>
+                            <small id="" class="field-message-alert absolute"></small>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="modalFile__botones">
-                <div class="modalObservacion__cerrarBtn modalFile__btnN modalFile__botonSecundario">Cerrar</div>
+                <div class="modalFile__botones">
+                    <div class="modalObservacion__cerrarBtn modalFile__btnN modalFile__botonSecundario">Cerrar</div>
+                </div>
             </div>
         </div>
-    </div>
-@endif --}}
+    @endif
 
 </div>
 @endsection
 
 @push('scripts')
 <script>
-    // Opciones
-    $(".option-select-manual").hide();
-    $(".select-manual").click(function() {
-        $(".option-select-manual").toggle();
-    })
+        // Opciones
+        $(".option-select-manual").hide();
+        $(".select-manual").click(function() {
+            $(".option-select-manual").toggle();
+        })
 
-    // Modal observacion
-    $(".modalObservacion__abrirBtn").on('click', function() {
-        $(".contenedor__modalObservacion").css("display", "flex");
-    });
+        // Modal observacion
+        $(".modalObservacion__abrirBtn").on('click', function() {
+            $(".contenedor__modalObservacion").css("display", "flex");
+        });
 
-    $(".modalObservacion__cerrarBtn").on('click', function() {
-        $(".contenedor__modalObservacion").css("display", "none");
-    });
+        $(".modalObservacion__cerrarBtn").on('click', function() {
+            $(".contenedor__modalObservacion").css("display", "none");
+        });
 </script>
 {{-- <script src="{{ asset('public\js\admin\sistema\caracteristicas\form_agregar.js') }}"></script>
 <script src="{{ asset('/public/css/componentes/tab/tab.js') }}"></script>

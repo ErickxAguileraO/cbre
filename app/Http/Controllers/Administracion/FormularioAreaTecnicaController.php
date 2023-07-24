@@ -219,6 +219,7 @@ class FormularioAreaTecnicaController extends Controller
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
 
+                'respuestaOpcion' => RespuestaOpcion::all(),
 /*                 'estado' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
                 ->where('foredi_edificio_id', $idEdificio)
                 ->firstOrFail(), */

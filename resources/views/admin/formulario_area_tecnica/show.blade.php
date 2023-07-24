@@ -52,10 +52,10 @@
                                         <div class="option-select-manual">
                                             <a href="{{ route('formulario-area-tecnica.duplicar.formulario', $formulario->form_id) }}"
                                                 target="_blank" class="row-option"><i class="fas fa-copy"></i> Duplicar</a>
-                                            {{--                                         @if (isset($estado) && $estado->foredi_estado == 2)
-                                                <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i>
+                                                @if (isset($estado) && $estado->foredi_estado == 2)
+                                                    <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i>
                                                     Observación</div>
-                                            @endif --}}
+                                                @endif
                                             <div class="row-option"><i class="fa-solid fa-right-from-bracket"></i> Cerrar </div>
                                         </div>
                                     </div>
@@ -673,7 +673,7 @@
     </div>
 
     {{-- Modal observacion --}}
-    {{--     @include('components.modalObservacion') --}}
+         @include('components.modalObservacion')
 @endsection
 
 @push('scripts')
