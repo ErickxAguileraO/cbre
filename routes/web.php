@@ -127,7 +127,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('formulario-area-tecnica/post/formulario', 'postFormulario')->name('formulario-area-tecnica.post');
             Route::get('formulario-area-tecnica/show/{formulario}/{edificio?}', 'verFormulario')->name('formulario-area-tecnica.ver.formulario');
             Route::post('formulario-area-tecnica/observacion', 'observacion')->name('formulario-area-tecnica.ver.observacion');
-            Route::get('formulario-area-tecnica/get/archivos/{formulario}/{pregunta}', 'zipArchivos')->name('formulario-area-tecnica.archivos');
+            Route::get('formulario-area-tecnica/get/archivos/{formulario}/{pregunta?}/{respuesta?}', 'zipArchivos')->name('formulario-area-tecnica.archivos');
             Route::get('formulario-area-tecnica/get/{formulario}', 'duplicarFormulario')->name('formulario-area-tecnica.duplicar.formulario');
         });
 

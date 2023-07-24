@@ -41,7 +41,7 @@ class UploadFileModalRespuesta extends Component
             $archivo = new ArchivoFormulario();
             $archivo->arcf_respuesta_id = $this->respuestaId;
 
-            $storedFile = ArchivoService::subirArchivos($file, Respuesta::findOrFail($this->respuestaId)->pregunta->formulario->form_id, Respuesta::findOrFail($this->respuestaId)->pregunta->pre_id, 'respuesta');
+            $storedFile = ArchivoService::subirArchivos($file, Respuesta::findOrFail($this->respuestaId)->pregunta->formulario->form_id, Respuesta::findOrFail($this->respuestaId)->res_id, 'respuesta');
 
             $archivo->arcf_url = $storedFile;
             $archivo->arcf_nombre_original = $file->getClientOriginalName();

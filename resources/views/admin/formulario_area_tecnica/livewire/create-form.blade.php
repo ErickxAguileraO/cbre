@@ -71,15 +71,16 @@
                             </div>
                         </div>
                         @if ($index >= 1)
-                            <img wire:click="deleteOption({{$opcion->opc_id}})" src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                        <img wire:click="deleteOption({{$opcion->opc_id}})" src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
                         @endif
                     </fieldset>
                 @endforeach
                 </div>
 
-                <div wire:click="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
-                    <i class="far fa-plus-circle"></i>
-                    <p>Añadir otra opción</p>
+                <div>
+                    <a wire:click="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
+                        <i class="far fa-plus-circle"></i> Añadir otra opción
+                    </a>
                 </div>
 
                 {{-- Opciones de la pregunta --}}
@@ -107,10 +108,12 @@
                             @endif
 
                         </div>
-                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
-                            <p>Eliminar pregunta</p>
-                            <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </div>
+
+                            <a wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+                                <p>Eliminar pregunta</p>
+                                <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
+                            </a>
+
                     </div>
                 </div>
             </div>
@@ -165,10 +168,10 @@
                     @endforeach
                 </div>
 
-
-                <div wire:click="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
-                    <i class="far fa-plus-circle"></i>
-                    <p>Añadir otra opción</p>
+                <div>
+                    <a wire:click="addNewOption({{$pregunta->pre_id}})" class="btn-agregar row-global cursor-pointer color-texto-cbre">
+                        <i class="far fa-plus-circle"></i> Añadir otra opción
+                    </a>
                 </div>
 
                 {{-- Opciones de la pregunta --}}
@@ -196,10 +199,12 @@
                             @endif
 
                         </div>
-                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+
+                        <a wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </div>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -265,10 +270,12 @@
                             @endif
 
                         </div>
-                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+
+                        <a wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </div>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -414,10 +421,12 @@
                             @endif
 
                         </div>
-                        <div wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
+
+                        <a wire:click="deletePregunta({{ $pregunta->pre_id }})" class="btn-remove-pregunta">
                             <p>Eliminar pregunta</p>
                             <img src="/public/images/admin/sistema/delete.svg" class="btn-remove" alt="">
-                        </div>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -426,10 +435,16 @@
     @endforeach
     </div>
 
-    <div wire:click="createNewPregunta" class="btn-agregar-nueva-pregunta">
-        <i class="far fa-plus-circle"></i>
-        <p>Agregar nueva pregunta</p>
+    <div>
+        <button wire:click="createNewPregunta" wire:loading.remove class="btn-block btn-agregar-nueva-pregunta">
+            <i class="far fa-plus-circle"></i> Agregar nueva pregunta
+        </button>
+        <button wire:loading wire:target="createNewPregunta" class="btn-block btn-agregar-nueva-pregunta">
+            <div class="spinner-border text-small texto-color-cbre mr-3"></div> Agregar nueva pregunta
+        </button>
     </div>
+
+
 
 </div>
 

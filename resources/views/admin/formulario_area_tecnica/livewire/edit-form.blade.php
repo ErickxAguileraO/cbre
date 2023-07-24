@@ -451,9 +451,13 @@
     @endforeach
     </div>
 
-    <div wire:click="createNewPregunta" class="btn-agregar-nueva-pregunta">
-        <i class="far fa-plus-circle"></i>
-        <p>Agregar nueva pregunta</p>
+    <div>
+        <button wire:click="createNewPregunta" wire:loading.remove class="btn-block btn-agregar-nueva-pregunta">
+            <i class="far fa-plus-circle"></i> Agregar nueva pregunta
+        </button>
+        <button wire:loading wire:target="createNewPregunta" class="btn-block btn-agregar-nueva-pregunta">
+            <div class="spinner-border text-small texto-color-cbre mr-3"></div> Agregar nueva pregunta
+        </button>
     </div>
 
     @push('scripts')

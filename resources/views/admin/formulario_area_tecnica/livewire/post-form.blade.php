@@ -59,10 +59,6 @@
                 Livewire.emit('edificioSelected', edificioId);
             });
 
-            Livewire.hook('afterDomUpdate', function () {
-                $('#mySelect').select2();
-            });
-
             $('#mySelect').select2();
         });
     </script>
