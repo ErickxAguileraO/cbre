@@ -22,7 +22,7 @@
 @endpush
 <div id="" class="formulario nuevo-formulario">
 
-    <a href="{{ route('formulario-area-tecnica.index') }}" class="row row-responsive link-atras">
+    <a href="{{ route('formulario-jop.index') }}" class="row row-responsive link-atras">
         <i class="far fa-arrow-left"></i>
         Volver al listado
     </a>
