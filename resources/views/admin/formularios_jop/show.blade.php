@@ -30,8 +30,6 @@
     <div class="grid-header-2">
         <h1 class="col-xl">{{ $formulario->form_nombre }}</h1>
         <div class="row datos-formulario">
-            <p class="margin-top-5">Estado</p>
-            <div class="estado-formulario">Borrador</div>
             <div class="form-group">
                 <div class="select-manual" class="">
                     <p>Opciones</p>
