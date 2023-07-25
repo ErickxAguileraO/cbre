@@ -42,17 +42,19 @@ class ReplyForm extends Component
         ]);
     }
 
-    public function mount(){
-        $this->validate([
-            'res_parrafo' => 'required|max:2000',
-            'res_dotacion' => 'required|max:2000',
-            'res_documento_accidentabilidad' => 'required|max:2000',
-            'res_dotacion_sub_contratos' => 'required|max:2000',
-            'res_dotacion_nuevos' => 'required|max:2000',
-            'res_documentacion_sub_contrato' => 'required|max:2000',
-            'res_documentacion' => 'required|max:2000',
-        ]);
+ /*    public function mount(){
+        //$this->validates();
     }
+
+    public function validates(){
+        $this->validate([
+            'res_parrafo' => 'required|max:50',
+            'res_dotacion' => 'required|max:50',
+            'res_dotacion_sub_contratos' => 'required|max:50',
+            'res_dotacion_nuevos' => 'required|max:50',
+            'res_documentacion_sub_contrato' => 'required|max:50',
+        ]);
+    } */
 
     public function uploadFileModalRespuesta($preguntaId){
         sleep(1);
@@ -108,26 +110,30 @@ class ReplyForm extends Component
 
     public function updateHSEfiles($preguntaId){
         sleep(1);
-        $this->preguntaHSEIdTemp = $preguntaId;
-        $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
-        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
-        ->first();
-
-        if($this->res_documento_accidentabilidad || $this->res_documentacion){
-            Storage::delete($respuesta->res_documento_accidentabilidad);
-            $respuesta->res_documento_accidentabilidad = empty($this->res_documento_accidentabilidad) ? null : ArchivoService::subirArchivos($this->res_documento_accidentabilidad, Pregunta::findOrFail($preguntaId)->formulario->form_id, Pregunta::findOrFail($preguntaId)->pre_id, 'respuesta');
-
-            Storage::delete($respuesta->res_documentacion);
-            $respuesta->res_documentacion = empty($this->res_documentacion) ? null : ArchivoService::subirArchivos($this->res_documentacion, Pregunta::findOrFail($preguntaId)->formulario->form_id, Pregunta::findOrFail($preguntaId)->pre_id, 'respuesta');
-
+        try {
+            $this->preguntaHSEIdTemp = $preguntaId;
+            $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
+            ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+            ->first();
+            if($this->res_documento_accidentabilidad){
+                Storage::delete($respuesta->res_documento_accidentabilidad);
+                $respuesta->res_documento_accidentabilidad = empty($this->res_documento_accidentabilidad) ? null : ArchivoService::subirArchivos($this->res_documento_accidentabilidad, Pregunta::findOrFail($preguntaId)->formulario->form_id, $respuesta->res_id, 'respuesta');
+            }
+             if($this->res_documentacion){
+                Storage::delete($respuesta->res_documentacion);
+                $respuesta->res_documentacion = empty($this->res_documentacion) ? null : ArchivoService::subirArchivos($this->res_documentacion, Pregunta::findOrFail($preguntaId)->formulario->form_id, $respuesta->res_id, 'respuesta');
+            }
             $respuesta->update();
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
         }
 
     }
 
     public function checkThemAll(){
-        sleep(3);
-        $this->updateHSEfiles($this->preguntaHSEIdTemp);
+        if($this->preguntaHSEIdTemp){
+            $this->updateHSEfiles($this->preguntaHSEIdTemp);
+        }
         $this->dispatchBrowserEvent('fireSwal');
     }
 
