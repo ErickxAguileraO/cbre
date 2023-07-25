@@ -23,7 +23,9 @@
                         <div class="archivo-subido-n">
                             <p>{{$archivo->arcf_nombre_original}}</p>
                             <p>{{ pathinfo($archivo->arcf_nombre_original, PATHINFO_EXTENSION) }}</p>
-                            <img wire:click="deleteFile({{$archivo->arcf_id}})" class="pointer" src="/public/images/admin/sistema/delete.svg" alt="">
+                            <button wire:click="deleteFile({{$archivo->arcf_id}})" wire:loading.attr="disabled" class="btn btn-link text-decoration-none">
+                                <img src="/public/images/admin/sistema/delete.svg" class="btn btn-remove" alt="">
+                            </button>
                         </div>
                         @endforeach
                     </div>

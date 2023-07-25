@@ -22,14 +22,14 @@
                         @foreach ($pregunta->opciones as $opcion)
                             <div class="row align-center preguntas-preview">
                                 <input type="radio" name="opcion{{ $pregunta->pre_id }}"
-                                    wire:click="selectOption({{ $opcion->opc_id }})">
+                                    wire:click="selectOption({{ $opcion->opc_id }})" wire:loading.attr="disabled">
                                 <p>{{ $opcion->opc_opcion }}</p>
                             </div>
                         @endforeach
                         <div class="opciones-pregunta grid-header-2">
                             <div class="row gap-37 padding-left-15">
                                 <div class="modalFile__abrirBtn"
-                                    wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})">
+                                    wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})" wire:loading.attr="disabled">
                                     <i class="far fa-paperclip"></i>
                                     @if ($pregunta->respuesta->archivosFormulario->count() > 0)
                                         Adjuntar archivos ({{ $pregunta->respuesta->archivosFormulario->count() }})
@@ -63,7 +63,7 @@
                         @foreach ($pregunta->opciones as $opcion)
                             <div class="row align-center preguntas-preview">
                                 <input type="checkbox" wire:model.defer="selectedCheckboxes"
-                                    value="{{ $opcion->opc_id }}" wire:click="selectCheckbox({{ $opcion->opc_id }})">
+                                    value="{{ $opcion->opc_id }}" wire:click="selectCheckbox({{ $opcion->opc_id }})" wire:loading.attr="disabled">
                                 <p>{{ $opcion->opc_opcion }}</p>
                             </div>
                         @endforeach
@@ -103,7 +103,7 @@
                         @endif
                         <div class="form-group">
                             <textarea name="" id="" class="form-control" cols="30" rows="10"
-                                wire:model.defer="res_parrafo" wire:change="updateParrafo({{ $pregunta->pre_id }})"></textarea>
+                                wire:model.defer="res_parrafo" wire:change="updateParrafo({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
                         </div>
                         <div class="opciones-pregunta grid-header-2">
                             <div class="row gap-37 padding-left-15">
@@ -150,7 +150,7 @@
                             <div class="col-sm-4 row-column-global sin-margen">
                                 <label for="res_mes">Mes de evaluación</label>
                                 <div class="form-group">
-                                    <select wire:model.defer="res_mes" wire:change="updateHSE({{ $pregunta->pre_id }})"
+                                    <select wire:model.defer="res_mes" wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
                                         id="res_mes" name="res_mes" class="form-control" tabindex="4"
                                         style="width: 100%;">
                                         <option value="">Seleccione</option>
@@ -168,7 +168,7 @@
                                 <label for="anio">Año</label>
                                 <div class="form-group">
                                     <select wire:model.defer="res_ano"
-                                        wire:change="updateHSE({{ $pregunta->pre_id }})" id="res_ano"
+                                        wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="res_ano"
                                         name="res_ano" class="form-control" tabindex="4" style="width: 100%;">
                                         <option value="">Seleccione</option>
                                         @php
@@ -191,7 +191,7 @@
                             <label class="width-250" for="">Dotación</label>
                             <div class="form-group">
                                 <input wire:model.defer="res_dotacion"
-                                    wire:change="updateHSE({{ $pregunta->pre_id }})" id="" name=""
+                                    wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
                                     class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
                             </div>
                         </fieldset>
@@ -199,8 +199,8 @@
                         <fieldset class="row-global row-responsive">
                             <label class="width-250" for="">Reporte de accidentabildiad</label>
                             <div>
-                                <input wire:model="res_documento_accidentabilidad"
-                                    wire:change="updateHSEfiles({{ $pregunta->pre_id }})"
+                                <input wire:model.defer="res_documento_accidentabilidad"
+                                    wire:change="updateHSEfiles({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
                                     class="form-control input-file-nuevo" id=""
                                     name="" type="file" tabindex="1">
                             </div>
@@ -212,7 +212,7 @@
                             <label class="width-250" for="">Dotación sub contratos</label>
                             <div class="form-group">
                                 <input wire:model.defer="res_dotacion_sub_contratos"
-                                    wire:change="updateHSE({{ $pregunta->pre_id }})" id="" name=""
+                                    wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
                                     class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
                             </div>
                         </fieldset>
@@ -221,7 +221,7 @@
                             <label class="width-250" for="">¿Cuántos de estos son nuevos?</label>
                             <div class="form-group">
                                 <input wire:model.defer="res_dotacion_nuevos"
-                                    wire:change="updateHSE({{ $pregunta->pre_id }})" id="" name=""
+                                    wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
                                     class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
                             </div>
                         </fieldset>
@@ -232,13 +232,13 @@
                             <div class="form-group row-global">
                                 <div class="row-global align-center">
                                     <input wire:model.defer="res_documentacion_sub_contrato"
-                                        wire:change="updateHSE({{ $pregunta->pre_id }})" type="radio"
+                                        wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" type="radio"
                                         name="sub_contrato" id="sub_contrato" value="1">
                                     <p>Si</p>
                                 </div>
                                 <div class="row-global align-center">
                                     <input wire:model.defer="res_documentacion_sub_contrato"
-                                        wire:change="updateHSE({{ $pregunta->pre_id }})" type="radio"
+                                        wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" type="radio"
                                         name="sub_contrato" id="sub_contrato" value="0">
                                     <p>No</p>
                                 </div>
@@ -250,7 +250,7 @@
                             <label class="width-250" for="">Subir documentación</label>
                             <div>
                                 <input wire:model="res_documentacion"
-                                    wire:change="updateHSEfiles({{ $pregunta->pre_id }})"
+                                    wire:change.defer="updateHSEfiles({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
                                     class="form-control input-file-nuevo" id=""
                                     name="" type="file" tabindex="1">
                                 <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un
@@ -263,7 +263,7 @@
                         <div class="opciones-pregunta grid-header-2">
                             <div class="row gap-37 padding-left-15">
                                 <div class="modalFile__abrirBtn"
-                                    wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})">
+                                    wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})" wire:loading.attr="disabled">
                                     <i class="far fa-paperclip"></i>
                                     @if ($pregunta->respuesta->archivosFormulario->count() > 0)
                                         Adjuntar archivos ({{ $pregunta->respuesta->archivosFormulario->count() }})
