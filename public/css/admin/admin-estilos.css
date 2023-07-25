@@ -674,6 +674,17 @@ nav.header * {
   width: 100%;
 }
 
+.btn-exportar {
+    padding: 5.4px 10px;
+    border-radius: 10px;
+    background: rgba(1, 42, 45, 0.10);
+    border: 0px;
+    outline: none;
+    color: #012A2D;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
 .row-menu {
   display: flex;
   flex-direction: row;
@@ -768,6 +779,19 @@ nav.header * {
 .grid-header-2 {
   display: grid;
   grid-template-columns: 55% 45%;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
 }
 
 .margin-top-5 {

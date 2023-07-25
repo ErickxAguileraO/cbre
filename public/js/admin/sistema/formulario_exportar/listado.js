@@ -1,30 +1,37 @@
 
 document.addEventListener("DOMContentLoaded", function () {
+    cargarExportar();
 
-    cargarCaracteristicas();
-
-    function cargarCaracteristicas() {
+    function cargarExportar() {
         DevExpress.localization.locale(navigator.language);
 
         // Función para el origen de datos.
-        const caracteristicas = new DevExpress.data.CustomStore({
-            load: function () {
-                return sendRequest("");
+        const exportarData = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                const params = {
+                    fechaInicio: document.querySelector('#fechaInicio').value,
+                    fechaTermino: document.querySelector('#fechaTermino').value,
+                    creado_por: document.querySelector('#creado_por') ? document.querySelector('#creado_por').value : null,
+                };
+
+                return sendRequest("/admin/exportar/get/list", "GET", params);
             },
         });
 
-        $("#dataGridFormulario").dxDataGrid({
-            dataSource: caracteristicas,
+        const dataGrid = $("#dataGridExportar").dxDataGrid({
+            dataSource: exportarData,
+            // Resto del código del data grid...
             columns: [
                 {
-                    dataField: "car_area",
+                    dataField: "rol_funcionario",
                     caption: "Área",
                     filterOperations: ["contains"],
-                    alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
+                    width: 200,
+                    alignment: "center",
                 },
                 {
-                    dataField: "car_nombreFormulario",
+                    dataField: "form_nombre",
                     caption: "Nombre Formulario",
                     filterOperations: ["contains"],
                     alignment: "left",
@@ -33,31 +40,31 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "car_fechaEnvio",
+                    dataField: "updated_at_formatted",
                     caption: "Fecha de envío",
                     filterOperations: ["contains"],
-                    alignment: "left",
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
-                    // width: '110',
+                    width: 200,
+                    alignment: "center",
                     // minWidth: '110',
                 },
                 {
-                    dataField: "car_edificio",
+                    dataField: "cantidad_edificios",
                     caption: "Edificio",
                     filterOperations: ["contains"],
-                    alignment: "left",
-                    hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
-                    // width: '110',
-                    // minWidth: '110',
+                    alignment: "center",
+                    hidingPriority: 3,
+                    width: 100,
                     cellTemplate(container, options) {
+                        const cantidadEdificios = options.value; // Obtenemos el valor real desde la columna "cantidad_edificios"
                         $("<div>")
-                            .text("5").addClass("contador-archivos cursor-pointer").on("click", function () {
+                            .text(cantidadEdificios)
+                            .addClass("contador-archivos cursor-pointer")
+                            .on("click", function () {
                                 $(".contenedor__modalFormulario").css("display", "flex");
                             })
                             .appendTo(container);
                     },
-
-                    
                 },
                 {
                     dataField: "",
@@ -68,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     minWidth: '100',
                     cellTemplate(container, options) {
                         let urlExp = ``;
-
+                        console.log(options.data)
                         let templateExp = `<a href="" title=""><i class="color-texto-cbre i-margin-cbre fas fa-file-excel"></i></a>`;
                         const enlaceExp = $('<a />').append(templateExp).appendTo(container);
                     },
@@ -83,15 +90,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 showPageSizeSelector: true,
                 allowedPageSizes: [5, 10, 15, 20],
             },
+        }).dxDataGrid("instance");
+
+        $('.btn-filtro').on('click', function(e) {
+            e.preventDefault();
+            dataGrid.refresh();
         });
+
+        //  $('#fechaInicio, #fechaTermino, #estado').on('change', function(e) {
+        //     dataGrid.refresh();
+        //  });
     }
+
 
     function sendRequest(url, method, data) {
         let d = $.Deferred();
         method = method || "GET";
         $.ajax(url, {
             method: method || "GET",
-            data: data,
+            data: data, // Pasar los datos directamente sin serializarlos
             cache: false,
             xhrFields: {
                 withCredentials: true,

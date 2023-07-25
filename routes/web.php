@@ -21,6 +21,7 @@ use App\Http\Controllers\Administracion\FormularioAreaTecnicaController;
 use App\Http\Controllers\Administracion\FormularioJOPController;
 use App\Http\Controllers\Administracion\MantencionesJOPController;
 use App\Http\Controllers\Administracion\MantencionSoporteTecnicoController;
+use App\Http\Controllers\Administracion\ExportarController;
 use App\Http\Controllers\Web\NoticiaController as WebNoticiaController;
 use App\Http\Controllers\Web\ContactoController as WebContactoController;
 use App\Http\Controllers\Web\EdificioController as  WebEdificioController;
@@ -130,6 +131,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('formulario-area-tecnica/get/archivos/{formulario}/{pregunta?}/{respuesta?}', 'zipArchivos')->name('formulario-area-tecnica.archivos');
             Route::get('formulario-area-tecnica/get/{formulario}', 'duplicarFormulario')->name('formulario-area-tecnica.duplicar.formulario');
             Route::post('formulario-area-tecnica/cerrar', 'cerrar')->name('formulario-area-tecnica.cerrar');
+        });
+
+        // Exportar listar y descargar excel
+        Route::controller(ExportarController::class)->group(function () {
+            Route::resource('exportar', ExportarController::class);
+            Route::get('exportar/get/list', 'list')->name('exportar.list');
         });
 
         // Formulario JOP
