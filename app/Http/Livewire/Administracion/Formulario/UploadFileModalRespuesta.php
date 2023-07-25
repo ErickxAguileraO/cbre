@@ -28,36 +28,50 @@ class UploadFileModalRespuesta extends Component
     }
 
     public function uploadFileModalRespuesta($preguntaId){
-        sleep(1);
-        $this->respuestaId = Respuesta::where('res_pregunta_id', $preguntaId)
-        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
-        ->first()->res_id;
-        $this->files = [];
-        $this->dispatchBrowserEvent('show-uploadFileModalRespuesta');
+        usleep(config('fake-delay.file_gestor'));
+
+        try {
+            $this->respuestaId = Respuesta::where('res_pregunta_id', $preguntaId)
+            ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+            ->first()->res_id;
+            $this->files = [];
+            $this->dispatchBrowserEvent('show-uploadFileModalRespuesta');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 
-    public function updatedFiles()
-    {
-        sleep(1);
-        foreach ($this->files as $file) {
-            $archivo = new ArchivoFormulario();
-            $archivo->arcf_respuesta_id = $this->respuestaId;
+    public function updatedFiles(){
+        usleep(config('fake-delay.file_gestor'));
 
-            $storedFile = ArchivoService::subirArchivos($file, Respuesta::findOrFail($this->respuestaId)->pregunta->formulario->form_id, Respuesta::findOrFail($this->respuestaId)->res_id, 'respuesta');
+        try {
+            foreach ($this->files as $file) {
+                $archivo = new ArchivoFormulario();
+                $archivo->arcf_respuesta_id = $this->respuestaId;
 
-            $archivo->arcf_url = $storedFile;
-            $archivo->arcf_nombre_original = $file->getClientOriginalName();
-            $archivo->save();
+                $storedFile = ArchivoService::subirArchivos($file, Respuesta::findOrFail($this->respuestaId)->pregunta->formulario->form_id, Respuesta::findOrFail($this->respuestaId)->res_id, 'respuesta');
+
+                $archivo->arcf_url = $storedFile;
+                $archivo->arcf_nombre_original = $file->getClientOriginalName();
+                $archivo->save();
+            }
+            $this->files = [];
+            $this->emit('refreshRespuesta');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
         }
-        $this->files = [];
-        $this->emit('refreshRespuesta');
     }
 
     public function deleteFile($archivoId){
-        sleep(1);
-        $archivo = ArchivoFormulario::findOrFail($archivoId);
-        Storage::delete($archivo->arcf_url);
-        $archivo->delete();
-        $this->emit('refreshRespuesta');
+        usleep(config('fake-delay.file_gestor'));
+
+        try {
+            $archivo = ArchivoFormulario::findOrFail($archivoId);
+            Storage::delete($archivo->arcf_url);
+            $archivo->delete();
+            $this->emit('refreshRespuesta');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 }
