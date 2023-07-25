@@ -23,4 +23,14 @@ class FormularioEdificio extends Model
         return $this->hasMany(Obersacion::class, 'obs_formulario_edificio_id', 'foredi_id');
     }
 
+    public function edificio()
+    {
+        return $this->belongsTo(Edificio::class, 'foredi_edificio_id', 'edi_id');
+    }
+
+    public function formulario()
+    {
+        return $this->belongsTo(Formulario::class, 'foredi_formulario_id', 'form_id');
+    }
+
 }

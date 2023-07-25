@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     confirmButtonText: "¡Sí, Publicalo!",
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        isLoadingSpinner("postear-formulario", true);
                         fetch('/admin/formulario-area-tecnica/post/formulario', {
                             method: "POST",
                             headers: {
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             .then((response) => response.json())
                             .then((response) => {
                                 if (response.success) {
+                                    isLoadingSpinner("postear-formulario", 'done');
                                     Swal.fire({
                                         position: "center",
                                         icon: "success",
@@ -50,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                             "/admin/formulario-area-tecnica";
                                     }, 1500);
                                 } else {
+                                    isLoadingSpinner("postear-formulario", false);
                                     Swal.fire({
                                         position: "center",
                                         icon: "error",
@@ -60,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 }
                             })
                             .catch((error) => {
+                                isLoadingSpinner("postear-formulario", false);
                                 Swal.fire({
                                     position: "center",
                                     icon: "error",
