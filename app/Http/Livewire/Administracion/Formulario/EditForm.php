@@ -28,24 +28,21 @@ class EditForm extends Component
     }
 
     public function mount(){
-        try {
-            $formulario = Formulario::with('preguntas.opciones')->find($this->formId);
-            $this->form_nombre = $formulario->form_nombre;
-            $this->form_descripcion = $formulario->form_descripcion;
+        $formulario = Formulario::with('preguntas.opciones')->find($this->formId);
 
-            foreach ($formulario->preguntas as $pregunta) {
-                $this->pre_pregunta[$pregunta->pre_id] = $pregunta->pre_pregunta;
+        $this->form_nombre = $formulario->form_nombre;
+        $this->form_descripcion = $formulario->form_descripcion;
 
-                foreach($pregunta->opciones as $opcion){
-                    $this->opc_opcion[$opcion->opc_id] = $opcion->opc_opcion;
-                }
+        $this->validate([
+            'form_nombre' => 'required|max:50',
+        ]);
+
+        foreach ($formulario->preguntas as $pregunta) {
+            $this->pre_pregunta[$pregunta->pre_id] = $pregunta->pre_pregunta;
+
+            foreach($pregunta->opciones as $opcion){
+                $this->opc_opcion[$opcion->opc_id] = $opcion->opc_opcion;
             }
-
-            $this->validate([
-                'form_nombre' => 'required|max:50',
-            ]);
-        } catch (\Throwable $th) {
-            dd($th->getMessage());
         }
     }
 
