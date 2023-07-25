@@ -2,10 +2,19 @@
 @section('title', 'Formulario Área técnica')
 
 @section('content')
-    @if (!auth()->user()->hasRole('super-admin'))
-        <a class="btn btn-success float-right text-white" href="{{ route('formulario-area-tecnica.create') }}">Crear formulario</a>
-    @endif
-   <h1>Formulario Área técnica</h1>
+
+
+   <div class="grid-2">
+        <div>
+            <h1>Formulario Área técnica</h1>
+        </div>
+        <div class="flex-end">
+            <button class="btn-exportar" onclick="window.location.href='{{ route('exportar.index') }}'">Exportar</button>
+            @if (!auth()->user()->hasRole('super-admin'))
+                <a class="btn btn-success float-right text-white" href="{{ route('formulario-area-tecnica.create') }}">Crear formulario</a>
+            @endif
+        </div>
+   </div>
 
     <form class="grid-filtros-admin" method="GET">
         @csrf
