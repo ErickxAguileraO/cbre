@@ -345,6 +345,7 @@ class FormularioAreaTecnicaController extends Controller
 
     public function duplicarFormulario(){
 
+        DB::beginTransaction();
         try {
             $formulario = Formulario::findOrFail(request('formulario'));
 
@@ -370,9 +371,13 @@ class FormularioAreaTecnicaController extends Controller
                 }
             }
 
+            DB::commit();
+
             return redirect()->route('formulario-area-tecnica.edit', $newFormulario->form_id);
 
         } catch (\Throwable $th) {
+            DB::rollback();
+
             return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
         }
     }

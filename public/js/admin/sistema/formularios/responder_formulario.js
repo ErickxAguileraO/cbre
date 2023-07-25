@@ -59,4 +59,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
     });
+
+
+    window.addEventListener('fireSwalerror', event =>{
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Debes completar todos los campos obligatorios",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    });
 });
