@@ -102,7 +102,7 @@
                         </div>
                         @endif
                         <div class="form-group">
-                            <textarea name="" id="" class="form-control" cols="30" rows="10"
+                            <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
                                 wire:model.defer="res_parrafo" wire:change="updateParrafo({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
                         </div>
                         <div class="opciones-pregunta grid-header-2">
