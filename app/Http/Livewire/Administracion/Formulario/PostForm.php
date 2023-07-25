@@ -21,23 +21,38 @@ class PostForm extends Component
     }
 
     public function attachEdificio($edificioId){
-        sleep(1);
-        if($edificioId){
-            $this->selectedEdificioId = $edificioId;
-            $formulario = Formulario::findOrFail($this->formId);
-            $formulario->edificios()->attach(Edificio::findOrFail($edificioId));
+        usleep(config('fake-delay.attach_edificio'));
+
+        try {
+            if($edificioId){
+                $this->selectedEdificioId = $edificioId;
+                $formulario = Formulario::findOrFail($this->formId);
+                $formulario->edificios()->attach(Edificio::findOrFail($edificioId));
+            }
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
         }
     }
 
     public function detachEdificio($edificioId){
-        sleep(1);
-        $formulario = Formulario::findOrFail($this->formId);
-        $formulario->edificios()->detach(Edificio::findOrFail($edificioId));
+        usleep(config('fake-delay.attach_edificio'));
+
+        try {
+            $formulario = Formulario::findOrFail($this->formId);
+            $formulario->edificios()->detach(Edificio::findOrFail($edificioId));
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 
     public function detachAll(){
-        sleep(1);
-        $formulario = Formulario::findOrFail($this->formId);
-        $formulario->edificios()->detach();
+        usleep(config('fake-delay.attach_edificio'));
+
+        try {
+            $formulario = Formulario::findOrFail($this->formId);
+            $formulario->edificios()->detach();
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 }

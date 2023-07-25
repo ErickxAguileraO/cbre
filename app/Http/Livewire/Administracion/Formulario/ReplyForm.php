@@ -57,59 +57,81 @@ class ReplyForm extends Component
     } */
 
     public function uploadFileModalRespuesta($preguntaId){
-        sleep(1);
+        usleep(config('fake-delay.file_gestor'));
+
         $this->emit('uploadFileModalRespuesta', $preguntaId);
     }
 
     public function selectOption($optionId){
-        sleep(1);
-        $opcion = Opcion::findOrFail($optionId);
-        $respuesta = Respuesta::where('res_pregunta_id', $opcion->pregunta->pre_id)
-        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
-        ->first();
+        usleep(config('fake-delay.general'));
 
-        $respuesta->opciones()->detach();
-        $respuesta->opciones()->attach($opcion);
+        try {
+            $opcion = Opcion::findOrFail($optionId);
+            $respuesta = Respuesta::where('res_pregunta_id', $opcion->pregunta->pre_id)
+            ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+            ->first();
+
+            $respuesta->opciones()->detach();
+            $respuesta->opciones()->attach($opcion);
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 
     public function selectCheckbox($optionId){
-        sleep(1);
-        $opcion = Opcion::findOrFail($optionId);
-        $respuesta = Respuesta::where('res_pregunta_id', $opcion->pregunta->pre_id)
-        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
-        ->first();
+        usleep(config('fake-delay.general'));
 
-        $respuesta->opciones()->detach();
-        $respuesta->opciones()->attach($this->selectedCheckboxes);
+        try {
+            $opcion = Opcion::findOrFail($optionId);
+            $respuesta = Respuesta::where('res_pregunta_id', $opcion->pregunta->pre_id)
+            ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+            ->first();
+
+            $respuesta->opciones()->detach();
+            $respuesta->opciones()->attach($this->selectedCheckboxes);
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 
     public function updateParrafo($preguntaId){
-        sleep(1);
-        $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
-        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
-        ->first();
-        $respuesta->res_parrafo = $this->res_parrafo;
-        $respuesta->update();
+        usleep(config('fake-delay.general'));
+
+        try {
+            $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
+            ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+            ->first();
+            $respuesta->res_parrafo = $this->res_parrafo;
+            $respuesta->update();
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 
     public function updateHSE($preguntaId){
-        sleep(1);
-        $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
-        ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
-        ->first();
+        usleep(config('fake-delay.general'));
 
-        $respuesta->res_mes = empty($this->res_mes) ? null : $this->res_mes;
-        $respuesta->res_ano = empty($this->res_ano) ? null : $this->res_ano;
-        $respuesta->res_dotacion = empty($this->res_dotacion) ? null : $this->res_dotacion;
-        $respuesta->res_dotacion_sub_contratos = empty($this->res_dotacion_sub_contratos) ? null : $this->res_dotacion_sub_contratos;
-        $respuesta->res_dotacion_nuevos = empty($this->res_dotacion_nuevos) ? null : $this->res_dotacion_nuevos;
-        $respuesta->res_documentacion_sub_contrato = empty($this->res_documentacion_sub_contrato) ? 0 : $this->res_documentacion_sub_contrato;
+        try {
+            $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
+            ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+            ->first();
 
-        $respuesta->update();
+            $respuesta->res_mes = empty($this->res_mes) ? null : $this->res_mes;
+            $respuesta->res_ano = empty($this->res_ano) ? null : $this->res_ano;
+            $respuesta->res_dotacion = empty($this->res_dotacion) ? null : $this->res_dotacion;
+            $respuesta->res_dotacion_sub_contratos = empty($this->res_dotacion_sub_contratos) ? null : $this->res_dotacion_sub_contratos;
+            $respuesta->res_dotacion_nuevos = empty($this->res_dotacion_nuevos) ? null : $this->res_dotacion_nuevos;
+            $respuesta->res_documentacion_sub_contrato = empty($this->res_documentacion_sub_contrato) ? 0 : $this->res_documentacion_sub_contrato;
+
+            $respuesta->update();
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 
     public function updateHSEfiles($preguntaId){
-        sleep(1);
+        usleep(config('fake-delay.general'));
+
         try {
             $this->preguntaHSEIdTemp = $preguntaId;
             $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
