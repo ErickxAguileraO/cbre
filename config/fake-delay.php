@@ -7,10 +7,10 @@ return [
     | Fake delay
     |--------------------------------------------------------------------------
     |
-    | En este apartado se especificará el contenido de los "unsleep" que se
+    | En este apartado se especificará el contenido de los "usleep" que se
     | implementaron en cada una de las funciones de los componentes de Livewire
     | Esto para reducir la carga del servidor de desarrollo (muy lento),
-    | y par aposteriori poder bajar el tiempo en caso de pasar a un servidor
+    | y para posteriormente poder bajar el tiempo en caso de pasar a un servidor
     | con una respuesta más rapida (menos de 800ms-1000ms)
     |
     | 1 segundo = 1000000
