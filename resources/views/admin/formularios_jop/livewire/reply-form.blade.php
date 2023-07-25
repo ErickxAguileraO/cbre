@@ -160,7 +160,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    <small id="" class="field-message-alert absolute"></small>
+                                    @error('res_mes') <span class="text-danger"> {{$message}} </span> @enderror
                                 </div>
                             </div>
 
@@ -179,7 +179,7 @@
                                             <option value="{{ $anio }}">{{ $anio }}</option>
                                         @endforeach
                                     </select>
-                                    <small id="" class="field-message-alert absolute"></small>
+                                    @error('res_ano') <span class="text-danger"> {{$message}} </span> @enderror
                                 </div>
                             </div>
 
@@ -193,6 +193,7 @@
                                 <input wire:model.defer="res_dotacion"
                                     wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
                                     class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
+                                    @error('res_dotacion') <span class="text-danger"> {{$message}} </span> @enderror
                             </div>
                         </fieldset>
 
@@ -203,6 +204,7 @@
                                     wire:change="updateHSEfiles({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
                                     class="form-control input-file-nuevo" id=""
                                     name="" type="file" tabindex="1">
+                                    @error('res_documento_accidentabilidad') <span class="text-danger"> {{$message}} </span> @enderror
                             </div>
                         </fieldset>
 
@@ -214,6 +216,7 @@
                                 <input wire:model.defer="res_dotacion_sub_contratos"
                                     wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
                                     class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
+                                    @error('res_dotacion_sub_contratos') <span class="text-danger"> {{$message}} </span> @enderror
                             </div>
                         </fieldset>
 
@@ -223,6 +226,7 @@
                                 <input wire:model.defer="res_dotacion_nuevos"
                                     wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
                                     class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
+                                    @error('res_dotacion_nuevos') <span class="text-danger"> {{$message}} </span> @enderror
                             </div>
                         </fieldset>
 
@@ -244,6 +248,7 @@
                                 </div>
                             </div>
                         </fieldset>
+                        @error('res_documentacion_sub_contrato') <span class="text-danger"> {{$message}} </span> @enderror
 
                         @if ($res_documentacion_sub_contrato == 1)
                         <fieldset class="row-global row-responsive">
@@ -258,6 +263,7 @@
                                     archivo</p>
                             </div>
                         </fieldset>
+                        @error('res_documentacion') <span class="text-danger"> {{$message}} </span> @enderror
                         @endif
 
                         <div class="opciones-pregunta grid-header-2">
