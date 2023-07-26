@@ -137,6 +137,7 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(ExportarController::class)->group(function () {
             Route::resource('exportar', ExportarController::class);
             Route::get('exportar/get/list', 'list')->name('exportar.list');
+            Route::get('exportar/download-excel/{formId}', 'downloadExcel')->name('exportar.download.excel');
         });
 
         // Formulario JOP
