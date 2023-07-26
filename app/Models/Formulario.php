@@ -85,4 +85,9 @@ class Formulario extends Model
     public function edificios(){
         return $this->belongsToMany(Edificio::class, 'formulario_edificio', 'foredi_formulario_id', 'foredi_edificio_id')->withTimestamps();
     }
+
+    public function formulariosEdificio()
+    {
+        return $this->hasMany(FormularioEdificio::class, 'foredi_formulario_id', 'form_id');
+    }
 }
