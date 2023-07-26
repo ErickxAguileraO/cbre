@@ -28,4 +28,9 @@ class FormularioEdificio extends Model
         return $this->belongsTo(Edificio::class, 'foredi_edificio_id', 'edi_id');
     }
 
+    public function formulario()
+    {
+        return $this->belongsTo(Formulario::class, 'foredi_formulario_id', 'form_id');
+    }
+
 }

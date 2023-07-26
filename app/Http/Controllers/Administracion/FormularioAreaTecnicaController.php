@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Administracion;
 
 use App\Models\User;
+use App\Models\Opcion;
 use App\Models\Edificio;
 use App\Models\Pregunta;
+use App\Models\Historial;
 use App\Models\Respuesta;
 use App\Models\Formulario;
+use App\Models\Obersacion;
+use App\Models\DatoGeneral;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use App\Models\RespuestaOpcion;
@@ -14,12 +18,11 @@ use App\Services\ArchivoService;
 use App\Models\FormularioEdificio;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Observacion\CreateObservacionRequest;
-use App\Models\Historial;
-use App\Models\Obersacion;
-use App\Models\Opcion;
+use App\Mail\NotificacionFormulario;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Observacion\CreateObservacionRequest;
 
 class FormularioAreaTecnicaController extends Controller
 {
@@ -308,6 +311,11 @@ class FormularioAreaTecnicaController extends Controller
                     'his_usuario' => Auth::user()->name,
                     'his_estado' => 'Publicado'
                 ]);
+
+                foreach($formEdificio->edificio->funcionarios as $funcionario){
+                    Mail::to($funcionario->user->email)->send(new NotificacionFormulario(DatoGeneral::first(), $funcionario->user, $formulario));
+                }
+
             }
 
             DB::commit();
@@ -337,6 +345,7 @@ class FormularioAreaTecnicaController extends Controller
 
     public function duplicarFormulario(){
 
+        DB::beginTransaction();
         try {
             $formulario = Formulario::findOrFail(request('formulario'));
 
@@ -362,9 +371,13 @@ class FormularioAreaTecnicaController extends Controller
                 }
             }
 
+            DB::commit();
+
             return redirect()->route('formulario-area-tecnica.edit', $newFormulario->form_id);
 
         } catch (\Throwable $th) {
+            DB::rollback();
+
             return redirect()->route('formulario-area-tecnica.index')->with('error', $th->getMessage());
         }
     }

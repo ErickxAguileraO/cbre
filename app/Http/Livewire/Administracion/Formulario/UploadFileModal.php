@@ -24,35 +24,49 @@ class UploadFileModal extends Component
     }
 
     public function uploadFileModal($preguntaId){
-        sleep(1);
-        $this->preguntaId = $preguntaId;
-        $this->files = [];
-        $this->dispatchBrowserEvent('show-uploadFileModal');
+        usleep(config('fake-delay.file_gestor'));
+
+        try {
+            $this->preguntaId = $preguntaId;
+            $this->files = [];
+            $this->dispatchBrowserEvent('show-uploadFileModal');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 
-    public function updatedFiles()
-    {
-        sleep(1);
-        foreach ($this->files as $file) {
-            $archivo = new ArchivoFormulario();
-            $archivo->arcf_pregunta_id = $this->preguntaId;
+    public function updatedFiles(){
+        usleep(config('fake-delay.file_gestor'));
 
-            $storedFile = ArchivoService::subirArchivos($file, Pregunta::findOrFail($this->preguntaId)->formulario->form_id, $this->preguntaId, 'pregunta');
+        try {
+            foreach ($this->files as $file) {
+                $archivo = new ArchivoFormulario();
+                $archivo->arcf_pregunta_id = $this->preguntaId;
 
-            $archivo->arcf_url = $storedFile;
-            $archivo->arcf_nombre_original = $file->getClientOriginalName();
-            $archivo->save();
+                $storedFile = ArchivoService::subirArchivos($file, Pregunta::findOrFail($this->preguntaId)->formulario->form_id, $this->preguntaId, 'pregunta');
+
+                $archivo->arcf_url = $storedFile;
+                $archivo->arcf_nombre_original = $file->getClientOriginalName();
+                $archivo->save();
+            }
+            $this->files = [];
+            $this->emit('refreshPregunta');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
         }
-        $this->files = [];
-        $this->emit('refreshPregunta');
     }
 
     public function deleteFile($archivoId){
-        sleep(1);
-        $archivo = ArchivoFormulario::findOrFail($archivoId);
-        Storage::delete($archivo->arcf_url);
-        $archivo->delete();
-        $this->emit('refreshPregunta');
+        usleep(config('fake-delay.file_gestor'));
+
+        try {
+            $archivo = ArchivoFormulario::findOrFail($archivoId);
+            Storage::delete($archivo->arcf_url);
+            $archivo->delete();
+            $this->emit('refreshPregunta');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 
 }

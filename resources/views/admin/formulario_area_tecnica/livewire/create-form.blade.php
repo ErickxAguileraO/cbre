@@ -44,7 +44,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <select id="" name="" class="form-control" tabindex="4"
-                                style="width:100%;">
+                                style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual">Seleccion individual</option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
@@ -138,7 +138,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <select id="" name="" class="form-control" tabindex="4"
-                                style="width:100%;">
+                                style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual">Seleccion individual</option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
@@ -233,7 +233,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <select id="" name="" class="form-control" tabindex="4"
-                                style="width:100%;">
+                                style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual">Seleccion individual</option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
@@ -306,7 +306,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <select id="" name="" class="form-control" tabindex="4"
-                                style="width:100%;">
+                                style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual">Seleccion individual</option>
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"

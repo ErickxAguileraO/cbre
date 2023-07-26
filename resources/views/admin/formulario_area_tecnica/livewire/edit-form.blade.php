@@ -43,7 +43,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;">
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
                                     Seleccion individual
@@ -143,7 +143,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;">
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
                                     Seleccion individual
@@ -245,7 +245,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;">
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
                                     Seleccion individual
@@ -324,7 +324,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;">
+                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
                                 <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
                                     value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
                                     Seleccion individual

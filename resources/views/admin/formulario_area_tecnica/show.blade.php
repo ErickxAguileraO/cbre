@@ -343,11 +343,6 @@
                                         <div>
                                             <input class="form-control input-file-nuevo" id=""
                                                 name=""type="file" tabindex="1" disabled>
-                                            <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos
-                                                en
-                                                un
-                                                solo
-                                                archivo</p>
                                             <a href="{{ $respuesta->getUrlDocumentacion() }}" target="_blank"
                                                 class="small">Descargar archivo adjunto</a>
                                         </div>
@@ -601,10 +596,6 @@
                                     <div>
                                         <input class="form-control input-file-nuevo" id=""
                                             name=""type="file" tabindex="1" disabled>
-                                        <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en
-                                            un
-                                            solo
-                                            archivo</p>
                                     </div>
                                 </fieldset>
 

@@ -40,7 +40,17 @@
             <div class="modalFile__botones">
                 <div class="modalPublicar__cerrarBtn modalFile__btnN modalFile__botonSecundario" wire:click="detachAll">Cancelar</div>
                 @if ($formulario->edificios->count() > 0)
-                        <button class="modalFile__btnN modalFile__botonPrimario" id="postear-formulario">Publicar y enviar</button>
+                    <button id="postear-formulario" class="modalFile__btnN modalFile__botonPrimario" value="Guardar"
+                        class="btn btn-success btn-lg" type="button">
+                        <div id="default" class="d-block">
+                            <span>Publicar y enviar</span>
+                            <i class="fas fa-paper-plane ml-2 mr-2"></i>
+                        </div>
+                        <div id="loading" class="d-none">
+                            <span>Publicar y enviar</span>
+                            <span class="spinner-border spinner-border-md ml-1" role="status" aria-hidden="true"></span>
+                        </div>
+                    </button>
                     @else
                         <button class="modalFile__btnN modalFile__botonPrimario bg-secondary" disabled id="postear-formulario">Publicar y enviar</button>
                 @endif
