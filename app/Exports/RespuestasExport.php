@@ -84,7 +84,7 @@ class RespuestasExport implements FromCollection, WithHeadings, WithStyles
         // Encabezados fijos
         $data[] = ['Nombre Formulario', $this->formulario->form_nombre];
         $data[] = ['Área', $this->area];
-        $data[] = ['Fecha de envío', $this->formulario->updated_at];
+        $data[] = ['Fecha de envío', $this->formulario->fecha];
         $data[] = [''];
         $data[] = [''];
         $data[] = ['Edificio'];
