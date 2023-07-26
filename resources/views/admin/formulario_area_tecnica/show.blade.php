@@ -140,7 +140,7 @@
                                 @if ($respuesta->archivosFormulario->count() > 0)
                                     <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                         <i class="far fa-paperclip"></i>
-                                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}"
+                                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}"
                                             class="text-decoration-none">Información complementaria</a>
                                     </div>
                                 @endif
@@ -230,7 +230,7 @@
                                         @if ($respuesta->archivosFormulario->count() > 0)
                                             <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                                 <i class="far fa-paperclip"></i>
-                                                <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}"
+                                                <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}"
                                                     class="text-decoration-none">Información complementaria</a>
                                             </div>
                                         @endif
