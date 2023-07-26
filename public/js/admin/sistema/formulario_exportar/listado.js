@@ -57,13 +57,40 @@ document.addEventListener("DOMContentLoaded", function () {
                     width: 100,
                     cellTemplate(container, options) {
                         const cantidadEdificios = options.value; // Obtenemos el valor real desde la columna "cantidad_edificios"
-                        $("<div>")
+                        const edificios = options.data.edificio; // Obtenemos el listado de nombres de edificios
+                        const formularioNombre = options.data.form_nombre; // Obtenemos el nombre del formulario
+
+                        const $link = $("<a>")
                             .text(cantidadEdificios)
                             .addClass("contador-archivos cursor-pointer")
                             .on("click", function () {
+                                // Mostrar el nombre del formulario en el modal
+                                $("#formularioNombre").text(formularioNombre);
+
+                                // Vaciar la lista de edificios existente en el modal
+                                $("#edificiosList").empty();
+
+                                // Agregar los edificios al modal si hay edificios asociados
+                                if (edificios.length > 0) {
+                                    edificios.forEach((edificio) => {
+                                        $("<div>")
+                                            .text(edificio)
+                                            .addClass("archivo-subido-n")
+                                            .appendTo("#edificiosList");
+                                    });
+                                } else {
+                                    // Mostrar mensaje si no hay edificios asociados
+                                    $("<div>")
+                                        .text("No hay edificios asociados a este formulario.")
+                                        .addClass("archivo-subido-n")
+                                        .appendTo("#edificiosList");
+                                }
+
+                                // Mostrar el modal
                                 $(".contenedor__modalFormulario").css("display", "flex");
-                            })
-                            .appendTo(container);
+                            });
+
+                        $link.appendTo(container);
                     },
                 },
                 {
@@ -74,9 +101,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     width: '100',
                     minWidth: '100',
                     cellTemplate(container, options) {
-                        let urlExp = ``;
+                        let formId = options.data.form_id;
+                        let urlExp = `/admin/exportar/download-excel/${formId}`;
                         console.log(options.data)
-                        let templateExp = `<a href="" title=""><i class="color-texto-cbre i-margin-cbre fas fa-file-excel"></i></a>`;
+                        let templateExp = `<a href="${urlExp}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-file-excel"></i></a>`;
                         const enlaceExp = $('<a />').append(templateExp).appendTo(container);
                     },
                 },

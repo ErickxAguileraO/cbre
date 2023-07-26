@@ -43,8 +43,29 @@
    <div class="dx-viewport">
    <div id="dataGridExportar"></div>
 
+
+{{-- Modal Publicar --}}
+<div class="contenedor__modalFormulario">
+    <div class="modalFile">
+        <div class="modalFile__header">
+            <h3>Edificios</h3>
+        </div>
+        <div class="modalFile__contenedorContenido">
+            <p>Formulario: <span id="formularioNombre"></span></p>
+            <div class="modalFile__contenido">
+                <div class="tabla-archivos-subidos" id="edificiosList">
+                    <!-- Aquí se agregarán los edificios -->
+                </div>
+            </div>
+        </div>
+        <div class="modalFile__botones">
+            <div class="modalFormulario__cerrarBtn modalFile__btnN modalFile__botonSecundario">Cerrar</div>
+        </div>
+    </div>
+</div>
+
    {{-- Modal Formulario --}}
-   @include('components.modalFormulario')
+   {{-- @include('components.modalFormulario') --}}
 
    @csrf
    @endsection
