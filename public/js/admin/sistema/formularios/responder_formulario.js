@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "Debes completar todos los campos obligatorios",
+            title: "Debes responder todas las preguntas obligatorias",
             showConfirmButton: false,
             timer: 1500,
         });
