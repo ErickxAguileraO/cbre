@@ -43,27 +43,28 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
-                                    Seleccion individual
+                            <select id="pregunta_tipo" name="" class="form-control" tabindex="4"
+                                style="width:100%;" wire:model="pregunta_tipo.{{ $pregunta->pre_id }}"
+                                wire:change="changePreguntaType({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
+                                wire:target="changePreguntaType" wire:key={{$index}}>
+                                <option
+                                value="1" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
+                                Seleccion individual
                                 </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
-                                    Seleccion múltiple
-                                </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
-                                    Párrafo
-                                </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
-                                    HSE - Accidentabilidad
+                                <option
+                                value="2" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
+                                Seleccion múltiple
+                                <option
+                                value="3" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
+                                Párrafo
+                                <option
+                                value="4" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
+                                HSE - Accidentabilidad
                                 </option>
                             </select>
-                            <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
+
                 </fieldset>
                 {{-- Input dinamico --}}
                 <div class="contenedor-dinamico">
@@ -143,26 +144,25 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
-                                    Seleccion individual
+                            <select id="pregunta_tipo" name="" class="form-control" tabindex="4"
+                                style="width:100%;" wire:model="pregunta_tipo.{{ $pregunta->pre_id }}"
+                                wire:change="changePreguntaType({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
+                                wire:target="changePreguntaType" wire:key={{$index}}>
+                                <option
+                                value="1" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
+                                Seleccion individual
                                 </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
-                                    Seleccion múltiple
-                                </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
-                                    Párrafo
-                                </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
-                                    HSE - Accidentabilidad
+                                <option
+                                value="2" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
+                                Seleccion múltiple
+                                <option
+                                value="3" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
+                                Párrafo
+                                <option
+                                value="4" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
+                                HSE - Accidentabilidad
                                 </option>
                             </select>
-
-                            <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
                 </fieldset>
@@ -245,25 +245,25 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
-                                    Seleccion individual
+                            <select id="pregunta_tipo" name="" class="form-control" tabindex="4"
+                                style="width:100%;" wire:model="pregunta_tipo.{{ $pregunta->pre_id }}"
+                                wire:change="changePreguntaType({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
+                                wire:target="changePreguntaType" wire:key={{$index}}>
+                                <option
+                                value="1" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
+                                Seleccion individual
                                 </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
-                                    Seleccion múltiple
-                                </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
-                                    Párrafo
-                                </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
-                                    HSE - Accidentabilidad
+                                <option
+                                value="2" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
+                                Seleccion múltiple
+                                <option
+                                value="3" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
+                                Párrafo
+                                <option
+                                value="4" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
+                                HSE - Accidentabilidad
                                 </option>
                             </select>
-                            <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
                 </fieldset>
@@ -324,25 +324,25 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="pregunta-tipo" name="" class="form-control" tabindex="4" style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
-                                    Seleccion individual
+                            <select id="pregunta_tipo" name="" class="form-control" tabindex="4"
+                                style="width:100%;" wire:model="pregunta_tipo.{{ $pregunta->pre_id }}"
+                                wire:change="changePreguntaType({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
+                                wire:target="changePreguntaType" wire:key={{$index}}>
+                                <option
+                                value="1" {{ $pregunta->tipoPregunta->tipp_id == 1 ? 'selected' : '' }}>
+                                Seleccion individual
                                 </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
-                                    Seleccion múltiple
-                                </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
-                                    Párrafo
-                                </option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
-                                    HSE - Accidentabilidad
+                                <option
+                                value="2" {{ $pregunta->tipoPregunta->tipp_id == 2 ? 'selected' : '' }}>
+                                Seleccion múltiple
+                                <option
+                                value="3" {{ $pregunta->tipoPregunta->tipp_id == 3 ? 'selected' : '' }}>
+                                Párrafo
+                                <option
+                                value="4" {{ $pregunta->tipoPregunta->tipp_id == 4 ? 'selected' : '' }}>
+                                HSE - Accidentabilidad
                                 </option>
                             </select>
-                            <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
                 </fieldset>
@@ -500,7 +500,7 @@
     @push('scripts')
     <script>
     $(document).ready(function() {
-        $('[id="pregunta-tipo"]').select2('destroy');
+        $('[id="pregunta_tipo"]').select2('destroy');
     });
     </script>
     @endpush

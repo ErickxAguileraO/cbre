@@ -20,6 +20,8 @@ class CreateForm extends Component
 
     protected $listeners = ['refreshPregunta' => 'render'];
 
+    public $pregunta_tipo = [];
+
     public function render()
     {
         return view('admin.formulario_area_tecnica.livewire.create-form',[
@@ -48,10 +50,11 @@ class CreateForm extends Component
     public function updateFormInfo(){
         usleep(config('fake-delay.general'));
 
+        $this->validate([
+            'form_nombre' => 'required|max:50',
+        ]);
+
         try {
-            $this->validate([
-                'form_nombre' => 'required|max:50',
-            ]);
             $formulario = Formulario::findOrFail($this->formId);
             $formulario->form_nombre = empty($this->form_nombre) ? '' : $this->form_nombre;
             $formulario->form_descripcion = empty($this->form_descripcion) ? '' : $this->form_descripcion;
@@ -81,12 +84,12 @@ class CreateForm extends Component
         }
     }
 
-    public function changePreguntaType($preguntaId, $preguntaTypeId){
+    public function changePreguntaType($preguntaId){
         usleep(config('fake-delay.general'));
 
         try {
             $pregunta = Pregunta::findOrfail($preguntaId);
-            $pregunta->pre_tipo_pregunta_id = $preguntaTypeId;
+            $pregunta->pre_tipo_pregunta_id = $this->pregunta_tipo[$preguntaId];
             $pregunta->update();
         } catch (\Throwable $th) {
             dd($th->getMessage());
@@ -117,7 +120,7 @@ class CreateForm extends Component
 
         try {
             $pregunta = Pregunta::findOrfail($preguntaId);
-            $pregunta->pre_pregunta = end($this->pre_pregunta);
+            $pregunta->pre_pregunta = $this->pre_pregunta[$preguntaId];
             $pregunta->update();
         } catch (\Throwable $th) {
             dd($th->getMessage());

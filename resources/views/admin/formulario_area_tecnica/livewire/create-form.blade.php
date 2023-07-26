@@ -26,7 +26,6 @@
     </div>
 
     <div>
-
         @foreach ($formulario->preguntas as $index => $pregunta)
         @if ($pregunta->tipoPregunta->tipp_id == 1)
 
@@ -43,19 +42,16 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="" name="" class="form-control" tabindex="4"
-                                style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual">Seleccion individual</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple">Selección múltiple</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo">
+                            <select id="pregunta_tipo" name="" class="form-control" tabindex="4"
+                                style="width:100%;" wire:model="pregunta_tipo.{{ $pregunta->pre_id }}"
+                                wire:change="changePreguntaType({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
+                                wire:target="changePreguntaType" wire:key={{$index}}>
+                                <option value="1">Seleccion individual</option>
+                                <option value="2">Selección múltiple</option>
+                                <option value="3">
                                     Párrafo</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad">HSE - Accidentabilidad</option>
+                                <option value="4">HSE - Accidentabilidad</option>
                             </select>
-                            <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
                 </fieldset>
@@ -137,19 +133,16 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="" name="" class="form-control" tabindex="4"
-                                style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual">Seleccion individual</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple">Selección múltiple</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo">
+                            <select id="pregunta_tipo" name="" class="form-control" tabindex="4"
+                                style="width:100%;" wire:model="pregunta_tipo.{{ $pregunta->pre_id }}"
+                                wire:change="changePreguntaType({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
+                                wire:target="changePreguntaType" wire:key={{$index}}>
+                                <option value="1">Seleccion individual</option>
+                                <option value="2">Selección múltiple</option>
+                                <option value="3">
                                     Párrafo</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad">HSE - Accidentabilidad</option>
+                                <option value="4">HSE - Accidentabilidad</option>
                             </select>
-                            <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
                 </fieldset>
@@ -232,19 +225,16 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="" name="" class="form-control" tabindex="4"
-                                style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual">Seleccion individual</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple">Selección múltiple</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo">
+                            <select id="pregunta_tipo" name="" class="form-control" tabindex="4"
+                                style="width:100%;" wire:model="pregunta_tipo.{{ $pregunta->pre_id }}"
+                                wire:change="changePreguntaType({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
+                                wire:target="changePreguntaType" wire:key={{$index}}>
+                                <option value="1">Seleccion individual</option>
+                                <option value="2">Selección múltiple</option>
+                                <option value="3">
                                     Párrafo</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad">HSE - Accidentabilidad</option>
+                                <option value="4">HSE - Accidentabilidad</option>
                             </select>
-                            <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
                 </fieldset>
@@ -305,19 +295,16 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select id="" name="" class="form-control" tabindex="4"
-                                style="width:100%;" wire:loading.attr="disabled" wire:target="changePreguntaType">
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 1 }})"
-                                    value="Selección individual">Seleccion individual</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 2 }})"
-                                    value="Selección múltiple">Selección múltiple</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 3 }})"
-                                    value="Párrafo">
+                            <select id="pregunta_tipo" name="" class="form-control" tabindex="4"
+                                style="width:100%;" wire:model="pregunta_tipo.{{ $pregunta->pre_id }}"
+                                wire:change="changePreguntaType({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
+                                wire:target="changePreguntaType" wire:key={{$index}}>
+                                <option value="1">Seleccion individual</option>
+                                <option value="2">Selección múltiple</option>
+                                <option value="3">
                                     Párrafo</option>
-                                <option wire:click="changePreguntaType({{ $pregunta->pre_id }},{{ 4 }})"
-                                    value="HSE - Accidentabilidad">HSE - Accidentabilidad</option>
+                                <option value="4">HSE - Accidentabilidad</option>
                             </select>
-                            <small id="" class="field-message-alert absolute"></small>
                         </div>
                     </div>
                 </fieldset>
@@ -472,9 +459,12 @@
         </button>
     </div>
 
+    @push('scripts')
+    <script>
+    $(document).ready(function() {
+        $('[id="pregunta_tipo"]').select2('destroy');
+    });
+    </script>
+    @endpush
 </div>
 
-@push('scripts')
-
-@endpush
-</div>
