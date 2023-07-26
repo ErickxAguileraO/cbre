@@ -85,7 +85,6 @@
     </script>
     <script src="{{ asset('/public\js\admin\sistema\area_tecnica\publicar_formulario.js') }}"></script>
     <script src="{{ asset('/public\js\admin\sistema\area_tecnica\eliminar_formulario.js') }}"></script>
-    <script src="{{ asset('/public/css/componentes/tab/tab.js') }}"></script>
     {{--     <script src="{{ asset('/public/css/componentes/modal/modal.js') }}"></script>
     <script src="{{ asset('/public/js/script.js') }}"></script> --}}
 @endpush
