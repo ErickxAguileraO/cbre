@@ -111,14 +111,54 @@ class RespuestasExport implements FromCollection, WithHeadings, WithStyles
     private function getRespuestaTexto($pregunta, $formEdificio)
     {
         $respuesta = $pregunta->respuestas->where('res_formulario_edificio_id', $formEdificio->foredi_id)->first();
+
         if ($respuesta) {
-            $opciones = $respuesta->opciones->pluck('opc_opcion')->implode(', ');
-            if (!empty($opciones)) {
-                return $opciones;
-            } else {
-                return $respuesta->res_respuesta;
+            // Verificar el tipo de pregunta y obtener la respuesta correspondiente
+            switch ($pregunta->tipoPregunta->tipp_id) {
+                case 1: // Seleccion individual
+                    $opciones = $respuesta->opciones->pluck('opc_opcion')->implode(', ');
+                    return (!empty($opciones)) ? $opciones : $respuesta->res_respuesta;
+                case 2: // Seleccion multiple
+                    $opciones = $respuesta->opciones->pluck('opc_opcion')->implode(', ');
+                    return (!empty($opciones)) ? $opciones : '';
+                case 3: // Parrafo
+                    return $respuesta->res_parrafo;
+                    case 4: // HSE
+                        $mesEvaluacion = $this->getNombreMes($respuesta->res_mes);
+                        $alDia = $this->getAlDia($respuesta->res_documentacion_sub_contrato);
+                        return implode(', ', [
+                            'Mes de evaluación: ' . $mesEvaluacion,
+                            'Año: ' . $respuesta->res_ano,
+                            'Dotación: ' . $respuesta->res_dotacion,
+                            'Dotación sub contratos: ' . $respuesta->res_dotacion_sub_contratos,
+                            '¿Cuántos de estos son nuevos?: ' . $respuesta->res_dotacion_nuevos,
+                            '¿Todos tienen documentación de sub contratación al día?: ' . $alDia,
+                        ]);
+                    default:
+                    return '';
             }
         }
+
         return '';
+    }
+
+    private function getNombreMes($mesNumero)
+    {
+        $meses = [
+            1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril',
+            5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto',
+            9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre',
+        ];
+
+        return $meses[$mesNumero] ?? '';
+    }
+
+    private function getAlDia($alternativa)
+    {
+        $alDia = [
+            0 => 'No', 1 => 'Si',
+        ];
+
+        return $alDia[$alternativa] ?? '';
     }
 }
