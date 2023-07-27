@@ -20,6 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const dataGrid = $("#dataGridExportar").dxDataGrid({
             dataSource: exportarData,
+            columnChooser: {
+                enabled: true,
+                mode: 'select',
+            },
             // Resto del código del data grid...
             columns: [
                 {
