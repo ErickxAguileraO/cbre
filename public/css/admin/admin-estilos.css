@@ -634,7 +634,7 @@ nav.header * {
 
 .grid-filtros-admin {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 95px;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) 95px;
   gap: 18px;
   border-radius: 8px;
   border: 1px solid #E6E6E6;
@@ -644,7 +644,7 @@ nav.header * {
 
 .grid-filtros-admin-4 {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 95px;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) 95px;
   gap: 18px;
   border-radius: 8px;
   border: 1px solid #E6E6E6;
@@ -654,7 +654,7 @@ nav.header * {
 
 .grid-filtros-admin-3 {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 95px;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) 95px;
   gap: 18px;
   border-radius: 8px;
   border: 1px solid #E6E6E6;
@@ -1177,6 +1177,12 @@ input:checked+.slider:before {
 }
 
 @media(max-width: 578px) {
+  .flex-endResponsivo{
+    display: grid;
+  }
+  .grid2-responsivo{
+    display: grid !important;
+  }
   .row-input-form {
     flex-wrap: nowrap !important;
   }

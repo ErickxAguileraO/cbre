@@ -46,8 +46,6 @@
                             <a href="{{ route('formulario-area-tecnica.ver.formulario', $formulario->form_id) }}"
                                 target="_blank" class="row-option"><i class="fas fa-eye"></i> Visualizar</a>
                             <div id="eliminar-formulario" class="row-option"><i class="fas fa-trash-alt"></i> Eliminar</div>
-                            <div class="row-option modalObservacion__abrirBtn"><i class="fas fa-edit"></i> Observación</div>
-
                         </div>
                     </div>
                 </div>
@@ -62,8 +60,6 @@
 
     </div>
 
-    {{-- Modal observacion --}}
-    {{--     @include('components.modalObservacion') --}}
 @endsection
 
 @push('scripts')
@@ -87,7 +83,4 @@
     </script>
     <script src="{{ asset('/public\js\admin\sistema\area_tecnica\publicar_formulario.js') }}"></script>
     <script src="{{ asset('/public\js\admin\sistema\area_tecnica\eliminar_formulario.js') }}"></script>
-    {{--     <script src="{{ asset('/public/css/componentes/tab/tab.js') }}"></script> --}}
-    {{--     <script src="{{ asset('/public/css/componentes/modal/modal.js') }}"></script>
-    <script src="{{ asset('/public/js/script.js') }}"></script> --}}
 @endpush

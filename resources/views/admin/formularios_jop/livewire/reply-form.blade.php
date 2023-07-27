@@ -294,7 +294,7 @@
                 @endif
             @endforeach
 
-    <div class="botones-formulario">
+    <div class="botones-formulario grid2-responsivo">
         <a href="{{ route('formulario-jop.deshacer.respuesta') }}"
             class="modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">Deshacer todos los cambios
         </a>

@@ -15,7 +15,7 @@ class PostForm extends Component
     public function render()
     {
         return view('admin.formulario_area_tecnica.livewire.post-form',[
-            'edificios' => Edificio::all(),
+            'edificios' => Edificio::orderBy('edi_nombre')->get(),
             'formulario' => Formulario::findOrFail($this->formId),
         ]);
     }
@@ -25,9 +25,15 @@ class PostForm extends Component
 
         try {
             if($edificioId){
-                $this->selectedEdificioId = $edificioId;
-                $formulario = Formulario::findOrFail($this->formId);
-                $formulario->edificios()->attach(Edificio::findOrFail($edificioId));
+                if($edificioId == 'todos'){
+                    $this->selectedEdificioId = $edificioId;
+                    $formulario = Formulario::findOrFail($this->formId);
+                    $formulario->edificios()->attach(Edificio::orderBy('edi_nombre')->get());
+                }else{
+                    $this->selectedEdificioId = $edificioId;
+                    $formulario = Formulario::findOrFail($this->formId);
+                    $formulario->edificios()->attach(Edificio::findOrFail($edificioId));
+                }
             }
         } catch (\Throwable $th) {
             dd($th->getMessage());
