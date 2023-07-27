@@ -70,7 +70,7 @@ class MantencionesJOPController extends Controller
         try {
             $mantencion = Mantencion::with('listadoMantencion')
             ->withFilters()
-            ->orderByDesc('updated_at')
+            ->orderByDesc('created_at')
             ->get();
 
         // Obtener los nombres de las especialidades como una colección
