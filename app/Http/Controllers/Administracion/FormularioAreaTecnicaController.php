@@ -169,10 +169,7 @@ class FormularioAreaTecnicaController extends Controller
      */
     public function show($id)
     {
-/*         return view('admin.formulario_area_tecnica.show', [
-            'formulario' => Formulario::findOrFail($id),
-            'respuestaOpcion' => RespuestaOpcion::all()
-        ]); */
+        //
     }
 
     public function verFormulario()
@@ -221,10 +218,6 @@ class FormularioAreaTecnicaController extends Controller
 
             return view('admin.formulario_area_tecnica.show', [
                 'formulario' => Formulario::findOrFail($idFormulario),
-
-/*                 'estado' => FormularioEdificio::where('foredi_formulario_id', $idFormulario)
-                ->where('foredi_edificio_id', $idEdificio)
-                ->firstOrFail(), */
             ]);
 
         }else{
@@ -331,9 +324,9 @@ class FormularioAreaTecnicaController extends Controller
 
     public function zipArchivos(){
 
-        $formularioId = request('formulario');
-        $preguntaId = request('pregunta');
-        $respuestaId = request('respuesta');
+        $formularioId = request('formulario') ?? 0;
+        $preguntaId = request('pregunta') ?? 0;
+        $respuestaId = request('respuesta') ?? 0;
 
         try {
             ArchivoService::generateZip($formularioId, $preguntaId, $respuestaId);
