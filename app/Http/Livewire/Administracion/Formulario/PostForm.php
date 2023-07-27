@@ -28,7 +28,7 @@ class PostForm extends Component
                 if($edificioId == 'todos'){
                     $this->selectedEdificioId = $edificioId;
                     $formulario = Formulario::findOrFail($this->formId);
-                    $formulario->edificios()->attach(Edificio::all());
+                    $formulario->edificios()->attach(Edificio::orderBy('edi_nombre')->get());
                 }else{
                     $this->selectedEdificioId = $edificioId;
                     $formulario = Formulario::findOrFail($this->formId);
