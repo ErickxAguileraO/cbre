@@ -13,7 +13,8 @@
 
                 <div wire:ignore>
                     <select id="mySelect" class="form-control" style="width:100%;" wire:model="selectedEdificioId">
-                        <option value="">Select an edificio</option>
+                        <option value="">Selecciona un edificio</option>
+                        <option value="todos">Todos</option>
                         @foreach ($edificios as $edificio)
                             <option value="{{$edificio->edi_id}}">{{$edificio->edi_nombre}}</option>
                         @endforeach
