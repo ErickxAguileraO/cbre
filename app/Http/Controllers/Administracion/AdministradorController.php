@@ -62,7 +62,7 @@ class AdministradorController extends Controller
 
         try {
             $user = User::create([
-                'name' => Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2)),
+                'name' => $request->nombre,
                 'email' => $request->email,
                 'password' => Hash::make(Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2))),
             ]);
@@ -134,10 +134,14 @@ class AdministradorController extends Controller
 
             $administrador->save();
 
+            if($administrador->userTrashed->name !== $request->nombre){
+                $administrador->userTrashed->name = $request->nombre;
+                $administrador->userTrashed->save();
+            }
+
             if ($administrador->userTrashed->email !== $request->email) {
                 $administrador->userTrashed->email = $request->email;
-                $administrador->userTrashed->name = Str::before($request->email, '@').bin2hex(openssl_random_pseudo_bytes(2));
-                Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first()));
+                Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first(), $administrador->userTrashed));
             }
 
             $administrador->userTrashed->save();
