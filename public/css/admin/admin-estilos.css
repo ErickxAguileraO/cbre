@@ -1177,6 +1177,9 @@ input:checked+.slider:before {
 }
 
 @media(max-width: 578px) {
+  .grid2-responsivo{
+    display: grid !important;
+  }
   .row-input-form {
     flex-wrap: nowrap !important;
   }

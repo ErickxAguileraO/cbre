@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const dataGrid = $("#dataGridAreaTecnica").dxDataGrid({
             dataSource: formulario,
+            columnChooser: {
+                enabled: true,
+                mode: 'select',
+            },
             // Resto del código del data grid...
             columns: [
                 {
