@@ -91,7 +91,7 @@
                                 @if ($respuesta->archivosFormulario->count() > 0)
                                     <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                         <i class="far fa-paperclip"></i>
-                                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}"
+                                        <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => $respuesta->pregunta->pre_id, 'respuesta' => 0]) }}"
                                             class="text-decoration-none">Información complementaria</a>
                                     </div>
                                 @endif
@@ -110,11 +110,11 @@
                                 @endforeach
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
-                                        <div class="modalFile__abrirBtn"
-                                            wire:click="uploadFileModalRespuesta({{ $respuesta->pregunta->pre_id }})">
+                                        <div class="modalFile__abrirBtn">
                                             @if ($respuesta)
                                                 <i class="far fa-paperclip"></i>
-                                                Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})
+                                                <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => 0, 'respuesta' => $respuesta->res_id]) }}"
+                                                    class="text-decoration-none">Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})</a>
                                             @else
                                                 <i class="far fa-paperclip"></i>
                                                 Archivos adjuntos ({{ 0 }})
@@ -140,7 +140,7 @@
                                 @if ($respuesta->archivosFormulario->count() > 0)
                                     <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                         <i class="far fa-paperclip"></i>
-                                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}"
+                                        <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => $respuesta->pregunta->pre_id, 'respuesta' => 0]) }}"
                                             class="text-decoration-none">Información complementaria</a>
                                     </div>
                                 @endif
@@ -157,11 +157,11 @@
                                 @endforeach
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
-                                        <div class="modalFile__abrirBtn"
-                                            wire:click="uploadFileModalRespuesta({{ $respuesta->pregunta->pre_id }})">
+                                        <div class="modalFile__abrirBtn">
                                             @if ($respuesta)
                                                 <i class="far fa-paperclip"></i>
-                                                Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})
+                                                <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => 0, 'respuesta' => $respuesta->res_id]) }}"
+                                                    class="text-decoration-none">Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})</a>
                                             @else
                                                 <i class="far fa-paperclip"></i>
                                                 Archivos adjuntos ({{ 0 }})
@@ -187,7 +187,7 @@
                                 @if ($respuesta->archivosFormulario->count() > 0)
                                     <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                         <i class="far fa-paperclip"></i>
-                                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}"
+                                        <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => $respuesta->pregunta->pre_id, 'respuesta' => 0]) }}"
                                             class="text-decoration-none">Información complementaria</a>
                                     </div>
                                 @endif
@@ -196,11 +196,11 @@
                                 </div>
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
-                                        <div class="modalFile__abrirBtn"
-                                            wire:click="uploadFileModalRespuesta({{ $respuesta->pregunta->pre_id }})">
+                                        <div class="modalFile__abrirBtn">
                                             @if ($respuesta)
                                                 <i class="far fa-paperclip"></i>
-                                                Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})
+                                                <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => 0, 'respuesta' => $respuesta->res_id]) }}"
+                                                    class="text-decoration-none">Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})</a>
                                             @else
                                                 <i class="far fa-paperclip"></i>
                                                 Archivos adjuntos ({{ 0 }})
@@ -230,7 +230,7 @@
                                         @if ($respuesta->archivosFormulario->count() > 0)
                                             <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                                 <i class="far fa-paperclip"></i>
-                                                <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}"
+                                                <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => $respuesta->pregunta->pre_id, 'respuesta' => 0]) }}"
                                                     class="text-decoration-none">Información complementaria</a>
                                             </div>
                                         @endif
@@ -351,11 +351,11 @@
 
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
-                                        <div class="modalFile__abrirBtn"
-                                            wire:click="uploadFileModalRespuesta({{ $respuesta->pregunta->pre_id }})">
+                                        <div class="modalFile__abrirBtn">
                                             @if ($respuesta)
-                                                <i class="far fa-paperclip"></i>
-                                                Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})
+                                            <i class="far fa-paperclip"></i>
+                                            <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => 0, 'respuesta' => $respuesta->res_id]) }}"
+                                                class="text-decoration-none">Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})</a>
                                             @else
                                                 <i class="far fa-paperclip"></i>
                                                 Archivos adjuntos ({{ 0 }})
@@ -379,6 +379,7 @@
                     @endforeach
 
                 </div>
+
             @else
                 {{--                 Contenedor solo con la estructura del formulario (sin respuestas) --}}
                 <div class="contenedor-form-preguntas">
@@ -396,7 +397,7 @@
                                 @if ($pregunta->archivosFormulario->count() > 0)
                                     <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                         <i class="far fa-paperclip"></i>
-                                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}"
+                                        <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => $pregunta->pre_id, 'respuesta' => 0]) }}"
                                             class="text-decoration-none">Información complementaria</a>
                                     </div>
                                 @endif
@@ -408,8 +409,7 @@
                                 @endforeach
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
-                                        <div class="modalFile__abrirBtn"
-                                            wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})">
+                                        <div class="modalFile__abrirBtn">
                                             <i class="far fa-paperclip"></i>
                                             Archivos adjuntos ({{ 0 }})
                                         </div>
@@ -433,7 +433,7 @@
                                 @if ($pregunta->archivosFormulario->count() > 0)
                                     <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                         <i class="far fa-paperclip"></i>
-                                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}"
+                                        <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => $pregunta->pre_id, 'respuesta' => 0]) }}"
                                             class="text-decoration-none">Información complementaria</a>
                                     </div>
                                 @endif
@@ -445,8 +445,7 @@
                                 @endforeach
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
-                                        <div class="modalFile__abrirBtn"
-                                            wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})">
+                                        <div class="modalFile__abrirBtn">
                                             <i class="far fa-paperclip"></i>
                                             Archivos adjuntos ({{ 0 }})
                                         </div>
@@ -470,7 +469,7 @@
                                 @if ($pregunta->archivosFormulario->count() > 0)
                                     <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                         <i class="far fa-paperclip"></i>
-                                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}"
+                                        <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => $pregunta->pre_id, 'respuesta' => 0]) }}"
                                             class="text-decoration-none">Información complementaria</a>
                                     </div>
                                 @endif
@@ -479,8 +478,7 @@
                                 </div>
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
-                                        <div class="modalFile__abrirBtn"
-                                            wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})">
+                                        <div class="modalFile__abrirBtn">
                                             <i class="far fa-paperclip"></i>
                                             Archivos adjuntos ({{ 0 }})
                                         </div>
@@ -508,7 +506,7 @@
                                         @if ($pregunta->archivosFormulario->count() > 0)
                                             <div class="color-texto-cbre bottom-20 cursor-pointer small">
                                                 <i class="far fa-paperclip"></i>
-                                                <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}"
+                                                <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => $pregunta->pre_id, 'respuesta' => 0]) }}"
                                                     class="text-decoration-none">Información complementaria</a>
                                             </div>
                                         @endif
@@ -601,8 +599,7 @@
 
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
-                                        <div class="modalFile__abrirBtn"
-                                            wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})">
+                                        <div class="modalFile__abrirBtn">
                                             <i class="far fa-paperclip"></i>
                                             Archivos adjuntos ({{ 0 }})
                                         </div>
