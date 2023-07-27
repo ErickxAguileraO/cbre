@@ -291,7 +291,7 @@ class FormularioAreaTecnicaController extends Controller
 
         DB::beginTransaction();
         try {
-
+            $datoGeneral = DatoGeneral::first();
             $formulario = Formulario::findOrFail($request->input('formValue'));
             $formEdificios = FormularioEdificio::where('foredi_formulario_id', $formulario->form_id)->get();
             foreach($formEdificios as $formEdificio){
@@ -306,7 +306,7 @@ class FormularioAreaTecnicaController extends Controller
                 ]);
 
                 foreach($formEdificio->edificio->funcionarios as $funcionario){
-                    Mail::to($funcionario->user->email)->send(new NotificacionFormulario(DatoGeneral::first(), $funcionario->user, $formulario));
+                    Mail::to($funcionario->user->email)->send(new NotificacionFormulario($datoGeneral, $funcionario->user, $formulario));
                 }
 
             }
