@@ -67,7 +67,7 @@
         <a href="/edificios-oficinas">EDIFICIOS Y OFICINAS</a>
         <a href="/noticias">NOTICIAS</a>
         <a href="/contacto">CONTÁCTANOS</a>
-        <a href="/login" class="admin-link"><img src="{{ asset('public/web/imagenes/i-user.svg') }}" alt=""></a>
+        <a href="/admin" class="admin-link"><img src="{{ asset('public/web/imagenes/i-user.svg') }}" alt=""></a>
     </nav>
 
     {{-- Menu movil --}}
