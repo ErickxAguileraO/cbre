@@ -4,11 +4,11 @@
 @section('content')
 
 
-   <div class="grid-2">
+   <div class="grid-2" style="margin-bottom: 30px;">
         <div>
-            <h1>Formulario Área técnica</h1>
+            <h1 style="margin: 0px;">Formulario Área técnica</h1>
         </div>
-        <div class="flex-end">
+        <div class="flex-end flex-endResponsivo">
             <button class="btn-exportar" onclick="window.location.href='{{ route('exportar.index') }}'">Exportar</button>
             @if (!auth()->user()->hasRole('super-admin'))
                 <a class="btn btn-success float-right text-white" href="{{ route('formulario-area-tecnica.create') }}">Crear formulario</a>
