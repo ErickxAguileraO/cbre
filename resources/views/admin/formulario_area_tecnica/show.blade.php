@@ -111,7 +111,7 @@
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
                                         <div class="modalFile__abrirBtn">
-                                            @if ($respuesta)
+                                            @if ($respuesta && $respuesta->archivosFormulario->count() > 0)
                                                 <i class="far fa-paperclip"></i>
                                                 <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => 0, 'respuesta' => $respuesta->res_id]) }}"
                                                     class="text-decoration-none">Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})</a>
@@ -158,7 +158,7 @@
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
                                         <div class="modalFile__abrirBtn">
-                                            @if ($respuesta)
+                                            @if ($respuesta && $respuesta->archivosFormulario->count() > 0)
                                                 <i class="far fa-paperclip"></i>
                                                 <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => 0, 'respuesta' => $respuesta->res_id]) }}"
                                                     class="text-decoration-none">Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})</a>
@@ -197,7 +197,7 @@
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
                                         <div class="modalFile__abrirBtn">
-                                            @if ($respuesta)
+                                            @if ($respuesta && $respuesta->archivosFormulario->count() > 0)
                                                 <i class="far fa-paperclip"></i>
                                                 <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => 0, 'respuesta' => $respuesta->res_id]) }}"
                                                     class="text-decoration-none">Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})</a>
@@ -352,7 +352,7 @@
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
                                         <div class="modalFile__abrirBtn">
-                                            @if ($respuesta)
+                                            @if ($respuesta && $respuesta->archivosFormulario->count() > 0)
                                             <i class="far fa-paperclip"></i>
                                             <a href="{{ route('formulario-area-tecnica.archivos', ['formulario' => $formulario->form_id, 'pregunta' => 0, 'respuesta' => $respuesta->res_id]) }}"
                                                 class="text-decoration-none">Archivos adjuntos ({{ $respuesta->archivosFormulario->count() }})</a>

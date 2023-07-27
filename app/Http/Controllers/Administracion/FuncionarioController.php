@@ -160,6 +160,11 @@ class FuncionarioController extends Controller
             $funcionario->fun_edificio_id = EdificioService::obtenerEdificioRoleFuncionario() ?: $request->edificio;
             $funcionario->save();
 
+            if($funcionario->user->name !== $request->nombre){
+                $funcionario->user->name = $request->nombre;
+                $funcionario->user->save();
+            }
+
             if($funcionario->user->email !== $request->email){
                 $funcionario->user->email = $request->email;
                 Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first(), $funcionario->user));
