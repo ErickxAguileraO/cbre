@@ -168,7 +168,9 @@
                 <li>
                 <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
                     <a href="{{ route('formulario-jop.index') }}" class="nav-link link-padding10">Formularios JOP</a>
-                    <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{ $cantidadFormularios }}</span>
+                    @if ($cantidadFormularios > 0)
+                        <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{ $cantidadFormularios }}</span>
+                    @endif
                 </span>
                 </li>
                 @endcan
@@ -189,13 +191,46 @@
               </span>
             </li>
 
+            @php
+
+            $rolLogeado = auth()->user()->roles->first()->name;
+
+
+            $cantidadFormulariosEstado2 = App\Models\FormularioEdificio::where(function ($query) use ($rolLogeado) {
+                if ($rolLogeado !== 'super-admin') {
+                    $query->whereHas('formulario', function ($formQuery) use ($rolLogeado) {
+                        $formQuery->whereHas('funcionario.user.roles', function ($userQuery) use ($rolLogeado) {
+                            $userQuery->where('name', $rolLogeado);
+                        });
+                    });
+                }
+            })
+            ->where('foredi_estado', 2)
+            ->count();
+
+            @endphp
+            @php
+                // Obtener la cantidad de mantenciones nuevas sin leer
+                $cantidadMantencionesSinLeer = App\Models\Mantencion::where('man_leida', false)->count();
+            @endphp
             <li class="sub-menu-area-tecnica">
-              <span class="nav-item nav-link collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a href="{{ route('formulario-area-tecnica.index') }}" class="nav-link">Formulario Área técnica</a>
-                @can('index mantencion')
-                <a href="{{ route('mantenciones-soporte-tecnico.index') }}" class="nav-link">Mantención Soporte técnico</a>
-                @endcan
-              </span>
+                <div class="collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
+                    <span class="nav-item nav-link row-menu">
+                        <a href="{{ route('formulario-area-tecnica.index') }}" class="nav-link">Formulario Área técnica</a>
+                        @if ($cantidadFormulariosEstado2 > 0)
+                            <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{ $cantidadFormulariosEstado2 }}</span>
+                        @endif
+                      </span>
+                      <span class="nav-item nav-link row-menu">
+                        @can('index mantencion')
+                        <a href="{{ route('mantenciones-soporte-tecnico.index') }}" class="nav-link">Mantención Soporte técnico</a>
+                        @if ($cantidadMantencionesSinLeer > 0)
+                            <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{$cantidadMantencionesSinLeer}}</span>
+                        @endif
+                        @endcan
+                      </span>
+                </div>
+
             </li>
             @endcan
           </ul>
@@ -230,6 +265,18 @@
   $(".menu-area-tecnica").click(function() {
     $(".sub-menu-area-tecnica").toggle();
   })
+</script>
+
+<script>
+    // JavaScript para actualizar el contador de mantenciones nuevas al hacer clic en la pestaña
+    document.addEventListener('DOMContentLoaded', () => {
+        const linkMantencionesSoporteTecnico = document.querySelector('#link-mantenciones-soporte-tecnico');
+
+        linkMantencionesSoporteTecnico.addEventListener('click', () => {
+            // Actualizar el contador en la pestaña con la cantidad de mantenciones nuevas sin leer
+            document.querySelector('.contador-notificaciones').textContent = '0';
+        });
+    });
 </script>
 @stack('scripts')
 @livewireScripts

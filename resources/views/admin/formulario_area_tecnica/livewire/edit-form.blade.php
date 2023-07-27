@@ -483,7 +483,7 @@
 
     <div class="linea-separadora"></div>
 
-    <div class="botones-formulario">
+    <div class="botones-formulario grid2-responsivo">
         <a id="eliminar-formulario"
         class="modalFile__cerrarBtn modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">
         Eliminar

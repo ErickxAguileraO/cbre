@@ -12,6 +12,16 @@ class MantencionSoporteTecnicoController extends Controller
     public function index()
     {
         $listadoEspecialidades =  ListadoMantencion::all();
+        $mantencion = Mantencion::with(['listadoMantencion', 'edificios'])
+        ->withFilters()
+        ->orderByDesc('updated_at')
+        ->get();
+
+        // Marcar todas las mantenciones como leídas
+        foreach ($mantencion as $mantenciones) {
+            $mantenciones->man_leida = true;
+            $mantenciones->save();
+        }
         return view('admin.mantencion_soporte_tecnico.index', compact('listadoEspecialidades'));
     }
 
@@ -27,7 +37,7 @@ class MantencionSoporteTecnicoController extends Controller
         try {
             $mantencion = Mantencion::with(['listadoMantencion', 'edificios'])
             ->withFilters()
-            ->orderByDesc('updated_at')
+            ->orderByDesc('created_at')
             ->get();
 
         // Obtener los nombres de las especialidades como una colección

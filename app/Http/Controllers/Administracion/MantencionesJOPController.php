@@ -38,6 +38,7 @@ class MantencionesJOPController extends Controller
                 'man_listado_mantencions_id' => $request->especialidad,
                 'man_descripcion' => $request->detalle,
                 'man_edificio_id' => $edificio->edi_id,
+                'man_leida' => false, // Agregar esta línea para establecer la mantención como no leída
             ]);
             $url = ArchivoService::subirArchivos($request->archivo, 'mantencion', $mantencion->man_id, 'mantencion');
             ArchivoMantencion::create([
@@ -69,7 +70,7 @@ class MantencionesJOPController extends Controller
         try {
             $mantencion = Mantencion::with('listadoMantencion')
             ->withFilters()
-            ->orderByDesc('updated_at')
+            ->orderByDesc('created_at')
             ->get();
 
         // Obtener los nombres de las especialidades como una colección

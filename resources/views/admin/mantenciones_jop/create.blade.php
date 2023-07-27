@@ -45,7 +45,7 @@
             <small id="detalle_error" class="field-message-alert absolute"></small>
         </div>
 
-        <div class="botones-formulario" style="justify-content: flex-start;">
+        <div class="botones-formulario grid2-responsivo" style="justify-content: flex-start;">
             <button type="button" onclick="location.href = '{{ route('mantenciones-jop.index') }}'" class="modalFile__btnN">Cancelar</button>
             <div class="modalMantencion__abrirBtn modalFile__btnN modalFile__botonPrimario">Enviar mantención</div>
         </div>
