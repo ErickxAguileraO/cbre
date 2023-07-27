@@ -25,15 +25,15 @@ class Mantencion extends Model
 
     public function getFechaAttribute()
     {
-        return Carbon::parse($this->updated_at)->format('d-m-Y');
+        return Carbon::parse($this->created_at)->format('d-m-Y');
     }
 
     public function scopeWithFilters($query)
     {
         return $query->when(request('fechaInicio'), function ($query, $inicio) {
-            $query->whereRaw("DATE_FORMAT(updated_at, '%Y-%m-%d') >= ?", [$inicio]);
+            $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d') >= ?", [$inicio]);
         })->when(request('fechaTermino'), function ($query, $termino) {
-            $query->whereRaw("DATE_FORMAT(updated_at, '%Y-%m-%d') <= ?", [$termino]);
+            $query->whereRaw("DATE_FORMAT(created_at, '%Y-%m-%d') <= ?", [$termino]);
         })->when(request('especialidad'), function ($query, $especialidad) {
             $query->whereHas('listadoMantencion', function ($query) use ($especialidad) {
                 $query->where('lism_nombre', $especialidad);
