@@ -209,9 +209,7 @@ class ReplyForm extends Component
                 $this->dispatchBrowserEvent('fireSwalerror');
             }
 
-
         }
-
     }
 
 
