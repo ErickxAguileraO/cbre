@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- release
+
+variables:
+- group: credenciales
+
+steps:
+- script: |
+    rsync -auv -e 'sshpass -p "$(password_produccion)" ssh -o StrictHostKeyChecking=no' --chown=tcbreaeuru:tcbreaeuru  --exclude='.htaccess' --exclude='*.md' --exclude='*.yml' --exclude='.git' --exclude='.env'  --exclude='.env.example' --exclude='composer.lock' --exclude='BD' . root@45.33.42.95:/home/tcbreaeuru/public_html/
+  displayName: 'Rsync a servidor de testing'
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'produccion'
+    runOptions: 'commands'
+    commands: |
+      cd /home/tcbreaeuru/public_html/ && php artisan migrate --force
+    readyTimeout: '20000'

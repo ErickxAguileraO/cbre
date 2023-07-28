@@ -311,9 +311,15 @@ class FormularioAreaTecnicaController extends Controller
 
             }
 
-            DB::commit();
+            if($formulario->preguntas->count() == 0){
+                return response()->json(['error' => '¡El formulario debe tener al menos una pregunta!'], 500);
+            }elseif($formulario->form_nombre == ''){
+                return response()->json(['error' => '¡Debes completar todos los campos requeridos!'], 500);
+            }else{
+                DB::commit();
+                return response()->json(['success' => '¡El formulario se ha publicado correctamente!'], 200);
+            }
 
-        return response()->json(['success' => '¡El formulario se ha publicado correctamente!'], 200);
         } catch (\Throwable $th) {
             DB::rollback();
 
