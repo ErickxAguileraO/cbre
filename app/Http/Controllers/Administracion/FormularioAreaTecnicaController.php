@@ -396,7 +396,7 @@ class FormularioAreaTecnicaController extends Controller
 
             Historial::create([
                 'his_formulario_edificio_id' => $request->idForm,
-                'his_accion' => 'Observación    ',
+                'his_accion' => 'Observación',
                 'his_usuario' => $usuario,
                 'his_estado' => 'Publicado',
             ]);
@@ -414,11 +414,19 @@ class FormularioAreaTecnicaController extends Controller
         DB::beginTransaction();
 
         try {
+            $usuario = Auth::user()->funcionario->fun_nombre;
             $formEdificios = FormularioEdificio::where('foredi_id', $request->idForm)
                             ->where('foredi_edificio_id', $request->idEdificio)
                             ->first();
             $formEdificios->foredi_estado = 3;
             $formEdificios->update();
+
+            Historial::create([
+                'his_formulario_edificio_id' => $request->idForm,
+                'his_accion' => 'Cerrado',
+                'his_usuario' => $usuario,
+                'his_estado' => 'Cerrado',
+            ]);
 
             DB::commit();
             return response()->json(['success' => '¡Formulario cerrado correctamente!'], 200);

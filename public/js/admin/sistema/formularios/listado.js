@@ -72,6 +72,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                         id: 2,
                                         name: "Enviado",
                                     },
+                                    {
+                                        id: 3,
+                                        name: "Enviado",
+                                    },
                                 ],
                                 key: "id",
                             },
@@ -97,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         let templateResponder = `<a href="${urlResponder}" class="btn btn-success text-white">Responder</a>`;
                         let templateView = ''; // Inicialmente oculto el botón adicional
-                        if (estado === 2) { // Estado "Enviado"
+                        if (estado === 2 || estado === 3) { // Estado "Enviado"
                             templateResponder = ''; // Oculta el botón "Responder"
                             templateView = `<a href="${urlView}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-eye"></i></a>`; // Muestra el botón adicional
                           }
