@@ -219,7 +219,7 @@
 
     <section class="flex-noticias-home">
         <div class="noticias-home">
-            <h1>Documentos de la comunidad</h1>
+            <h2 class="tituloSeccion">Documentos de la comunidad</h2>
             <p class="p-txt-seccion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi odit quod expedita voluptatibus harum nobis doloremque.</p>
             <div class="carruselNoticias">
                 <div class="noticia-home-n">

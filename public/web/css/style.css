@@ -1084,6 +1084,11 @@ footer .rrss{
 .galeria img:hover{
     transform: scale(1.05);
 }
+.tituloSeccion{
+    font-weight: 400 !important;
+    font-size: 40px !important;
+    line-height: 44px !important; 
+}
 /* Responsive */
 @media (max-width: 1400px) {
     /* Edificios */
