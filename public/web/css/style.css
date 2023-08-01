@@ -395,6 +395,19 @@ footer .rrss{
     padding-top: 100px;
     padding-bottom: 55px;
 }
+
+
+.flex-documentos-edificio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: #F1F7F9;
+    padding-top: 100px;
+    padding-bottom: 55px;
+}
+
 .flex-noticias-edificio{
     display: flex;
     flex-direction: column;
