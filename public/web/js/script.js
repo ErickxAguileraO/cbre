@@ -83,7 +83,7 @@ $('.carruselDocumentos').slick({
     {
       breakpoint: 990,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
         slidesToScroll: 1
       }
     },
