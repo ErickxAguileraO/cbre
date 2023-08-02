@@ -1633,11 +1633,11 @@ footer .rrss{
     align-items: center;
     justify-content: center;
     width: 100%!important;
-    height: 250px!important;
+    height: 200px!important;
     background-color: white;
 }
-.imgFormato{
-    width: 100px;
+.imgFormato img{
+    width: 90px;
 }
 
 .imagen-noticias-detalle {
