@@ -369,8 +369,30 @@
     </section>
 
     <section class="flex-operaciones">
-        <div class="operaciones">
 
+        <div class="operaciones">
+            @foreach ($edificio->funcionarios->filter(function ($funcionario) {
+                return $funcionario->fun_cargo == 'Gerente';
+                }) as $funcionario)
+                <div class="operaciones-contenido">
+                    <h2>Gerente del edificio</h2>
+                    <div class="operacion-n">
+                        <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
+                        <div class="txt-operacion">
+                            <h4>{{ $funcionario->fun_nombre }} {{ $funcionario->fun_apellido }}</h4>
+                            <p class="cursive">{{ $funcionario->fun_cargo }}</p>
+                            <div class="telefono-correo-operacion">
+                                <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
+                                <p>+56 {{ PrintPhone($funcionario->fun_telefono) }}</p>
+                            </div>
+                            <a href="mailto:{{ $funcionario->user->email }}" class="telefono-correo-operacion">
+                                <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
+                                <p>Enviar un correo</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             @foreach ($edificio->funcionarios->filter(function ($funcionario) {
             return $funcionario->fun_cargo == 'Jefe de operaciones';
             }) as $funcionario)
@@ -397,7 +419,7 @@
             return $funcionario->fun_cargo == 'Asistente de operaciones';
             }) as $funcionario)
             <div class="operaciones-contenido">
-                <h2>Asistente de operaciones</h2>
+                <h2>Asistente de operaciones del edificio</h2>
                 <div class="operacion-n">
                     <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                     <div class="txt-operacion">

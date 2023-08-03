@@ -123,7 +123,7 @@
                   <div class="imagen1"><span>Imágenes de la galería (tamaño mínimo 520px X 385px)</span>
                      <div class="container-content my-5">
                            <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" />
-                           <div class="d-none my-4 croppie-image" data-min-width="520" data-min-height="385"></div>
+                           <div class="d-none my-4 croppie-image" data-min-width="4032" data-min-height="3024"></div>
                      </div>
                      <div class="position-relative">
                         <div class="custom-file">

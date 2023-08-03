@@ -88,7 +88,7 @@ class FuncionarioController extends Controller
                 'fun_edificio_id' => EdificioService::obtenerEdificioRoleFuncionario() ?: $request->edificio
             ]);
 
-            if($request->cargo == 'Jefe de operaciones' || $request->cargo == 'Asistente de operaciones'){
+            if($request->cargo == 'Jefe de operaciones' || $request->cargo == 'Asistente de operaciones' || $request->cargo == 'Gerente'){
                 $user->assignRole('funcionario');
             }elseif($request->cargo == 'Prevencionista'){
                 $user->assignRole('prevencionista');
@@ -160,17 +160,7 @@ class FuncionarioController extends Controller
             $funcionario->fun_edificio_id = EdificioService::obtenerEdificioRoleFuncionario() ?: $request->edificio;
             $funcionario->save();
 
-            if($funcionario->user->name !== $request->nombre){
-                $funcionario->user->name = $request->nombre;
-                $funcionario->user->save();
-            }
-
-            if($funcionario->user->email !== $request->email){
-                $funcionario->user->email = $request->email;
-                Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first(), $funcionario->user));
-            }
-
-            if ($request->cargo == 'Jefe de operaciones' || $request->cargo == 'Asistente de operaciones') {
+            if ($request->cargo == 'Jefe de operaciones' || $request->cargo == 'Asistente de operaciones' || $request->cargo == 'Gerente') {
                 $funcionario->user->removeRole('prevencionista');
                 $funcionario->user->removeRole('tecnico');
                 $funcionario->user->assignRole('funcionario');
@@ -184,6 +174,14 @@ class FuncionarioController extends Controller
                 $funcionario->user->assignRole('tecnico');
             }
 
+            if($funcionario->user->name !== $request->nombre){
+                $funcionario->user->name = $request->nombre;
+            }
+
+            if($funcionario->user->email !== $request->email){
+                $funcionario->user->email = $request->email;
+                Mail::to($request->email)->send(new NotificacionRegistro($request, DatoGeneral::first(), $funcionario->user));
+            }
 
             $funcionario->user->save();
 
