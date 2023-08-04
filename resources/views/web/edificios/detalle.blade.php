@@ -224,19 +224,18 @@
             <div class="carruselDocumentos">
                 @foreach ($edificio->documentos as $documento)
                 <div class="noticia-home-n">
-                    <a href="{{$documento->urlDocumento}}">
+                    <a href="{{$documento->urlDocumento}}" target="_blank">
                         <div class="imgFormato">
                             @if ($documento->doc_extension == 'pdf')
                             <img src="{{ asset('public/web/imagenes/i-pdf.svg') }}" alt="">
-                            @endif
-                            @if ($documento->doc_extension == 'docx')
+                            @elseif ($documento->doc_extension == 'docx')
                             <img src="{{ asset('public/web/imagenes/i-doc.svg') }}" alt="">
-                            @endif
-                            @if ($documento->doc_extension == 'png' || $documento->doc_extension == 'jpg' || $documento->doc_extension == 'jpeg')
+                            @elseif ($documento->doc_extension == 'png' || $documento->doc_extension == 'jpg' || $documento->doc_extension == 'jpeg')
                             <img src="{{ asset('public/web/imagenes/i-img.svg') }}" alt="">
-                            @endif
-                            @if ($documento->doc_extension == 'xlsx')
+                            @elseif ($documento->doc_extension == 'xlsx')
                             <img src="{{ asset('public/web/imagenes/i-excel.svg') }}" alt="">
+                            @else
+                            <img src="{{ asset('public/web/imagenes/i-formato.svg') }}" alt="">
                             @endif
                         </div>
                         <div class="contenido-noticia-n">
@@ -245,7 +244,7 @@
                                 <p>Publicado el {{$documento->created_at}}</p>
                             </div>
                             <h2>{{$documento->doc_nombre}}</h2>
-                            <a href="{{$documento->urlDocumento}}" class="ver-mas">
+                            <a href="{{$documento->urlDocumento}}" target="_blank" class="ver-mas">
                                 <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                 <p>Descargar documento</p>
                             </a>
@@ -260,18 +259,17 @@
                     <div class="noticia-home-n">
                         <a href="{{$documento->urlDocumento}}" target="_blank">
                             <div class="imgFormato">
-                                @if ($documento->doc_extension == 'pdf')
-                                <img src="{{ asset('public/web/imagenes/i-pdf.svg') }}" alt="">
-                                @endif
-                                @if ($documento->doc_extension == 'docx')
-                                <img src="{{ asset('public/web/imagenes/i-doc.svg') }}" alt="">
-                                @endif
-                                @if ($documento->doc_extension == 'png' || $documento->doc_extension == 'jpg' || $documento->doc_extension == 'jpeg')
-                                <img src="{{ asset('public/web/imagenes/i-img.svg') }}" alt="">
-                                @endif
-                                @if ($documento->doc_extension == 'xlsx')
-                                <img src="{{ asset('public/web/imagenes/i-excel.svg') }}" alt="">
-                                @endif
+                            @if ($documento->doc_extension == 'pdf')
+                            <img src="{{ asset('public/web/imagenes/i-pdf.svg') }}" alt="">
+                            @elseif ($documento->doc_extension == 'docx')
+                            <img src="{{ asset('public/web/imagenes/i-doc.svg') }}" alt="">
+                            @elseif ($documento->doc_extension == 'png' || $documento->doc_extension == 'jpg' || $documento->doc_extension == 'jpeg')
+                            <img src="{{ asset('public/web/imagenes/i-img.svg') }}" alt="">
+                            @elseif ($documento->doc_extension == 'xlsx')
+                            <img src="{{ asset('public/web/imagenes/i-excel.svg') }}" alt="">
+                            @else
+                            <img src="{{ asset('public/web/imagenes/i-formato.svg') }}" alt="">
+                            @endif
                             </div>
                             <div class="contenido-noticia-n">
                                 <div class="date-noticia">
@@ -339,12 +337,14 @@
 
     <section class="flex-operaciones">
 
+        @if (count($edificio->funcionarios) > 1)
+
         <div class="operaciones">
             @foreach ($edificio->funcionarios->filter(function ($funcionario) {
                 return $funcionario->fun_cargo == 'Gerente';
                 }) as $funcionario)
                 <div class="operaciones-contenido">
-                    <h2>Gerente del edificio</h2>
+                    <h2>Gerente</h2>
                     <div class="operacion-n">
                         <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                         <div class="txt-operacion">
@@ -366,7 +366,7 @@
             return $funcionario->fun_cargo == 'Jefe de operaciones';
             }) as $funcionario)
             <div class="operaciones-contenido">
-                <h2>Jefe de operaciones del edificio</h2>
+                <h2>Jefe de operaciones</h2>
                 <div class="operacion-n">
                     <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                     <div class="txt-operacion">
@@ -388,7 +388,7 @@
             return $funcionario->fun_cargo == 'Asistente de operaciones';
             }) as $funcionario)
             <div class="operaciones-contenido">
-                <h2>Asistente de operaciones del edificio</h2>
+                <h2>Asistente de operaciones</h2>
                 <div class="operacion-n">
                     <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                     <div class="txt-operacion">
@@ -407,6 +407,80 @@
             </div>
             @endforeach
         </div>
+
+        @else
+
+        <div class="operaciones-2">
+            @foreach ($edificio->funcionarios->filter(function ($funcionario) {
+                return $funcionario->fun_cargo == 'Gerente';
+                }) as $funcionario)
+                <div class="operaciones-contenido">
+                    <h2>Gerente</h2>
+                    <div class="operacion-n">
+                        <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
+                        <div class="txt-operacion">
+                            <h4>{{ $funcionario->fun_nombre }} {{ $funcionario->fun_apellido }}</h4>
+                            <p class="cursive">{{ $funcionario->fun_cargo }}</p>
+                            <div class="telefono-correo-operacion">
+                                <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
+                                <p>+56 {{ PrintPhone($funcionario->fun_telefono) }}</p>
+                            </div>
+                            <a href="mailto:{{ $funcionario->user->email }}" class="telefono-correo-operacion">
+                                <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
+                                <p>Enviar un correo</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            @foreach ($edificio->funcionarios->filter(function ($funcionario) {
+            return $funcionario->fun_cargo == 'Jefe de operaciones';
+            }) as $funcionario)
+            <div class="operaciones-contenido">
+                <h2>Jefe de operaciones</h2>
+                <div class="operacion-n">
+                    <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
+                    <div class="txt-operacion">
+                        <h4>{{ $funcionario->fun_nombre }} {{ $funcionario->fun_apellido }}</h4>
+                        <p class="cursive">{{ $funcionario->fun_cargo }}</p>
+                        <div class="telefono-correo-operacion">
+                            <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
+                            <p>+56 {{ PrintPhone($funcionario->fun_telefono) }}</p>
+                        </div>
+                        <a href="mailto:{{ $funcionario->user->email }}" class="telefono-correo-operacion">
+                            <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
+                            <p>Enviar un correo</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @foreach ($edificio->funcionarios->filter(function ($funcionario) {
+            return $funcionario->fun_cargo == 'Asistente de operaciones';
+            }) as $funcionario)
+            <div class="operaciones-contenido">
+                <h2>Asistente de operaciones</h2>
+                <div class="operacion-n">
+                    <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
+                    <div class="txt-operacion">
+                        <h4>{{ $funcionario->fun_nombre }} {{ $funcionario->fun_apellido }}</h4>
+                        <p class="cursive">{{ $funcionario->fun_cargo }}</p>
+                        <div class="telefono-correo-operacion">
+                            <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
+                            <p>+56 {{ PrintPhone($funcionario->fun_telefono) }}</p>
+                        </div>
+                        <a href="mailto:{{ $funcionario->user->email }}" class="telefono-correo-operacion">
+                            <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
+                            <p>Enviar un correo</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        @endif
+
 
     </section>
 </div>

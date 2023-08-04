@@ -866,35 +866,48 @@ footer .rrss{
 
 .operaciones {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust the minmax value as needed */
-    place-items: center; /* Center the grid items horizontally and vertically */
-    width: 90%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: center;
+    width: 70%;
     height: auto;
     gap: 20px;
 }
 
+.operaciones-2 {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    height: auto;
+    gap: 20px;
+}
 
-.operacion-n{
+.operacion-n {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 30px;
     width: 90%;
     height: 170px;
 }
-.operaciones-contenido{
+
+.operaciones-contenido {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Center the content */
     width: 100%;
 }
-.operaciones-contenido h2{
+
+.operaciones-contenido h2 {
     font-weight: 400;
     font-size: 34px;
     line-height: 44px;
     /* identical to box height, or 110% */
     color: #000000;
     margin-bottom: 40px;
+    text-align: center;
 }
+
+
 .txt-operacion h4{
     font-weight: 500;
     font-size: 22px;
@@ -1537,6 +1550,14 @@ footer .rrss{
         height: 100%;
     }
     .operaciones {
+        display: grid;
+        grid-template-columns: 1fr;
+        place-items: center;
+        width: 100%;
+        height: auto;
+        gap: 40px;
+    }
+    .operaciones-2 {
         display: grid;
         grid-template-columns: 1fr;
         place-items: center;

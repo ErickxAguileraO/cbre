@@ -67,7 +67,7 @@ document.querySelectorAll("#eliminar-documento").forEach(function (element) {
 });
 
 $("#agregar-documentos").click(function () {
-    let html_file = '<div class="my-3"> ';
+    let html_file = '<div class="my-5"> ';
     html_file +=
         '<input type="text"  name="nombres_documentos[]" class="form-control col-sm-5" placeholder="Nombre del documento" data-maximo-caracteres="30">';
     html_file +=
