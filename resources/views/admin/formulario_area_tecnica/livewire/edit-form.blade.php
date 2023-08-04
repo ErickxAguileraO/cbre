@@ -74,7 +74,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <input id="" name="" wire:model.defer="opc_opcion.{{$opcion->opc_id}}" wire:change="updateOptionTitle({{ $opcion->opc_id }})" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="50" type="text" tabindex="1"
-                                    placeholder="Pregunta" />
+                                    placeholder="Opción" />
                             </div>
                         </div>
                         @if ($index >= 1)

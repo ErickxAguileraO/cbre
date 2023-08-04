@@ -211,137 +211,87 @@
                 @endforeach
             </div>
             @endif
-
         </div>
     </section>
     @endif
 
-
+    @if (count($edificio->documentos) >= 1)
     <section class="flex-noticias-home">
         <div class="noticias-home">
             <h2 class="tituloSeccion">Documentos de la comunidad</h2>
             <p class="p-txt-seccion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi odit quod expedita voluptatibus harum nobis doloremque.</p>
+            @if (count($edificio->documentos) >= 5)
             <div class="carruselDocumentos">
+                @foreach ($edificio->documentos as $documento)
                 <div class="noticia-home-n">
-                    <a href="#">
+                    <a href="{{$documento->urlDocumento}}">
                         <div class="imgFormato">
+                            @if ($documento->doc_extension == 'pdf')
                             <img src="{{ asset('public/web/imagenes/i-pdf.svg') }}" alt="">
-                        </div>
-                        <div class="contenido-noticia-n">
-                            <div class="date-noticia">
-                                <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                <p>Publicado el 14-03-2023 13:45</p>
-                            </div>
-                            <h2>Nombre documento</h2>
-                            <a href="#" class="ver-mas">
-                                <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                <p>Descargar documento</p>
-                            </a>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="noticia-home-n">
-                    <a href="#">
-                        <div class="imgFormato">
+                            @endif
+                            @if ($documento->doc_extension == 'docx')
                             <img src="{{ asset('public/web/imagenes/i-doc.svg') }}" alt="">
-                        </div>
-                        <div class="contenido-noticia-n">
-                            <div class="date-noticia">
-                                <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                <p>Publicado el 14-03-2023 13:45</p>
-                            </div>
-                            <h2>Nombre documento</h2>
-                            <a href="#" class="ver-mas">
-                                <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                <p>Descargar documento</p>
-                            </a>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="noticia-home-n">
-                    <a href="#">
-                        <div class="imgFormato">
+                            @endif
+                            @if ($documento->doc_extension == 'png' || $documento->doc_extension == 'jpg' || $documento->doc_extension == 'jpeg')
                             <img src="{{ asset('public/web/imagenes/i-img.svg') }}" alt="">
-                        </div>
-                        <div class="contenido-noticia-n">
-                            <div class="date-noticia">
-                                <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                <p>Publicado el 14-03-2023 13:45</p>
-                            </div>
-                            <h2>Nombre documento</h2>
-                            <a href="#" class="ver-mas">
-                                <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                <p>Descargar documento</p>
-                            </a>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="noticia-home-n">
-                    <a href="#">
-                        <div class="imgFormato">
+                            @endif
+                            @if ($documento->doc_extension == 'xlsx')
                             <img src="{{ asset('public/web/imagenes/i-excel.svg') }}" alt="">
+                            @endif
                         </div>
                         <div class="contenido-noticia-n">
                             <div class="date-noticia">
                                 <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                <p>Publicado el 14-03-2023 13:45</p>
+                                <p>Publicado el {{$documento->created_at}}</p>
                             </div>
-                            <h2>Nombre documento</h2>
-                            <a href="#" class="ver-mas">
+                            <h2>{{$documento->doc_nombre}}</h2>
+                            <a href="{{$documento->urlDocumento}}" class="ver-mas">
                                 <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
                                 <p>Descargar documento</p>
                             </a>
                         </div>
                     </a>
                 </div>
-
-                <div class="noticia-home-n">
-                    <a href="#">
-                        <div class="imgFormato">
-                            <img src="{{ asset('public/web/imagenes/i-formato.svg') }}" alt="">
-                        </div>
-                        <div class="contenido-noticia-n">
-                            <div class="date-noticia">
-                                <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                <p>Publicado el 14-03-2023 13:45</p>
-                            </div>
-                            <h2>Nombre documento</h2>
-                            <a href="#" class="ver-mas">
-                                <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                <p>Descargar documento</p>
-                            </a>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
             </div>
-            {{-- Esto debe estar en un else el cual se muestre si solo hay 4 o menos documentos --}}
-            {{-- <div class="flex-carrusel">
-                <div class="noticia-home-n">
-                    <a href="#">
-                        <div class="imgFormato">
-                            <img src="{{ asset('public/web/imagenes/i-excel.svg') }}" alt="">
-                        </div>
-                        <div class="contenido-noticia-n">
-                            <div class="date-noticia">
-                                <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
-                                <p>Publicado el 14-03-2023 13:45</p>
+                @else
+                <div class="flex-carrusel">
+                    @foreach ($edificio->documentos as $documento)
+                    <div class="noticia-home-n">
+                        <a href="{{$documento->urlDocumento}}" target="_blank">
+                            <div class="imgFormato">
+                                @if ($documento->doc_extension == 'pdf')
+                                <img src="{{ asset('public/web/imagenes/i-pdf.svg') }}" alt="">
+                                @endif
+                                @if ($documento->doc_extension == 'docx')
+                                <img src="{{ asset('public/web/imagenes/i-doc.svg') }}" alt="">
+                                @endif
+                                @if ($documento->doc_extension == 'png' || $documento->doc_extension == 'jpg' || $documento->doc_extension == 'jpeg')
+                                <img src="{{ asset('public/web/imagenes/i-img.svg') }}" alt="">
+                                @endif
+                                @if ($documento->doc_extension == 'xlsx')
+                                <img src="{{ asset('public/web/imagenes/i-excel.svg') }}" alt="">
+                                @endif
                             </div>
-                            <h2>Nombre documento</h2>
-                            <a href="#" class="ver-mas">
-                                <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
-                                <p>Descargar documento</p>
-                            </a>
-                        </div>
-                    </a>
+                            <div class="contenido-noticia-n">
+                                <div class="date-noticia">
+                                    <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
+                                    <p>Publicado el {{$documento->created_at}}</p>
+                                </div>
+                                <h2>{{$documento->doc_nombre}}</h2>
+                                <a href="{{$documento->urlDocumento}}" target="_blank" class="ver-mas">
+                                    <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
+                                    <p>Descargar documento</p>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                    @endforeach
                 </div>
-            </div> --}}
+            @endif
         </div>
     </section>
-
-
+    @endif
 
     @if (count($edificio->certificaciones) >= 1)
     <section class="flex-certificaciones-edificio">
@@ -388,8 +338,30 @@
     </section>
 
     <section class="flex-operaciones">
-        <div class="operaciones">
 
+        <div class="operaciones">
+            @foreach ($edificio->funcionarios->filter(function ($funcionario) {
+                return $funcionario->fun_cargo == 'Gerente';
+                }) as $funcionario)
+                <div class="operaciones-contenido">
+                    <h2>Gerente del edificio</h2>
+                    <div class="operacion-n">
+                        <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
+                        <div class="txt-operacion">
+                            <h4>{{ $funcionario->fun_nombre }} {{ $funcionario->fun_apellido }}</h4>
+                            <p class="cursive">{{ $funcionario->fun_cargo }}</p>
+                            <div class="telefono-correo-operacion">
+                                <img src="{{ asset('public/web/imagenes/i-telefono-green.svg') }}" alt="">
+                                <p>+56 {{ PrintPhone($funcionario->fun_telefono) }}</p>
+                            </div>
+                            <a href="mailto:{{ $funcionario->user->email }}" class="telefono-correo-operacion">
+                                <img src="{{ asset('public/web/imagenes/i-correo-green.svg') }}" alt="">
+                                <p>Enviar un correo</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             @foreach ($edificio->funcionarios->filter(function ($funcionario) {
             return $funcionario->fun_cargo == 'Jefe de operaciones';
             }) as $funcionario)
@@ -416,7 +388,7 @@
             return $funcionario->fun_cargo == 'Asistente de operaciones';
             }) as $funcionario)
             <div class="operaciones-contenido">
-                <h2>Asistente de operaciones</h2>
+                <h2>Asistente de operaciones del edificio</h2>
                 <div class="operacion-n">
                     <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                     <div class="txt-operacion">

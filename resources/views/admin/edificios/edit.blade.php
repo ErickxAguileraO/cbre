@@ -123,7 +123,7 @@
                   <div class="imagen1"><span>Imágenes de la galería (tamaño mínimo 520px X 385px)</span>
                      <div class="container-content my-5">
                            <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" />
-                           <div class="d-none my-4 croppie-image" data-min-width="520" data-min-height="385"></div>
+                           <div class="d-none my-4 croppie-image" data-min-width="4032" data-min-height="3024"></div>
                      </div>
                      <div class="position-relative">
                         <div class="custom-file">
@@ -156,6 +156,40 @@
             </div>
          </div>
       </fieldset>
+
+      <fieldset class="row">
+        <div class="col-sm-4">
+          <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Documentos</span></div>
+                @foreach ($edificio->documentos as $documento)
+                <div id="documentos-cargados-container">
+                    <div class="my-3">
+                        <input disabled type="text" name="nombres_documentos[]" class="form-control col-sm-5"
+                            placeholder="{{$documento->doc_nombre}}" data-maximo-caracteres="30"/>
+                        <input disabled style="margin-bottom: 0px;"  type="file" name="documentos[]" class="input-file"/>
+                        <a href="{{$documento->getUrlDocumentoAttribute()}}" target="_blank">
+                            <i class="fas fa-download" style="font-size: 15px;margin-left: 20px;color: #18755e;" ></i>
+                        </a>
+                        <a>
+                            <input type="hidden" id="doc_id[]" name="doc_id[]" value="{{$documento->doc_id}}">
+                            <i class="fas fa-trash" id="eliminar-documento" style="font-size: 15px;margin-left: 20px;color: #cd2222;" ></i>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+          <div id='documentos-container'>
+            <div>
+                <input type="text" name="nombres_documentos[]" class="form-control col-sm-5"
+                    placeholder="Nombre del documento"/>
+                <input style="margin-bottom: 0px;"  type="file" name="documentos[]" class="input-file"/>
+                <a>
+                    <i class="fas fa-trash" style="visibility: hidden;font-size: 20px;margin-left: 25px;color: #cd2222;" ></i>
+                </a>
+            </div>
+        </div>
+        </div>
+      </fieldset>
+
+      <span id="agregar-documentos" class="btn btn-success btn-md"><i class="fas fa-plus"> Agregar nuevo documento</i></span>
 
       <fieldset class="row">
          <div class="col-sm-4">
@@ -268,4 +302,5 @@
 <script src="{{ asset('public/js/admin/sistema/edificios/google_map_modificar.js') }}"></script>
 <script src="{{ asset('public/js/admin/jquery/croppie/js/croppie.min.js') }}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap"></script>
+<script src="{{ asset('public/js/admin/sistema/edificios/form_documentos.js') }}"></script>
 @endpush
