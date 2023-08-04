@@ -162,7 +162,7 @@
           <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Documentos</span></div>
                 @foreach ($edificio->documentos as $documento)
                 <div id="documentos-cargados-container">
-                    <div class="my-3">
+                    <div class="my-5">
                         <input disabled type="text" name="nombres_documentos[]" class="form-control col-sm-5"
                             placeholder="{{$documento->doc_nombre}}" data-maximo-caracteres="30"/>
                         <input disabled style="margin-bottom: 0px;"  type="file" name="documentos[]" class="input-file"/>
