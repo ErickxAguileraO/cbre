@@ -171,6 +171,7 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(EdificioController::class)->group(function () {
             Route::resource('edificios', EdificioController::class);
             Route::get('edificios/get/list', 'list');
+            Route::delete('edificios/delete/{documento}', 'deleteDocumento');
         });
 
         // Funcionarios

@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers\Administracion;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Edificio;
+use App\Models\Documento;
+use App\Models\SubMercado;
+use App\Models\Funcionario;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Edificio\RegistroEdificioRequest;
-use App\Http\Requests\Edificio\ModificacionEdificioRequest;
+use Illuminate\Http\Request;
 use App\Models\Certificacion;
 use App\Models\Caracteristica;
-use App\Models\Edificio;
-use App\Models\SubMercado;
-use App\Models\User;
-use App\Models\Funcionario;
 use App\Services\ImagenService;
 use App\Services\EdificioService;
+use App\Services\DocumentoService;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Edificio\RegistroEdificioRequest;
+use App\Http\Requests\Edificio\ModificacionEdificioRequest;
 
 class EdificioController extends Controller
 {
@@ -91,6 +93,19 @@ class EdificioController extends Controller
 
             foreach ($request->caracteristicas as $caracteristica) {
                 $edificio->caracteristicas()->attach($caracteristica);
+            }
+
+            if ($request->hasFile('documentos')) {
+                foreach ($request->file('documentos') as $key => $uploadedDocumento) {
+                    if ($uploadedDocumento->isValid()) {
+                        $documento = new Documento;
+                        $documento->doc_edificio_id = $edificio->edi_id;
+                        $documento->doc_nombre = isset($request->nombres_documentos[$key]) ? $request->nombres_documentos[$key] : $uploadedDocumento->getClientOriginalName();
+                        $documento->doc_url = DocumentoService::subirDocumento($uploadedDocumento, $edificio->edi_id);
+                        $documento->doc_extension = $uploadedDocumento->getClientOriginalExtension();
+                        $documento->save();
+                    }
+                }
             }
 
             DB::commit();
@@ -195,6 +210,19 @@ class EdificioController extends Controller
                 $edificio->caracteristicas()->attach($caracteristica);
             }
 
+            if ($request->hasFile('documentos')) {
+                foreach ($request->file('documentos') as $key => $uploadedDocumento) {
+                    if ($uploadedDocumento->isValid()) {
+                        $documento = new Documento;
+                        $documento->doc_edificio_id = $edificio->edi_id;
+                        $documento->doc_nombre = isset($request->nombres_documentos[$key]) ? $request->nombres_documentos[$key] : $uploadedDocumento->getClientOriginalName();
+                        $documento->doc_url = DocumentoService::subirDocumento($uploadedDocumento, $edificio->edi_id);
+                        $documento->doc_extension = $uploadedDocumento->getClientOriginalExtension();
+                        $documento->save();
+                    }
+                }
+            }
+
             DB::commit();
 
             return response()->success($edificio, 201);
@@ -246,6 +274,33 @@ class EdificioController extends Controller
             return $usuarioSesion->funcionario->edificio;
         } else {
             return Edificio::orderByDesc('created_at')->get();
+        }
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteDocumento($documento)
+    {
+        DB::beginTransaction();
+
+        try {
+            $documento = Documento::findOrFail($documento);
+
+            Storage::delete($documento->doc_url);
+
+            $documento->delete();
+
+            DB::commit();
+
+            return response()->json(['success' => '¡Documento eliminado correctamente!'], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            return response()->json(['error' => $th->getMessage()], 401);
         }
     }
 }

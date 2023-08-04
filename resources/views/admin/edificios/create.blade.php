@@ -138,6 +138,24 @@
       </fieldset>
 
       <fieldset class="row">
+        <div class="col-sm-4">
+          <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Documentos</span></div>
+          <div id='documentos-container'>
+            <div>
+                <input type="text" name="nombres_documentos[]" class="form-control col-sm-5"
+                    placeholder="Nombre del documento"/>
+                <input style="margin-bottom: 0px;"  type="file" name="documentos[]" class="input-file"/>
+                <a>
+                    <i class="fas fa-trash" style="visibility: hidden;font-size: 15px;margin-left: 20px;color: #cd2222;" ></i>
+                </a>
+            </div>
+        </div>
+        </div>
+      </fieldset>
+
+      <span id="agregar-documentos" class="btn btn-success btn-md"><i class="fas fa-plus"> Agregar nuevo documento</i></span>
+
+      <fieldset class="row">
          <div class="col-sm-4">
             <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Ubicación</span></div>
             <div class="form-group">
@@ -233,4 +251,5 @@
 <script src="{{ asset('public/js/admin/sistema/edificios/google_map_agregar.js') }}"></script>
 <script src="{{ asset('public/js/admin/jquery/croppie/js/croppie.min.js') }}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap"></script>
+<script src="{{ asset('public/js/admin/sistema/edificios/form_documentos.js') }}"></script>
 @endpush
