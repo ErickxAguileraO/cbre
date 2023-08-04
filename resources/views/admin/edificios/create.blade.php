@@ -143,7 +143,7 @@
           <div id='documentos-container'>
             <div>
                 <input type="text" name="nombres_documentos[]" class="form-control col-sm-5"
-                    placeholder="Nombre del documento"/>
+                    placeholder="Nombre del documento" data-maximo-caracteres="30"/>
                 <input style="margin-bottom: 0px;"  type="file" name="documentos[]" class="input-file"/>
                 <a>
                     <i class="fas fa-trash" style="visibility: hidden;font-size: 15px;margin-left: 20px;color: #cd2222;" ></i>

@@ -164,7 +164,7 @@
                 <div id="documentos-cargados-container">
                     <div class="my-3">
                         <input disabled type="text" name="nombres_documentos[]" class="form-control col-sm-5"
-                            placeholder="{{$documento->doc_nombre}}"/>
+                            placeholder="{{$documento->doc_nombre}}" data-maximo-caracteres="30"/>
                         <input disabled style="margin-bottom: 0px;"  type="file" name="documentos[]" class="input-file"/>
                         <a href="{{$documento->getUrlDocumentoAttribute()}}" target="_blank">
                             <i class="fas fa-download" style="font-size: 15px;margin-left: 20px;color: #18755e;" ></i>

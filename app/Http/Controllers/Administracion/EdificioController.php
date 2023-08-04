@@ -100,7 +100,7 @@ class EdificioController extends Controller
                     if ($uploadedDocumento->isValid()) {
                         $documento = new Documento;
                         $documento->doc_edificio_id = $edificio->edi_id;
-                        $documento->doc_nombre = isset($request->nombres_documentos[$key]) ? $request->nombres_documentos[$key] : $uploadedDocumento->getClientOriginalName();
+                        $documento->doc_nombre = isset($request->nombres_documentos[$key]) ? $request->nombres_documentos[$key] : Str::limit($uploadedDocumento->getClientOriginalName(), 30);
                         $documento->doc_url = DocumentoService::subirDocumento($uploadedDocumento, $edificio->edi_id);
                         $documento->doc_extension = $uploadedDocumento->getClientOriginalExtension();
                         $documento->save();
@@ -215,7 +215,7 @@ class EdificioController extends Controller
                     if ($uploadedDocumento->isValid()) {
                         $documento = new Documento;
                         $documento->doc_edificio_id = $edificio->edi_id;
-                        $documento->doc_nombre = isset($request->nombres_documentos[$key]) ? $request->nombres_documentos[$key] : $uploadedDocumento->getClientOriginalName();
+                        $documento->doc_nombre = isset($request->nombres_documentos[$key]) ? $request->nombres_documentos[$key] : Str::limit($uploadedDocumento->getClientOriginalName(), 30);
                         $documento->doc_url = DocumentoService::subirDocumento($uploadedDocumento, $edificio->edi_id);
                         $documento->doc_extension = $uploadedDocumento->getClientOriginalExtension();
                         $documento->save();
