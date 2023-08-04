@@ -463,6 +463,11 @@ footer .rrss{
 .carruselNoticias .slick-prev, .carruselNoticias .slick-next{
     top: 200px;
 }
+
+.carruselDocumentos .slick-prev, .carruselDocumentos .slick-next{
+    top: 200px;
+}
+
 .carruselCertificaciones .slick-prev, .carruselCertificaciones .slick-next{
     top: 100px;
 }
@@ -500,7 +505,13 @@ footer .rrss{
     max-width: 100%;
     margin-bottom: 20px;
 }
-
+.carruselDocumentos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
 .noticia-home-n{
     /* width: 215px !important; */
     height: auto !important;
@@ -1453,6 +1464,11 @@ footer .rrss{
         top: 200px;
         right: -5px;
     }
+    .carruselDocumentos .slick-prev, .carruselDocumentos .slick-next{
+        top: 200px;
+        right: -5px;
+    }
+
      /* Edificios */
      .buscador-input{
         display: grid;
@@ -1614,6 +1630,17 @@ footer .rrss{
     height: 250px!important;
     object-fit: cover!important;
     overflow: hidden!important;
+}
+.imgFormato{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%!important;
+    height: 200px!important;
+    background-color: white;
+}
+.imgFormato img{
+    width: 100px;
 }
 
 .imagen-noticias-detalle {

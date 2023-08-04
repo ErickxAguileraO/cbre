@@ -221,11 +221,11 @@
         <div class="noticias-home">
             <h2 class="tituloSeccion">Documentos de la comunidad</h2>
             <p class="p-txt-seccion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi odit quod expedita voluptatibus harum nobis doloremque.</p>
-            <div class="carruselNoticias">
+            <div class="carruselDocumentos">
                 <div class="noticia-home-n">
                     <a href="#">
-                        <div class="">
-                            <img src="https://www.propertycbre.cl/public/storage/noticias/imagenes/$2y$10$krAcSPXoJF4HK4j8cFIeOoydDi7JpMm01FD4stdKfuTMQDsMHSx2.png" class="imagen-noticias" alt="">
+                        <div class="imgFormato">
+                            <img src="{{ asset('public/web/imagenes/i-pdf.svg') }}" alt="">
                         </div>
                         <div class="contenido-noticia-n">
                             <div class="date-noticia">
@@ -243,8 +243,8 @@
 
                 <div class="noticia-home-n">
                     <a href="#">
-                        <div class="">
-                            <img src="https://www.propertycbre.cl/public/storage/noticias/imagenes/$2y$10$krAcSPXoJF4HK4j8cFIeOoydDi7JpMm01FD4stdKfuTMQDsMHSx2.png" class="imagen-noticias" alt="">
+                        <div class="imgFormato">
+                            <img src="{{ asset('public/web/imagenes/i-doc.svg') }}" alt="">
                         </div>
                         <div class="contenido-noticia-n">
                             <div class="date-noticia">
@@ -262,8 +262,8 @@
 
                 <div class="noticia-home-n">
                     <a href="#">
-                        <div class="">
-                            <img src="https://www.propertycbre.cl/public/storage/noticias/imagenes/$2y$10$krAcSPXoJF4HK4j8cFIeOoydDi7JpMm01FD4stdKfuTMQDsMHSx2.png" class="imagen-noticias" alt="">
+                        <div class="imgFormato">
+                            <img src="{{ asset('public/web/imagenes/i-img.svg') }}" alt="">
                         </div>
                         <div class="contenido-noticia-n">
                             <div class="date-noticia">
@@ -281,8 +281,27 @@
 
                 <div class="noticia-home-n">
                     <a href="#">
-                        <div class="">
-                            <img src="https://www.propertycbre.cl/public/storage/noticias/imagenes/$2y$10$krAcSPXoJF4HK4j8cFIeOoydDi7JpMm01FD4stdKfuTMQDsMHSx2.png" class="imagen-noticias" alt="">
+                        <div class="imgFormato">
+                            <img src="{{ asset('public/web/imagenes/i-excel.svg') }}" alt="">
+                        </div>
+                        <div class="contenido-noticia-n">
+                            <div class="date-noticia">
+                                <img src="{{ asset('public/web/imagenes/i-calendario.svg') }}" alt="">
+                                <p>Publicado el 14-03-2023 13:45</p>
+                            </div>
+                            <h2>Nombre documento</h2>
+                            <a href="#" class="ver-mas">
+                                <img src="{{ asset('public/web/imagenes/i-linea.svg') }}" alt="">
+                                <p>Descargar documento</p>
+                            </a>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="noticia-home-n">
+                    <a href="#">
+                        <div class="imgFormato">
+                            <img src="{{ asset('public/web/imagenes/i-formato.svg') }}" alt="">
                         </div>
                         <div class="contenido-noticia-n">
                             <div class="date-noticia">
@@ -298,12 +317,12 @@
                     </a>
                 </div>
             </div>
-            {{-- Esto debe estar en un else el cual se muestre si solo hay 3 o menos documentos --}}
+            {{-- Esto debe estar en un else el cual se muestre si solo hay 4 o menos documentos --}}
             {{-- <div class="flex-carrusel">
                 <div class="noticia-home-n">
                     <a href="#">
-                        <div class="">
-                            <img src="" class="imagen-noticias" alt="">
+                        <div class="imgFormato">
+                            <img src="{{ asset('public/web/imagenes/i-excel.svg') }}" alt="">
                         </div>
                         <div class="contenido-noticia-n">
                             <div class="date-noticia">
