@@ -31,7 +31,7 @@
                         <div class="form-group mt-3">
                             <p>Comentario</p>
                             <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
-                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="2000"></textarea>
+                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
                         </div>
                         @endif
 
@@ -81,7 +81,7 @@
                         <div class="form-group mt-3">
                             <p>Comentario</p>
                             <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
-                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="2000"></textarea>
+                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
                         </div>
                         @endif
 
@@ -128,7 +128,7 @@
                         <div class="form-group mt-3">
                             <p>Comentario</p>
                             <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
-                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="2000"></textarea>
+                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
                         </div>
                         @endif
 
@@ -297,7 +297,7 @@
                         <div class="form-group mt-3">
                             <p>Comentario</p>
                             <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
-                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled" class="form-control" data-maximo-caracteres="2000"></textarea>
+                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
                         </div>
                         @endif
 
