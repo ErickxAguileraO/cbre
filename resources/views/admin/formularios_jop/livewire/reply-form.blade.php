@@ -26,6 +26,15 @@
                                 <p>{{ $opcion->opc_opcion }}</p>
                             </div>
                         @endforeach
+
+                        @if ($pregunta->respuesta->res_comentario)
+                        <div class="form-group mt-3">
+                            <p>Comentario</p>
+                            <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
+                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                        </div>
+                        @endif
+
                         <div class="opciones-pregunta grid-header-2">
                             <div class="row gap-37 padding-left-15">
                                 <div class="modalFile__abrirBtn"
@@ -38,10 +47,10 @@
                                     @endif
                                 </div>
 
-                                <div class="row-global align-center agregar-comentario cursor-pointer">
+                                <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
                                     <i class="far fa-comment fa-flip-horizontal"></i>
                                     <p>Añadir comentario</p>
-                                </div>
+                                </button>
 
                             </div>
                             <div class="row opciones-extras-formulario">
@@ -67,6 +76,15 @@
                                 <p>{{ $opcion->opc_opcion }}</p>
                             </div>
                         @endforeach
+
+                        @if ($pregunta->respuesta->res_comentario)
+                        <div class="form-group mt-3">
+                            <p>Comentario</p>
+                            <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
+                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                        </div>
+                        @endif
+
                         <div class="opciones-pregunta grid-header-2">
                             <div class="row gap-37 padding-left-15">
                                 <div class="modalFile__abrirBtn"
@@ -79,10 +97,10 @@
                                     @endif
                                 </div>
 
-                                <div class="row-global align-center agregar-comentario cursor-pointer">
+                                <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
                                     <i class="far fa-comment fa-flip-horizontal"></i>
                                     <p>Añadir comentario</p>
-                                </div>
+                                </button>
 
                             </div>
                             <div class="row opciones-extras-formulario">
@@ -103,8 +121,17 @@
                         @endif
                         <div class="form-group">
                             <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
-                                wire:model.defer="res_parrafo" wire:change="updateParrafo({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                                wire:model.defer="res_parrafo.{{$pregunta->pre_id}}" wire:change="updateParrafo({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
                         </div>
+
+                        @if ($pregunta->respuesta->res_comentario)
+                        <div class="form-group mt-3">
+                            <p>Comentario</p>
+                            <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
+                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                        </div>
+                        @endif
+
                         <div class="opciones-pregunta grid-header-2">
                             <div class="row gap-37 padding-left-15">
                                 <div class="modalFile__abrirBtn"
@@ -117,10 +144,10 @@
                                     @endif
                                 </div>
 
-                                <div class="row-global align-center agregar-comentario cursor-pointer">
+                                <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
                                     <i class="far fa-comment fa-flip-horizontal"></i>
                                     <p>Añadir comentario</p>
-                                </div>
+                                </button>
 
                             </div>
                             <div class="row opciones-extras-formulario">
@@ -250,7 +277,7 @@
                         </fieldset>
                         @error('res_documentacion_sub_contrato') <span class="text-danger"> {{$message}} </span> @enderror
 
-                        @if ($res_documentacion_sub_contrato == 1)
+                        @if ($res_documentacion_sub_contrato == 0)
                         <fieldset class="row-global row-responsive">
                             <label class="width-250" for="">Subir documentación</label>
                             <div>
@@ -266,6 +293,14 @@
                         @error('res_documentacion') <span class="text-danger"> {{$message}} </span> @enderror
                         @endif
 
+                        @if ($pregunta->respuesta->res_comentario)
+                        <div class="form-group mt-3">
+                            <p>Comentario</p>
+                            <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
+                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                        </div>
+                        @endif
+
                         <div class="opciones-pregunta grid-header-2">
                             <div class="row gap-37 padding-left-15">
                                 <div class="modalFile__abrirBtn"
@@ -278,10 +313,10 @@
                                     @endif
                                 </div>
 
-                                <div class="row-global align-center agregar-comentario cursor-pointer">
+                                <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
                                     <i class="far fa-comment fa-flip-horizontal"></i>
                                     <p>Añadir comentario</p>
-                                </div>
+                                </button>
 
                             </div>
                             <div class="row opciones-extras-formulario">
@@ -295,7 +330,7 @@
             @endforeach
 
     <div class="botones-formulario grid2-responsivo">
-        <a href="{{ route('formulario-jop.deshacer.respuesta') }}"
+        <a href="{{ route('formulario-jop.deshacer.respuesta', $formulario->form_id) }}"
             class="modalFile__btnN modalFile__botonSecundario text-dark text-decoration-none">Deshacer todos los cambios
         </a>
         <button class="modalEnviar__abrirBtn modalFile__btnN modalFile__botonPrimario"

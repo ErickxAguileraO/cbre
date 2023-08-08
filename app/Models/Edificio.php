@@ -60,6 +60,11 @@ class Edificio extends Model
         return $this->hasMany(Imagen::class, 'ima_edificio_id', 'edi_id');
     }
 
+    public function documentos()
+    {
+        return $this->hasMany(Documento::class, 'doc_edificio_id', 'edi_id');
+    }
+
     public function noticias()
     {
         return $this->hasMany(Noticia::class, 'not_edificio_id', 'edi_id');

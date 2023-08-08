@@ -108,6 +108,12 @@
                                         @endif
                                     </div>
                                 @endforeach
+
+                                <div class="form-group mt-3 d-none" id="comment-div">
+                                    <p>Comentario</p>
+                                    <textarea name="" id="" class="form-control" cols="30" rows="10" disabled>{{$respuesta->res_comentario}}</textarea>
+                                </div>
+
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
                                         <div class="modalFile__abrirBtn">
@@ -121,10 +127,17 @@
                                             @endif
                                         </div>
 
+                                        @if ($respuesta->res_comentario)
                                         <div class="row-global align-center agregar-comentario cursor-pointer">
                                             <i class="far fa-comment fa-flip-horizontal"></i>
-                                            <p>Comentario</p>
+                                            <button class="text-decoration-none btn btn-link btn-color-a-cbre" id="toggle-link">Comentario (1)</button>
                                         </div>
+                                        @else
+                                        <div class="row-global align-center agregar-comentario cursor-pointer">
+                                            <i class="far fa-comment fa-flip-horizontal"></i>
+                                            <p>Comentario (0)</p>
+                                        </div>
+                                        @endif
 
                                     </div>
                                     <div class="row opciones-extras-formulario">
@@ -155,6 +168,12 @@
                                         @endif
                                     </div>
                                 @endforeach
+
+                                <div class="form-group mt-3 d-none" id="comment-div">
+                                    <p>Comentario</p>
+                                    <textarea name="" id="" class="form-control" cols="30" rows="10" disabled>{{$respuesta->res_comentario}}</textarea>
+                                </div>
+
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
                                         <div class="modalFile__abrirBtn">
@@ -168,10 +187,17 @@
                                             @endif
                                         </div>
 
+                                        @if ($respuesta->res_comentario)
                                         <div class="row-global align-center agregar-comentario cursor-pointer">
                                             <i class="far fa-comment fa-flip-horizontal"></i>
-                                            <p>Comentario</p>
+                                            <button class="text-decoration-none btn btn-link btn-color-a-cbre" id="toggle-link">Comentario (1)</button>
                                         </div>
+                                        @else
+                                        <div class="row-global align-center agregar-comentario cursor-pointer">
+                                            <i class="far fa-comment fa-flip-horizontal"></i>
+                                            <p>Comentario (0)</p>
+                                        </div>
+                                        @endif
 
                                     </div>
                                     <div class="row opciones-extras-formulario">
@@ -194,6 +220,12 @@
                                 <div class="form-group">
                                     <textarea name="" id="" class="form-control" cols="30" rows="10" disabled>{{ $respuesta->res_parrafo }}</textarea>
                                 </div>
+
+                                <div class="form-group mt-3 d-none" id="comment-div">
+                                    <p>Comentario</p>
+                                    <textarea name="" id="" class="form-control" cols="30" rows="10" disabled>{{$respuesta->res_comentario}}</textarea>
+                                </div>
+
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
                                         <div class="modalFile__abrirBtn">
@@ -207,10 +239,17 @@
                                             @endif
                                         </div>
 
+                                        @if ($respuesta->res_comentario)
                                         <div class="row-global align-center agregar-comentario cursor-pointer">
                                             <i class="far fa-comment fa-flip-horizontal"></i>
-                                            <p>Comentario</p>
+                                            <button class="text-decoration-none btn btn-link btn-color-a-cbre" id="toggle-link">Comentario (1)</button>
                                         </div>
+                                        @else
+                                        <div class="row-global align-center agregar-comentario cursor-pointer">
+                                            <i class="far fa-comment fa-flip-horizontal"></i>
+                                            <p>Comentario (0)</p>
+                                        </div>
+                                        @endif
 
                                     </div>
                                     <div class="row opciones-extras-formulario">
@@ -281,7 +320,7 @@
                                             <input class="form-control input-file-nuevo" id=""
                                                 name=""type="file" tabindex="1" disabled>
                                             <a href="{{ $respuesta->getUrlDocumentoAccidentabilidad() }}" target="_blank"
-                                                class="small">Descargar archivo adjunto</a>
+                                                class="small text-decoration-none">Descargar archivo adjunto</a>
                                         @else
                                             <input class="form-control input-file-nuevo" id=""
                                                 name=""type="file" tabindex="1" disabled>
@@ -344,10 +383,15 @@
                                             <input class="form-control input-file-nuevo" id=""
                                                 name=""type="file" tabindex="1" disabled>
                                             <a href="{{ $respuesta->getUrlDocumentacion() }}" target="_blank"
-                                                class="small">Descargar archivo adjunto</a>
+                                                class="small text-decoration-none">Descargar archivo adjunto</a>
                                         </div>
                                     </fieldset>
                                 @endif
+
+                                <div class="form-group mt-3 d-none" id="comment-div">
+                                    <p>Comentario</p>
+                                    <textarea name="" id="" class="form-control" cols="30" rows="10" disabled>{{$respuesta->res_comentario}}</textarea>
+                                </div>
 
                                 <div class="opciones-pregunta grid-header-2">
                                     <div class="row gap-37 padding-left-15">
@@ -362,10 +406,17 @@
                                             @endif
                                         </div>
 
+                                        @if ($respuesta->res_comentario)
                                         <div class="row-global align-center agregar-comentario cursor-pointer">
                                             <i class="far fa-comment fa-flip-horizontal"></i>
-                                            <p>Comentario</p>
+                                            <button class="text-decoration-none btn btn-link btn-color-a-cbre" id="toggle-link">Comentario (1)</button>
                                         </div>
+                                        @else
+                                        <div class="row-global align-center agregar-comentario cursor-pointer">
+                                            <i class="far fa-comment fa-flip-horizontal"></i>
+                                            <p>Comentario (0)</p>
+                                        </div>
+                                        @endif
 
                                     </div>
                                     <div class="row opciones-extras-formulario">
@@ -416,7 +467,7 @@
 
                                         <div class="row-global align-center agregar-comentario cursor-pointer">
                                             <i class="far fa-comment fa-flip-horizontal"></i>
-                                            <p>Comentario</p>
+                                            <p>Comentario (0)</p>
                                         </div>
 
                                     </div>
@@ -452,7 +503,7 @@
 
                                         <div class="row-global align-center agregar-comentario cursor-pointer">
                                             <i class="far fa-comment fa-flip-horizontal"></i>
-                                            <p>Comentario</p>
+                                            <p>Comentario (0)</p>
                                         </div>
 
                                     </div>
@@ -485,7 +536,7 @@
 
                                         <div class="row-global align-center agregar-comentario cursor-pointer">
                                             <i class="far fa-comment fa-flip-horizontal"></i>
-                                            <p>Comentario</p>
+                                            <p>Comentario (0)</p>
                                         </div>
 
                                     </div>
@@ -606,7 +657,7 @@
 
                                         <div class="row-global align-center agregar-comentario cursor-pointer">
                                             <i class="far fa-comment fa-flip-horizontal"></i>
-                                            <p>Comentario</p>
+                                            <p>Comentario (0)</p>
                                         </div>
 
                                     </div>
@@ -675,6 +726,18 @@
 @endsection
 
 @push('scripts')
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var toggleLinks = document.querySelectorAll("#toggle-link");
+    var commentDivs = document.querySelectorAll("#comment-div");
+
+    toggleLinks.forEach(function(toggleLink, index) {
+        toggleLink.addEventListener("click", function() {
+            commentDivs[index].classList.toggle("d-none");
+        });
+    });
+});
+</script>
     <script>
         // Opciones
         $(".option-select-manual").hide();

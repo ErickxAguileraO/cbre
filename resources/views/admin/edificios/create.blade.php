@@ -113,7 +113,7 @@
                   <div class="imagen1">
                      <div class="container-content my-5">
                            <img class="full default-image-croppie" style="cursor: pointer;" src="{{ asset('public/images/admin/sistema/resizing.png') }}" width="230" title="Agrega una imagen para recortarla."/>
-                           <div class="d-none my-4 croppie-image" data-min-width="520" data-min-height="385"></div>
+                           <div class="d-none my-4 croppie-image" data-min-width="4032" data-min-height="3024"></div>
                      </div>
                      <div class="position-relative">
                         <div class="custom-file">
@@ -136,6 +136,24 @@
             </div>
          </div>
       </fieldset>
+
+      <fieldset class="row">
+        <div class="col-sm-4">
+          <div class="hr-sect mb-5"><span class="small text-secondary">&nbsp;Documentos</span></div>
+          <div id='documentos-container'>
+            <div>
+                <input type="text" name="nombres_documentos[]" class="form-control col-sm-5"
+                    placeholder="Nombre del documento" data-maximo-caracteres="30"/>
+                <input style="margin-bottom: 0px;"  type="file" name="documentos[]" class="input-file"/>
+                <a>
+                    <i class="fas fa-trash" style="visibility: hidden;font-size: 15px;margin-left: 20px;color: #cd2222;" ></i>
+                </a>
+            </div>
+        </div>
+        </div>
+      </fieldset>
+
+      <span id="agregar-documentos" class="btn btn-success btn-md"><i class="fas fa-plus"> Agregar nuevo documento</i></span>
 
       <fieldset class="row">
          <div class="col-sm-4">
@@ -233,4 +251,5 @@
 <script src="{{ asset('public/js/admin/sistema/edificios/google_map_agregar.js') }}"></script>
 <script src="{{ asset('public/js/admin/jquery/croppie/js/croppie.min.js') }}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap"></script>
+<script src="{{ asset('public/js/admin/sistema/edificios/form_documentos.js') }}"></script>
 @endpush

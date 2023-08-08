@@ -40,7 +40,7 @@ document.getElementById("editar").addEventListener("click", function (event) {
             return response.json();
         })
         .then(function (response) {
-            if ($.isEmptyObject(response.errors)) {
+            if (!response.errors) {
                 isLoadingSpinner("editar", true);
                 setTimeout(() => {
                     if (response.success) {

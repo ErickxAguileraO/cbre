@@ -19,8 +19,6 @@ class FormularioJOPController extends Controller
 {
     public function index()
     {
-        $this->borrarRespuestasBorrador();
-
         return view('admin.formularios_jop.index');
     }
 
@@ -81,51 +79,66 @@ class FormularioJOPController extends Controller
         }
     }
 
-    public function show($id){
+    public function show($formularioId){
 
-        $this->borrarRespuestasBorrador();
+        $this->borrarRespuestasBorrador($formularioId);
 
-        $observacion = Obersacion::where('obs_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $id)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)->first();
+        try {
+            $observacion = Obersacion::where('obs_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $formularioId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)->first();
 
-        $formulario = Formulario::findOrFail($id);
+            $formulario = Formulario::findOrFail($formularioId);
 
-        foreach($formulario->preguntas as $pregunta){
-            $respuesta = new Respuesta();
-            $respuesta->res_formulario_edificio_id = FormularioEdificio::where('foredi_formulario_id', $formulario->form_id)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id;
-            $respuesta->res_pregunta_id = $pregunta->pre_id;
-            $respuesta->res_estado = 0;
-            $respuesta->save();
+            foreach($formulario->preguntas as $pregunta){
+                $respuesta = new Respuesta();
+                $respuesta->res_formulario_edificio_id = FormularioEdificio::where('foredi_formulario_id', $formulario->form_id)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id;
+                $respuesta->res_pregunta_id = $pregunta->pre_id;
+                $respuesta->res_estado = 0;
+                $respuesta->save();
+            }
+
+            return view('admin.formularios_jop.show', [
+                'formulario' => $formulario,
+                'observacion' => $observacion,
+            ]);
+
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
         }
-
-        return view('admin.formularios_jop.show', [
-            'formulario' => $formulario,
-            'observacion' => $observacion,
-        ]);
     }
 
-    public function deshacerRespuesta(){
+    public function deshacerRespuesta($formularioId){
 
-        $this->borrarRespuestasBorrador();
+        $this->borrarRespuestasBorrador($formularioId);
 
         return view('admin.formularios_jop.index');
     }
 
-    public function borrarRespuestasBorrador(){
+    public function borrarRespuestasBorrador($formularioId){
 
-        $respuestas = Respuesta::where('res_estado', 0)->get();
+        DB::beginTransaction();
+        try {
+            $respuestas = Respuesta::where('res_estado', 0)->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $formularioId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)->get();
 
-        foreach($respuestas as $respuesta){
-            $respuesta->opciones()->detach();
-            Storage::delete($respuesta->res_documentacion);
-            Storage::delete($respuesta->res_documento_accidentabilidad);
+            foreach($respuestas as $respuesta){
+                $respuesta->opciones()->detach();
+                Storage::delete($respuesta->res_documentacion);
+                Storage::delete($respuesta->res_documento_accidentabilidad);
 
-            $respuesta->archivosFormulario->each(function ($archivo) {
-                Storage::delete($archivo->arcf_url);
-                $archivo->delete();
-            });
+                $respuesta->archivosFormulario->each(function ($archivo) {
+                    Storage::delete($archivo->arcf_url);
+                    $archivo->delete();
+                });
+            }
+
+            $respuestas->each->delete();
+
+            DB::commit();
+
+        } catch (\Throwable $th) {
+            DB::rollback();
+
+            dd($th->getMessage());
         }
-
-        $respuestas->each->delete();
     }
 
     public function postRespuesta(Request $request){
