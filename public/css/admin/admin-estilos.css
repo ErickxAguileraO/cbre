@@ -1255,7 +1255,16 @@ input:checked+.slider:before {
     font-size: 13px!important;
   }
 
+  .btn-color-a-cbre {
+    color: #33882a;
+    outline: none;
+    text-decoration: none;
+  }
 
+  .btn-color-a-cbre:hover {
+    color: #33882a;
+    text-decoration: underline;
+  }
 
 
 

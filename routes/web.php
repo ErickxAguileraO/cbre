@@ -144,7 +144,7 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(FormularioJOPController::class)->group(function () {
             Route::resource('formulario-jop', FormularioJOPController::class);
             Route::get('formulario-jop/get/list', 'list')->name('formulario-jop.list');
-            Route::get('formulario-jop/delete/respuesta', 'deshacerRespuesta')->name('formulario-jop.deshacer.respuesta');
+            Route::get('formulario-jop/delete/respuesta/{formulario}', 'deshacerRespuesta')->name('formulario-jop.deshacer.respuesta');
             Route::post('formulario-jop/post/respuesta', 'postRespuesta')->name('formulario-jop.post.respuesta');
         });
 

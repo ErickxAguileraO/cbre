@@ -24,7 +24,9 @@ class ReplyForm extends Component
     protected $listeners = ['refreshRespuesta' => 'render'];
 
     public $selectedCheckboxes = [];
-    public $res_parrafo;
+
+    public $res_parrafo = [];
+
     public $res_mes;
     public $res_ano;
     public $res_dotacion; //text
@@ -35,6 +37,8 @@ class ReplyForm extends Component
     public $res_documentacion; //file
 
     public $preguntaHSEIdTemp;
+
+    public $res_comentario = [];
 
     public function render()
     {
@@ -96,6 +100,41 @@ class ReplyForm extends Component
         }
     }
 
+    public function createRemoveComentario($preguntaId){
+        usleep(config('fake-delay.general'));
+
+        try {
+            $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
+            ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+            ->first();
+            if($respuesta->res_comentario == null){
+                unset($this->res_comentario[$preguntaId]);
+                $respuesta->res_comentario = ' ';
+                $respuesta->update();
+            }else{
+                unset($this->res_comentario[$preguntaId]);
+                $respuesta->res_comentario = null;
+                $respuesta->update();
+            }
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
+    }
+
+    public function updateComentario($preguntaId){
+        usleep(config('fake-delay.general'));
+
+        try {
+            $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
+            ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
+            ->first();
+            $respuesta->res_comentario = $this->res_comentario[$preguntaId];
+            $respuesta->update();
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
+    }
+
     public function updateParrafo($preguntaId){
         usleep(config('fake-delay.general'));
 
@@ -103,7 +142,7 @@ class ReplyForm extends Component
             $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
             ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
             ->first();
-            $respuesta->res_parrafo = $this->res_parrafo;
+            $respuesta->res_parrafo = $this->res_parrafo[$preguntaId];
             $respuesta->update();
         } catch (\Throwable $th) {
             dd($th->getMessage());
