@@ -22,4 +22,9 @@ class ArchivoFormulario extends Model
         return $this->belongsTo(Pregunta::class, 'arcf_pregunta_id', 'pre_id');
     }
 
+    public function respuestas()
+    {
+        return $this->belongsTo(Pregunta::class, 'arcf_respuesta_id', 'pre_id');
+    }
+
 }

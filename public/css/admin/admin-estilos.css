@@ -974,6 +974,10 @@ input:checked+.slider:before {
     color: white !important;
 }
 
+/* .sub-menu-block{
+    display: block !important;
+} */
+
 .link-padding10{
     padding: .5rem 10px .5rem 20px !important;
 }

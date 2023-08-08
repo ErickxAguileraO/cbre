@@ -45,12 +45,12 @@ class FormularioJOPController extends Controller
 
             foreach ($formulario as $key => $value) {
                 $funcionario = $value->funcionario;
-                $prevencionistas = User::role('prevencionista')->pluck('name')->toArray();
-                $tecnicos = User::role('tecnico')->pluck('name')->toArray();
+                $prevencionistas = User::role('prevencionista')->pluck('id')->toArray();
+                $tecnicos = User::role('tecnico')->pluck('id')->toArray();
 
-                if (in_array($funcionario->fun_nombre, $prevencionistas)) {
+                if (in_array($funcionario->fun_user_id, $prevencionistas)) {
                     $value->rol_funcionario = 'Prevencionista';
-                } elseif (in_array($funcionario->fun_nombre, $tecnicos)) {
+                } elseif (in_array($funcionario->fun_user_id, $tecnicos)) {
                     $value->rol_funcionario = 'Técnico';
                 }
 
