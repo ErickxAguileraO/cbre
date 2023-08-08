@@ -58,14 +58,14 @@ class Formulario extends Model
             })
             ->when(isset($params['creado_por']), function ($query) use ($params) {
                 $query->when($params['creado_por'] !== 'Todos', function ($query) use ($params) {
-                    $prevencionistas = User::role('prevencionista')->pluck('name')->toArray();
-                    $tecnicos = User::role('tecnico')->pluck('name')->toArray();
+                    $prevencionistas = User::role('prevencionista')->pluck('id')->toArray();
+                    $tecnicos = User::role('tecnico')->pluck('id')->toArray();
                     $creadoPor = $params['creado_por'];
 
                     if ($creadoPor === 'Prevencionista' || $creadoPor === 'Técnico') {
                         $nombresFuncionarios = ($creadoPor === 'Prevencionista') ? $prevencionistas : $tecnicos;
                         $query->whereHas('funcionario', function ($query) use ($nombresFuncionarios) {
-                            $query->whereIn('fun_nombre', $nombresFuncionarios);
+                            $query->whereIn('fun_user_id', $nombresFuncionarios);
                         });
                     }
                 });

@@ -184,12 +184,6 @@
             @endif
 
             @can('index area tecnica')
-            <li class="menu-area-tecnica">
-              <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                <a class="nav-link">Área técnica</a>
-                <i class="fas fa-sort-down color-texto-cbre menos-top"></i>
-              </span>
-            </li>
 
             @php
 
@@ -209,29 +203,67 @@
             ->count();
 
             @endphp
+            @if ($rolLogeado == 'prevencionista')
+                <li class="menu-area-tecnica">
+                    <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
+                    <a class="nav-link">Área HSE</a>
+                    <i class="fas fa-sort-down color-texto-cbre menos-top"></i>
+                    </span>
+                </li>
+            @else
+                <li class="menu-area-tecnica">
+                    <span class="nav-item nav-link collapsed row-menu" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
+                    <a class="nav-link">Área técnica</a>
+                    <i class="fas fa-sort-down color-texto-cbre menos-top"></i>
+                    </span>
+                </li>
+            @endif
             @php
                 // Obtener la cantidad de mantenciones nuevas sin leer
                 $cantidadMantencionesSinLeer = App\Models\Mantencion::where('man_leida', false)->count();
             @endphp
-            <li class="sub-menu-area-tecnica">
-                <div class="collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
-                    <span class="nav-item nav-link row-menu">
-                        <a href="{{ route('formulario-area-tecnica.index') }}" class="nav-link">Formulario Área técnica</a>
-                        @if ($cantidadFormulariosEstado2 > 0)
-                            <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{ $cantidadFormulariosEstado2 }}</span>
-                        @endif
-                      </span>
-                      <span class="nav-item nav-link row-menu">
-                        @can('index mantencion')
-                        <a href="{{ route('mantenciones-soporte-tecnico.index') }}" class="nav-link">Mantención Soporte técnico</a>
-                        @if ($cantidadMantencionesSinLeer > 0)
-                            <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{$cantidadMantencionesSinLeer}}</span>
-                        @endif
-                        @endcan
-                      </span>
-                </div>
+            @if ($rolLogeado == 'super-admin')
+                <li class="sub-menu-area-tecnica">
+                    <div class="collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
+                        <span class="nav-item nav-link row-menu">
+                            <a href="{{ route('formulario-area-tecnica.index') }}" class="nav-link">Formulario Área técnica</a>
+                            @if ($cantidadFormulariosEstado2 > 0)
+                                <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{ $cantidadFormulariosEstado2 }}</span>
+                            @endif
+                        </span>
+                        <span class="nav-item nav-link row-menu">
+                            @can('index mantencion')
+                                <a href="{{ route('mantenciones-soporte-tecnico.index') }}" class="nav-link">Mantención Soporte técnico</a>
+                                @if ($cantidadMantencionesSinLeer > 0)
+                                    <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{$cantidadMantencionesSinLeer}}</span>
+                                @endif
+                            @endcan
+                        </span>
+                    </div>
+                </li>
+            @else
+               <li class="sub-menu-area-tecnica sub-menu-block">
+                    <div class="collapsed" data-toggle="collapse" data-target="#nav_1" data-parent="#accordionMenu" aria-expanded="false" aria-controls="nav_1">
+                        <span class="nav-item nav-link row-menu">
+                            <a href="{{ route('formulario-area-tecnica.index') }}" class="nav-link">Formulario Área técnica</a>
+                            @if ($cantidadFormulariosEstado2 > 0)
+                                <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{ $cantidadFormulariosEstado2 }}</span>
+                            @endif
+                        </span>
 
-            </li>
+                            @can('index mantencion')
+                                <span class="nav-item nav-link row-menu">
+                                    <a href="{{ route('mantenciones-soporte-tecnico.index') }}" class="nav-link">Mantención Soporte técnico</a>
+                                    @if ($cantidadMantencionesSinLeer > 0)
+                                        <span class="badge badge-success badge-pill ml-2 contador-notificaciones">{{$cantidadMantencionesSinLeer}}</span>
+                                    @endif
+                                </span>
+                            @endcan
+
+                    </div>
+                </li>
+            @endif
+
             @endcan
           </ul>
         </div>
@@ -262,6 +294,7 @@
 
 <script>
   $(".sub-menu-area-tecnica").hide();
+  $(".sub-menu-block").show();
   $(".menu-area-tecnica").click(function() {
     $(".sub-menu-area-tecnica").toggle();
   })

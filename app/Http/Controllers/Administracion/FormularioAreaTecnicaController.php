@@ -65,12 +65,10 @@ class FormularioAreaTecnicaController extends Controller
             $rolLogeado = auth()->user()->roles->first()->name;
 
             $formulario = Formulario::with('funcionario')
-            ->with(['preguntas' => function ($query) {
-                $query->withCount('archivosFormulario');
-            }])
+            ->with(['preguntas.archivosFormulario', 'preguntas.respuestas.archivosFormulario'])
             ->with(['edificios' => function ($query) use ($request) {
                 // Aquí cargamos la relación "edificios" con las columnas seleccionadas
-                $query->select('edi_id', 'edi_nombre', 'foredi_estado','foredi_edificio_id');
+                $query->select('edi_id', 'edi_nombre', 'foredi_estado','foredi_edificio_id','foredi_id',);
 
                 // Filtrar por el estado seleccionado (si está presente en la solicitud)
                 if (isset($request->estado)) {
@@ -99,30 +97,31 @@ class FormularioAreaTecnicaController extends Controller
         foreach ($formulario as $key => $value) {
             $funcionario = $value->funcionario;
 
-            $prevencionistas = User::role('prevencionista')->pluck('name')->toArray();
-            $tecnicos = User::role('tecnico')->pluck('name')->toArray();
+            $prevencionistas = User::role('prevencionista')->pluck('id')->toArray();
+            $tecnicos = User::role('tecnico')->pluck('id')->toArray();
 
             $rolFuncionario = '';
 
-            if (in_array($funcionario->fun_nombre, $prevencionistas)) {
+            if (in_array($funcionario->fun_user_id, $prevencionistas)) {
                 $rolFuncionario = 'Prevencionista';
-            } elseif (in_array($funcionario->fun_nombre, $tecnicos)) {
+            } elseif (in_array($funcionario->fun_user_id, $tecnicos)) {
                 $rolFuncionario = 'Técnico';
             }
 
             $value->rol_funcionario = $rolFuncionario;
-
-            // Agregar la cantidad de archivos a cada pregunta
-            foreach ($value->preguntas as $pregunta) {
-                $pregunta->cantidad_archivos = $pregunta->archivosFormulario->count();
-            }
             $value->updated_at_formatted = date('d-m-Y', strtotime($value->updated_at));
-            // Obtener la cantidad total de archivos vinculados al formulario
-            $cantidadArchivosFormulario = 0;
+
+
+            $totalArchivosFormulario = 0;
             foreach ($value->preguntas as $pregunta) {
-                $cantidadArchivosFormulario += $pregunta->cantidad_archivos;
+                $totalArchivosFormulario += $pregunta->archivosFormulario->count();
+
+                // Si hay una respuesta asociada a la pregunta y el edificio, contar los archivos de la respuesta
+                if ($pregunta->respuesta) {
+                        $totalArchivosFormulario += $pregunta->respuesta->archivosFormulario->count();
+                }
             }
-            $value->cantidad_archivos_formulario = $cantidadArchivosFormulario;
+            $value->cantidad_archivos_formulario = $totalArchivosFormulario;
 
             // Agregar los nombres de los edificios al formulario
             $edificios = $value->edificios;
