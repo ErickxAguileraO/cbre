@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return response.json();
             })
             .then(function (response) {
-                if ($.isEmptyObject(response.errors)) {
+                if (!response.errors) {
                     isLoadingSpinner("guardar", true);
                     setTimeout(() => {
                         if (response.success) {
