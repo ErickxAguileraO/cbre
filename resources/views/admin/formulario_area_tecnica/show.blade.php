@@ -320,7 +320,7 @@
                                             <input class="form-control input-file-nuevo" id=""
                                                 name=""type="file" tabindex="1" disabled>
                                             <a href="{{ $respuesta->getUrlDocumentoAccidentabilidad() }}" target="_blank"
-                                                class="small">Descargar archivo adjunto</a>
+                                                class="small text-decoration-none">Descargar archivo adjunto</a>
                                         @else
                                             <input class="form-control input-file-nuevo" id=""
                                                 name=""type="file" tabindex="1" disabled>
@@ -383,7 +383,7 @@
                                             <input class="form-control input-file-nuevo" id=""
                                                 name=""type="file" tabindex="1" disabled>
                                             <a href="{{ $respuesta->getUrlDocumentacion() }}" target="_blank"
-                                                class="small">Descargar archivo adjunto</a>
+                                                class="small text-decoration-none">Descargar archivo adjunto</a>
                                         </div>
                                     </fieldset>
                                 @endif

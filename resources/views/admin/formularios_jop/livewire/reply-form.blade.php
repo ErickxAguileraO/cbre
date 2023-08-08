@@ -277,7 +277,7 @@
                         </fieldset>
                         @error('res_documentacion_sub_contrato') <span class="text-danger"> {{$message}} </span> @enderror
 
-                        @if ($res_documentacion_sub_contrato == 1)
+                        @if ($res_documentacion_sub_contrato == 0)
                         <fieldset class="row-global row-responsive">
                             <label class="width-250" for="">Subir documentación</label>
                             <div>

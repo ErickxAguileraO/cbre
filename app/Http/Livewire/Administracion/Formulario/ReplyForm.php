@@ -175,21 +175,23 @@ class ReplyForm extends Component
     public function updateHSEfiles($preguntaId){
         usleep(config('fake-delay.general'));
 
-        $this->validateHSE();
-
         try {
             $this->preguntaHSEIdTemp = $preguntaId;
+
             $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
             ->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $this->formId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)
             ->first();
+
             if($this->res_documento_accidentabilidad){
                 Storage::delete($respuesta->res_documento_accidentabilidad);
                 $respuesta->res_documento_accidentabilidad = empty($this->res_documento_accidentabilidad) ? null : ArchivoService::subirArchivos($this->res_documento_accidentabilidad, Pregunta::findOrFail($preguntaId)->formulario->form_id, $respuesta->res_id, 'respuesta');
             }
+
              if($this->res_documentacion){
                 Storage::delete($respuesta->res_documentacion);
                 $respuesta->res_documentacion = empty($this->res_documentacion) ? null : ArchivoService::subirArchivos($this->res_documentacion, Pregunta::findOrFail($preguntaId)->formulario->form_id, $respuesta->res_id, 'respuesta');
             }
+
             $respuesta->update();
         } catch (\Throwable $th) {
             dd($th->getMessage());
@@ -199,10 +201,6 @@ class ReplyForm extends Component
 
     public function checkThemAll(){
         usleep(config('fake-delay.save'));
-
-        if($this->preguntaHSEIdTemp){
-            $this->updateHSEfiles($this->preguntaHSEIdTemp);
-        }
 
         $formulario = Formulario::findOrfail($this->formId);
 
@@ -234,6 +232,9 @@ class ReplyForm extends Component
                 }
                 if($pregunta->tipoPregunta->tipp_id == 4){
                     $this->validateHSE();
+                    if($this->preguntaHSEIdTemp){
+                        $this->updateHSEfiles($this->preguntaHSEIdTemp);
+                    }
                     if($pregunta->pre_obligatorio){
                         if($this->getErrorBag()->any()){
                             $errors[] = $pregunta->pre_id;
