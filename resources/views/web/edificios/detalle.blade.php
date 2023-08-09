@@ -348,7 +348,7 @@
                 return $funcionario->fun_cargo == 'Gerente';
                 }) as $funcionario)
                 <div class="operaciones-contenido">
-                    <h2>Gerente</h2>
+                    <h2>Gerente de operaciones</h2>
                     <div class="operacion-n">
                         <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                         <div class="txt-operacion">
@@ -419,7 +419,7 @@
                 return $funcionario->fun_cargo == 'Gerente';
                 }) as $funcionario)
                 <div class="operaciones-contenido">
-                    <h2>Gerente</h2>
+                    <h2>Gerente de operaciones</h2>
                     <div class="operacion-n">
                         <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                         <div class="txt-operacion">

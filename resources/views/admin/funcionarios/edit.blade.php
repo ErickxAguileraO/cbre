@@ -77,7 +77,7 @@
                     <label for="cargo">Cargo</label>
                     <select id="cargo" name="cargo" class="form-control" tabindex="5">
                         <option value="">Selecciona...</option>
-                        <option value="Gerente" {{ $funcionario->fun_cargo == 'Gerente' ? 'selected' : '' }}>Gerente</option>
+                        <option value="Gerente" {{ $funcionario->fun_cargo == 'Gerente' ? 'selected' : '' }}>Gerente de operaciones</option>
                         <option value="Jefe de operaciones" {{ $funcionario->fun_cargo == 'Jefe de operaciones' ? 'selected' : '' }}>Jefe de operaciones</option>
                         <option value="Asistente de operaciones"{{ $funcionario->fun_cargo == 'Asistente de operaciones' ? 'selected' : '' }}>Asistente de operaciones</option>
                         <option value="Prevencionista" {{ $funcionario->fun_cargo == 'Prevencionista' ? 'selected' : '' }}>Prevencionista</option>
