@@ -40,11 +40,7 @@
                                 <div class="modalFile__abrirBtn"
                                     wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})" wire:loading.attr="disabled">
                                     <i class="far fa-paperclip"></i>
-                                    @if ($pregunta->respuesta->archivosFormulario->count() > 0)
-                                        Adjuntar archivos ({{ $pregunta->respuesta->archivosFormulario->count() }})
-                                    @else
-                                        Adjuntar archivos
-                                    @endif
+                                    Adjuntar archivos
                                 </div>
 
                                 <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
@@ -90,11 +86,7 @@
                                 <div class="modalFile__abrirBtn"
                                     wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})">
                                     <i class="far fa-paperclip"></i>
-                                    @if ($pregunta->respuesta->archivosFormulario->count() > 0)
-                                        Adjuntar archivos ({{ $pregunta->respuesta->archivosFormulario->count() }})
-                                    @else
-                                        Adjuntar archivos
-                                    @endif
+                                    Adjuntar archivos
                                 </div>
 
                                 <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
@@ -137,11 +129,7 @@
                                 <div class="modalFile__abrirBtn"
                                     wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})">
                                     <i class="far fa-paperclip"></i>
-                                    @if ($pregunta->respuesta->archivosFormulario->count() > 0)
-                                        Adjuntar archivos ({{ $pregunta->respuesta->archivosFormulario->count() }})
-                                    @else
-                                        Adjuntar archivos
-                                    @endif
+                                    Adjuntar archivos
                                 </div>
 
                                 <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
@@ -306,11 +294,7 @@
                                 <div class="modalFile__abrirBtn"
                                     wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})" wire:loading.attr="disabled">
                                     <i class="far fa-paperclip"></i>
-                                    @if ($pregunta->respuesta->archivosFormulario->count() > 0)
-                                        Adjuntar archivos ({{ $pregunta->respuesta->archivosFormulario->count() }})
-                                    @else
-                                        Adjuntar archivos
-                                    @endif
+                                    Adjuntar archivos
                                 </div>
 
                                 <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
