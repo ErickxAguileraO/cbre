@@ -12,6 +12,9 @@
     #map {
         height: 480px !important;
     }
+    .flex-operaciones .operacion-n{
+        width: auto !important;
+    }
 </style>
 @endpush
 
@@ -287,6 +290,7 @@
                     @endforeach
                 </div>
             @endif
+            <a href="/edificios-oficinas/{{$edificio->edi_id}}-{{$slug_nombre}}/documentos" class="style-link">Ver todos los documentos</a>
         </div>
     </section>
     @endif
