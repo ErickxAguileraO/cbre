@@ -46,7 +46,24 @@ class EdificioController extends Controller
             if(Str::slug($edificio->edi_nombre , "-") != $slug){
                 abort(404);
             }else{
-                return view('web.edificios.detalle', compact('edificio'));
+                $slug_nombre = Str::slug($edificio->edi_nombre , "-");
+                return view('web.edificios.detalle', compact('edificio','slug_nombre'));
+            }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['error' => $th->getMessage()]);
+        }
+    }
+
+    public function documentos  (Edificio $edificio, $slug){
+        try {
+            if(Str::slug($edificio->edi_nombre , "-") != $slug){
+                abort(404);
+            }else{
+                return view('web.edificios.documentos', [
+                    "documentos" => $edificio->documentos,
+                    "url_back" => "/edificios-oficinas/".$edificio->edi_id."-".Str::slug($edificio->edi_nombre , "-"),
+                    "nombre_edificio" => $edificio->edi_nombre
+                ]);
             }
         } catch (\Throwable $th) {
             return redirect()->back()->with(['error' => $th->getMessage()]);
