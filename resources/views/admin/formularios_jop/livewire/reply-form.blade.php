@@ -9,325 +9,325 @@
             </div>
             @endif
 
-            @foreach ($formulario->preguntas as $index => $pregunta)
-                @if ($pregunta->tipoPregunta->tipp_id == 1)
-                    <div class="div-formulario-n">
-                        <h3 class="">{{ $pregunta->pre_pregunta }}</h3>
-                        @if ($pregunta->archivosFormulario->count() > 0)
-                        <div class="color-texto-cbre bottom-20 cursor-pointer small">
-                            <i class="far fa-paperclip"></i>
-                            <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+            @foreach ($respuestas as $index => $respuesta)
+            @if ($respuesta->pregunta->tipoPregunta->tipp_id == 1)
+                <div class="div-formulario-n">
+                    <h3 class="">{{ $respuesta->pregunta->pre_pregunta }}</h3>
+                    @if ($respuesta->pregunta->archivosFormulario->count() > 0)
+                    <div class="color-texto-cbre bottom-20 cursor-pointer small">
+                        <i class="far fa-paperclip"></i>
+                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+                    </div>
+                    @endif
+                    @foreach ($respuesta->pregunta->opciones as $opcion)
+                        <div class="row align-center preguntas-preview">
+                            <input type="radio" name="opcion{{ $respuesta->pregunta->pre_id }}"
+                                wire:click="selectOption({{ $opcion->opc_id }})" wire:loading.attr="disabled">
+                            <p>{{ $opcion->opc_opcion }}</p>
                         </div>
-                        @endif
-                        @foreach ($pregunta->opciones as $opcion)
-                            <div class="row align-center preguntas-preview">
-                                <input type="radio" name="opcion{{ $pregunta->pre_id }}"
-                                    wire:click="selectOption({{ $opcion->opc_id }})" wire:loading.attr="disabled">
-                                <p>{{ $opcion->opc_opcion }}</p>
-                            </div>
-                        @endforeach
+                    @endforeach
 
-                        @if ($pregunta->respuesta->res_comentario)
-                        <div class="form-group mt-3">
-                            <p>Comentario</p>
-                            <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
-                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
-                        </div>
-                        @endif
+                    @if ($respuesta->res_comentario)
+                    <div class="form-group mt-3">
+                        <p>Comentario</p>
+                        <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
+                        wire:model.defer="res_comentario.{{$respuesta->pregunta->pre_id}}" wire:change="updateComentario({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                    </div>
+                    @endif
 
-                        <div class="opciones-pregunta grid-header-2">
-                            <div class="row gap-37 padding-left-15">
-                                <div class="modalFile__abrirBtn"
-                                    wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})" wire:loading.attr="disabled">
-                                    <i class="far fa-paperclip"></i>
-                                    @if ($pregunta->respuesta->archivosFormulario->count() > 0)
-                                        Adjuntar archivos ({{ $pregunta->respuesta->archivosFormulario->count() }})
-                                    @else
-                                        Adjuntar archivos
-                                    @endif
-                                </div>
-
-                                <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
-                                    <i class="far fa-comment fa-flip-horizontal"></i>
-                                    <p>Añadir comentario</p>
-                                </button>
-
-                            </div>
-                            <div class="row opciones-extras-formulario">
-                                @if ($pregunta->pre_obligatorio == 1)
-                                    <p class="color-rojo">Obligatoria</p>
+                    <div class="opciones-pregunta grid-header-2">
+                        <div class="row gap-37 padding-left-15">
+                            <div class="modalFile__abrirBtn"
+                                wire:click="uploadFileModalRespuesta({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled">
+                                <i class="far fa-paperclip"></i>
+                                @if ($respuesta->archivosFormulario->count() > 0)
+                                    Adjuntar archivos ({{ $respuesta->archivosFormulario->count() }})
+                                @else
+                                    Adjuntar archivos
                                 @endif
                             </div>
+
+                            <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$respuesta->pregunta->pre_id}})" wire:loading.attr="disabled">
+                                <i class="far fa-comment fa-flip-horizontal"></i>
+                                <p>Añadir comentario</p>
+                            </button>
+
+                        </div>
+                        <div class="row opciones-extras-formulario">
+                            @if ($respuesta->pregunta->pre_obligatorio == 1)
+                                <p class="color-rojo">Obligatoria</p>
+                            @endif
                         </div>
                     </div>
-                @elseif ($pregunta->tipoPregunta->tipp_id == 2)
-                    <div class="div-formulario-n">
-                        <h3 class="">{{ $pregunta->pre_pregunta }}</h3>
-                        @if ($pregunta->archivosFormulario->count() > 0)
-                        <div class="color-texto-cbre bottom-20 cursor-pointer small">
-                            <i class="far fa-paperclip"></i>
-                            <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+                </div>
+            @elseif ($respuesta->pregunta->tipoPregunta->tipp_id == 2)
+                <div class="div-formulario-n">
+                    <h3 class="">{{ $respuesta->pregunta->pre_pregunta }}</h3>
+                    @if ($respuesta->pregunta->archivosFormulario->count() > 0)
+                    <div class="color-texto-cbre bottom-20 cursor-pointer small">
+                        <i class="far fa-paperclip"></i>
+                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+                    </div>
+                    @endif
+                    @foreach ($respuesta->pregunta->opciones as $opcion)
+                        <div class="row align-center preguntas-preview">
+                            <input type="checkbox" wire:model.defer="selectedCheckboxes"
+                                value="{{ $opcion->opc_id }}" wire:click="selectCheckbox({{ $opcion->opc_id }})" wire:loading.attr="disabled">
+                            <p>{{ $opcion->opc_opcion }}</p>
                         </div>
-                        @endif
-                        @foreach ($pregunta->opciones as $opcion)
-                            <div class="row align-center preguntas-preview">
-                                <input type="checkbox" wire:model.defer="selectedCheckboxes"
-                                    value="{{ $opcion->opc_id }}" wire:click="selectCheckbox({{ $opcion->opc_id }})" wire:loading.attr="disabled">
-                                <p>{{ $opcion->opc_opcion }}</p>
-                            </div>
-                        @endforeach
+                    @endforeach
 
-                        @if ($pregunta->respuesta->res_comentario)
-                        <div class="form-group mt-3">
-                            <p>Comentario</p>
-                            <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
-                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
-                        </div>
-                        @endif
+                    @if ($respuesta->res_comentario)
+                    <div class="form-group mt-3">
+                        <p>Comentario</p>
+                        <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
+                        wire:model.defer="res_comentario.{{$respuesta->pregunta->pre_id}}" wire:change="updateComentario({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                    </div>
+                    @endif
 
-                        <div class="opciones-pregunta grid-header-2">
-                            <div class="row gap-37 padding-left-15">
-                                <div class="modalFile__abrirBtn"
-                                    wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})">
-                                    <i class="far fa-paperclip"></i>
-                                    @if ($pregunta->respuesta->archivosFormulario->count() > 0)
-                                        Adjuntar archivos ({{ $pregunta->respuesta->archivosFormulario->count() }})
-                                    @else
-                                        Adjuntar archivos
-                                    @endif
-                                </div>
-
-                                <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
-                                    <i class="far fa-comment fa-flip-horizontal"></i>
-                                    <p>Añadir comentario</p>
-                                </button>
-
-                            </div>
-                            <div class="row opciones-extras-formulario">
-                                @if ($pregunta->pre_obligatorio == 1)
-                                    <p class="color-rojo">Obligatoria</p>
+                    <div class="opciones-pregunta grid-header-2">
+                        <div class="row gap-37 padding-left-15">
+                            <div class="modalFile__abrirBtn"
+                                wire:click="uploadFileModalRespuesta({{ $respuesta->pregunta->pre_id }})">
+                                <i class="far fa-paperclip"></i>
+                                @if ($respuesta->archivosFormulario->count() > 0)
+                                    Adjuntar archivos ({{ $respuesta->archivosFormulario->count() }})
+                                @else
+                                    Adjuntar archivos
                                 @endif
                             </div>
+
+                            <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$respuesta->pregunta->pre_id}})" wire:loading.attr="disabled">
+                                <i class="far fa-comment fa-flip-horizontal"></i>
+                                <p>Añadir comentario</p>
+                            </button>
+
+                        </div>
+                        <div class="row opciones-extras-formulario">
+                            @if ($respuesta->pregunta->pre_obligatorio == 1)
+                                <p class="color-rojo">Obligatoria</p>
+                            @endif
                         </div>
                     </div>
-                @elseif ($pregunta->tipoPregunta->tipp_id == 3)
-                    <div class="div-formulario-n">
-                        <h3 class="">{{ $pregunta->pre_pregunta }}</h3>
-                        @if ($pregunta->archivosFormulario->count() > 0)
-                        <div class="color-texto-cbre bottom-20 cursor-pointer small">
-                            <i class="far fa-paperclip"></i>
-                            <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+                </div>
+            @elseif ($respuesta->pregunta->tipoPregunta->tipp_id == 3)
+                <div class="div-formulario-n">
+                    <h3 class="">{{ $respuesta->pregunta->pre_pregunta }}</h3>
+                    @if ($respuesta->pregunta->archivosFormulario->count() > 0)
+                    <div class="color-texto-cbre bottom-20 cursor-pointer small">
+                        <i class="far fa-paperclip"></i>
+                        <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+                    </div>
+                    @endif
+                    <div class="form-group">
+                        <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
+                            wire:model.defer="res_parrafo.{{$respuesta->pregunta->pre_id}}" wire:change="updateParrafo({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                    </div>
+
+                    @if ($respuesta->res_comentario)
+                    <div class="form-group mt-3">
+                        <p>Comentario</p>
+                        <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
+                        wire:model.defer="res_comentario.{{$respuesta->pregunta->pre_id}}" wire:change="updateComentario({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                    </div>
+                    @endif
+
+                    <div class="opciones-pregunta grid-header-2">
+                        <div class="row gap-37 padding-left-15">
+                            <div class="modalFile__abrirBtn"
+                                wire:click="uploadFileModalRespuesta({{ $respuesta->pregunta->pre_id }})">
+                                <i class="far fa-paperclip"></i>
+                                @if ($respuesta->archivosFormulario->count() > 0)
+                                    Adjuntar archivos ({{ $respuesta->archivosFormulario->count() }})
+                                @else
+                                    Adjuntar archivos
+                                @endif
+                            </div>
+
+                            <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$respuesta->pregunta->pre_id}})" wire:loading.attr="disabled">
+                                <i class="far fa-comment fa-flip-horizontal"></i>
+                                <p>Añadir comentario</p>
+                            </button>
+
                         </div>
-                        @endif
+                        <div class="row opciones-extras-formulario">
+                            @if ($respuesta->pregunta->pre_obligatorio == 1)
+                                <p class="color-rojo">Obligatoria</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @elseif ($respuesta->pregunta->tipoPregunta->tipp_id == 4)
+                <div class="div-formulario-n">
+                    <fieldset class="row row-responsive">
+                        <div class="col-xl">
+                            <div class="form-group">
+                                <h3 class="">{{ $respuesta->pregunta->pre_pregunta }}</h3>
+                            </div>
+                            @if ($respuesta->pregunta->archivosFormulario->count() > 0)
+                            <div class="color-texto-cbre bottom-20 cursor-pointer small">
+                                <i class="far fa-paperclip"></i>
+                                <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $respuesta->pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
+                            </div>
+                            @endif
+                        </div>
+                    </fieldset>
+                    <fieldset class="row row-responsive">
+
+                        <div class="col-sm-4 row-column-global sin-margen">
+                            <label for="res_mes">Mes de evaluación</label>
+                            <div class="form-group">
+                                <select wire:model.defer="res_mes" wire:change="updateHSE({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled"
+                                    id="res_mes" name="res_mes" class="form-control" tabindex="4"
+                                    style="width: 100%;">
+                                    <option value="">Seleccione</option>
+                                    @foreach (range(1, 12) as $mes)
+                                        <option value="{{ $mes }}">
+                                            {{ ucfirst(\Carbon\Carbon::createFromDate(null, $mes)->locale('es')->monthName) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('res_mes') <span class="text-danger small"> {{$message}} </span> @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 row-column-global sin-margen">
+                            <label for="anio">Año</label>
+                            <div class="form-group">
+                                <select wire:model.defer="res_ano"
+                                    wire:change="updateHSE({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled" id="res_ano"
+                                    name="res_ano" class="form-control" tabindex="4" style="width: 100%;">
+                                    <option value="">Seleccione</option>
+                                    @php
+                                        $anioActual = \Carbon\Carbon::now()->year;
+                                        $aniosPrevios = range($anioActual - 5, $anioActual);
+                                    @endphp
+                                    @foreach (array_reverse($aniosPrevios) as $anio)
+                                        <option value="{{ $anio }}">{{ $anio }}</option>
+                                    @endforeach
+                                </select>
+                                @error('res_ano') <span class="text-danger small"> {{$message}} </span> @enderror
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                    <h3 class="margin-20">Reporte de accidentabildiad CBRE</h3>
+
+                    <fieldset class="row-global row-responsive">
+                        <label class="width-250" for="">Dotación</label>
                         <div class="form-group">
-                            <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
-                                wire:model.defer="res_parrafo.{{$pregunta->pre_id}}" wire:change="updateParrafo({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                            <input wire:model.defer="res_dotacion"
+                                wire:change="updateHSE({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
+                                class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
+                                @error('res_dotacion') <span class="text-danger small"> {{$message}} </span> @enderror
                         </div>
+                    </fieldset>
 
-                        @if ($pregunta->respuesta->res_comentario)
-                        <div class="form-group mt-3">
-                            <p>Comentario</p>
-                            <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
-                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                    <fieldset class="row-global row-responsive">
+                        <label class="width-250" for="">Reporte de accidentabildiad</label>
+                        <div>
+                            <input wire:model.defer="res_documento_accidentabilidad"
+                                wire:change="updateHSEfiles({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled"
+                                class="form-control input-file-nuevo" id=""
+                                name="" type="file" tabindex="1">
+                                @error('res_documento_accidentabilidad') <span class="text-danger small"> {{$message}} </span> @enderror
                         </div>
-                        @endif
+                    </fieldset>
 
-                        <div class="opciones-pregunta grid-header-2">
-                            <div class="row gap-37 padding-left-15">
-                                <div class="modalFile__abrirBtn"
-                                    wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})">
-                                    <i class="far fa-paperclip"></i>
-                                    @if ($pregunta->respuesta->archivosFormulario->count() > 0)
-                                        Adjuntar archivos ({{ $pregunta->respuesta->archivosFormulario->count() }})
-                                    @else
-                                        Adjuntar archivos
-                                    @endif
-                                </div>
+                    <div class="linea-separadora"></div>
+                    <h3 class="margin-20">Reporte de accidentabildiad Sub contratos</h3>
+                    <fieldset class="row-global row-responsive">
+                        <label class="width-250" for="">Dotación sub contratos</label>
+                        <div class="form-group">
+                            <input wire:model.defer="res_dotacion_sub_contratos"
+                                wire:change="updateHSE({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
+                                class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
+                                @error('res_dotacion_sub_contratos') <span class="text-danger small"> {{$message}} </span> @enderror
+                        </div>
+                    </fieldset>
 
-                                <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
-                                    <i class="far fa-comment fa-flip-horizontal"></i>
-                                    <p>Añadir comentario</p>
-                                </button>
+                    <fieldset class="row-global row-responsive">
+                        <label class="width-250" for="">¿Cuántos de estos son nuevos?</label>
+                        <div class="form-group">
+                            <input wire:model.defer="res_dotacion_nuevos"
+                                wire:change="updateHSE({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
+                                class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
+                                @error('res_dotacion_nuevos') <span class="text-danger small"> {{$message}} </span> @enderror
+                        </div>
+                    </fieldset>
 
+                    <fieldset class="row-global row-responsive">
+                        <label class="width-250" for="">¿Todos tienen documentación de sub contratación al
+                            día?</label>
+                        <div class="form-group row-global">
+                            <div class="row-global align-center">
+                                <input wire:model.defer="res_documentacion_sub_contrato"
+                                    wire:change="updateHSE({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled" type="radio"
+                                    name="sub_contrato" id="sub_contrato" value="1">
+                                <p>Si</p>
                             </div>
-                            <div class="row opciones-extras-formulario">
-                                @if ($pregunta->pre_obligatorio == 1)
-                                    <p class="color-rojo">Obligatoria</p>
+                            <div class="row-global align-center">
+                                <input wire:model.defer="res_documentacion_sub_contrato"
+                                    wire:change="updateHSE({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled" type="radio"
+                                    name="sub_contrato" id="sub_contrato" value="0">
+                                <p>No</p>
+                            </div>
+                        </div>
+                    </fieldset>
+                    @error('res_documentacion_sub_contrato') <span class="text-danger small"> {{$message}} </span> @enderror
+
+                    @if ($res_documentacion_sub_contrato == 0)
+                    <fieldset class="row-global row-responsive">
+                        <label class="width-250" for="">Subir documentación</label>
+                        <div>
+                            <input wire:model="res_documentacion"
+                                wire:change.defer="updateHSEfiles({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled"
+                                class="form-control input-file-nuevo" id=""
+                                name="" type="file" tabindex="1">
+                            <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un
+                                solo
+                                archivo</p>
+                        </div>
+                    </fieldset>
+                    @error('res_documentacion') <span class="text-danger small"> {{$message}} </span> @enderror
+                    @endif
+
+                    @if ($respuesta->res_comentario)
+                    <div class="form-group mt-3">
+                        <p>Comentario</p>
+                        <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
+                        wire:model.defer="res_comentario.{{$respuesta->pregunta->pre_id}}" wire:change="updateComentario({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
+                    </div>
+                    @endif
+
+                    <div class="opciones-pregunta grid-header-2">
+                        <div class="row gap-37 padding-left-15">
+                            <div class="modalFile__abrirBtn"
+                                wire:click="uploadFileModalRespuesta({{ $respuesta->pregunta->pre_id }})" wire:loading.attr="disabled">
+                                <i class="far fa-paperclip"></i>
+                                @if ($respuesta->archivosFormulario->count() > 0)
+                                    Adjuntar archivos ({{ $respuesta->archivosFormulario->count() }})
+                                @else
+                                    Adjuntar archivos
                                 @endif
                             </div>
+
+                            <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$respuesta->pregunta->pre_id}})" wire:loading.attr="disabled">
+                                <i class="far fa-comment fa-flip-horizontal"></i>
+                                <p>Añadir comentario</p>
+                            </button>
+
+                        </div>
+                        <div class="row opciones-extras-formulario">
+                            @if ($respuesta->pregunta->pre_obligatorio == 1)
+                                <p class="color-rojo">Obligatoria</p>
+                            @endif
                         </div>
                     </div>
-                @elseif ($pregunta->tipoPregunta->tipp_id == 4)
-                    <div class="div-formulario-n">
-                        <fieldset class="row row-responsive">
-                            <div class="col-xl">
-                                <div class="form-group">
-                                    <h3 class="">{{ $pregunta->pre_pregunta }}</h3>
-                                </div>
-                                @if ($pregunta->archivosFormulario->count() > 0)
-                                <div class="color-texto-cbre bottom-20 cursor-pointer small">
-                                    <i class="far fa-paperclip"></i>
-                                    <a href="{{ route('formulario-area-tecnica.archivos', [$formulario->form_id, $pregunta->pre_id]) }}" class="text-decoration-none">Información complementaria</a>
-                                </div>
-                                @endif
-                            </div>
-                        </fieldset>
-                        <fieldset class="row row-responsive">
-
-                            <div class="col-sm-4 row-column-global sin-margen">
-                                <label for="res_mes">Mes de evaluación</label>
-                                <div class="form-group">
-                                    <select wire:model.defer="res_mes" wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
-                                        id="res_mes" name="res_mes" class="form-control" tabindex="4"
-                                        style="width: 100%;">
-                                        <option value="">Seleccione</option>
-                                        @foreach (range(1, 12) as $mes)
-                                            <option value="{{ $mes }}">
-                                                {{ ucfirst(\Carbon\Carbon::createFromDate(null, $mes)->locale('es')->monthName) }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('res_mes') <span class="text-danger"> {{$message}} </span> @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 row-column-global sin-margen">
-                                <label for="anio">Año</label>
-                                <div class="form-group">
-                                    <select wire:model.defer="res_ano"
-                                        wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="res_ano"
-                                        name="res_ano" class="form-control" tabindex="4" style="width: 100%;">
-                                        <option value="">Seleccione</option>
-                                        @php
-                                            $anioActual = \Carbon\Carbon::now()->year;
-                                            $aniosPrevios = range($anioActual - 5, $anioActual);
-                                        @endphp
-                                        @foreach (array_reverse($aniosPrevios) as $anio)
-                                            <option value="{{ $anio }}">{{ $anio }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('res_ano') <span class="text-danger"> {{$message}} </span> @enderror
-                                </div>
-                            </div>
-
-                        </fieldset>
-
-                        <h3 class="margin-20">Reporte de accidentabildiad CBRE</h3>
-
-                        <fieldset class="row-global row-responsive">
-                            <label class="width-250" for="">Dotación</label>
-                            <div class="form-group">
-                                <input wire:model.defer="res_dotacion"
-                                    wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
-                                    class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
-                                    @error('res_dotacion') <span class="text-danger"> {{$message}} </span> @enderror
-                            </div>
-                        </fieldset>
-
-                        <fieldset class="row-global row-responsive">
-                            <label class="width-250" for="">Reporte de accidentabildiad</label>
-                            <div>
-                                <input wire:model.defer="res_documento_accidentabilidad"
-                                    wire:change="updateHSEfiles({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
-                                    class="form-control input-file-nuevo" id=""
-                                    name="" type="file" tabindex="1">
-                                    @error('res_documento_accidentabilidad') <span class="text-danger"> {{$message}} </span> @enderror
-                            </div>
-                        </fieldset>
-
-                        <div class="linea-separadora"></div>
-                        <h3 class="margin-20">Reporte de accidentabildiad Sub contratos</h3>
-                        <fieldset class="row-global row-responsive">
-                            <label class="width-250" for="">Dotación sub contratos</label>
-                            <div class="form-group">
-                                <input wire:model.defer="res_dotacion_sub_contratos"
-                                    wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
-                                    class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
-                                    @error('res_dotacion_sub_contratos') <span class="text-danger"> {{$message}} </span> @enderror
-                            </div>
-                        </fieldset>
-
-                        <fieldset class="row-global row-responsive">
-                            <label class="width-250" for="">¿Cuántos de estos son nuevos?</label>
-                            <div class="form-group">
-                                <input wire:model.defer="res_dotacion_nuevos"
-                                    wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" id="" name=""
-                                    class="form-control" data-maximo-caracteres="50" type="text" tabindex="1" placeholder="">
-                                    @error('res_dotacion_nuevos') <span class="text-danger"> {{$message}} </span> @enderror
-                            </div>
-                        </fieldset>
-
-                        <fieldset class="row-global row-responsive">
-                            <label class="width-250" for="">¿Todos tienen documentación de sub contratación al
-                                día?</label>
-                            <div class="form-group row-global">
-                                <div class="row-global align-center">
-                                    <input wire:model.defer="res_documentacion_sub_contrato"
-                                        wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" type="radio"
-                                        name="sub_contrato" id="sub_contrato" value="1">
-                                    <p>Si</p>
-                                </div>
-                                <div class="row-global align-center">
-                                    <input wire:model.defer="res_documentacion_sub_contrato"
-                                        wire:change="updateHSE({{ $pregunta->pre_id }})" wire:loading.attr="disabled" type="radio"
-                                        name="sub_contrato" id="sub_contrato" value="0">
-                                    <p>No</p>
-                                </div>
-                            </div>
-                        </fieldset>
-                        @error('res_documentacion_sub_contrato') <span class="text-danger"> {{$message}} </span> @enderror
-
-                        @if ($res_documentacion_sub_contrato == 0)
-                        <fieldset class="row-global row-responsive">
-                            <label class="width-250" for="">Subir documentación</label>
-                            <div>
-                                <input wire:model="res_documentacion"
-                                    wire:change.defer="updateHSEfiles({{ $pregunta->pre_id }})" wire:loading.attr="disabled"
-                                    class="form-control input-file-nuevo" id=""
-                                    name="" type="file" tabindex="1">
-                                <p style="margin-top: 10px !important;">Subir todos los documentos comprimidos en un
-                                    solo
-                                    archivo</p>
-                            </div>
-                        </fieldset>
-                        @error('res_documentacion') <span class="text-danger"> {{$message}} </span> @enderror
-                        @endif
-
-                        @if ($pregunta->respuesta->res_comentario)
-                        <div class="form-group mt-3">
-                            <p>Comentario</p>
-                            <textarea name="" id="" class="form-control" cols="30" rows="10" data-maximo-caracteres="2000"
-                            wire:model.defer="res_comentario.{{$pregunta->pre_id}}" wire:change="updateComentario({{ $pregunta->pre_id }})" wire:loading.attr="disabled"></textarea>
-                        </div>
-                        @endif
-
-                        <div class="opciones-pregunta grid-header-2">
-                            <div class="row gap-37 padding-left-15">
-                                <div class="modalFile__abrirBtn"
-                                    wire:click="uploadFileModalRespuesta({{ $pregunta->pre_id }})" wire:loading.attr="disabled">
-                                    <i class="far fa-paperclip"></i>
-                                    @if ($pregunta->respuesta->archivosFormulario->count() > 0)
-                                        Adjuntar archivos ({{ $pregunta->respuesta->archivosFormulario->count() }})
-                                    @else
-                                        Adjuntar archivos
-                                    @endif
-                                </div>
-
-                                <button class="row-global align-center agregar-comentario cursor-pointer btn btn-link text-decoration-none text-secondary" wire:click="createRemoveComentario({{$pregunta->pre_id}})" wire:loading.attr="disabled">
-                                    <i class="far fa-comment fa-flip-horizontal"></i>
-                                    <p>Añadir comentario</p>
-                                </button>
-
-                            </div>
-                            <div class="row opciones-extras-formulario">
-                                @if ($pregunta->pre_obligatorio == 1)
-                                    <p class="color-rojo">Obligatoria</p>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            @endforeach
+                </div>
+            @endif
+        @endforeach
 
     <div class="botones-formulario grid2-responsivo">
         <a href="{{ route('formulario-jop.deshacer.respuesta', $formulario->form_id) }}"
