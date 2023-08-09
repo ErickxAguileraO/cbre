@@ -44,6 +44,12 @@ class ReplyForm extends Component
     {
         return view('admin.formularios_jop.livewire.reply-form',[
             'formulario' => Formulario::findOrFail($this->formId),
+            'respuestas' => FormularioEdificio::where('foredi_formulario_id', $this->formId)
+            ->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)
+            ->first()
+            ->respuestas()
+            ->where('res_estado', 0)
+            ->get()
         ]);
     }
 
