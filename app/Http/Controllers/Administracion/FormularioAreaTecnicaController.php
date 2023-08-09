@@ -111,36 +111,49 @@ class FormularioAreaTecnicaController extends Controller
             $value->rol_funcionario = $rolFuncionario;
             $value->updated_at_formatted = date('d-m-Y', strtotime($value->updated_at));
 
-
             $totalArchivosFormulario = 0;
+            $totalRespuestas = 0;
+
             foreach ($value->preguntas as $pregunta) {
                 $totalArchivosFormulario += $pregunta->archivosFormulario->count();
 
-                // Si hay una respuesta asociada a la pregunta y el edificio, contar los archivos de la respuesta
-                if ($pregunta->respuesta) {
-                        $totalArchivosFormulario += $pregunta->respuesta->archivosFormulario->count();
+                // Recorrer las respuestas y sus archivos de respuesta
+                foreach ($pregunta->respuestas as $respuesta) {
+                    $formularioEdificio = $value->edificios->firstWhere('foredi_edificio_id', $respuesta->formularioEdificio->foredi_edificio_id);
+
+                    if ($formularioEdificio) {
+                        $totalRespuestas += $respuesta->archivosFormulario->count();
+
+                        // Agregar los archivos de respuesta al edificio correspondiente
+                        if (!isset($formularioEdificio->archivos_respuestas)) {
+                            $formularioEdificio->archivos_respuestas = 0;
+                        }
+                        $formularioEdificio->archivos_respuestas += $respuesta->archivosFormulario->count();
+                    }
                 }
             }
+
             $value->cantidad_archivos_formulario = $totalArchivosFormulario;
+            $value->respuestas_count = $totalRespuestas;
 
             // Agregar los nombres de los edificios al formulario
             $edificios = $value->edificios;
 
-            if ($edificios->count() > 1) {
-                foreach ($edificios as $edificio) {
-                    $modifiedFormulario->push($value->replicate()->forceFill([
-                        'estado' => $edificio->foredi_estado,
-                        'edificio_id' => $edificio->edi_id,
-                        'edificio' => $edificio->edi_nombre,
-                        'form_id' => $value->form_id // Asignar el form_id original al formulario duplicado
-                    ]));
-                }
-            } else {
+            // Agregar los nombres de los edificios al formulario replicado
+            foreach ($value->edificios as $edificio) {
+                $modifiedValue = $value->replicate();
+                $modifiedValue->estado = $edificio->foredi_estado;
+                $modifiedValue->edificio_id = $edificio->edi_id;
+                $modifiedValue->edificio = $edificio->edi_nombre;
+                $modifiedValue->form_id = $value->form_id; // Asignar el form_id original al formulario duplicado
 
-                $value->estado = $edificios->pluck('foredi_estado')->toArray();
-                $value->edificio_id = $edificios->pluck('edi_id')->toArray();
-                $value->edificio = $edificios->pluck('edi_nombre')->toArray();
-                $modifiedFormulario->push($value);
+                if (isset($edificio->archivos_respuestas)) {
+                    $modifiedValue->archivos_respuestas = $edificio->archivos_respuestas;
+                } else {
+                    $modifiedValue->archivos_respuestas = 0;
+                }
+
+                $modifiedFormulario->push($modifiedValue);
             }
         }
         return response()->json($modifiedFormulario);

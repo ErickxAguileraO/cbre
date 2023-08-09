@@ -73,7 +73,7 @@
                     <label for="cargo">Cargo</label>
                     <select id="cargo" name="cargo" class="form-control" tabindex="5">
                         <option value="">Selecciona...</option>
-                        <option value="Gerente">Gerente</option>
+                        <option value="Gerente">Gerente de operaciones</option>
                         <option value="Jefe de operaciones">Jefe de operaciones</option>
                         <option value="Asistente de operaciones">Asistente de operaciones</option>
                         <option value="Prevencionista">Prevencionista</option>

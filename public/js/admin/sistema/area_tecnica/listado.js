@@ -64,13 +64,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     // minWidth: '110',
                 },
                 {
-                    dataField: "cantidad_archivos_formulario",
+                    dataField: "",
                     caption: "Archivos",
-                    filterOperations: ["contains"],
                     alignment: "center",
-                    hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
+                    hidingPriority: 3,
                     width: 80,
-                    // minWidth: '110',
+                    cellTemplate: function (container, options) {
+                        const respuestasCount = options.data.respuestas_count || 0;
+                        const archivosFormulario = options.data.cantidad_archivos_formulario || 0;
+                        const archivosRespuestas = options.data.archivos_respuestas || 0;
+
+                        const content = archivosFormulario + archivosRespuestas;
+
+                        $("<div>")
+                            .addClass("archivos-cell")
+                            .text(content)
+                            .appendTo(container);
+                    }
                 },
                 {
                     dataField: "estado",
@@ -119,8 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     cellTemplate(container, options) {
                         const idFormulario = options.data.form_id;
                         const idEdificio = options.data.edificio_id;
-                        const descarga = options.data.cantidad_archivos_formulario;
-                        console.log(options.data.estado);
+                        const descarga = options.data.cantidad_archivos_formulario + options.data.archivos_respuestas;
+                        console.log(descarga);
                         let urlView = `/admin/formulario-area-tecnica/show/${idFormulario}/${idEdificio}`;
                         let urlModificar = `/admin/formulario-area-tecnica/${idFormulario}/edit`;
 
