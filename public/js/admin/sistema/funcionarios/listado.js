@@ -35,6 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     caption: "Cargo",
                     filterOperations: ["contains"],
                     hidingPriority: 3, // prioridad para ocultar columna, 0 se oculta primero
+                    calculateCellValue: function(rowData) {
+                        if(rowData.fun_cargo == 'Gerente'){
+                            return 'Gerente de operaciones';
+                        }else{
+                            return rowData.fun_cargo
+                        }
+                    }
                 },
                 {
                     dataField: "edificio.edi_nombre",

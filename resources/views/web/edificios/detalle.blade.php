@@ -12,6 +12,9 @@
     #map {
         height: 480px !important;
     }
+    .flex-operaciones .operacion-n{
+        width: auto !important;
+    }
 </style>
 @endpush
 
@@ -287,6 +290,7 @@
                     @endforeach
                 </div>
             @endif
+            <a href="/edificios-oficinas/{{$edificio->edi_id}}-{{$slug_nombre}}/documentos" class="style-link">Ver todos los documentos</a>
         </div>
     </section>
     @endif
@@ -344,7 +348,7 @@
                 return $funcionario->fun_cargo == 'Gerente';
                 }) as $funcionario)
                 <div class="operaciones-contenido">
-                    <h2>Gerente</h2>
+                    <h2>Gerente de operaciones</h2>
                     <div class="operacion-n">
                         <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                         <div class="txt-operacion">
@@ -415,7 +419,7 @@
                 return $funcionario->fun_cargo == 'Gerente';
                 }) as $funcionario)
                 <div class="operaciones-contenido">
-                    <h2>Gerente</h2>
+                    <h2>Gerente de operaciones</h2>
                     <div class="operacion-n">
                         <img class="imagen-funcionarios img" src="{{ $funcionario->urlImagen }}" alt="">
                         <div class="txt-operacion">
