@@ -1,6 +1,6 @@
 @extends('layout.web')
 
-@section('title', 'Inicio')
+@section('title', 'Documentos')
 
 @section('content')
     @push('extra-css')
