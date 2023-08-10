@@ -139,25 +139,30 @@ class FormularioAreaTecnicaController extends Controller
             // Agregar los nombres de los edificios al formulario
             $edificios = $value->edificios;
             // Agregar los nombres de los edificios al formulario replicado
-            foreach ($value->edificios as $edificio) {
-                $modifiedValue = $value->replicate();
-                $modifiedValue->estado = $edificio->foredi_estado;
-                $modifiedValue->edificio_id = $edificio->edi_id;
-                $modifiedValue->edificio = $edificio->edi_nombre;
-                $modifiedValue->form_id = $value->form_id; // Asignar el form_id original al formulario duplicado
+            if ($edificios->count() > 1) {
+                foreach ($value->edificios as $edificio) {
+                    $modifiedValue = $value->replicate();
+                    $modifiedValue->estado = $edificio->foredi_estado;
+                    $modifiedValue->edificio_id = $edificio->edi_id;
+                    $modifiedValue->edificio = $edificio->edi_nombre;
+                    $modifiedValue->form_id = $value->form_id; // Asignar el form_id original al formulario duplicado
 
-                if (isset($edificio->archivos_respuestas)) {
-                    $modifiedValue->archivos_respuestas = $edificio->archivos_respuestas;
-                } else {
-                    $modifiedValue->archivos_respuestas = 0;
+                    if (isset($edificio->archivos_respuestas)) {
+                        $modifiedValue->archivos_respuestas = $edificio->archivos_respuestas;
+                    } else {
+                        $modifiedValue->archivos_respuestas = 0;
+                    }
+
+                    $modifiedFormulario->push($modifiedValue);
                 }
-
-                $modifiedFormulario->push($modifiedValue);
+            } else {
+                $value->estado = $edificios->pluck('foredi_estado')->toArray();
+                $value->edificio_id = $edificios->pluck('edi_id')->toArray();
+                $value->edificio = $edificios->pluck('edi_nombre')->toArray();
+                $modifiedFormulario->push($value);
             }
-            $value->estado = $edificios->pluck('foredi_estado')->toArray();
-            $value->edificio_id = $edificios->pluck('edi_id')->toArray();
-            $value->edificio = $edificios->pluck('edi_nombre')->toArray();
-            $modifiedFormulario->push($value);
+
+
         }
         return response()->json($modifiedFormulario);
         } catch (\Throwable $th) {
