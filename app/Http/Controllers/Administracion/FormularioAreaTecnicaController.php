@@ -138,7 +138,6 @@ class FormularioAreaTecnicaController extends Controller
 
             // Agregar los nombres de los edificios al formulario
             $edificios = $value->edificios;
-
             // Agregar los nombres de los edificios al formulario replicado
             foreach ($value->edificios as $edificio) {
                 $modifiedValue = $value->replicate();
@@ -155,6 +154,10 @@ class FormularioAreaTecnicaController extends Controller
 
                 $modifiedFormulario->push($modifiedValue);
             }
+            $value->estado = $edificios->pluck('foredi_estado')->toArray();
+            $value->edificio_id = $edificios->pluck('edi_id')->toArray();
+            $value->edificio = $edificios->pluck('edi_nombre')->toArray();
+            $modifiedFormulario->push($value);
         }
         return response()->json($modifiedFormulario);
         } catch (\Throwable $th) {
