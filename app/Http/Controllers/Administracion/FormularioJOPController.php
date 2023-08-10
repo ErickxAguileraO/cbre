@@ -117,7 +117,7 @@ class FormularioJOPController extends Controller
 
         DB::beginTransaction();
         try {
-            $respuestas = Respuesta::where('res_estado', 0)->where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $formularioId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)->get();
+            $respuestas = Respuesta::where('res_formulario_edificio_id', FormularioEdificio::where('foredi_formulario_id', $formularioId)->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)->first()->foredi_id)->get();
 
             foreach($respuestas as $respuesta){
                 $respuesta->opciones()->detach();

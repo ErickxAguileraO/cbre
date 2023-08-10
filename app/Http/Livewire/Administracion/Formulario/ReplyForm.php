@@ -44,10 +44,17 @@ class ReplyForm extends Component
     {
         return view('admin.formularios_jop.livewire.reply-form',[
             'formulario' => Formulario::findOrFail($this->formId),
+            'respuestas' => FormularioEdificio::where('foredi_formulario_id', $this->formId)
+            ->where('foredi_edificio_id', Auth::user()->funcionario->edificio->edi_id)
+            ->first()
+            ->respuestas()
+            ->where('res_estado', 0)
+            ->get()
         ]);
     }
 
     public function validateHSE(){
+        $this->dispatchBrowserEvent('fireSwalerror');
         $this->validate([
             'res_ano' => 'required|max:50',
             'res_mes' => 'required|max:50',
@@ -152,7 +159,7 @@ class ReplyForm extends Component
     public function updateHSE($preguntaId){
         usleep(config('fake-delay.general'));
 
-            $this->validateHSE();
+        $this->resetErrorBag();
 
             try {
                 $respuesta = Respuesta::where('res_pregunta_id', $preguntaId)
@@ -231,13 +238,10 @@ class ReplyForm extends Component
                     }
                 }
                 if($pregunta->tipoPregunta->tipp_id == 4){
-                    $this->validateHSE();
-                    if($this->preguntaHSEIdTemp){
-                        $this->updateHSEfiles($this->preguntaHSEIdTemp);
-                    }
                     if($pregunta->pre_obligatorio){
-                        if($this->getErrorBag()->any()){
-                            $errors[] = $pregunta->pre_id;
+                        $this->validateHSE();
+                        if($this->preguntaHSEIdTemp){
+                            $this->updateHSEfiles($this->preguntaHSEIdTemp);
                         }
                     }
                 }
