@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             templateModificar = `<a href="${urlModificar}" title="Modificar"><i class='color-texto-cbre fas fa-pencil fa-fw'></i></a>`;
                         }
 
-                        if (descarga === 0) {
+                        if (descarga === 0 || options.data.estado.length === 0) {
                             templateDown = '';
                         }else{
                             templateDown = `<a href="/admin/formulario-area-tecnica/get/archivos/${idFormulario}" title=""><i class="color-texto-cbre i-margin-cbre fas fa-folder-download"></i></a>`;
